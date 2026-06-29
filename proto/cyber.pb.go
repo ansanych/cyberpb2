@@ -465,6 +465,7 @@ type Machine struct {
 	ClassId        int32                  `protobuf:"varint,5,opt,name=classId,proto3" json:"classId,omitempty"`
 	ClassName      string                 `protobuf:"bytes,6,opt,name=className,proto3" json:"className,omitempty"`
 	GenerationName string                 `protobuf:"bytes,7,opt,name=generationName,proto3" json:"generationName,omitempty"`
+	ModelId        int32                  `protobuf:"varint,8,opt,name=modelId,proto3" json:"modelId,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -546,6 +547,13 @@ func (x *Machine) GetGenerationName() string {
 		return x.GenerationName
 	}
 	return ""
+}
+
+func (x *Machine) GetModelId() int32 {
+	if x != nil {
+		return x.ModelId
+	}
+	return 0
 }
 
 type Machines struct {
@@ -716,6 +724,7 @@ type ModelDataTypes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Model         string                 `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`
 	DataTypes     []*DataType            `protobuf:"bytes,2,rep,name=dataTypes,proto3" json:"dataTypes,omitempty"`
+	ModelId       int32                  `protobuf:"varint,3,opt,name=modelId,proto3" json:"modelId,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -762,6 +771,13 @@ func (x *ModelDataTypes) GetDataTypes() []*DataType {
 		return x.DataTypes
 	}
 	return nil
+}
+
+func (x *ModelDataTypes) GetModelId() int32 {
+	if x != nil {
+		return x.ModelId
+	}
+	return 0
 }
 
 type AllModelsDataTypes struct {
@@ -836,7 +852,7 @@ const file_cyber_proto_rawDesc = "" +
 	"Pagination\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x14\n" +
-	"\x05total\x18\x03 \x01(\x05R\x05total\"\xc7\x01\n" +
+	"\x05total\x18\x03 \x01(\x05R\x05total\"\xe1\x01\n" +
 	"\aMachine\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x14\n" +
 	"\x05model\x18\x02 \x01(\tR\x05model\x12\x12\n" +
@@ -844,7 +860,8 @@ const file_cyber_proto_rawDesc = "" +
 	"\fgenerationId\x18\x04 \x01(\x05R\fgenerationId\x12\x18\n" +
 	"\aclassId\x18\x05 \x01(\x05R\aclassId\x12\x1c\n" +
 	"\tclassName\x18\x06 \x01(\tR\tclassName\x12&\n" +
-	"\x0egenerationName\x18\a \x01(\tR\x0egenerationName\":\n" +
+	"\x0egenerationName\x18\a \x01(\tR\x0egenerationName\x12\x18\n" +
+	"\amodelId\x18\b \x01(\x05R\amodelId\":\n" +
 	"\bMachines\x12.\n" +
 	"\bmachines\x18\x01 \x03(\v2\x12.cybertele.MachineR\bmachines\"~\n" +
 	"\bDataType\x12\x12\n" +
@@ -854,10 +871,11 @@ const file_cyber_proto_rawDesc = "" +
 	"\brequired\x18\x04 \x01(\bR\brequired\x12\x14\n" +
 	"\x05group\x18\x05 \x01(\tR\x05group\"4\n" +
 	"\tDataTypes\x12'\n" +
-	"\x04data\x18\x01 \x03(\v2\x13.cybertele.DataTypeR\x04data\"Y\n" +
+	"\x04data\x18\x01 \x03(\v2\x13.cybertele.DataTypeR\x04data\"s\n" +
 	"\x0eModelDataTypes\x12\x14\n" +
 	"\x05model\x18\x01 \x01(\tR\x05model\x121\n" +
-	"\tdataTypes\x18\x02 \x03(\v2\x13.cybertele.DataTypeR\tdataTypes\"C\n" +
+	"\tdataTypes\x18\x02 \x03(\v2\x13.cybertele.DataTypeR\tdataTypes\x12\x18\n" +
+	"\amodelId\x18\x03 \x01(\x05R\amodelId\"C\n" +
 	"\x12AllModelsDataTypes\x12-\n" +
 	"\x04data\x18\x01 \x03(\v2\x19.cybertele.ModelDataTypesR\x04data*B\n" +
 	"\x06Status\x12\v\n" +

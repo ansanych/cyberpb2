@@ -54,6 +54,7 @@ message Machine {
     int32 classId = 5;
     string className = 6;
     string generationName = 7;
+    int32 modelId = 8;
 }
 
 message Machines {
@@ -75,6 +76,7 @@ message DataTypes {
 message ModelDataTypes {
     string model = 1;
     repeated DataType dataTypes = 2;
+    int32 modelId = 3;
 }
 
 message AllModelsDataTypes {
