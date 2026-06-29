@@ -1,0 +1,82 @@
+syntax = "proto3";
+package cybertele;
+option go_package = "./proto";
+
+enum Status {
+    UNKNOWN = 0;
+    ACTIVE = 1;
+    INACTIVE = 2;
+    OK = 3;
+    ERROR = 4;
+}
+
+message Empty {}
+
+message StatusReply {
+    Status status = 1; 
+}
+
+message Disk {
+    float all = 1;
+    float used = 2;
+    float free = 3;
+}
+
+message HealthReply {
+    Status postgres = 1;
+    Status mongo = 2;
+    Status parser = 3;
+    Disk disk = 4;
+}
+
+message ParserStatus {
+    Status parser = 1;
+    string message = 2;
+}
+
+message PageRequest {
+    int32 page = 1;
+    int32 limit = 2;
+    string sn = 3;
+}
+
+message Pagination {
+    int32 page = 1;
+    int32 limit = 2;
+    int32 total = 3;
+}
+
+message Machine {
+    string sn = 1;
+    string model = 2;
+    bool sync = 3;
+    int32 generationId = 4;
+    int32 classId = 5;
+    string className = 6;
+    string generationName = 7;
+}
+
+message Machines {
+    repeated Machine machines = 1;
+}
+
+message DataType {
+    string code = 1;
+    string name = 2;
+    string meaning = 3;
+    bool required = 4;
+    string group = 5;
+}
+
+message DataTypes {
+    repeated DataType data = 1;
+}
+
+message ModelDataTypes {
+    string model = 1;
+    repeated DataType dataTypes = 2;
+}
+
+message AllModelsDataTypes {
+    repeated ModelDataTypes data = 1;
+}
