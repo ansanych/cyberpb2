@@ -29,6 +29,7 @@ const (
 	Status_INACTIVE Status = 2
 	Status_OK       Status = 3
 	Status_ERROR    Status = 4
+	Status_WARNING  Status = 5
 )
 
 // Enum value maps for Status.
@@ -39,6 +40,7 @@ var (
 		2: "INACTIVE",
 		3: "OK",
 		4: "ERROR",
+		5: "WARNING",
 	}
 	Status_value = map[string]int32{
 		"UNKNOWN":  0,
@@ -46,6 +48,7 @@ var (
 		"INACTIVE": 2,
 		"OK":       3,
 		"ERROR":    4,
+		"WARNING":  5,
 	}
 )
 
@@ -824,6 +827,238 @@ func (x *AllModelsDataTypes) GetData() []*ModelDataTypes {
 	return nil
 }
 
+type DataPoint struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Time          int64                  `protobuf:"varint,1,opt,name=time,proto3" json:"time,omitempty"`
+	ValueFloat    float32                `protobuf:"fixed32,2,opt,name=valueFloat,proto3" json:"valueFloat,omitempty"`
+	ValueInt      int64                  `protobuf:"varint,3,opt,name=valueInt,proto3" json:"valueInt,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DataPoint) Reset() {
+	*x = DataPoint{}
+	mi := &file_cyber_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DataPoint) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DataPoint) ProtoMessage() {}
+
+func (x *DataPoint) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DataPoint.ProtoReflect.Descriptor instead.
+func (*DataPoint) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *DataPoint) GetTime() int64 {
+	if x != nil {
+		return x.Time
+	}
+	return 0
+}
+
+func (x *DataPoint) GetValueFloat() float32 {
+	if x != nil {
+		return x.ValueFloat
+	}
+	return 0
+}
+
+func (x *DataPoint) GetValueInt() int64 {
+	if x != nil {
+		return x.ValueInt
+	}
+	return 0
+}
+
+type DataPoints struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []*DataPoint           `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DataPoints) Reset() {
+	*x = DataPoints{}
+	mi := &file_cyber_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DataPoints) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DataPoints) ProtoMessage() {}
+
+func (x *DataPoints) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DataPoints.ProtoReflect.Descriptor instead.
+func (*DataPoints) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *DataPoints) GetData() []*DataPoint {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type Segment struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StartTime     int64                  `protobuf:"varint,1,opt,name=startTime,proto3" json:"startTime,omitempty"`
+	EndTime       int64                  `protobuf:"varint,2,opt,name=endTime,proto3" json:"endTime,omitempty"`
+	DurationSec   int64                  `protobuf:"varint,3,opt,name=durationSec,proto3" json:"durationSec,omitempty"`
+	Change        float32                `protobuf:"fixed32,4,opt,name=change,proto3" json:"change,omitempty"`
+	StartValue    float32                `protobuf:"fixed32,5,opt,name=startValue,proto3" json:"startValue,omitempty"`
+	EndValue      float32                `protobuf:"fixed32,6,opt,name=endValue,proto3" json:"endValue,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Segment) Reset() {
+	*x = Segment{}
+	mi := &file_cyber_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Segment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Segment) ProtoMessage() {}
+
+func (x *Segment) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Segment.ProtoReflect.Descriptor instead.
+func (*Segment) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *Segment) GetStartTime() int64 {
+	if x != nil {
+		return x.StartTime
+	}
+	return 0
+}
+
+func (x *Segment) GetEndTime() int64 {
+	if x != nil {
+		return x.EndTime
+	}
+	return 0
+}
+
+func (x *Segment) GetDurationSec() int64 {
+	if x != nil {
+		return x.DurationSec
+	}
+	return 0
+}
+
+func (x *Segment) GetChange() float32 {
+	if x != nil {
+		return x.Change
+	}
+	return 0
+}
+
+func (x *Segment) GetStartValue() float32 {
+	if x != nil {
+		return x.StartValue
+	}
+	return 0
+}
+
+func (x *Segment) GetEndValue() float32 {
+	if x != nil {
+		return x.EndValue
+	}
+	return 0
+}
+
+type Segments struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Segments      []*Segment             `protobuf:"bytes,1,rep,name=segments,proto3" json:"segments,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Segments) Reset() {
+	*x = Segments{}
+	mi := &file_cyber_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Segments) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Segments) ProtoMessage() {}
+
+func (x *Segments) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Segments.ProtoReflect.Descriptor instead.
+func (*Segments) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *Segments) GetSegments() []*Segment {
+	if x != nil {
+		return x.Segments
+	}
+	return nil
+}
+
 var File_cyber_proto protoreflect.FileDescriptor
 
 const file_cyber_proto_rawDesc = "" +
@@ -877,14 +1112,35 @@ const file_cyber_proto_rawDesc = "" +
 	"\tdataTypes\x18\x02 \x03(\v2\x13.cybertele.DataTypeR\tdataTypes\x12\x18\n" +
 	"\amodelId\x18\x03 \x01(\x05R\amodelId\"C\n" +
 	"\x12AllModelsDataTypes\x12-\n" +
-	"\x04data\x18\x01 \x03(\v2\x19.cybertele.ModelDataTypesR\x04data*B\n" +
+	"\x04data\x18\x01 \x03(\v2\x19.cybertele.ModelDataTypesR\x04data\"[\n" +
+	"\tDataPoint\x12\x12\n" +
+	"\x04time\x18\x01 \x01(\x03R\x04time\x12\x1e\n" +
+	"\n" +
+	"valueFloat\x18\x02 \x01(\x02R\n" +
+	"valueFloat\x12\x1a\n" +
+	"\bvalueInt\x18\x03 \x01(\x03R\bvalueInt\"6\n" +
+	"\n" +
+	"DataPoints\x12(\n" +
+	"\x04data\x18\x01 \x03(\v2\x14.cybertele.DataPointR\x04data\"\xb7\x01\n" +
+	"\aSegment\x12\x1c\n" +
+	"\tstartTime\x18\x01 \x01(\x03R\tstartTime\x12\x18\n" +
+	"\aendTime\x18\x02 \x01(\x03R\aendTime\x12 \n" +
+	"\vdurationSec\x18\x03 \x01(\x03R\vdurationSec\x12\x16\n" +
+	"\x06change\x18\x04 \x01(\x02R\x06change\x12\x1e\n" +
+	"\n" +
+	"startValue\x18\x05 \x01(\x02R\n" +
+	"startValue\x12\x1a\n" +
+	"\bendValue\x18\x06 \x01(\x02R\bendValue\":\n" +
+	"\bSegments\x12.\n" +
+	"\bsegments\x18\x01 \x03(\v2\x12.cybertele.SegmentR\bsegments*O\n" +
 	"\x06Status\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\n" +
 	"\n" +
 	"\x06ACTIVE\x10\x01\x12\f\n" +
 	"\bINACTIVE\x10\x02\x12\x06\n" +
 	"\x02OK\x10\x03\x12\t\n" +
-	"\x05ERROR\x10\x04B\tZ\a./protob\x06proto3"
+	"\x05ERROR\x10\x04\x12\v\n" +
+	"\aWARNING\x10\x05B\tZ\a./protob\x06proto3"
 
 var (
 	file_cyber_proto_rawDescOnce sync.Once
@@ -899,7 +1155,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                // 0: cybertele.Status
 	(*Empty)(nil),              // 1: cybertele.Empty
@@ -915,6 +1171,10 @@ var file_cyber_proto_goTypes = []any{
 	(*DataTypes)(nil),          // 11: cybertele.DataTypes
 	(*ModelDataTypes)(nil),     // 12: cybertele.ModelDataTypes
 	(*AllModelsDataTypes)(nil), // 13: cybertele.AllModelsDataTypes
+	(*DataPoint)(nil),          // 14: cybertele.DataPoint
+	(*DataPoints)(nil),         // 15: cybertele.DataPoints
+	(*Segment)(nil),            // 16: cybertele.Segment
+	(*Segments)(nil),           // 17: cybertele.Segments
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -927,11 +1187,13 @@ var file_cyber_proto_depIdxs = []int32{
 	10, // 7: cybertele.DataTypes.data:type_name -> cybertele.DataType
 	10, // 8: cybertele.ModelDataTypes.dataTypes:type_name -> cybertele.DataType
 	12, // 9: cybertele.AllModelsDataTypes.data:type_name -> cybertele.ModelDataTypes
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	14, // 10: cybertele.DataPoints.data:type_name -> cybertele.DataPoint
+	16, // 11: cybertele.Segments.segments:type_name -> cybertele.Segment
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -945,7 +1207,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   13,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

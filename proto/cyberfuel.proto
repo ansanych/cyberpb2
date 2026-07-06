@@ -1,0 +1,11 @@
+syntax = "proto3";
+import "cyber.proto";
+
+package cybertele;
+
+option go_package = "./proto";
+
+service Cyberfuel {
+    rpc Health (Empty) returns (HealthReply) {}
+    rpc CalcEvents (DataPoints) returns (Segments) {}
+}

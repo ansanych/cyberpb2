@@ -8,6 +8,7 @@ enum Status {
     INACTIVE = 2;
     OK = 3;
     ERROR = 4;
+    WARNING = 5;
 }
 
 message Empty {}
@@ -81,4 +82,27 @@ message ModelDataTypes {
 
 message AllModelsDataTypes {
     repeated ModelDataTypes data = 1;
+}
+
+message DataPoint {
+    int64 time = 1;
+    float valueFloat = 2;
+    int64 valueInt = 3;
+}
+
+message DataPoints {
+    repeated DataPoint data = 1;
+}
+
+message Segment {
+    int64 startTime = 1;
+    int64 endTime = 2;
+    int64 durationSec = 3;
+    float change = 4;
+    float startValue = 5;
+    float endValue = 6;
+}
+
+message Segments {
+    repeated Segment segments = 1;
 }
