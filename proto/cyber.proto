@@ -101,6 +101,7 @@ message Segment {
     float change = 4;
     float startValue = 5;
     float endValue = 6;
+    string trend = 7;
 }
 
 message Segments {

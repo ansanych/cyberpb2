@@ -939,6 +939,7 @@ type Segment struct {
 	Change        float32                `protobuf:"fixed32,4,opt,name=change,proto3" json:"change,omitempty"`
 	StartValue    float32                `protobuf:"fixed32,5,opt,name=startValue,proto3" json:"startValue,omitempty"`
 	EndValue      float32                `protobuf:"fixed32,6,opt,name=endValue,proto3" json:"endValue,omitempty"`
+	Trend         string                 `protobuf:"bytes,7,opt,name=trend,proto3" json:"trend,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1013,6 +1014,13 @@ func (x *Segment) GetEndValue() float32 {
 		return x.EndValue
 	}
 	return 0
+}
+
+func (x *Segment) GetTrend() string {
+	if x != nil {
+		return x.Trend
+	}
+	return ""
 }
 
 type Segments struct {
@@ -1121,7 +1129,7 @@ const file_cyber_proto_rawDesc = "" +
 	"\bvalueInt\x18\x03 \x01(\x03R\bvalueInt\"6\n" +
 	"\n" +
 	"DataPoints\x12(\n" +
-	"\x04data\x18\x01 \x03(\v2\x14.cybertele.DataPointR\x04data\"\xb7\x01\n" +
+	"\x04data\x18\x01 \x03(\v2\x14.cybertele.DataPointR\x04data\"\xcd\x01\n" +
 	"\aSegment\x12\x1c\n" +
 	"\tstartTime\x18\x01 \x01(\x03R\tstartTime\x12\x18\n" +
 	"\aendTime\x18\x02 \x01(\x03R\aendTime\x12 \n" +
@@ -1130,7 +1138,8 @@ const file_cyber_proto_rawDesc = "" +
 	"\n" +
 	"startValue\x18\x05 \x01(\x02R\n" +
 	"startValue\x12\x1a\n" +
-	"\bendValue\x18\x06 \x01(\x02R\bendValue\":\n" +
+	"\bendValue\x18\x06 \x01(\x02R\bendValue\x12\x14\n" +
+	"\x05trend\x18\a \x01(\tR\x05trend\":\n" +
 	"\bSegments\x12.\n" +
 	"\bsegments\x18\x01 \x03(\v2\x12.cybertele.SegmentR\bsegments*O\n" +
 	"\x06Status\x12\v\n" +
