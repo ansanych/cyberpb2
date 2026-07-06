@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cyberpb2"
+version = "0.1.0"
+description = "Generated protobuf/gRPC package for Cybertele services"
+requires-python = ">=3.10"
+dependencies = [
+    "grpcio>=1.60",
+    "protobuf>=5.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cyberpb2*"]

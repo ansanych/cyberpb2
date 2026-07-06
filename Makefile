@@ -24,14 +24,16 @@ gen-go:
 
 gen-py:
 	python3 -m grpc_tools.protoc -I ./proto \
-			--python_out ./proto \
-			--grpc_python_out ./proto \
+			--python_out ./python/cyberpb2 \
+			--grpc_python_out ./python/cyberpb2 \
 			./proto/cyber.proto
 	python3 -m grpc_tools.protoc -I ./proto \
-			--python_out ./proto \
-			--grpc_python_out ./proto \
+			--python_out ./python/cyberpb2 \
+			--grpc_python_out ./python/cyberpb2 \
 			./proto/cybermetrica.proto
 	python3 -m grpc_tools.protoc -I ./proto \
-			--python_out ./proto \
-			--grpc_python_out ./proto \
+			--python_out ./python/cyberpb2 \
+			--grpc_python_out ./python/cyberpb2 \
 			./proto/cyberfuel.proto
+	# Fix imports in generated _grpc files for package-relative access
+	sed -i 's/^import cyber_pb2 as/from . import cyber_pb2 as/' ./python/cyberpb2/*_pb2_grpc.py
