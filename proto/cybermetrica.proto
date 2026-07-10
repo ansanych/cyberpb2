@@ -9,4 +9,49 @@ service Cybermetrica {
     rpc Health (Empty) returns (HealthReply) {}
     rpc StartParser (Empty) returns (ParserStatus) {}
     rpc StopParser (Empty) returns (ParserStatus) {}
+    rpc GetTelemetryParams (Empty) returns (TelemertyParams) {}
+    rpc GetTimeline (TimelineRequest) returns (Timeline) {}
+}
+
+message TelemertyParams {
+    string code = 1;
+    string label = 2;
+    string units = 3;
+    string description = 4;
+}
+
+message TimelineRequest {
+    int64 date = 1;
+    int32 tz = 2;
+    string sn = 3;
+    bool prev = 4;
+    bool next = 5; 
+}
+
+message DataValue {
+    float value = 1;
+}
+
+message TelemetryBlock {
+    int64 start = 1;
+    int64 end = 2;
+    float value = 3;
+}
+
+message TelemetryConnection {
+    int64 id = 1;
+    int64 start = 2;
+    int64 end = 3;
+    bool finished = 4;
+    repeated TelemetryBlock engine = 5;
+    repeated TelemetryBlock job = 6;
+    repeated TelemetryBlock errors = 7;
+    repeated string params = 8;
+    repeated DataValue dataValues = 9;
+}
+
+message Timeline {
+    repeated TelemetryConnection data = 1;
+    repeated TelemetryConnection prev = 2;
+    repeated TelemetryConnection next = 3;
 }

@@ -19,9 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Cybermetrica_Health_FullMethodName      = "/cybertele.Cybermetrica/Health"
-	Cybermetrica_StartParser_FullMethodName = "/cybertele.Cybermetrica/StartParser"
-	Cybermetrica_StopParser_FullMethodName  = "/cybertele.Cybermetrica/StopParser"
+	Cybermetrica_Health_FullMethodName             = "/cybertele.Cybermetrica/Health"
+	Cybermetrica_StartParser_FullMethodName        = "/cybertele.Cybermetrica/StartParser"
+	Cybermetrica_StopParser_FullMethodName         = "/cybertele.Cybermetrica/StopParser"
+	Cybermetrica_GetTelemetryParams_FullMethodName = "/cybertele.Cybermetrica/GetTelemetryParams"
+	Cybermetrica_GetTimeline_FullMethodName        = "/cybertele.Cybermetrica/GetTimeline"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -31,6 +33,8 @@ type CybermetricaClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
 	StartParser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserStatus, error)
 	StopParser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserStatus, error)
+	GetTelemetryParams(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemertyParams, error)
+	GetTimeline(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Timeline, error)
 }
 
 type cybermetricaClient struct {
@@ -71,6 +75,26 @@ func (c *cybermetricaClient) StopParser(ctx context.Context, in *Empty, opts ...
 	return out, nil
 }
 
+func (c *cybermetricaClient) GetTelemetryParams(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemertyParams, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TelemertyParams)
+	err := c.cc.Invoke(ctx, Cybermetrica_GetTelemetryParams_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cybermetricaClient) GetTimeline(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Timeline, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Timeline)
+	err := c.cc.Invoke(ctx, Cybermetrica_GetTimeline_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CybermetricaServer is the server API for Cybermetrica service.
 // All implementations must embed UnimplementedCybermetricaServer
 // for forward compatibility.
@@ -78,6 +102,8 @@ type CybermetricaServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
 	StartParser(context.Context, *Empty) (*ParserStatus, error)
 	StopParser(context.Context, *Empty) (*ParserStatus, error)
+	GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error)
+	GetTimeline(context.Context, *TimelineRequest) (*Timeline, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -96,6 +122,12 @@ func (UnimplementedCybermetricaServer) StartParser(context.Context, *Empty) (*Pa
 }
 func (UnimplementedCybermetricaServer) StopParser(context.Context, *Empty) (*ParserStatus, error) {
 	return nil, status.Error(codes.Unimplemented, "method StopParser not implemented")
+}
+func (UnimplementedCybermetricaServer) GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTelemetryParams not implemented")
+}
+func (UnimplementedCybermetricaServer) GetTimeline(context.Context, *TimelineRequest) (*Timeline, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTimeline not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
 func (UnimplementedCybermetricaServer) testEmbeddedByValue()                      {}
@@ -172,6 +204,42 @@ func _Cybermetrica_StopParser_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cybermetrica_GetTelemetryParams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).GetTelemetryParams(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_GetTelemetryParams_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).GetTelemetryParams(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cybermetrica_GetTimeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TimelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).GetTimeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_GetTimeline_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).GetTimeline(ctx, req.(*TimelineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cybermetrica_ServiceDesc is the grpc.ServiceDesc for Cybermetrica service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +258,14 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StopParser",
 			Handler:    _Cybermetrica_StopParser_Handler,
+		},
+		{
+			MethodName: "GetTelemetryParams",
+			Handler:    _Cybermetrica_GetTelemetryParams_Handler,
+		},
+		{
+			MethodName: "GetTimeline",
+			Handler:    _Cybermetrica_GetTimeline_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

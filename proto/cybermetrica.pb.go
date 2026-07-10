@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -20,34 +21,515 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type TelemertyParams struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
+	Units         string                 `protobuf:"bytes,3,opt,name=units,proto3" json:"units,omitempty"`
+	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemertyParams) Reset() {
+	*x = TelemertyParams{}
+	mi := &file_cybermetrica_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemertyParams) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemertyParams) ProtoMessage() {}
+
+func (x *TelemertyParams) ProtoReflect() protoreflect.Message {
+	mi := &file_cybermetrica_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemertyParams.ProtoReflect.Descriptor instead.
+func (*TelemertyParams) Descriptor() ([]byte, []int) {
+	return file_cybermetrica_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *TelemertyParams) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *TelemertyParams) GetLabel() string {
+	if x != nil {
+		return x.Label
+	}
+	return ""
+}
+
+func (x *TelemertyParams) GetUnits() string {
+	if x != nil {
+		return x.Units
+	}
+	return ""
+}
+
+func (x *TelemertyParams) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+type TimelineRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Date          int64                  `protobuf:"varint,1,opt,name=date,proto3" json:"date,omitempty"`
+	Tz            int32                  `protobuf:"varint,2,opt,name=tz,proto3" json:"tz,omitempty"`
+	Sn            string                 `protobuf:"bytes,3,opt,name=sn,proto3" json:"sn,omitempty"`
+	Prev          bool                   `protobuf:"varint,4,opt,name=prev,proto3" json:"prev,omitempty"`
+	Next          bool                   `protobuf:"varint,5,opt,name=next,proto3" json:"next,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TimelineRequest) Reset() {
+	*x = TimelineRequest{}
+	mi := &file_cybermetrica_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TimelineRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TimelineRequest) ProtoMessage() {}
+
+func (x *TimelineRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_cybermetrica_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TimelineRequest.ProtoReflect.Descriptor instead.
+func (*TimelineRequest) Descriptor() ([]byte, []int) {
+	return file_cybermetrica_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *TimelineRequest) GetDate() int64 {
+	if x != nil {
+		return x.Date
+	}
+	return 0
+}
+
+func (x *TimelineRequest) GetTz() int32 {
+	if x != nil {
+		return x.Tz
+	}
+	return 0
+}
+
+func (x *TimelineRequest) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *TimelineRequest) GetPrev() bool {
+	if x != nil {
+		return x.Prev
+	}
+	return false
+}
+
+func (x *TimelineRequest) GetNext() bool {
+	if x != nil {
+		return x.Next
+	}
+	return false
+}
+
+type DataValue struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Value         float32                `protobuf:"fixed32,1,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DataValue) Reset() {
+	*x = DataValue{}
+	mi := &file_cybermetrica_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DataValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DataValue) ProtoMessage() {}
+
+func (x *DataValue) ProtoReflect() protoreflect.Message {
+	mi := &file_cybermetrica_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DataValue.ProtoReflect.Descriptor instead.
+func (*DataValue) Descriptor() ([]byte, []int) {
+	return file_cybermetrica_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *DataValue) GetValue() float32 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+type TelemetryBlock struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Start         int64                  `protobuf:"varint,1,opt,name=start,proto3" json:"start,omitempty"`
+	End           int64                  `protobuf:"varint,2,opt,name=end,proto3" json:"end,omitempty"`
+	Value         float32                `protobuf:"fixed32,3,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemetryBlock) Reset() {
+	*x = TelemetryBlock{}
+	mi := &file_cybermetrica_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryBlock) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryBlock) ProtoMessage() {}
+
+func (x *TelemetryBlock) ProtoReflect() protoreflect.Message {
+	mi := &file_cybermetrica_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryBlock.ProtoReflect.Descriptor instead.
+func (*TelemetryBlock) Descriptor() ([]byte, []int) {
+	return file_cybermetrica_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *TelemetryBlock) GetStart() int64 {
+	if x != nil {
+		return x.Start
+	}
+	return 0
+}
+
+func (x *TelemetryBlock) GetEnd() int64 {
+	if x != nil {
+		return x.End
+	}
+	return 0
+}
+
+func (x *TelemetryBlock) GetValue() float32 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+type TelemetryConnection struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Start         int64                  `protobuf:"varint,2,opt,name=start,proto3" json:"start,omitempty"`
+	End           int64                  `protobuf:"varint,3,opt,name=end,proto3" json:"end,omitempty"`
+	Finished      bool                   `protobuf:"varint,4,opt,name=finished,proto3" json:"finished,omitempty"`
+	Engine        []*TelemetryBlock      `protobuf:"bytes,5,rep,name=engine,proto3" json:"engine,omitempty"`
+	Job           []*TelemetryBlock      `protobuf:"bytes,6,rep,name=job,proto3" json:"job,omitempty"`
+	Errors        []*TelemetryBlock      `protobuf:"bytes,7,rep,name=errors,proto3" json:"errors,omitempty"`
+	Params        []string               `protobuf:"bytes,8,rep,name=params,proto3" json:"params,omitempty"`
+	DataValues    []*DataValue           `protobuf:"bytes,9,rep,name=dataValues,proto3" json:"dataValues,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemetryConnection) Reset() {
+	*x = TelemetryConnection{}
+	mi := &file_cybermetrica_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryConnection) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryConnection) ProtoMessage() {}
+
+func (x *TelemetryConnection) ProtoReflect() protoreflect.Message {
+	mi := &file_cybermetrica_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryConnection.ProtoReflect.Descriptor instead.
+func (*TelemetryConnection) Descriptor() ([]byte, []int) {
+	return file_cybermetrica_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *TelemetryConnection) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *TelemetryConnection) GetStart() int64 {
+	if x != nil {
+		return x.Start
+	}
+	return 0
+}
+
+func (x *TelemetryConnection) GetEnd() int64 {
+	if x != nil {
+		return x.End
+	}
+	return 0
+}
+
+func (x *TelemetryConnection) GetFinished() bool {
+	if x != nil {
+		return x.Finished
+	}
+	return false
+}
+
+func (x *TelemetryConnection) GetEngine() []*TelemetryBlock {
+	if x != nil {
+		return x.Engine
+	}
+	return nil
+}
+
+func (x *TelemetryConnection) GetJob() []*TelemetryBlock {
+	if x != nil {
+		return x.Job
+	}
+	return nil
+}
+
+func (x *TelemetryConnection) GetErrors() []*TelemetryBlock {
+	if x != nil {
+		return x.Errors
+	}
+	return nil
+}
+
+func (x *TelemetryConnection) GetParams() []string {
+	if x != nil {
+		return x.Params
+	}
+	return nil
+}
+
+func (x *TelemetryConnection) GetDataValues() []*DataValue {
+	if x != nil {
+		return x.DataValues
+	}
+	return nil
+}
+
+type Timeline struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []*TelemetryConnection `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	Prev          []*TelemetryConnection `protobuf:"bytes,2,rep,name=prev,proto3" json:"prev,omitempty"`
+	Next          []*TelemetryConnection `protobuf:"bytes,3,rep,name=next,proto3" json:"next,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Timeline) Reset() {
+	*x = Timeline{}
+	mi := &file_cybermetrica_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Timeline) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Timeline) ProtoMessage() {}
+
+func (x *Timeline) ProtoReflect() protoreflect.Message {
+	mi := &file_cybermetrica_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Timeline.ProtoReflect.Descriptor instead.
+func (*Timeline) Descriptor() ([]byte, []int) {
+	return file_cybermetrica_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Timeline) GetData() []*TelemetryConnection {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *Timeline) GetPrev() []*TelemetryConnection {
+	if x != nil {
+		return x.Prev
+	}
+	return nil
+}
+
+func (x *Timeline) GetNext() []*TelemetryConnection {
+	if x != nil {
+		return x.Next
+	}
+	return nil
+}
+
 var File_cybermetrica_proto protoreflect.FileDescriptor
 
 const file_cybermetrica_proto_rawDesc = "" +
 	"\n" +
-	"\x12cybermetrica.proto\x12\tcybertele\x1a\vcyber.proto2\xbb\x01\n" +
+	"\x12cybermetrica.proto\x12\tcybertele\x1a\vcyber.proto\"s\n" +
+	"\x0fTelemertyParams\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
+	"\x05label\x18\x02 \x01(\tR\x05label\x12\x14\n" +
+	"\x05units\x18\x03 \x01(\tR\x05units\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\"m\n" +
+	"\x0fTimelineRequest\x12\x12\n" +
+	"\x04date\x18\x01 \x01(\x03R\x04date\x12\x0e\n" +
+	"\x02tz\x18\x02 \x01(\x05R\x02tz\x12\x0e\n" +
+	"\x02sn\x18\x03 \x01(\tR\x02sn\x12\x12\n" +
+	"\x04prev\x18\x04 \x01(\bR\x04prev\x12\x12\n" +
+	"\x04next\x18\x05 \x01(\bR\x04next\"!\n" +
+	"\tDataValue\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\x02R\x05value\"N\n" +
+	"\x0eTelemetryBlock\x12\x14\n" +
+	"\x05start\x18\x01 \x01(\x03R\x05start\x12\x10\n" +
+	"\x03end\x18\x02 \x01(\x03R\x03end\x12\x14\n" +
+	"\x05value\x18\x03 \x01(\x02R\x05value\"\xca\x02\n" +
+	"\x13TelemetryConnection\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
+	"\x05start\x18\x02 \x01(\x03R\x05start\x12\x10\n" +
+	"\x03end\x18\x03 \x01(\x03R\x03end\x12\x1a\n" +
+	"\bfinished\x18\x04 \x01(\bR\bfinished\x121\n" +
+	"\x06engine\x18\x05 \x03(\v2\x19.cybertele.TelemetryBlockR\x06engine\x12+\n" +
+	"\x03job\x18\x06 \x03(\v2\x19.cybertele.TelemetryBlockR\x03job\x121\n" +
+	"\x06errors\x18\a \x03(\v2\x19.cybertele.TelemetryBlockR\x06errors\x12\x16\n" +
+	"\x06params\x18\b \x03(\tR\x06params\x124\n" +
+	"\n" +
+	"dataValues\x18\t \x03(\v2\x14.cybertele.DataValueR\n" +
+	"dataValues\"\xa6\x01\n" +
+	"\bTimeline\x122\n" +
+	"\x04data\x18\x01 \x03(\v2\x1e.cybertele.TelemetryConnectionR\x04data\x122\n" +
+	"\x04prev\x18\x02 \x03(\v2\x1e.cybertele.TelemetryConnectionR\x04prev\x122\n" +
+	"\x04next\x18\x03 \x03(\v2\x1e.cybertele.TelemetryConnectionR\x04next2\xc3\x02\n" +
 	"\fCybermetrica\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
 	"\vStartParser\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x129\n" +
 	"\n" +
-	"StopParser\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00B\tZ\a./protob\x06proto3"
+	"StopParser\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x12D\n" +
+	"\x12GetTelemetryParams\x12\x10.cybertele.Empty\x1a\x1a.cybertele.TelemertyParams\"\x00\x12@\n" +
+	"\vGetTimeline\x12\x1a.cybertele.TimelineRequest\x1a\x13.cybertele.Timeline\"\x00B\tZ\a./protob\x06proto3"
 
+var (
+	file_cybermetrica_proto_rawDescOnce sync.Once
+	file_cybermetrica_proto_rawDescData []byte
+)
+
+func file_cybermetrica_proto_rawDescGZIP() []byte {
+	file_cybermetrica_proto_rawDescOnce.Do(func() {
+		file_cybermetrica_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_cybermetrica_proto_rawDesc), len(file_cybermetrica_proto_rawDesc)))
+	})
+	return file_cybermetrica_proto_rawDescData
+}
+
+var file_cybermetrica_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_cybermetrica_proto_goTypes = []any{
-	(*Empty)(nil),        // 0: cybertele.Empty
-	(*HealthReply)(nil),  // 1: cybertele.HealthReply
-	(*ParserStatus)(nil), // 2: cybertele.ParserStatus
+	(*TelemertyParams)(nil),     // 0: cybertele.TelemertyParams
+	(*TimelineRequest)(nil),     // 1: cybertele.TimelineRequest
+	(*DataValue)(nil),           // 2: cybertele.DataValue
+	(*TelemetryBlock)(nil),      // 3: cybertele.TelemetryBlock
+	(*TelemetryConnection)(nil), // 4: cybertele.TelemetryConnection
+	(*Timeline)(nil),            // 5: cybertele.Timeline
+	(*Empty)(nil),               // 6: cybertele.Empty
+	(*HealthReply)(nil),         // 7: cybertele.HealthReply
+	(*ParserStatus)(nil),        // 8: cybertele.ParserStatus
 }
 var file_cybermetrica_proto_depIdxs = []int32{
-	0, // 0: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
-	0, // 1: cybertele.Cybermetrica.StartParser:input_type -> cybertele.Empty
-	0, // 2: cybertele.Cybermetrica.StopParser:input_type -> cybertele.Empty
-	1, // 3: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
-	2, // 4: cybertele.Cybermetrica.StartParser:output_type -> cybertele.ParserStatus
-	2, // 5: cybertele.Cybermetrica.StopParser:output_type -> cybertele.ParserStatus
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	3,  // 0: cybertele.TelemetryConnection.engine:type_name -> cybertele.TelemetryBlock
+	3,  // 1: cybertele.TelemetryConnection.job:type_name -> cybertele.TelemetryBlock
+	3,  // 2: cybertele.TelemetryConnection.errors:type_name -> cybertele.TelemetryBlock
+	2,  // 3: cybertele.TelemetryConnection.dataValues:type_name -> cybertele.DataValue
+	4,  // 4: cybertele.Timeline.data:type_name -> cybertele.TelemetryConnection
+	4,  // 5: cybertele.Timeline.prev:type_name -> cybertele.TelemetryConnection
+	4,  // 6: cybertele.Timeline.next:type_name -> cybertele.TelemetryConnection
+	6,  // 7: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
+	6,  // 8: cybertele.Cybermetrica.StartParser:input_type -> cybertele.Empty
+	6,  // 9: cybertele.Cybermetrica.StopParser:input_type -> cybertele.Empty
+	6,  // 10: cybertele.Cybermetrica.GetTelemetryParams:input_type -> cybertele.Empty
+	1,  // 11: cybertele.Cybermetrica.GetTimeline:input_type -> cybertele.TimelineRequest
+	7,  // 12: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
+	8,  // 13: cybertele.Cybermetrica.StartParser:output_type -> cybertele.ParserStatus
+	8,  // 14: cybertele.Cybermetrica.StopParser:output_type -> cybertele.ParserStatus
+	0,  // 15: cybertele.Cybermetrica.GetTelemetryParams:output_type -> cybertele.TelemertyParams
+	5,  // 16: cybertele.Cybermetrica.GetTimeline:output_type -> cybertele.Timeline
+	12, // [12:17] is the sub-list for method output_type
+	7,  // [7:12] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_cybermetrica_proto_init() }
@@ -62,12 +544,13 @@ func file_cybermetrica_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cybermetrica_proto_rawDesc), len(file_cybermetrica_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_cybermetrica_proto_goTypes,
 		DependencyIndexes: file_cybermetrica_proto_depIdxs,
+		MessageInfos:      file_cybermetrica_proto_msgTypes,
 	}.Build()
 	File_cybermetrica_proto = out.File
 	file_cybermetrica_proto_goTypes = nil
