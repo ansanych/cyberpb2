@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 import cyber_pb2 as cyber__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x63ybermetrica.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"R\n\x0fTelemertyParams\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\r\n\x05label\x18\x02 \x01(\t\x12\r\n\x05units\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\"S\n\x0fTimelineRequest\x12\x0c\n\x04\x64\x61te\x18\x01 \x01(\x03\x12\n\n\x02tz\x18\x02 \x01(\x05\x12\n\n\x02sn\x18\x03 \x01(\t\x12\x0c\n\x04prev\x18\x04 \x01(\x08\x12\x0c\n\x04next\x18\x05 \x01(\x08\"\x1a\n\tDataValue\x12\r\n\x05value\x18\x01 \x01(\x02\";\n\x0eTelemetryBlock\x12\r\n\x05start\x18\x01 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x02 \x01(\x03\x12\r\n\x05value\x18\x03 \x01(\x02\"\x87\x02\n\x13TelemetryConnection\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05start\x18\x02 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x03 \x01(\x03\x12\x10\n\x08\x66inished\x18\x04 \x01(\x08\x12)\n\x06\x65ngine\x18\x05 \x03(\x0b\x32\x19.cybertele.TelemetryBlock\x12&\n\x03job\x18\x06 \x03(\x0b\x32\x19.cybertele.TelemetryBlock\x12)\n\x06\x65rrors\x18\x07 \x03(\x0b\x32\x19.cybertele.TelemetryBlock\x12\x0e\n\x06params\x18\x08 \x03(\t\x12(\n\ndataValues\x18\t \x03(\x0b\x32\x14.cybertele.DataValue\"\x94\x01\n\x08Timeline\x12,\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x1e.cybertele.TelemetryConnection\x12,\n\x04prev\x18\x02 \x03(\x0b\x32\x1e.cybertele.TelemetryConnection\x12,\n\x04next\x18\x03 \x03(\x0b\x32\x1e.cybertele.TelemetryConnection2\xc3\x02\n\x0c\x43ybermetrica\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n\x0bStartParser\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x12\x39\n\nStopParser\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x12\x44\n\x12GetTelemetryParams\x12\x10.cybertele.Empty\x1a\x1a.cybertele.TelemertyParams\"\x00\x12@\n\x0bGetTimeline\x12\x1a.cybertele.TimelineRequest\x1a\x13.cybertele.Timeline\"\x00\x42\tZ\x07./protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x63ybermetrica.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"<\n\x0fTelemertyParams\x12)\n\x06params\x18\x01 \x03(\x0b\x32\x19.cybertele.TelemertyParam\"Q\n\x0eTelemertyParam\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\r\n\x05label\x18\x02 \x01(\t\x12\r\n\x05units\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\"S\n\x0fTimelineRequest\x12\x0c\n\x04\x64\x61te\x18\x01 \x01(\x03\x12\n\n\x02tz\x18\x02 \x01(\x05\x12\n\n\x02sn\x18\x03 \x01(\t\x12\x0c\n\x04prev\x18\x04 \x01(\x08\x12\x0c\n\x04next\x18\x05 \x01(\x08\"\x1a\n\tDataValue\x12\r\n\x05value\x18\x01 \x01(\x02\";\n\x0eTelemetryBlock\x12\r\n\x05start\x18\x01 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x02 \x01(\x03\x12\r\n\x05value\x18\x03 \x01(\x02\"\x87\x02\n\x13TelemetryConnection\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05start\x18\x02 \x01(\x03\x12\x0b\n\x03\x65nd\x18\x03 \x01(\x03\x12\x10\n\x08\x66inished\x18\x04 \x01(\x08\x12)\n\x06\x65ngine\x18\x05 \x03(\x0b\x32\x19.cybertele.TelemetryBlock\x12&\n\x03job\x18\x06 \x03(\x0b\x32\x19.cybertele.TelemetryBlock\x12)\n\x06\x65rrors\x18\x07 \x03(\x0b\x32\x19.cybertele.TelemetryBlock\x12\x0e\n\x06params\x18\x08 \x03(\t\x12(\n\ndataValues\x18\t \x03(\x0b\x32\x14.cybertele.DataValue\"\x94\x01\n\x08Timeline\x12,\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x1e.cybertele.TelemetryConnection\x12,\n\x04prev\x18\x02 \x03(\x0b\x32\x1e.cybertele.TelemetryConnection\x12,\n\x04next\x18\x03 \x03(\x0b\x32\x1e.cybertele.TelemetryConnection2\xdd\x03\n\x0c\x43ybermetrica\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n\x0bStartParser\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x12\x39\n\nStopParser\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x12\x44\n\x12GetTelemetryParams\x12\x10.cybertele.Empty\x1a\x1a.cybertele.TelemertyParams\"\x00\x12K\n\x14\x43reateTelemetryParam\x12\x19.cybertele.TelemertyParam\x1a\x16.cybertele.StatusReply\"\x00\x12K\n\x14UpdateTelemetryParam\x12\x19.cybertele.TelemertyParam\x1a\x16.cybertele.StatusReply\"\x00\x12@\n\x0bGetTimeline\x12\x1a.cybertele.TimelineRequest\x1a\x13.cybertele.Timeline\"\x00\x42\tZ\x07./protob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,17 +34,19 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\007./proto'
   _globals['_TELEMERTYPARAMS']._serialized_start=46
-  _globals['_TELEMERTYPARAMS']._serialized_end=128
-  _globals['_TIMELINEREQUEST']._serialized_start=130
-  _globals['_TIMELINEREQUEST']._serialized_end=213
-  _globals['_DATAVALUE']._serialized_start=215
-  _globals['_DATAVALUE']._serialized_end=241
-  _globals['_TELEMETRYBLOCK']._serialized_start=243
-  _globals['_TELEMETRYBLOCK']._serialized_end=302
-  _globals['_TELEMETRYCONNECTION']._serialized_start=305
-  _globals['_TELEMETRYCONNECTION']._serialized_end=568
-  _globals['_TIMELINE']._serialized_start=571
-  _globals['_TIMELINE']._serialized_end=719
-  _globals['_CYBERMETRICA']._serialized_start=722
-  _globals['_CYBERMETRICA']._serialized_end=1045
+  _globals['_TELEMERTYPARAMS']._serialized_end=106
+  _globals['_TELEMERTYPARAM']._serialized_start=108
+  _globals['_TELEMERTYPARAM']._serialized_end=189
+  _globals['_TIMELINEREQUEST']._serialized_start=191
+  _globals['_TIMELINEREQUEST']._serialized_end=274
+  _globals['_DATAVALUE']._serialized_start=276
+  _globals['_DATAVALUE']._serialized_end=302
+  _globals['_TELEMETRYBLOCK']._serialized_start=304
+  _globals['_TELEMETRYBLOCK']._serialized_end=363
+  _globals['_TELEMETRYCONNECTION']._serialized_start=366
+  _globals['_TELEMETRYCONNECTION']._serialized_end=629
+  _globals['_TIMELINE']._serialized_start=632
+  _globals['_TIMELINE']._serialized_end=780
+  _globals['_CYBERMETRICA']._serialized_start=783
+  _globals['_CYBERMETRICA']._serialized_end=1260
 # @@protoc_insertion_point(module_scope)

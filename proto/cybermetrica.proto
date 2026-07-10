@@ -10,10 +10,16 @@ service Cybermetrica {
     rpc StartParser (Empty) returns (ParserStatus) {}
     rpc StopParser (Empty) returns (ParserStatus) {}
     rpc GetTelemetryParams (Empty) returns (TelemertyParams) {}
+    rpc CreateTelemetryParam (TelemertyParam) returns (StatusReply) {}
+    rpc UpdateTelemetryParam (TelemertyParam) returns (StatusReply) {}
     rpc GetTimeline (TimelineRequest) returns (Timeline) {}
 }
 
 message TelemertyParams {
+    repeated TelemertyParam params = 1;
+}
+
+message TelemertyParam {
     string code = 1;
     string label = 2;
     string units = 3;

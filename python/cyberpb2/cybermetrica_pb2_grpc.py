@@ -55,6 +55,16 @@ class CybermetricaStub:
                 request_serializer=cyber__pb2.Empty.SerializeToString,
                 response_deserializer=cybermetrica__pb2.TelemertyParams.FromString,
                 _registered_method=True)
+        self.CreateTelemetryParam = channel.unary_unary(
+                '/cybertele.Cybermetrica/CreateTelemetryParam',
+                request_serializer=cybermetrica__pb2.TelemertyParam.SerializeToString,
+                response_deserializer=cyber__pb2.StatusReply.FromString,
+                _registered_method=True)
+        self.UpdateTelemetryParam = channel.unary_unary(
+                '/cybertele.Cybermetrica/UpdateTelemetryParam',
+                request_serializer=cybermetrica__pb2.TelemertyParam.SerializeToString,
+                response_deserializer=cyber__pb2.StatusReply.FromString,
+                _registered_method=True)
         self.GetTimeline = channel.unary_unary(
                 '/cybertele.Cybermetrica/GetTimeline',
                 request_serializer=cybermetrica__pb2.TimelineRequest.SerializeToString,
@@ -89,6 +99,18 @@ class CybermetricaServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreateTelemetryParam(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateTelemetryParam(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetTimeline(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -117,6 +139,16 @@ def add_CybermetricaServicer_to_server(servicer, server):
                     servicer.GetTelemetryParams,
                     request_deserializer=cyber__pb2.Empty.FromString,
                     response_serializer=cybermetrica__pb2.TelemertyParams.SerializeToString,
+            ),
+            'CreateTelemetryParam': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateTelemetryParam,
+                    request_deserializer=cybermetrica__pb2.TelemertyParam.FromString,
+                    response_serializer=cyber__pb2.StatusReply.SerializeToString,
+            ),
+            'UpdateTelemetryParam': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateTelemetryParam,
+                    request_deserializer=cybermetrica__pb2.TelemertyParam.FromString,
+                    response_serializer=cyber__pb2.StatusReply.SerializeToString,
             ),
             'GetTimeline': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTimeline,
@@ -232,6 +264,60 @@ class Cybermetrica:
             '/cybertele.Cybermetrica/GetTelemetryParams',
             cyber__pb2.Empty.SerializeToString,
             cybermetrica__pb2.TelemertyParams.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CreateTelemetryParam(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cybermetrica/CreateTelemetryParam',
+            cybermetrica__pb2.TelemertyParam.SerializeToString,
+            cyber__pb2.StatusReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateTelemetryParam(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cybermetrica/UpdateTelemetryParam',
+            cybermetrica__pb2.TelemertyParam.SerializeToString,
+            cyber__pb2.StatusReply.FromString,
             options,
             channel_credentials,
             insecure,

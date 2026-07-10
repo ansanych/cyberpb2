@@ -19,11 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Cybermetrica_Health_FullMethodName             = "/cybertele.Cybermetrica/Health"
-	Cybermetrica_StartParser_FullMethodName        = "/cybertele.Cybermetrica/StartParser"
-	Cybermetrica_StopParser_FullMethodName         = "/cybertele.Cybermetrica/StopParser"
-	Cybermetrica_GetTelemetryParams_FullMethodName = "/cybertele.Cybermetrica/GetTelemetryParams"
-	Cybermetrica_GetTimeline_FullMethodName        = "/cybertele.Cybermetrica/GetTimeline"
+	Cybermetrica_Health_FullMethodName               = "/cybertele.Cybermetrica/Health"
+	Cybermetrica_StartParser_FullMethodName          = "/cybertele.Cybermetrica/StartParser"
+	Cybermetrica_StopParser_FullMethodName           = "/cybertele.Cybermetrica/StopParser"
+	Cybermetrica_GetTelemetryParams_FullMethodName   = "/cybertele.Cybermetrica/GetTelemetryParams"
+	Cybermetrica_CreateTelemetryParam_FullMethodName = "/cybertele.Cybermetrica/CreateTelemetryParam"
+	Cybermetrica_UpdateTelemetryParam_FullMethodName = "/cybertele.Cybermetrica/UpdateTelemetryParam"
+	Cybermetrica_GetTimeline_FullMethodName          = "/cybertele.Cybermetrica/GetTimeline"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -34,6 +36,8 @@ type CybermetricaClient interface {
 	StartParser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserStatus, error)
 	StopParser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserStatus, error)
 	GetTelemetryParams(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemertyParams, error)
+	CreateTelemetryParam(ctx context.Context, in *TelemertyParam, opts ...grpc.CallOption) (*StatusReply, error)
+	UpdateTelemetryParam(ctx context.Context, in *TelemertyParam, opts ...grpc.CallOption) (*StatusReply, error)
 	GetTimeline(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Timeline, error)
 }
 
@@ -85,6 +89,26 @@ func (c *cybermetricaClient) GetTelemetryParams(ctx context.Context, in *Empty, 
 	return out, nil
 }
 
+func (c *cybermetricaClient) CreateTelemetryParam(ctx context.Context, in *TelemertyParam, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Cybermetrica_CreateTelemetryParam_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cybermetricaClient) UpdateTelemetryParam(ctx context.Context, in *TelemertyParam, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Cybermetrica_UpdateTelemetryParam_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *cybermetricaClient) GetTimeline(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Timeline, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Timeline)
@@ -103,6 +127,8 @@ type CybermetricaServer interface {
 	StartParser(context.Context, *Empty) (*ParserStatus, error)
 	StopParser(context.Context, *Empty) (*ParserStatus, error)
 	GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error)
+	CreateTelemetryParam(context.Context, *TelemertyParam) (*StatusReply, error)
+	UpdateTelemetryParam(context.Context, *TelemertyParam) (*StatusReply, error)
 	GetTimeline(context.Context, *TimelineRequest) (*Timeline, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
@@ -125,6 +151,12 @@ func (UnimplementedCybermetricaServer) StopParser(context.Context, *Empty) (*Par
 }
 func (UnimplementedCybermetricaServer) GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTelemetryParams not implemented")
+}
+func (UnimplementedCybermetricaServer) CreateTelemetryParam(context.Context, *TelemertyParam) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateTelemetryParam not implemented")
+}
+func (UnimplementedCybermetricaServer) UpdateTelemetryParam(context.Context, *TelemertyParam) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateTelemetryParam not implemented")
 }
 func (UnimplementedCybermetricaServer) GetTimeline(context.Context, *TimelineRequest) (*Timeline, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTimeline not implemented")
@@ -222,6 +254,42 @@ func _Cybermetrica_GetTelemetryParams_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cybermetrica_CreateTelemetryParam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemertyParam)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).CreateTelemetryParam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_CreateTelemetryParam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).CreateTelemetryParam(ctx, req.(*TelemertyParam))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cybermetrica_UpdateTelemetryParam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemertyParam)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).UpdateTelemetryParam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_UpdateTelemetryParam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).UpdateTelemetryParam(ctx, req.(*TelemertyParam))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Cybermetrica_GetTimeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TimelineRequest)
 	if err := dec(in); err != nil {
@@ -262,6 +330,14 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTelemetryParams",
 			Handler:    _Cybermetrica_GetTelemetryParams_Handler,
+		},
+		{
+			MethodName: "CreateTelemetryParam",
+			Handler:    _Cybermetrica_CreateTelemetryParam_Handler,
+		},
+		{
+			MethodName: "UpdateTelemetryParam",
+			Handler:    _Cybermetrica_UpdateTelemetryParam_Handler,
 		},
 		{
 			MethodName: "GetTimeline",
