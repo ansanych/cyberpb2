@@ -2,12 +2,22 @@ syntax = "proto3";
 package cybertele;
 option go_package = "./proto";
 
+// Status — статус компонента системы.
+// При сериализации в JSON используется строковое представление (UNKNOWN, ACTIVE, INACTIVE, OK, ERROR, WARNING).
+// Для корректной JSON-сериализации используйте protojson с UseEnumNumbers=false
+// или кастомный MarshalJSON из пакета proto.
 enum Status {
+    // UNKNOWN — статус не определён
     UNKNOWN = 0;
+    // ACTIVE — компонент активен
     ACTIVE = 1;
+    // INACTIVE — компонент неактивен
     INACTIVE = 2;
+    // OK — компонент работает нормально
     OK = 3;
+    // ERROR — ошибка компонента
     ERROR = 4;
+    // WARNING — предупреждение
     WARNING = 5;
 }
 
