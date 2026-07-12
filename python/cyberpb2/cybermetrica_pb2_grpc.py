@@ -50,6 +50,11 @@ class CybermetricaStub:
                 request_serializer=cyber__pb2.Empty.SerializeToString,
                 response_deserializer=cyber__pb2.ParserStatus.FromString,
                 _registered_method=True)
+        self.MachineStatisticPeriod = channel.unary_unary(
+                '/cybertele.Cybermetrica/MachineStatisticPeriod',
+                request_serializer=cybermetrica__pb2.MachineStatisticRequest.SerializeToString,
+                response_deserializer=cybermetrica__pb2.StatisticPeriod.FromString,
+                _registered_method=True)
         self.GetTelemetryParams = channel.unary_unary(
                 '/cybertele.Cybermetrica/GetTelemetryParams',
                 request_serializer=cyber__pb2.Empty.SerializeToString,
@@ -76,7 +81,8 @@ class CybermetricaServicer:
     """Missing associated documentation comment in .proto file."""
 
     def Health(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """v1
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -93,8 +99,15 @@ class CybermetricaServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetTelemetryParams(self, request, context):
+    def MachineStatisticPeriod(self, request, context):
         """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetTelemetryParams(self, request, context):
+        """v2
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -134,6 +147,11 @@ def add_CybermetricaServicer_to_server(servicer, server):
                     servicer.StopParser,
                     request_deserializer=cyber__pb2.Empty.FromString,
                     response_serializer=cyber__pb2.ParserStatus.SerializeToString,
+            ),
+            'MachineStatisticPeriod': grpc.unary_unary_rpc_method_handler(
+                    servicer.MachineStatisticPeriod,
+                    request_deserializer=cybermetrica__pb2.MachineStatisticRequest.FromString,
+                    response_serializer=cybermetrica__pb2.StatisticPeriod.SerializeToString,
             ),
             'GetTelemetryParams': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTelemetryParams,
@@ -237,6 +255,33 @@ class Cybermetrica:
             '/cybertele.Cybermetrica/StopParser',
             cyber__pb2.Empty.SerializeToString,
             cyber__pb2.ParserStatus.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def MachineStatisticPeriod(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cybermetrica/MachineStatisticPeriod',
+            cybermetrica__pb2.MachineStatisticRequest.SerializeToString,
+            cybermetrica__pb2.StatisticPeriod.FromString,
             options,
             channel_credentials,
             insecure,

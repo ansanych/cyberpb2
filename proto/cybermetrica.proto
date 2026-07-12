@@ -6,14 +6,72 @@ package cybertele;
 option go_package = "./proto";
 
 service Cybermetrica {
+    //v1
     rpc Health (Empty) returns (HealthReply) {}
     rpc StartParser (Empty) returns (ParserStatus) {}
     rpc StopParser (Empty) returns (ParserStatus) {}
+    rpc MachineStatisticPeriod (MachineStatisticRequest) returns (StatisticPeriod) {}
+    //v2
     rpc GetTelemetryParams (Empty) returns (TelemertyParams) {}
     rpc CreateTelemetryParam (TelemertyParam) returns (StatusReply) {}
     rpc UpdateTelemetryParam (TelemertyParam) returns (StatusReply) {}
     rpc GetTimeline (TimelineRequest) returns (Timeline) {}
 }
+
+//v1
+message MachineStatisticRequest {
+    string sn = 1;
+    int32 timezone = 2;
+    string date = 3;
+    string from = 4;
+    string to = 5;
+    string graph = 6;
+    float code = 7;
+    string period = 8;
+}
+
+
+message StatisticEngine {
+    int64 all = 1;
+    int64 idle = 2;
+    int64 work = 3;
+    int64 highRPM = 4;
+}
+
+message StatisticFuel {
+    int32 consumption = 1;
+    int32 drainVolume = 2;
+    int32 drainCount = 3;
+    int32 refillVolume = 4;
+    int32 refillCount = 5;
+}
+
+message StatisticPeriod {
+    string sn = 1;
+    int32 timezone = 2;
+    string from = 3;
+    string to = 4;
+    string period = 5;
+    string step = 6;
+    repeated StatisticPeriodItem data = 7;
+    float workhoursStart = 8;
+    float workhoursEnd = 9;
+    StatisticFuel fuel = 10;
+    int32 errorsCount = 11;
+    int64 connection = 12;
+}
+
+message StatisticPeriodItem {
+    string label = 1;
+    float workhours = 2;
+    StatisticEngine engine = 3;
+    StatisticFuel fuel = 4;
+    int64 job = 5;
+    int64 connection = 6;
+    int32 errorsCount = 7;
+}
+
+//v2
 
 message TelemertyParams {
     repeated TelemertyParam params = 1;
@@ -61,3 +119,4 @@ message Timeline {
     repeated TelemetryConnection prev = 2;
     repeated TelemetryConnection next = 3;
 }
+

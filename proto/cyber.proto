@@ -21,11 +21,11 @@ enum Status {
     WARNING = 5;
 }
 
-message Empty {}
-
 message StatusReply {
     Status status = 1; 
 }
+
+message Empty {}
 
 message Disk {
     float all = 1;

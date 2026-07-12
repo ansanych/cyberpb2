@@ -88,44 +88,6 @@ func (Status) EnumDescriptor() ([]byte, []int) {
 	return file_cyber_proto_rawDescGZIP(), []int{0}
 }
 
-type Empty struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *Empty) Reset() {
-	*x = Empty{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cyber_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Empty) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Empty) ProtoMessage() {}
-
-func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Empty.ProtoReflect.Descriptor instead.
-func (*Empty) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{0}
-}
-
 type StatusReply struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -137,7 +99,7 @@ type StatusReply struct {
 func (x *StatusReply) Reset() {
 	*x = StatusReply{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cyber_proto_msgTypes[1]
+		mi := &file_cyber_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -150,7 +112,7 @@ func (x *StatusReply) String() string {
 func (*StatusReply) ProtoMessage() {}
 
 func (x *StatusReply) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[1]
+	mi := &file_cyber_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -163,7 +125,7 @@ func (x *StatusReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusReply.ProtoReflect.Descriptor instead.
 func (*StatusReply) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{1}
+	return file_cyber_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *StatusReply) GetStatus() Status {
@@ -171,6 +133,44 @@ func (x *StatusReply) GetStatus() Status {
 		return x.Status
 	}
 	return Status_UNKNOWN
+}
+
+type Empty struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Empty) Reset() {
+	*x = Empty{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cyber_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Empty) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Empty) ProtoMessage() {}
+
+func (x *Empty) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Empty.ProtoReflect.Descriptor instead.
+func (*Empty) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{1}
 }
 
 type Disk struct {
@@ -1130,11 +1130,11 @@ var File_cyber_proto protoreflect.FileDescriptor
 
 var file_cyber_proto_rawDesc = []byte{
 	0x0a, 0x0b, 0x63, 0x79, 0x62, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x63,
-	0x79, 0x62, 0x65, 0x72, 0x74, 0x65, 0x6c, 0x65, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74,
-	0x79, 0x22, 0x38, 0x0a, 0x0b, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x70, 0x6c, 0x79,
-	0x12, 0x29, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e,
-	0x32, 0x11, 0x2e, 0x63, 0x79, 0x62, 0x65, 0x72, 0x74, 0x65, 0x6c, 0x65, 0x2e, 0x53, 0x74, 0x61,
-	0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x40, 0x0a, 0x04, 0x44,
+	0x79, 0x62, 0x65, 0x72, 0x74, 0x65, 0x6c, 0x65, 0x22, 0x38, 0x0a, 0x0b, 0x53, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x29, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x11, 0x2e, 0x63, 0x79, 0x62, 0x65, 0x72, 0x74,
+	0x65, 0x6c, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x40, 0x0a, 0x04, 0x44,
 	0x69, 0x73, 0x6b, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x6c, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x02,
 	0x52, 0x03, 0x61, 0x6c, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x64, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x02, 0x52, 0x04, 0x75, 0x73, 0x65, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x66, 0x72, 0x65,
@@ -1257,8 +1257,8 @@ var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_cyber_proto_goTypes = []interface{}{
 	(Status)(0),                // 0: cybertele.Status
-	(*Empty)(nil),              // 1: cybertele.Empty
-	(*StatusReply)(nil),        // 2: cybertele.StatusReply
+	(*StatusReply)(nil),        // 1: cybertele.StatusReply
+	(*Empty)(nil),              // 2: cybertele.Empty
 	(*Disk)(nil),               // 3: cybertele.Disk
 	(*HealthReply)(nil),        // 4: cybertele.HealthReply
 	(*ParserStatus)(nil),       // 5: cybertele.ParserStatus
@@ -1302,7 +1302,7 @@ func file_cyber_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_cyber_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Empty); i {
+			switch v := v.(*StatusReply); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1314,7 +1314,7 @@ func file_cyber_proto_init() {
 			}
 		}
 		file_cyber_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StatusReply); i {
+			switch v := v.(*Empty); i {
 			case 0:
 				return &v.state
 			case 1:

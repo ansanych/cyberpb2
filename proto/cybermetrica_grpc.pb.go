@@ -22,9 +22,12 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CybermetricaClient interface {
+	// v1
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
 	StartParser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserStatus, error)
 	StopParser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserStatus, error)
+	MachineStatisticPeriod(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*StatisticPeriod, error)
+	// v2
 	GetTelemetryParams(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemertyParams, error)
 	CreateTelemetryParam(ctx context.Context, in *TelemertyParam, opts ...grpc.CallOption) (*StatusReply, error)
 	UpdateTelemetryParam(ctx context.Context, in *TelemertyParam, opts ...grpc.CallOption) (*StatusReply, error)
@@ -60,6 +63,15 @@ func (c *cybermetricaClient) StartParser(ctx context.Context, in *Empty, opts ..
 func (c *cybermetricaClient) StopParser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserStatus, error) {
 	out := new(ParserStatus)
 	err := c.cc.Invoke(ctx, "/cybertele.Cybermetrica/StopParser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cybermetricaClient) MachineStatisticPeriod(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*StatisticPeriod, error) {
+	out := new(StatisticPeriod)
+	err := c.cc.Invoke(ctx, "/cybertele.Cybermetrica/MachineStatisticPeriod", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -106,9 +118,12 @@ func (c *cybermetricaClient) GetTimeline(ctx context.Context, in *TimelineReques
 // All implementations must embed UnimplementedCybermetricaServer
 // for forward compatibility
 type CybermetricaServer interface {
+	// v1
 	Health(context.Context, *Empty) (*HealthReply, error)
 	StartParser(context.Context, *Empty) (*ParserStatus, error)
 	StopParser(context.Context, *Empty) (*ParserStatus, error)
+	MachineStatisticPeriod(context.Context, *MachineStatisticRequest) (*StatisticPeriod, error)
+	// v2
 	GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error)
 	CreateTelemetryParam(context.Context, *TelemertyParam) (*StatusReply, error)
 	UpdateTelemetryParam(context.Context, *TelemertyParam) (*StatusReply, error)
@@ -128,6 +143,9 @@ func (UnimplementedCybermetricaServer) StartParser(context.Context, *Empty) (*Pa
 }
 func (UnimplementedCybermetricaServer) StopParser(context.Context, *Empty) (*ParserStatus, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopParser not implemented")
+}
+func (UnimplementedCybermetricaServer) MachineStatisticPeriod(context.Context, *MachineStatisticRequest) (*StatisticPeriod, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MachineStatisticPeriod not implemented")
 }
 func (UnimplementedCybermetricaServer) GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTelemetryParams not implemented")
@@ -204,6 +222,24 @@ func _Cybermetrica_StopParser_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CybermetricaServer).StopParser(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cybermetrica_MachineStatisticPeriod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MachineStatisticRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).MachineStatisticPeriod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cybertele.Cybermetrica/MachineStatisticPeriod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).MachineStatisticPeriod(ctx, req.(*MachineStatisticRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -298,6 +334,10 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StopParser",
 			Handler:    _Cybermetrica_StopParser_Handler,
+		},
+		{
+			MethodName: "MachineStatisticPeriod",
+			Handler:    _Cybermetrica_MachineStatisticPeriod_Handler,
 		},
 		{
 			MethodName: "GetTelemetryParams",
