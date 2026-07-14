@@ -87,8 +87,6 @@ message TimelineRequest {
     int64 date = 1;
     int32 tz = 2;
     string sn = 3;
-    bool prev = 4;
-    bool next = 5; 
 }
 
 message DataValuesRow {
@@ -109,13 +107,11 @@ message TelemetryConnection {
     repeated TelemetryBlock engine = 5;
     repeated TelemetryBlock job = 6;
     repeated TelemetryBlock errors = 7;
-    repeated string params = 8;
-    repeated DataValuesRow dataValues = 9;
+    repeated DataValuesRow dataValues = 8;
 }
 
 message Timeline {
     repeated TelemetryConnection data = 1;
-    repeated TelemetryConnection prev = 2;
-    repeated TelemetryConnection next = 3;
+    repeated string params = 2;
 }
 
