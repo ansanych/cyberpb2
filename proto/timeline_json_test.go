@@ -2,6 +2,7 @@ package proto
 
 import (
 	"encoding/json"
+	"strings"
 	"testing"
 )
 
@@ -173,6 +174,42 @@ func TestTimeline_MarshalJSON_DataValuesEmpty(t *testing.T) {
 	want := `{"data":[{"id":1,"start":1000,"end":2000}]}`
 	if string(got) != want {
 		t.Errorf("json.Marshal() = %v, want %v", string(got), want)
+	}
+}
+
+func TestTimeline_MarshalJSON_FloatPrecision(t *testing.T) {
+	// Проверяем, что float32 4340.6 не превращается в 4340.60009765625
+	timeline := &Timeline{
+		Data: []*TelemetryConnection{
+			{
+				Id:    1,
+				Start: 1000,
+				End:   2000,
+				DataValues: []*DataValuesRow{
+					{Values: []float32{4340.6}},
+				},
+				Engine: []*TelemetryBlock{
+					{Start: 1000, End: 1500, Value: 4340.6},
+				},
+			},
+		},
+	}
+
+	got, err := json.Marshal(timeline)
+	if err != nil {
+		t.Fatalf("json.Marshal() error = %v", err)
+	}
+
+	gotStr := string(got)
+
+	// Должно содержать 4340.6, а не 4340.60009765625
+	if !strings.Contains(gotStr, "4340.6") {
+		t.Errorf("expected 4340.6 in result, got: %s", gotStr)
+	}
+
+	// Не должно содержать 4340.60009765625
+	if strings.Contains(gotStr, "4340.60009765625") {
+		t.Errorf("unexpected precision loss: got %s", gotStr)
 	}
 }
 

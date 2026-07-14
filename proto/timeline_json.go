@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"math"
+	"strconv"
 )
 
 // MarshalJSON implements json.Marshaler for Timeline.
@@ -89,7 +91,7 @@ func writeConnectionJSON(buf *bytes.Buffer, c *TelemetryConnection) {
 				if k > 0 {
 					buf.WriteByte(',')
 				}
-				fmt.Fprintf(buf, "%v", v)
+				buf.WriteString(formatFloat(float64(v)))
 			}
 			buf.WriteByte(']')
 		}
@@ -108,9 +110,20 @@ func writeBlocksJSON(buf *bytes.Buffer, name string, blocks []*TelemetryBlock) {
 		if i > 0 {
 			buf.WriteByte(',')
 		}
-		fmt.Fprintf(buf, `{"start":%d,"end":%d,"value":%v}`, b.Start, b.End, b.Value)
+		fmt.Fprintf(buf, `{"start":%d,"end":%d,"value":%s}`, b.Start, b.End, formatFloat(float64(b.Value)))
 	}
 	buf.WriteByte(']')
+}
+
+// formatFloat форматирует float64 в JSON-совместимую строку
+// без лишних знаков (избегает проблемы 4340.60009765625 вместо 4340.6).
+func formatFloat(v float64) string {
+	if math.IsInf(v, 0) || math.IsNaN(v) {
+		b, _ := json.Marshal(v)
+		return string(b)
+	}
+	// strconv.FormatFloat с 'g' и точностью -1 даёт кратчайшее точное представление
+	return strconv.FormatFloat(v, 'g', -1, 32)
 }
 
 func writeStringSliceJSON(buf *bytes.Buffer, strs []string) {
