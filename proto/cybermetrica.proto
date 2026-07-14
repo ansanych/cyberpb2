@@ -30,7 +30,6 @@ message MachineStatisticRequest {
     string period = 8;
 }
 
-
 message StatisticEngine {
     int64 all = 1;
     int64 idle = 2;
@@ -46,6 +45,16 @@ message StatisticFuel {
     int32 refillCount = 5;
 }
 
+message StatisticPeriodItem {
+    string label = 1;
+    float workhours = 2;
+    StatisticEngine engine = 3;
+    StatisticFuel fuel = 4;
+    int64 job = 5;
+    int64 connection = 6;
+    int32 errorsCount = 7;
+}
+
 message StatisticPeriod {
     string sn = 1;
     int32 timezone = 2;
@@ -59,16 +68,6 @@ message StatisticPeriod {
     StatisticFuel fuel = 10;
     int32 errorsCount = 11;
     int64 connection = 12;
-}
-
-message StatisticPeriodItem {
-    string label = 1;
-    float workhours = 2;
-    StatisticEngine engine = 3;
-    StatisticFuel fuel = 4;
-    int64 job = 5;
-    int64 connection = 6;
-    int32 errorsCount = 7;
 }
 
 //v2
@@ -92,8 +91,8 @@ message TimelineRequest {
     bool next = 5; 
 }
 
-message DataValue {
-    float value = 1;
+message DataValuesRow {
+    repeated float values = 1;
 }
 
 message TelemetryBlock {
@@ -111,7 +110,7 @@ message TelemetryConnection {
     repeated TelemetryBlock job = 6;
     repeated TelemetryBlock errors = 7;
     repeated string params = 8;
-    repeated DataValue dataValues = 9;
+    repeated DataValuesRow dataValues = 9;
 }
 
 message Timeline {
