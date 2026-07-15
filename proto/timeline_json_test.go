@@ -264,3 +264,43 @@ func TestTimeline_MarshalJSON_EventBlockValue(t *testing.T) {
 		t.Errorf("json.Marshal() = %v, want %v", string(got), want)
 	}
 }
+
+func TestTimeline_MarshalJSON_EventBlockWithID(t *testing.T) {
+	// Проверяем, что EventBlock с id выводит id первым
+	timeline := &Timeline{
+		Sn: "ABC123",
+		Connections: []*EventBlock{
+			{Id: 42, Start: 1000, End: 2000, Value: 1.5},
+		},
+	}
+
+	got, err := json.Marshal(timeline)
+	if err != nil {
+		t.Fatalf("json.Marshal() error = %v", err)
+	}
+
+	want := `{"sn":"ABC123","connections":[{"id":42,"start":1000,"end":2000,"value":1.5}]}`
+	if string(got) != want {
+		t.Errorf("json.Marshal() = %v, want %v", string(got), want)
+	}
+}
+
+func TestTimeline_MarshalJSON_EventBlockWithoutID(t *testing.T) {
+	// Проверяем, что EventBlock без id не выводит id
+	timeline := &Timeline{
+		Sn: "ABC123",
+		Connections: []*EventBlock{
+			{Id: 0, Start: 1000, End: 2000, Value: 1.5},
+		},
+	}
+
+	got, err := json.Marshal(timeline)
+	if err != nil {
+		t.Fatalf("json.Marshal() error = %v", err)
+	}
+
+	want := `{"sn":"ABC123","connections":[{"start":1000,"end":2000,"value":1.5}]}`
+	if string(got) != want {
+		t.Errorf("json.Marshal() = %v, want %v", string(got), want)
+	}
+}

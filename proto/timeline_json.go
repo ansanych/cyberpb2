@@ -102,6 +102,12 @@ func writeEventBlocksJSON(buf *bytes.Buffer, name string, blocks []*EventBlock, 
 // writeEventBlockJSON пишет {"start":...,"end":...,"value":...}.
 func writeEventBlockJSON(buf *bytes.Buffer, b *EventBlock) {
 	buf.WriteByte('{')
+
+	// id (если есть)
+	if b.Id != 0 {
+		fmt.Fprintf(buf, `"id":%d,`, b.Id)
+	}
+
 	fmt.Fprintf(buf, `"start":%d,"end":%d,"value":%s`, b.Start, b.End, formatFloat(float64(b.Value)))
 	buf.WriteByte('}')
 }
