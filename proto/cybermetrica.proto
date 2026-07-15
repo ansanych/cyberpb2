@@ -103,6 +103,7 @@ message EventBlock {
     int64 start = 1;
     int64 end = 2;
     float value = 3;
+    int64 id = 4;
 }
 
 message Timeline {
