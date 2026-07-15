@@ -84,34 +84,37 @@ message TelemertyParam {
 }
 
 message TimelineRequest {
-    int64 date = 1;
-    int32 tz = 2;
-    string sn = 3;
+    string sn = 1;
+    string date = 2;
+    int32 tz = 3;
 }
 
 message DataValuesRow {
     repeated float values = 1;
 }
 
-message TelemetryBlock {
+message ConnectionDataBlock {
+    int64 id = 1;
+    bool finished = 2;
+    repeated DataValuesRow dataValues = 3;
+}
+
+message EventBlock {
     int64 start = 1;
     int64 end = 2;
     float value = 3;
 }
 
-message TelemetryConnection {
-    int64 id = 1;
-    int64 start = 2;
-    int64 end = 3;
-    bool finished = 4;
-    repeated TelemetryBlock engine = 5;
-    repeated TelemetryBlock job = 6;
-    repeated TelemetryBlock errors = 7;
-    repeated DataValuesRow dataValues = 8;
-}
-
 message Timeline {
-    repeated TelemetryConnection data = 1;
-    repeated string params = 2;
+    string sn = 1;
+    string date = 2;
+    int32 tz = 3;
+    int64 startTimeUnix = 4;
+    repeated string params = 5;
+    repeated EventBlock connections = 6;
+    repeated EventBlock engines = 7;
+    repeated EventBlock jobs = 8;
+    repeated EventBlock errors = 9;
+    repeated ConnectionDataBlock data = 10;
 }
 

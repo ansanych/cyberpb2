@@ -11,7 +11,7 @@ import (
 // MarshalJSON implements json.Marshaler for Timeline.
 // Сериализует dataValues как массив массивов [[1,2,3], [4,5,6]]
 // вместо [{"values": [1,2,3]}, {"values": [4,5,6]}].
-// Пустые поля (engine, job, errors, finished=false) не выводятся.
+// Пустые поля (connections, engines, jobs, errors, finished=false) не выводятся.
 func (tl *Timeline) MarshalJSON() ([]byte, error) {
 	if tl == nil {
 		return []byte("null"), nil
@@ -20,69 +20,124 @@ func (tl *Timeline) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	buf.WriteByte('{')
 
-	// params (если есть)
+	// sn
+	if tl.Sn != "" {
+		writeStringJSON(&buf, "sn", tl.Sn)
+	}
+
+	// date
+	if tl.Date != "" {
+		writeComma(&buf, buf.Len() > 2)
+		writeStringJSON(&buf, "date", tl.Date)
+	}
+
+	// tz
+	if tl.Tz != 0 {
+		writeComma(&buf, buf.Len() > 2)
+		fmt.Fprintf(&buf, `"tz":%d`, tl.Tz)
+	}
+
+	// startTimeUnix
+	if tl.StartTimeUnix != 0 {
+		writeComma(&buf, buf.Len() > 2)
+		fmt.Fprintf(&buf, `"startTimeUnix":%d`, tl.StartTimeUnix)
+	}
+
+	// params
 	if len(tl.Params) > 0 {
+		writeComma(&buf, buf.Len() > 2)
 		buf.WriteString(`"params":`)
 		writeStringSliceJSON(&buf, tl.Params)
 	}
 
+	// connections
+	writeEventBlocksJSON(&buf, "connections", tl.Connections, buf.Len() > 2)
+
+	// engines
+	writeEventBlocksJSON(&buf, "engines", tl.Engines, buf.Len() > 2)
+
+	// jobs
+	writeEventBlocksJSON(&buf, "jobs", tl.Jobs, buf.Len() > 2)
+
+	// errors
+	writeEventBlocksJSON(&buf, "errors", tl.Errors, buf.Len() > 2)
+
 	// data
-	if len(tl.Data) > 0 {
-		if len(tl.Params) > 0 {
-			buf.WriteByte(',')
-		}
-		writeConnectionsJSON(&buf, "data", tl.Data)
-	}
+	writeConnectionDataBlocksJSON(&buf, "data", tl.Data, buf.Len() > 2)
 
 	buf.WriteByte('}')
 	return buf.Bytes(), nil
 }
 
-func writeConnectionsJSON(buf *bytes.Buffer, name string, conns []*TelemetryConnection) {
+// writeComma пишет запятую перед полем, если нужно.
+func writeComma(buf *bytes.Buffer, needComma bool) {
+	if needComma {
+		buf.WriteByte(',')
+	}
+}
+
+// writeStringJSON пишет "key":"value" с JSON-экранированием.
+func writeStringJSON(buf *bytes.Buffer, key, val string) {
+	fmt.Fprintf(buf, `"%s":`, key)
+	b, _ := json.Marshal(val)
+	buf.Write(b)
+}
+
+// writeEventBlocksJSON пишет "name":[...] для EventBlock, если массив непустой.
+func writeEventBlocksJSON(buf *bytes.Buffer, name string, blocks []*EventBlock, needComma bool) {
+	if len(blocks) == 0 {
+		return
+	}
+	writeComma(buf, needComma)
 	fmt.Fprintf(buf, `"%s":[`, name)
-	for i, c := range conns {
+	for i, b := range blocks {
 		if i > 0 {
 			buf.WriteByte(',')
 		}
-		writeConnectionJSON(buf, c)
+		writeEventBlockJSON(buf, b)
 	}
 	buf.WriteByte(']')
 }
 
-func writeConnectionJSON(buf *bytes.Buffer, c *TelemetryConnection) {
+// writeEventBlockJSON пишет {"start":...,"end":...,"value":...}.
+func writeEventBlockJSON(buf *bytes.Buffer, b *EventBlock) {
+	buf.WriteByte('{')
+	fmt.Fprintf(buf, `"start":%d,"end":%d,"value":%s`, b.Start, b.End, formatFloat(float64(b.Value)))
+	buf.WriteByte('}')
+}
+
+// writeConnectionDataBlocksJSON пишет "name":[...] для ConnectionDataBlock, если массив непустой.
+func writeConnectionDataBlocksJSON(buf *bytes.Buffer, name string, blocks []*ConnectionDataBlock, needComma bool) {
+	if len(blocks) == 0 {
+		return
+	}
+	writeComma(buf, needComma)
+	fmt.Fprintf(buf, `"%s":[`, name)
+	for i, b := range blocks {
+		if i > 0 {
+			buf.WriteByte(',')
+		}
+		writeConnectionDataBlockJSON(buf, b)
+	}
+	buf.WriteByte(']')
+}
+
+// writeConnectionDataBlockJSON пишет ConnectionDataBlock с dataValues как массив массивов.
+func writeConnectionDataBlockJSON(buf *bytes.Buffer, b *ConnectionDataBlock) {
 	buf.WriteByte('{')
 
 	// id
-	fmt.Fprintf(buf, `"id":%d`, c.Id)
-
-	// start
-	if c.Start != 0 {
-		fmt.Fprintf(buf, `,"start":%d`, c.Start)
-	}
-
-	// end
-	if c.End != 0 {
-		fmt.Fprintf(buf, `,"end":%d`, c.End)
-	}
+	fmt.Fprintf(buf, `"id":%d`, b.Id)
 
 	// finished (только true)
-	if c.Finished {
+	if b.Finished {
 		buf.WriteString(`,"finished":true`)
 	}
 
-	// engine
-	writeBlocksJSON(buf, "engine", c.Engine)
-
-	// job
-	writeBlocksJSON(buf, "job", c.Job)
-
-	// errors
-	writeBlocksJSON(buf, "errors", c.Errors)
-
 	// dataValues — как массив массивов
-	if len(c.DataValues) > 0 {
+	if len(b.DataValues) > 0 {
 		buf.WriteString(`,"dataValues":[`)
-		for j, row := range c.DataValues {
+		for j, row := range b.DataValues {
 			if j > 0 {
 				buf.WriteByte(',')
 			}
@@ -101,20 +156,6 @@ func writeConnectionJSON(buf *bytes.Buffer, c *TelemetryConnection) {
 	buf.WriteByte('}')
 }
 
-func writeBlocksJSON(buf *bytes.Buffer, name string, blocks []*TelemetryBlock) {
-	if len(blocks) == 0 {
-		return
-	}
-	fmt.Fprintf(buf, `,"%s":[`, name)
-	for i, b := range blocks {
-		if i > 0 {
-			buf.WriteByte(',')
-		}
-		fmt.Fprintf(buf, `{"start":%d,"end":%d,"value":%s}`, b.Start, b.End, formatFloat(float64(b.Value)))
-	}
-	buf.WriteByte(']')
-}
-
 // formatFloat форматирует float64 в JSON-совместимую строку
 // без лишних знаков (избегает проблемы 4340.60009765625 вместо 4340.6).
 func formatFloat(v float64) string {
@@ -126,13 +167,13 @@ func formatFloat(v float64) string {
 	return strconv.FormatFloat(v, 'g', -1, 32)
 }
 
+// writeStringSliceJSON пишет ["a","b","c"] с JSON-экранированием.
 func writeStringSliceJSON(buf *bytes.Buffer, strs []string) {
 	buf.WriteByte('[')
 	for i, s := range strs {
 		if i > 0 {
 			buf.WriteByte(',')
 		}
-		// Экранирование для JSON
 		b, _ := json.Marshal(s)
 		buf.Write(b)
 	}

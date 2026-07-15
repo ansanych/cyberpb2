@@ -23,47 +23,52 @@ func TestTimeline_MarshalJSON(t *testing.T) {
 			want:     `{}`,
 		},
 		{
-			name: "only params",
+			name: "only sn and date",
 			timeline: &Timeline{
+				Sn:   "ABC123",
+				Date: "2024-01-15",
+			},
+			want: `{"sn":"ABC123","date":"2024-01-15"}`,
+		},
+		{
+			name: "with params",
+			timeline: &Timeline{
+				Sn:     "ABC123",
 				Params: []string{"rpm", "temp"},
 			},
-			want: `{"params":["rpm","temp"]}`,
+			want: `{"sn":"ABC123","params":["rpm","temp"]}`,
 		},
 		{
-			name: "single connection without dataValues",
+			name: "with connections",
 			timeline: &Timeline{
-				Data: []*TelemetryConnection{
-					{
-						Id:    1,
-						Start: 1000,
-						End:   2000,
-					},
+				Sn: "ABC123",
+				Connections: []*EventBlock{
+					{Start: 1000, End: 2000, Value: 1.5},
+					{Start: 2000, End: 3000, Value: 2.5},
 				},
 			},
-			want: `{"data":[{"id":1,"start":1000,"end":2000}]}`,
+			want: `{"sn":"ABC123","connections":[{"start":1000,"end":2000,"value":1.5},{"start":2000,"end":3000,"value":2.5}]}`,
 		},
 		{
-			name: "connection with finished=true",
+			name: "with engines and jobs",
 			timeline: &Timeline{
-				Data: []*TelemetryConnection{
-					{
-						Id:       1,
-						Start:    1000,
-						End:      2000,
-						Finished: true,
-					},
+				Sn: "ABC123",
+				Engines: []*EventBlock{
+					{Start: 1000, End: 1500, Value: 800},
+				},
+				Jobs: []*EventBlock{
+					{Start: 1000, End: 2000, Value: 1},
 				},
 			},
-			want: `{"data":[{"id":1,"start":1000,"end":2000,"finished":true}]}`,
+			want: `{"sn":"ABC123","engines":[{"start":1000,"end":1500,"value":800}],"jobs":[{"start":1000,"end":2000,"value":1}]}`,
 		},
 		{
-			name: "connection with dataValues as array of arrays",
+			name: "with data and dataValues as array of arrays",
 			timeline: &Timeline{
-				Data: []*TelemetryConnection{
+				Sn: "ABC123",
+				Data: []*ConnectionDataBlock{
 					{
-						Id:    1,
-						Start: 1000,
-						End:   2000,
+						Id: 1,
 						DataValues: []*DataValuesRow{
 							{Values: []float32{1.0, 2.0, 3.0}},
 							{Values: []float32{4.0, 5.0, 6.0}},
@@ -71,38 +76,45 @@ func TestTimeline_MarshalJSON(t *testing.T) {
 					},
 				},
 			},
-			want: `{"data":[{"id":1,"start":1000,"end":2000,"dataValues":[[1,2,3],[4,5,6]]}]}`,
+			want: `{"sn":"ABC123","data":[{"id":1,"dataValues":[[1,2,3],[4,5,6]]}]}`,
 		},
 		{
-			name: "connection with engine blocks",
+			name: "with finished=true in data",
 			timeline: &Timeline{
-				Data: []*TelemetryConnection{
+				Sn: "ABC123",
+				Data: []*ConnectionDataBlock{
 					{
-						Id:    1,
-						Start: 1000,
-						End:   2000,
-						Engine: []*TelemetryBlock{
-							{Start: 1000, End: 1500, Value: 1.5},
-							{Start: 1500, End: 2000, Value: 2.5},
-						},
+						Id:       1,
+						Finished: true,
 					},
 				},
 			},
-			want: `{"data":[{"id":1,"start":1000,"end":2000,"engine":[{"start":1000,"end":1500,"value":1.5},{"start":1500,"end":2000,"value":2.5}]}]}`,
+			want: `{"sn":"ABC123","data":[{"id":1,"finished":true}]}`,
 		},
 		{
-			name: "full timeline with params and data",
+			name: "full timeline",
 			timeline: &Timeline{
-				Params: []string{"rpm", "temp"},
-				Data: []*TelemetryConnection{
+				Sn:            "ABC123",
+				Date:          "2024-01-15",
+				Tz:            5,
+				StartTimeUnix: 1700000000,
+				Params:        []string{"rpm", "temp"},
+				Connections: []*EventBlock{
+					{Start: 1000, End: 2000, Value: 1},
+				},
+				Engines: []*EventBlock{
+					{Start: 1000, End: 1500, Value: 800},
+				},
+				Jobs: []*EventBlock{
+					{Start: 1000, End: 2000, Value: 1},
+				},
+				Errors: []*EventBlock{
+					{Start: 1500, End: 1600, Value: 1},
+				},
+				Data: []*ConnectionDataBlock{
 					{
 						Id:       1,
-						Start:    1000,
-						End:      2000,
 						Finished: true,
-						Engine: []*TelemetryBlock{
-							{Start: 1000, End: 1500, Value: 1.5},
-						},
 						DataValues: []*DataValuesRow{
 							{Values: []float32{1.0, 2.0}},
 							{Values: []float32{3.0, 4.0}},
@@ -110,7 +122,7 @@ func TestTimeline_MarshalJSON(t *testing.T) {
 					},
 				},
 			},
-			want: `{"params":["rpm","temp"],"data":[{"id":1,"start":1000,"end":2000,"finished":true,"engine":[{"start":1000,"end":1500,"value":1.5}],"dataValues":[[1,2],[3,4]]}]}`,
+			want: `{"sn":"ABC123","date":"2024-01-15","tz":5,"startTimeUnix":1700000000,"params":["rpm","temp"],"connections":[{"start":1000,"end":2000,"value":1}],"engines":[{"start":1000,"end":1500,"value":800}],"jobs":[{"start":1000,"end":2000,"value":1}],"errors":[{"start":1500,"end":1600,"value":1}],"data":[{"id":1,"finished":true,"dataValues":[[1,2],[3,4]]}]}`,
 		},
 	}
 
@@ -130,16 +142,12 @@ func TestTimeline_MarshalJSON(t *testing.T) {
 func TestTimeline_MarshalJSON_EmptyFields(t *testing.T) {
 	// Проверяем, что пустые поля не выводятся
 	timeline := &Timeline{
-		Data: []*TelemetryConnection{
-			{
-				Id:     1,
-				Start:  1000,
-				End:    2000,
-				Engine: []*TelemetryBlock{},
-				Job:    nil,
-				Errors: nil,
-			},
-		},
+		Sn:          "ABC123",
+		Connections: []*EventBlock{},
+		Engines:     nil,
+		Jobs:        []*EventBlock{},
+		Errors:      nil,
+		Data:        []*ConnectionDataBlock{},
 	}
 
 	got, err := json.Marshal(timeline)
@@ -147,7 +155,7 @@ func TestTimeline_MarshalJSON_EmptyFields(t *testing.T) {
 		t.Fatalf("json.Marshal() error = %v", err)
 	}
 
-	want := `{"data":[{"id":1,"start":1000,"end":2000}]}`
+	want := `{"sn":"ABC123"}`
 	if string(got) != want {
 		t.Errorf("json.Marshal() = %v, want %v", string(got), want)
 	}
@@ -156,11 +164,10 @@ func TestTimeline_MarshalJSON_EmptyFields(t *testing.T) {
 func TestTimeline_MarshalJSON_DataValuesEmpty(t *testing.T) {
 	// Проверяем, что пустой dataValues не выводится
 	timeline := &Timeline{
-		Data: []*TelemetryConnection{
+		Sn: "ABC123",
+		Data: []*ConnectionDataBlock{
 			{
 				Id:         1,
-				Start:      1000,
-				End:        2000,
 				DataValues: []*DataValuesRow{},
 			},
 		},
@@ -171,7 +178,33 @@ func TestTimeline_MarshalJSON_DataValuesEmpty(t *testing.T) {
 		t.Fatalf("json.Marshal() error = %v", err)
 	}
 
-	want := `{"data":[{"id":1,"start":1000,"end":2000}]}`
+	want := `{"sn":"ABC123","data":[{"id":1}]}`
+	if string(got) != want {
+		t.Errorf("json.Marshal() = %v, want %v", string(got), want)
+	}
+}
+
+func TestTimeline_MarshalJSON_DataValuesWithEmptyRow(t *testing.T) {
+	// Проверяем, что строка с пустым Values выводится как []
+	timeline := &Timeline{
+		Sn: "ABC123",
+		Data: []*ConnectionDataBlock{
+			{
+				Id: 1,
+				DataValues: []*DataValuesRow{
+					{Values: []float32{}},
+					{Values: []float32{1.0}},
+				},
+			},
+		},
+	}
+
+	got, err := json.Marshal(timeline)
+	if err != nil {
+		t.Fatalf("json.Marshal() error = %v", err)
+	}
+
+	want := `{"sn":"ABC123","data":[{"id":1,"dataValues":[[],[1]]}]}`
 	if string(got) != want {
 		t.Errorf("json.Marshal() = %v, want %v", string(got), want)
 	}
@@ -180,18 +213,17 @@ func TestTimeline_MarshalJSON_DataValuesEmpty(t *testing.T) {
 func TestTimeline_MarshalJSON_FloatPrecision(t *testing.T) {
 	// Проверяем, что float32 4340.6 не превращается в 4340.60009765625
 	timeline := &Timeline{
-		Data: []*TelemetryConnection{
+		Sn: "ABC123",
+		Data: []*ConnectionDataBlock{
 			{
-				Id:    1,
-				Start: 1000,
-				End:   2000,
+				Id: 1,
 				DataValues: []*DataValuesRow{
 					{Values: []float32{4340.6}},
 				},
-				Engine: []*TelemetryBlock{
-					{Start: 1000, End: 1500, Value: 4340.6},
-				},
 			},
+		},
+		Connections: []*EventBlock{
+			{Start: 1000, End: 1500, Value: 4340.6},
 		},
 	}
 
@@ -213,19 +245,12 @@ func TestTimeline_MarshalJSON_FloatPrecision(t *testing.T) {
 	}
 }
 
-func TestTimeline_MarshalJSON_DataValuesWithEmptyRow(t *testing.T) {
-	// Проверяем, что строка с пустым Values выводится как []
+func TestTimeline_MarshalJSON_EventBlockValue(t *testing.T) {
+	// Проверяем, что EventBlock с value=1 выводится как 1, а не 1.0
 	timeline := &Timeline{
-		Data: []*TelemetryConnection{
-			{
-				Id:    1,
-				Start: 1000,
-				End:   2000,
-				DataValues: []*DataValuesRow{
-					{Values: []float32{}},
-					{Values: []float32{1.0}},
-				},
-			},
+		Sn: "ABC123",
+		Connections: []*EventBlock{
+			{Start: 1000, End: 2000, Value: 1},
 		},
 	}
 
@@ -234,7 +259,7 @@ func TestTimeline_MarshalJSON_DataValuesWithEmptyRow(t *testing.T) {
 		t.Fatalf("json.Marshal() error = %v", err)
 	}
 
-	want := `{"data":[{"id":1,"start":1000,"end":2000,"dataValues":[[],[1]]}]}`
+	want := `{"sn":"ABC123","connections":[{"start":1000,"end":2000,"value":1}]}`
 	if string(got) != want {
 		t.Errorf("json.Marshal() = %v, want %v", string(got), want)
 	}
