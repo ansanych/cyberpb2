@@ -6,7 +6,7 @@ import warnings
 from . import cyber_pb2 as cyber__pb2
 import cybermetrica_pb2 as cybermetrica__pb2
 
-GRPC_GENERATED_VERSION = '1.82.0'
+GRPC_GENERATED_VERSION = '1.82.1'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 

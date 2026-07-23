@@ -16,9 +16,9 @@ service Cybermetrica {
     rpc CreateTelemetryParam (TelemertyParam) returns (StatusReply) {}
     rpc UpdateTelemetryParam (TelemertyParam) returns (StatusReply) {}
     rpc GetTimeline (TimelineRequest) returns (Timeline) {}
+    rpc GetEvents (TimelineRequest) returns (Events) {}
 }
 
-//v1
 message MachineStatisticRequest {
     string sn = 1;
     int32 timezone = 2;
@@ -70,8 +70,6 @@ message StatisticPeriod {
     int64 connection = 12;
 }
 
-//v2
-
 message TelemertyParams {
     repeated TelemertyParam params = 1;
 }
@@ -119,3 +117,16 @@ message Timeline {
     repeated ConnectionDataBlock data = 10;
 }
 
+message Events {
+    repeated Event events = 1;
+}
+
+message Event {
+    int64 id = 1;
+    string startTime = 2;
+    string endTime = 3;
+    Status status = 4;
+    float code = 5;
+    string message = 6;
+    string description = 7;
+}
