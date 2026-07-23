@@ -6,12 +6,10 @@ package cybertele;
 option go_package = "./proto";
 
 service Cybermetrica {
-    //v1
     rpc Health (Empty) returns (HealthReply) {}
     rpc StartParser (Empty) returns (ParserStatus) {}
     rpc StopParser (Empty) returns (ParserStatus) {}
     rpc MachineStatisticPeriod (MachineStatisticRequest) returns (StatisticPeriod) {}
-    //v2
     rpc GetTelemetryParams (Empty) returns (TelemertyParams) {}
     rpc CreateTelemetryParam (TelemertyParam) returns (StatusReply) {}
     rpc UpdateTelemetryParam (TelemertyParam) returns (StatusReply) {}
