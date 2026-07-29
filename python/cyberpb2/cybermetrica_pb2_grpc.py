@@ -50,6 +50,21 @@ class CybermetricaStub:
                 request_serializer=cyber__pb2.Empty.SerializeToString,
                 response_deserializer=cyber__pb2.ParserStatus.FromString,
                 _registered_method=True)
+        self.GetParserStatus = channel.unary_unary(
+                '/cybertele.Cybermetrica/GetParserStatus',
+                request_serializer=cyber__pb2.Empty.SerializeToString,
+                response_deserializer=cyber__pb2.ParserStatus.FromString,
+                _registered_method=True)
+        self.GetParserLogs = channel.unary_unary(
+                '/cybertele.Cybermetrica/GetParserLogs',
+                request_serializer=cyber__pb2.PageRequest.SerializeToString,
+                response_deserializer=cybermetrica__pb2.ParserMetricaLogsReply.FromString,
+                _registered_method=True)
+        self.MachineLogs = channel.unary_unary(
+                '/cybertele.Cybermetrica/MachineLogs',
+                request_serializer=cyber__pb2.PageRequest.SerializeToString,
+                response_deserializer=cybermetrica__pb2.ParserMetricaLogsReply.FromString,
+                _registered_method=True)
         self.MachineStatisticPeriod = channel.unary_unary(
                 '/cybertele.Cybermetrica/MachineStatisticPeriod',
                 request_serializer=cybermetrica__pb2.MachineStatisticRequest.SerializeToString,
@@ -80,14 +95,18 @@ class CybermetricaStub:
                 request_serializer=cybermetrica__pb2.TimelineRequest.SerializeToString,
                 response_deserializer=cybermetrica__pb2.Events.FromString,
                 _registered_method=True)
+        self.AllMachinesWorkhours = channel.unary_unary(
+                '/cybertele.Cybermetrica/AllMachinesWorkhours',
+                request_serializer=cyber__pb2.Empty.SerializeToString,
+                response_deserializer=cybermetrica__pb2.Workhours.FromString,
+                _registered_method=True)
 
 
 class CybermetricaServicer:
     """Missing associated documentation comment in .proto file."""
 
     def Health(self, request, context):
-        """v1
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -104,6 +123,24 @@ class CybermetricaServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetParserStatus(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetParserLogs(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MachineLogs(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def MachineStatisticPeriod(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -111,8 +148,7 @@ class CybermetricaServicer:
         raise NotImplementedError('Method not implemented!')
 
     def GetTelemetryParams(self, request, context):
-        """v2
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -141,6 +177,12 @@ class CybermetricaServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AllMachinesWorkhours(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CybermetricaServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -158,6 +200,21 @@ def add_CybermetricaServicer_to_server(servicer, server):
                     servicer.StopParser,
                     request_deserializer=cyber__pb2.Empty.FromString,
                     response_serializer=cyber__pb2.ParserStatus.SerializeToString,
+            ),
+            'GetParserStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetParserStatus,
+                    request_deserializer=cyber__pb2.Empty.FromString,
+                    response_serializer=cyber__pb2.ParserStatus.SerializeToString,
+            ),
+            'GetParserLogs': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetParserLogs,
+                    request_deserializer=cyber__pb2.PageRequest.FromString,
+                    response_serializer=cybermetrica__pb2.ParserMetricaLogsReply.SerializeToString,
+            ),
+            'MachineLogs': grpc.unary_unary_rpc_method_handler(
+                    servicer.MachineLogs,
+                    request_deserializer=cyber__pb2.PageRequest.FromString,
+                    response_serializer=cybermetrica__pb2.ParserMetricaLogsReply.SerializeToString,
             ),
             'MachineStatisticPeriod': grpc.unary_unary_rpc_method_handler(
                     servicer.MachineStatisticPeriod,
@@ -188,6 +245,11 @@ def add_CybermetricaServicer_to_server(servicer, server):
                     servicer.GetEvents,
                     request_deserializer=cybermetrica__pb2.TimelineRequest.FromString,
                     response_serializer=cybermetrica__pb2.Events.SerializeToString,
+            ),
+            'AllMachinesWorkhours': grpc.unary_unary_rpc_method_handler(
+                    servicer.AllMachinesWorkhours,
+                    request_deserializer=cyber__pb2.Empty.FromString,
+                    response_serializer=cybermetrica__pb2.Workhours.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -271,6 +333,87 @@ class Cybermetrica:
             '/cybertele.Cybermetrica/StopParser',
             cyber__pb2.Empty.SerializeToString,
             cyber__pb2.ParserStatus.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetParserStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cybermetrica/GetParserStatus',
+            cyber__pb2.Empty.SerializeToString,
+            cyber__pb2.ParserStatus.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetParserLogs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cybermetrica/GetParserLogs',
+            cyber__pb2.PageRequest.SerializeToString,
+            cybermetrica__pb2.ParserMetricaLogsReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def MachineLogs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cybermetrica/MachineLogs',
+            cyber__pb2.PageRequest.SerializeToString,
+            cybermetrica__pb2.ParserMetricaLogsReply.FromString,
             options,
             channel_credentials,
             insecure,
@@ -433,6 +576,33 @@ class Cybermetrica:
             '/cybertele.Cybermetrica/GetEvents',
             cybermetrica__pb2.TimelineRequest.SerializeToString,
             cybermetrica__pb2.Events.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def AllMachinesWorkhours(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cybermetrica/AllMachinesWorkhours',
+            cyber__pb2.Empty.SerializeToString,
+            cybermetrica__pb2.Workhours.FromString,
             options,
             channel_credentials,
             insecure,

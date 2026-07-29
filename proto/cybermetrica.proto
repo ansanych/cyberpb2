@@ -9,12 +9,45 @@ service Cybermetrica {
     rpc Health (Empty) returns (HealthReply) {}
     rpc StartParser (Empty) returns (ParserStatus) {}
     rpc StopParser (Empty) returns (ParserStatus) {}
+    rpc GetParserStatus (Empty) returns (ParserStatus) {}
+    rpc GetParserLogs (PageRequest) returns (ParserMetricaLogsReply) {}
+    rpc MachineLogs (PageRequest) returns (ParserMetricaLogsReply) {}
     rpc MachineStatisticPeriod (MachineStatisticRequest) returns (StatisticPeriod) {}
     rpc GetTelemetryParams (Empty) returns (TelemertyParams) {}
     rpc CreateTelemetryParam (TelemertyParam) returns (StatusReply) {}
     rpc UpdateTelemetryParam (TelemertyParam) returns (StatusReply) {}
     rpc GetTimeline (TimelineRequest) returns (Timeline) {}
     rpc GetEvents (TimelineRequest) returns (Events) {}
+    rpc AllMachinesWorkhours (Empty) returns (Workhours) {}
+}
+
+message MachineWorkhours {
+    string machineNumber = 1;
+    float motoHours = 2;
+    string lastUpdateDate = 3;
+    string imei = 4;
+    string expDate = 5;
+    bool active = 6;
+}
+
+message Workhours {
+    repeated MachineWorkhours data = 1;
+}
+
+message ParserMetricaLog {
+    int64 id = 1;
+    string sn = 2;
+    int32 count = 3;
+    string startAt = 4;
+    string endAt = 5;
+    repeated string errors = 6;
+    repeated string dataTypes = 7;
+    string createdAt = 8;
+}
+
+message ParserMetricaLogsReply {
+    repeated ParserMetricaLog data = 1;
+    Pagination pagination = 2;
 }
 
 message MachineStatisticRequest {
