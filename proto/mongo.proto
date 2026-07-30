@@ -1,0 +1,63 @@
+syntax = "proto3";
+import "cyber.proto";
+
+package cybertele;
+
+option go_package = "./proto";
+
+service MongoAux {
+    rpc Health (Empty) returns (HealthReply) {}
+    rpc GetMongoMachineTypes (Empty) returns (MongoMachineTypes) {}
+    rpc GetMongoMachines (MongoRequest) returns (MongoMachines) {}
+    rpc GetMongoErrors (MongoRequest) returns (MongoErrors) {}
+    rpc GetMongoDataTypes (Empty) returns (MongoDataTypes) {}
+}
+
+message MongoRequest {
+    string sn = 1;
+    string machineType = 2;
+}
+
+message MongoMachineType {
+    string name = 1;
+    string type = 2;
+    int32 locarusProtocol = 3;
+}
+
+message MongoMachineTypes {
+    repeated MongoMachineType data = 1;
+}
+
+message MongoMachine {
+    string sn = 1;
+    string machineType = 2;
+    string imei = 3;
+    bool status = 4;
+    string expDate = 5;
+    bool trackable = 6;
+}
+
+message MongoMachines {
+    repeated MongoMachine data = 1;
+}
+
+message MongoError {
+    float code = 1;
+    string text = 2;
+}
+
+message MongoErrors {
+    repeated MongoError data = 1;
+    string machineType = 2;
+}
+
+message MongoDataType {
+    string group = 1;
+    string codeName = 2;
+    string fullName = 3;
+    string meaning = 4;
+}
+
+message MongoDataTypes {
+    repeated MongoDataType data = 1;
+}
