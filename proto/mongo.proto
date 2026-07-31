@@ -16,6 +16,7 @@ service MongoAux {
 message MongoRequest {
     string sn = 1;
     string machineType = 2;
+    repeated float errorCode = 3;
 }
 
 message MongoMachineType {

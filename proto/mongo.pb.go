@@ -25,6 +25,7 @@ type MongoRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 	MachineType   string                 `protobuf:"bytes,2,opt,name=machineType,proto3" json:"machineType,omitempty"`
+	ErrorCode     []float32              `protobuf:"fixed32,3,rep,packed,name=errorCode,proto3" json:"errorCode,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -71,6 +72,13 @@ func (x *MongoRequest) GetMachineType() string {
 		return x.MachineType
 	}
 	return ""
+}
+
+func (x *MongoRequest) GetErrorCode() []float32 {
+	if x != nil {
+		return x.ErrorCode
+	}
+	return nil
 }
 
 type MongoMachineType struct {
@@ -525,10 +533,11 @@ var File_mongo_proto protoreflect.FileDescriptor
 
 const file_mongo_proto_rawDesc = "" +
 	"\n" +
-	"\vmongo.proto\x12\tcybertele\x1a\vcyber.proto\"@\n" +
+	"\vmongo.proto\x12\tcybertele\x1a\vcyber.proto\"^\n" +
 	"\fMongoRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12 \n" +
-	"\vmachineType\x18\x02 \x01(\tR\vmachineType\"d\n" +
+	"\vmachineType\x18\x02 \x01(\tR\vmachineType\x12\x1c\n" +
+	"\terrorCode\x18\x03 \x03(\x02R\terrorCode\"d\n" +
 	"\x10MongoMachineType\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12(\n" +
