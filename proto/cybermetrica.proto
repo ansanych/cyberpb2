@@ -156,8 +156,9 @@ message Event {
     int64 id = 1;
     string startTime = 2;
     string endTime = 3;
-    Status status = 4;
-    float code = 5;
+    string type = 4;
+    string level = 5;
     string message = 6;
     string description = 7;
+    float errorCode = 8;
 }
