@@ -11,6 +11,7 @@ service MongoAux {
     rpc GetMongoMachines (MongoRequest) returns (MongoMachines) {}
     rpc GetMongoErrors (MongoRequest) returns (MongoErrors) {}
     rpc GetMongoDataTypes (Empty) returns (MongoDataTypes) {}
+    rpc GetMongoAllErrors (MongoRequest) returns (MongoErrors) {}
 }
 
 message MongoRequest {

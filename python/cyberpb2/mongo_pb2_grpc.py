@@ -60,6 +60,11 @@ class MongoAuxStub:
                 request_serializer=cyber__pb2.Empty.SerializeToString,
                 response_deserializer=mongo__pb2.MongoDataTypes.FromString,
                 _registered_method=True)
+        self.GetMongoAllErrors = channel.unary_unary(
+                '/cybertele.MongoAux/GetMongoAllErrors',
+                request_serializer=mongo__pb2.MongoRequest.SerializeToString,
+                response_deserializer=mongo__pb2.MongoErrors.FromString,
+                _registered_method=True)
 
 
 class MongoAuxServicer:
@@ -95,6 +100,12 @@ class MongoAuxServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetMongoAllErrors(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MongoAuxServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -122,6 +133,11 @@ def add_MongoAuxServicer_to_server(servicer, server):
                     servicer.GetMongoDataTypes,
                     request_deserializer=cyber__pb2.Empty.FromString,
                     response_serializer=mongo__pb2.MongoDataTypes.SerializeToString,
+            ),
+            'GetMongoAllErrors': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMongoAllErrors,
+                    request_deserializer=mongo__pb2.MongoRequest.FromString,
+                    response_serializer=mongo__pb2.MongoErrors.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -259,6 +275,33 @@ class MongoAux:
             '/cybertele.MongoAux/GetMongoDataTypes',
             cyber__pb2.Empty.SerializeToString,
             mongo__pb2.MongoDataTypes.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMongoAllErrors(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.MongoAux/GetMongoAllErrors',
+            mongo__pb2.MongoRequest.SerializeToString,
+            mongo__pb2.MongoErrors.FromString,
             options,
             channel_credentials,
             insecure,

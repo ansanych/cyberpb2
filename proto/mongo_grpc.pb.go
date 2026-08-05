@@ -24,6 +24,7 @@ const (
 	MongoAux_GetMongoMachines_FullMethodName     = "/cybertele.MongoAux/GetMongoMachines"
 	MongoAux_GetMongoErrors_FullMethodName       = "/cybertele.MongoAux/GetMongoErrors"
 	MongoAux_GetMongoDataTypes_FullMethodName    = "/cybertele.MongoAux/GetMongoDataTypes"
+	MongoAux_GetMongoAllErrors_FullMethodName    = "/cybertele.MongoAux/GetMongoAllErrors"
 )
 
 // MongoAuxClient is the client API for MongoAux service.
@@ -35,6 +36,7 @@ type MongoAuxClient interface {
 	GetMongoMachines(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoMachines, error)
 	GetMongoErrors(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoErrors, error)
 	GetMongoDataTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MongoDataTypes, error)
+	GetMongoAllErrors(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoErrors, error)
 }
 
 type mongoAuxClient struct {
@@ -95,6 +97,16 @@ func (c *mongoAuxClient) GetMongoDataTypes(ctx context.Context, in *Empty, opts 
 	return out, nil
 }
 
+func (c *mongoAuxClient) GetMongoAllErrors(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoErrors, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MongoErrors)
+	err := c.cc.Invoke(ctx, MongoAux_GetMongoAllErrors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MongoAuxServer is the server API for MongoAux service.
 // All implementations must embed UnimplementedMongoAuxServer
 // for forward compatibility.
@@ -104,6 +116,7 @@ type MongoAuxServer interface {
 	GetMongoMachines(context.Context, *MongoRequest) (*MongoMachines, error)
 	GetMongoErrors(context.Context, *MongoRequest) (*MongoErrors, error)
 	GetMongoDataTypes(context.Context, *Empty) (*MongoDataTypes, error)
+	GetMongoAllErrors(context.Context, *MongoRequest) (*MongoErrors, error)
 	mustEmbedUnimplementedMongoAuxServer()
 }
 
@@ -128,6 +141,9 @@ func (UnimplementedMongoAuxServer) GetMongoErrors(context.Context, *MongoRequest
 }
 func (UnimplementedMongoAuxServer) GetMongoDataTypes(context.Context, *Empty) (*MongoDataTypes, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMongoDataTypes not implemented")
+}
+func (UnimplementedMongoAuxServer) GetMongoAllErrors(context.Context, *MongoRequest) (*MongoErrors, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMongoAllErrors not implemented")
 }
 func (UnimplementedMongoAuxServer) mustEmbedUnimplementedMongoAuxServer() {}
 func (UnimplementedMongoAuxServer) testEmbeddedByValue()                  {}
@@ -240,6 +256,24 @@ func _MongoAux_GetMongoDataTypes_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MongoAux_GetMongoAllErrors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MongoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MongoAuxServer).GetMongoAllErrors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MongoAux_GetMongoAllErrors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MongoAuxServer).GetMongoAllErrors(ctx, req.(*MongoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MongoAux_ServiceDesc is the grpc.ServiceDesc for MongoAux service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +300,10 @@ var MongoAux_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMongoDataTypes",
 			Handler:    _MongoAux_GetMongoDataTypes_Handler,
+		},
+		{
+			MethodName: "GetMongoAllErrors",
+			Handler:    _MongoAux_GetMongoAllErrors_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

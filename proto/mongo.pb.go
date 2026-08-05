@@ -566,13 +566,14 @@ const file_mongo_proto_rawDesc = "" +
 	"\bfullName\x18\x03 \x01(\tR\bfullName\x12\x18\n" +
 	"\ameaning\x18\x04 \x01(\tR\ameaning\">\n" +
 	"\x0eMongoDataTypes\x12,\n" +
-	"\x04data\x18\x01 \x03(\v2\x18.cybertele.MongoDataTypeR\x04data2\xdc\x02\n" +
+	"\x04data\x18\x01 \x03(\v2\x18.cybertele.MongoDataTypeR\x04data2\xa4\x03\n" +
 	"\bMongoAux\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12H\n" +
 	"\x14GetMongoMachineTypes\x12\x10.cybertele.Empty\x1a\x1c.cybertele.MongoMachineTypes\"\x00\x12G\n" +
 	"\x10GetMongoMachines\x12\x17.cybertele.MongoRequest\x1a\x18.cybertele.MongoMachines\"\x00\x12C\n" +
 	"\x0eGetMongoErrors\x12\x17.cybertele.MongoRequest\x1a\x16.cybertele.MongoErrors\"\x00\x12B\n" +
-	"\x11GetMongoDataTypes\x12\x10.cybertele.Empty\x1a\x19.cybertele.MongoDataTypes\"\x00B\tZ\a./protob\x06proto3"
+	"\x11GetMongoDataTypes\x12\x10.cybertele.Empty\x1a\x19.cybertele.MongoDataTypes\"\x00\x12F\n" +
+	"\x11GetMongoAllErrors\x12\x17.cybertele.MongoRequest\x1a\x16.cybertele.MongoErrors\"\x00B\tZ\a./protob\x06proto3"
 
 var (
 	file_mongo_proto_rawDescOnce sync.Once
@@ -610,13 +611,15 @@ var file_mongo_proto_depIdxs = []int32{
 	0,  // 6: cybertele.MongoAux.GetMongoMachines:input_type -> cybertele.MongoRequest
 	0,  // 7: cybertele.MongoAux.GetMongoErrors:input_type -> cybertele.MongoRequest
 	9,  // 8: cybertele.MongoAux.GetMongoDataTypes:input_type -> cybertele.Empty
-	10, // 9: cybertele.MongoAux.Health:output_type -> cybertele.HealthReply
-	2,  // 10: cybertele.MongoAux.GetMongoMachineTypes:output_type -> cybertele.MongoMachineTypes
-	4,  // 11: cybertele.MongoAux.GetMongoMachines:output_type -> cybertele.MongoMachines
-	6,  // 12: cybertele.MongoAux.GetMongoErrors:output_type -> cybertele.MongoErrors
-	8,  // 13: cybertele.MongoAux.GetMongoDataTypes:output_type -> cybertele.MongoDataTypes
-	9,  // [9:14] is the sub-list for method output_type
-	4,  // [4:9] is the sub-list for method input_type
+	0,  // 9: cybertele.MongoAux.GetMongoAllErrors:input_type -> cybertele.MongoRequest
+	10, // 10: cybertele.MongoAux.Health:output_type -> cybertele.HealthReply
+	2,  // 11: cybertele.MongoAux.GetMongoMachineTypes:output_type -> cybertele.MongoMachineTypes
+	4,  // 12: cybertele.MongoAux.GetMongoMachines:output_type -> cybertele.MongoMachines
+	6,  // 13: cybertele.MongoAux.GetMongoErrors:output_type -> cybertele.MongoErrors
+	8,  // 14: cybertele.MongoAux.GetMongoDataTypes:output_type -> cybertele.MongoDataTypes
+	6,  // 15: cybertele.MongoAux.GetMongoAllErrors:output_type -> cybertele.MongoErrors
+	10, // [10:16] is the sub-list for method output_type
+	4,  // [4:10] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
 	4,  // [4:4] is the sub-list for extension extendee
 	0,  // [0:4] is the sub-list for field type_name
