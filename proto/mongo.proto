@@ -37,6 +37,7 @@ message MongoMachine {
     bool status = 4;
     string expDate = 5;
     bool trackable = 6;
+    string type = 7;
 }
 
 message MongoMachines {
@@ -46,6 +47,10 @@ message MongoMachines {
 message MongoError {
     float code = 1;
     string text = 2;
+    string level = 3;
+    string type = 4;
+    string description = 5;
+    string system = 6;
 }
 
 message MongoErrors {

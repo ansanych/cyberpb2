@@ -193,6 +193,7 @@ type MongoMachine struct {
 	Status        bool                   `protobuf:"varint,4,opt,name=status,proto3" json:"status,omitempty"`
 	ExpDate       string                 `protobuf:"bytes,5,opt,name=expDate,proto3" json:"expDate,omitempty"`
 	Trackable     bool                   `protobuf:"varint,6,opt,name=trackable,proto3" json:"trackable,omitempty"`
+	Type          string                 `protobuf:"bytes,7,opt,name=type,proto3" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -269,6 +270,13 @@ func (x *MongoMachine) GetTrackable() bool {
 	return false
 }
 
+func (x *MongoMachine) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
 type MongoMachines struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Data          []*MongoMachine        `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
@@ -317,6 +325,10 @@ type MongoError struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          float32                `protobuf:"fixed32,1,opt,name=code,proto3" json:"code,omitempty"`
 	Text          string                 `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
+	Level         string                 `protobuf:"bytes,3,opt,name=level,proto3" json:"level,omitempty"`
+	Type          string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
+	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	System        string                 `protobuf:"bytes,6,opt,name=system,proto3" json:"system,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -361,6 +373,34 @@ func (x *MongoError) GetCode() float32 {
 func (x *MongoError) GetText() string {
 	if x != nil {
 		return x.Text
+	}
+	return ""
+}
+
+func (x *MongoError) GetLevel() string {
+	if x != nil {
+		return x.Level
+	}
+	return ""
+}
+
+func (x *MongoError) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *MongoError) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *MongoError) GetSystem() string {
+	if x != nil {
+		return x.System
 	}
 	return ""
 }
@@ -543,20 +583,25 @@ const file_mongo_proto_rawDesc = "" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12(\n" +
 	"\x0flocarusProtocol\x18\x03 \x01(\x05R\x0flocarusProtocol\"D\n" +
 	"\x11MongoMachineTypes\x12/\n" +
-	"\x04data\x18\x01 \x03(\v2\x1b.cybertele.MongoMachineTypeR\x04data\"\xa4\x01\n" +
+	"\x04data\x18\x01 \x03(\v2\x1b.cybertele.MongoMachineTypeR\x04data\"\xb8\x01\n" +
 	"\fMongoMachine\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12 \n" +
 	"\vmachineType\x18\x02 \x01(\tR\vmachineType\x12\x12\n" +
 	"\x04imei\x18\x03 \x01(\tR\x04imei\x12\x16\n" +
 	"\x06status\x18\x04 \x01(\bR\x06status\x12\x18\n" +
 	"\aexpDate\x18\x05 \x01(\tR\aexpDate\x12\x1c\n" +
-	"\ttrackable\x18\x06 \x01(\bR\ttrackable\"<\n" +
+	"\ttrackable\x18\x06 \x01(\bR\ttrackable\x12\x12\n" +
+	"\x04type\x18\a \x01(\tR\x04type\"<\n" +
 	"\rMongoMachines\x12+\n" +
-	"\x04data\x18\x01 \x03(\v2\x17.cybertele.MongoMachineR\x04data\"4\n" +
+	"\x04data\x18\x01 \x03(\v2\x17.cybertele.MongoMachineR\x04data\"\x98\x01\n" +
 	"\n" +
 	"MongoError\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x02R\x04code\x12\x12\n" +
-	"\x04text\x18\x02 \x01(\tR\x04text\"Z\n" +
+	"\x04text\x18\x02 \x01(\tR\x04text\x12\x14\n" +
+	"\x05level\x18\x03 \x01(\tR\x05level\x12\x12\n" +
+	"\x04type\x18\x04 \x01(\tR\x04type\x12 \n" +
+	"\vdescription\x18\x05 \x01(\tR\vdescription\x12\x16\n" +
+	"\x06system\x18\x06 \x01(\tR\x06system\"Z\n" +
 	"\vMongoErrors\x12)\n" +
 	"\x04data\x18\x01 \x03(\v2\x15.cybertele.MongoErrorR\x04data\x12 \n" +
 	"\vmachineType\x18\x02 \x01(\tR\vmachineType\"w\n" +
