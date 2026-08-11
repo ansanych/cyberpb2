@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 import cyber_pb2 as cyber__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0bmongo.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"B\n\x0cMongoRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x13\n\x0bmachineType\x18\x02 \x01(\t\x12\x11\n\terrorCode\x18\x03 \x03(\x02\"G\n\x10MongoMachineType\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\x17\n\x0flocarusProtocol\x18\x03 \x01(\x05\">\n\x11MongoMachineTypes\x12)\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x1b.cybertele.MongoMachineType\"\x7f\n\x0cMongoMachine\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x13\n\x0bmachineType\x18\x02 \x01(\t\x12\x0c\n\x04imei\x18\x03 \x01(\t\x12\x0e\n\x06status\x18\x04 \x01(\x08\x12\x0f\n\x07\x65xpDate\x18\x05 \x01(\t\x12\x11\n\ttrackable\x18\x06 \x01(\x08\x12\x0c\n\x04type\x18\x07 \x01(\t\"6\n\rMongoMachines\x12%\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x17.cybertele.MongoMachine\"j\n\nMongoError\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x02\x12\x0c\n\x04text\x18\x02 \x01(\t\x12\r\n\x05level\x18\x03 \x01(\t\x12\x0c\n\x04type\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x0e\n\x06system\x18\x06 \x01(\t\"G\n\x0bMongoErrors\x12#\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x15.cybertele.MongoError\x12\x13\n\x0bmachineType\x18\x02 \x01(\t\"S\n\rMongoDataType\x12\r\n\x05group\x18\x01 \x01(\t\x12\x10\n\x08\x63odeName\x18\x02 \x01(\t\x12\x10\n\x08\x66ullName\x18\x03 \x01(\t\x12\x0f\n\x07meaning\x18\x04 \x01(\t\"8\n\x0eMongoDataTypes\x12&\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x18.cybertele.MongoDataType2\xa4\x03\n\x08MongoAux\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12H\n\x14GetMongoMachineTypes\x12\x10.cybertele.Empty\x1a\x1c.cybertele.MongoMachineTypes\"\x00\x12G\n\x10GetMongoMachines\x12\x17.cybertele.MongoRequest\x1a\x18.cybertele.MongoMachines\"\x00\x12\x43\n\x0eGetMongoErrors\x12\x17.cybertele.MongoRequest\x1a\x16.cybertele.MongoErrors\"\x00\x12\x42\n\x11GetMongoDataTypes\x12\x10.cybertele.Empty\x1a\x19.cybertele.MongoDataTypes\"\x00\x12\x46\n\x11GetMongoAllErrors\x12\x17.cybertele.MongoRequest\x1a\x16.cybertele.MongoErrors\"\x00\x42\tZ\x07./protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0bmongo.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"X\n\x0cMongoRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x13\n\x0bmachineType\x18\x02 \x01(\t\x12\x11\n\terrorCode\x18\x03 \x03(\x02\x12\x14\n\x0c\x65rrorCodeInt\x18\x04 \x03(\x05\"G\n\x10MongoMachineType\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\x17\n\x0flocarusProtocol\x18\x03 \x01(\x05\">\n\x11MongoMachineTypes\x12)\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x1b.cybertele.MongoMachineType\"\x7f\n\x0cMongoMachine\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x13\n\x0bmachineType\x18\x02 \x01(\t\x12\x0c\n\x04imei\x18\x03 \x01(\t\x12\x0e\n\x06status\x18\x04 \x01(\x08\x12\x0f\n\x07\x65xpDate\x18\x05 \x01(\t\x12\x11\n\ttrackable\x18\x06 \x01(\x08\x12\x0c\n\x04type\x18\x07 \x01(\t\"6\n\rMongoMachines\x12%\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x17.cybertele.MongoMachine\"{\n\nMongoError\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x02\x12\x0c\n\x04text\x18\x02 \x01(\t\x12\r\n\x05level\x18\x03 \x01(\t\x12\x0c\n\x04type\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12\x0e\n\x06system\x18\x06 \x01(\t\x12\x0f\n\x07\x63odeInt\x18\x07 \x01(\x05\"G\n\x0bMongoErrors\x12#\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x15.cybertele.MongoError\x12\x13\n\x0bmachineType\x18\x02 \x01(\t\"S\n\rMongoDataType\x12\r\n\x05group\x18\x01 \x01(\t\x12\x10\n\x08\x63odeName\x18\x02 \x01(\t\x12\x10\n\x08\x66ullName\x18\x03 \x01(\t\x12\x0f\n\x07meaning\x18\x04 \x01(\t\"8\n\x0eMongoDataTypes\x12&\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x18.cybertele.MongoDataType2\xa4\x03\n\x08MongoAux\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12H\n\x14GetMongoMachineTypes\x12\x10.cybertele.Empty\x1a\x1c.cybertele.MongoMachineTypes\"\x00\x12G\n\x10GetMongoMachines\x12\x17.cybertele.MongoRequest\x1a\x18.cybertele.MongoMachines\"\x00\x12\x43\n\x0eGetMongoErrors\x12\x17.cybertele.MongoRequest\x1a\x16.cybertele.MongoErrors\"\x00\x12\x42\n\x11GetMongoDataTypes\x12\x10.cybertele.Empty\x1a\x19.cybertele.MongoDataTypes\"\x00\x12\x46\n\x11GetMongoAllErrors\x12\x17.cybertele.MongoRequest\x1a\x16.cybertele.MongoErrors\"\x00\x42\tZ\x07./protob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,23 +34,23 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\007./proto'
   _globals['_MONGOREQUEST']._serialized_start=39
-  _globals['_MONGOREQUEST']._serialized_end=105
-  _globals['_MONGOMACHINETYPE']._serialized_start=107
-  _globals['_MONGOMACHINETYPE']._serialized_end=178
-  _globals['_MONGOMACHINETYPES']._serialized_start=180
-  _globals['_MONGOMACHINETYPES']._serialized_end=242
-  _globals['_MONGOMACHINE']._serialized_start=244
-  _globals['_MONGOMACHINE']._serialized_end=371
-  _globals['_MONGOMACHINES']._serialized_start=373
-  _globals['_MONGOMACHINES']._serialized_end=427
-  _globals['_MONGOERROR']._serialized_start=429
-  _globals['_MONGOERROR']._serialized_end=535
-  _globals['_MONGOERRORS']._serialized_start=537
-  _globals['_MONGOERRORS']._serialized_end=608
-  _globals['_MONGODATATYPE']._serialized_start=610
-  _globals['_MONGODATATYPE']._serialized_end=693
-  _globals['_MONGODATATYPES']._serialized_start=695
-  _globals['_MONGODATATYPES']._serialized_end=751
-  _globals['_MONGOAUX']._serialized_start=754
-  _globals['_MONGOAUX']._serialized_end=1174
+  _globals['_MONGOREQUEST']._serialized_end=127
+  _globals['_MONGOMACHINETYPE']._serialized_start=129
+  _globals['_MONGOMACHINETYPE']._serialized_end=200
+  _globals['_MONGOMACHINETYPES']._serialized_start=202
+  _globals['_MONGOMACHINETYPES']._serialized_end=264
+  _globals['_MONGOMACHINE']._serialized_start=266
+  _globals['_MONGOMACHINE']._serialized_end=393
+  _globals['_MONGOMACHINES']._serialized_start=395
+  _globals['_MONGOMACHINES']._serialized_end=449
+  _globals['_MONGOERROR']._serialized_start=451
+  _globals['_MONGOERROR']._serialized_end=574
+  _globals['_MONGOERRORS']._serialized_start=576
+  _globals['_MONGOERRORS']._serialized_end=647
+  _globals['_MONGODATATYPE']._serialized_start=649
+  _globals['_MONGODATATYPE']._serialized_end=732
+  _globals['_MONGODATATYPES']._serialized_start=734
+  _globals['_MONGODATATYPES']._serialized_end=790
+  _globals['_MONGOAUX']._serialized_start=793
+  _globals['_MONGOAUX']._serialized_end=1213
 # @@protoc_insertion_point(module_scope)

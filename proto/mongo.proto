@@ -18,6 +18,7 @@ message MongoRequest {
     string sn = 1;
     string machineType = 2;
     repeated float errorCode = 3;
+    repeated int32 errorCodeInt = 4;
 }
 
 message MongoMachineType {
@@ -51,6 +52,7 @@ message MongoError {
     string type = 4;
     string description = 5;
     string system = 6;
+    int32 codeInt = 7;
 }
 
 message MongoErrors {

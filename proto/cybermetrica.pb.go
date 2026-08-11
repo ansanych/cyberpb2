@@ -1283,6 +1283,7 @@ type Event struct {
 	Message       string                 `protobuf:"bytes,6,opt,name=message,proto3" json:"message,omitempty"`
 	Description   string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
 	ErrorCode     float32                `protobuf:"fixed32,8,opt,name=errorCode,proto3" json:"errorCode,omitempty"`
+	IsValid       bool                   `protobuf:"varint,9,opt,name=isValid,proto3" json:"isValid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1371,6 +1372,13 @@ func (x *Event) GetErrorCode() float32 {
 		return x.ErrorCode
 	}
 	return 0
+}
+
+func (x *Event) GetIsValid() bool {
+	if x != nil {
+		return x.IsValid
+	}
+	return false
 }
 
 var File_cybermetrica_proto protoreflect.FileDescriptor
@@ -1487,7 +1495,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x04data\x18\n" +
 	" \x03(\v2\x1e.cybertele.ConnectionDataBlockR\x04data\"2\n" +
 	"\x06Events\x12(\n" +
-	"\x06events\x18\x01 \x03(\v2\x10.cybertele.EventR\x06events\"\xd3\x01\n" +
+	"\x06events\x18\x01 \x03(\v2\x10.cybertele.EventR\x06events\"\xed\x01\n" +
 	"\x05Event\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1c\n" +
 	"\tstartTime\x18\x02 \x01(\tR\tstartTime\x12\x18\n" +
@@ -1496,7 +1504,8 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x05level\x18\x05 \x01(\tR\x05level\x12\x18\n" +
 	"\amessage\x18\x06 \x01(\tR\amessage\x12 \n" +
 	"\vdescription\x18\a \x01(\tR\vdescription\x12\x1c\n" +
-	"\terrorCode\x18\b \x01(\x02R\terrorCode2\x93\a\n" +
+	"\terrorCode\x18\b \x01(\x02R\terrorCode\x12\x18\n" +
+	"\aisValid\x18\t \x01(\bR\aisValid2\x93\a\n" +
 	"\fCybermetrica\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
 	"\vStartParser\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x129\n" +

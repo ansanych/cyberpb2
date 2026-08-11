@@ -26,6 +26,7 @@ type MongoRequest struct {
 	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 	MachineType   string                 `protobuf:"bytes,2,opt,name=machineType,proto3" json:"machineType,omitempty"`
 	ErrorCode     []float32              `protobuf:"fixed32,3,rep,packed,name=errorCode,proto3" json:"errorCode,omitempty"`
+	ErrorCodeInt  []int32                `protobuf:"varint,4,rep,packed,name=errorCodeInt,proto3" json:"errorCodeInt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -77,6 +78,13 @@ func (x *MongoRequest) GetMachineType() string {
 func (x *MongoRequest) GetErrorCode() []float32 {
 	if x != nil {
 		return x.ErrorCode
+	}
+	return nil
+}
+
+func (x *MongoRequest) GetErrorCodeInt() []int32 {
+	if x != nil {
+		return x.ErrorCodeInt
 	}
 	return nil
 }
@@ -329,6 +337,7 @@ type MongoError struct {
 	Type          string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
 	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	System        string                 `protobuf:"bytes,6,opt,name=system,proto3" json:"system,omitempty"`
+	CodeInt       int32                  `protobuf:"varint,7,opt,name=codeInt,proto3" json:"codeInt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -403,6 +412,13 @@ func (x *MongoError) GetSystem() string {
 		return x.System
 	}
 	return ""
+}
+
+func (x *MongoError) GetCodeInt() int32 {
+	if x != nil {
+		return x.CodeInt
+	}
+	return 0
 }
 
 type MongoErrors struct {
@@ -573,11 +589,12 @@ var File_mongo_proto protoreflect.FileDescriptor
 
 const file_mongo_proto_rawDesc = "" +
 	"\n" +
-	"\vmongo.proto\x12\tcybertele\x1a\vcyber.proto\"^\n" +
+	"\vmongo.proto\x12\tcybertele\x1a\vcyber.proto\"\x82\x01\n" +
 	"\fMongoRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12 \n" +
 	"\vmachineType\x18\x02 \x01(\tR\vmachineType\x12\x1c\n" +
-	"\terrorCode\x18\x03 \x03(\x02R\terrorCode\"d\n" +
+	"\terrorCode\x18\x03 \x03(\x02R\terrorCode\x12\"\n" +
+	"\ferrorCodeInt\x18\x04 \x03(\x05R\ferrorCodeInt\"d\n" +
 	"\x10MongoMachineType\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12(\n" +
@@ -593,7 +610,7 @@ const file_mongo_proto_rawDesc = "" +
 	"\ttrackable\x18\x06 \x01(\bR\ttrackable\x12\x12\n" +
 	"\x04type\x18\a \x01(\tR\x04type\"<\n" +
 	"\rMongoMachines\x12+\n" +
-	"\x04data\x18\x01 \x03(\v2\x17.cybertele.MongoMachineR\x04data\"\x98\x01\n" +
+	"\x04data\x18\x01 \x03(\v2\x17.cybertele.MongoMachineR\x04data\"\xb2\x01\n" +
 	"\n" +
 	"MongoError\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x02R\x04code\x12\x12\n" +
@@ -601,7 +618,8 @@ const file_mongo_proto_rawDesc = "" +
 	"\x05level\x18\x03 \x01(\tR\x05level\x12\x12\n" +
 	"\x04type\x18\x04 \x01(\tR\x04type\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12\x16\n" +
-	"\x06system\x18\x06 \x01(\tR\x06system\"Z\n" +
+	"\x06system\x18\x06 \x01(\tR\x06system\x12\x18\n" +
+	"\acodeInt\x18\a \x01(\x05R\acodeInt\"Z\n" +
 	"\vMongoErrors\x12)\n" +
 	"\x04data\x18\x01 \x03(\v2\x15.cybertele.MongoErrorR\x04data\x12 \n" +
 	"\vmachineType\x18\x02 \x01(\tR\vmachineType\"w\n" +

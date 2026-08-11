@@ -161,4 +161,5 @@ message Event {
     string message = 6;
     string description = 7;
     float errorCode = 8;
+    bool isValid = 9;
 }
