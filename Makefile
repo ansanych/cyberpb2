@@ -27,6 +27,12 @@ gen-go:
 			--go-grpc_out ./proto \
 			--go-grpc_opt paths=source_relative \
 			./proto/mongo.proto
+	protoc -I ./proto \
+			--go_out ./proto \
+			--go_opt paths=source_relative \
+			--go-grpc_out ./proto \
+			--go-grpc_opt paths=source_relative \
+			./proto/maintenance.proto
 
 gen-py:
 	python3 -m grpc_tools.protoc -I ./proto \
@@ -45,5 +51,9 @@ gen-py:
 			--python_out ./python/cyberpb2 \
 			--grpc_python_out ./python/cyberpb2 \
 			./proto/mongo.proto
+	python3 -m grpc_tools.protoc -I ./proto \
+			--python_out ./python/cyberpb2 \
+			--grpc_python_out ./python/cyberpb2 \
+			./proto/maintenance.proto
 	# Fix imports in generated _grpc files for package-relative access
 	sed -i 's/^import cyber_pb2 as/from . import cyber_pb2 as/' ./python/cyberpb2/*_pb2_grpc.py
