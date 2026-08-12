@@ -1,0 +1,10 @@
+syntax = "proto3";
+import "cyber.proto";
+
+package cybertele;
+
+option go_package = "./proto";
+
+service MaintenanceForecast {
+    rpc Health (Empty) returns (HealthReply) {}
+}

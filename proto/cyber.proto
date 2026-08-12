@@ -43,6 +43,7 @@ message HealthReply {
 message ParserStatus {
     Status parser = 1;
     string message = 2;
+    string lastTime = 3;
 }
 
 message PageRequest {

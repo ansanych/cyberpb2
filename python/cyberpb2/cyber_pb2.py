@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x63yber.proto\x12\tcybertele\"0\n\x0bStatusReply\x12!\n\x06status\x18\x01 \x01(\x0e\x32\x11.cybertele.Status\"\x07\n\x05\x45mpty\"/\n\x04\x44isk\x12\x0b\n\x03\x61ll\x18\x01 \x01(\x02\x12\x0c\n\x04used\x18\x02 \x01(\x02\x12\x0c\n\x04\x66ree\x18\x03 \x01(\x02\"\x96\x01\n\x0bHealthReply\x12#\n\x08postgres\x18\x01 \x01(\x0e\x32\x11.cybertele.Status\x12 \n\x05mongo\x18\x02 \x01(\x0e\x32\x11.cybertele.Status\x12!\n\x06parser\x18\x03 \x01(\x0e\x32\x11.cybertele.Status\x12\x1d\n\x04\x64isk\x18\x04 \x01(\x0b\x32\x0f.cybertele.Disk\"B\n\x0cParserStatus\x12!\n\x06parser\x18\x01 \x01(\x0e\x32\x11.cybertele.Status\x12\x0f\n\x07message\x18\x02 \x01(\t\"6\n\x0bPageRequest\x12\x0c\n\x04page\x18\x01 \x01(\x05\x12\r\n\x05limit\x18\x02 \x01(\x05\x12\n\n\x02sn\x18\x03 \x01(\t\"8\n\nPagination\x12\x0c\n\x04page\x18\x01 \x01(\x05\x12\r\n\x05limit\x18\x02 \x01(\x05\x12\r\n\x05total\x18\x03 \x01(\x05\"\x95\x01\n\x07Machine\x12\n\n\x02sn\x18\x01 \x01(\t\x12\r\n\x05model\x18\x02 \x01(\t\x12\x0c\n\x04sync\x18\x03 \x01(\x08\x12\x14\n\x0cgenerationId\x18\x04 \x01(\x05\x12\x0f\n\x07\x63lassId\x18\x05 \x01(\x05\x12\x11\n\tclassName\x18\x06 \x01(\t\x12\x16\n\x0egenerationName\x18\x07 \x01(\t\x12\x0f\n\x07modelId\x18\x08 \x01(\x05\"0\n\x08Machines\x12$\n\x08machines\x18\x01 \x03(\x0b\x32\x12.cybertele.Machine\"X\n\x08\x44\x61taType\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07meaning\x18\x03 \x01(\t\x12\x10\n\x08required\x18\x04 \x01(\x08\x12\r\n\x05group\x18\x05 \x01(\t\".\n\tDataTypes\x12!\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x13.cybertele.DataType\"X\n\x0eModelDataTypes\x12\r\n\x05model\x18\x01 \x01(\t\x12&\n\tdataTypes\x18\x02 \x03(\x0b\x32\x13.cybertele.DataType\x12\x0f\n\x07modelId\x18\x03 \x01(\x05\"=\n\x12\x41llModelsDataTypes\x12\'\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x19.cybertele.ModelDataTypes\"?\n\tDataPoint\x12\x0c\n\x04time\x18\x01 \x01(\x03\x12\x12\n\nvalueFloat\x18\x02 \x01(\x02\x12\x10\n\x08valueInt\x18\x03 \x01(\x03\"0\n\nDataPoints\x12\"\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x14.cybertele.DataPoint\"\x87\x01\n\x07Segment\x12\x11\n\tstartTime\x18\x01 \x01(\x03\x12\x0f\n\x07\x65ndTime\x18\x02 \x01(\x03\x12\x13\n\x0b\x64urationSec\x18\x03 \x01(\x03\x12\x0e\n\x06\x63hange\x18\x04 \x01(\x02\x12\x12\n\nstartValue\x18\x05 \x01(\x02\x12\x10\n\x08\x65ndValue\x18\x06 \x01(\x02\x12\r\n\x05trend\x18\x07 \x01(\t\"0\n\x08Segments\x12$\n\x08segments\x18\x01 \x03(\x0b\x32\x12.cybertele.Segment*O\n\x06Status\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0c\n\x08INACTIVE\x10\x02\x12\x06\n\x02OK\x10\x03\x12\t\n\x05\x45RROR\x10\x04\x12\x0b\n\x07WARNING\x10\x05\x42\tZ\x07./protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x63yber.proto\x12\tcybertele\"0\n\x0bStatusReply\x12!\n\x06status\x18\x01 \x01(\x0e\x32\x11.cybertele.Status\"\x07\n\x05\x45mpty\"/\n\x04\x44isk\x12\x0b\n\x03\x61ll\x18\x01 \x01(\x02\x12\x0c\n\x04used\x18\x02 \x01(\x02\x12\x0c\n\x04\x66ree\x18\x03 \x01(\x02\"\x96\x01\n\x0bHealthReply\x12#\n\x08postgres\x18\x01 \x01(\x0e\x32\x11.cybertele.Status\x12 \n\x05mongo\x18\x02 \x01(\x0e\x32\x11.cybertele.Status\x12!\n\x06parser\x18\x03 \x01(\x0e\x32\x11.cybertele.Status\x12\x1d\n\x04\x64isk\x18\x04 \x01(\x0b\x32\x0f.cybertele.Disk\"T\n\x0cParserStatus\x12!\n\x06parser\x18\x01 \x01(\x0e\x32\x11.cybertele.Status\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x10\n\x08lastTime\x18\x03 \x01(\t\"6\n\x0bPageRequest\x12\x0c\n\x04page\x18\x01 \x01(\x05\x12\r\n\x05limit\x18\x02 \x01(\x05\x12\n\n\x02sn\x18\x03 \x01(\t\"8\n\nPagination\x12\x0c\n\x04page\x18\x01 \x01(\x05\x12\r\n\x05limit\x18\x02 \x01(\x05\x12\r\n\x05total\x18\x03 \x01(\x05\"\x95\x01\n\x07Machine\x12\n\n\x02sn\x18\x01 \x01(\t\x12\r\n\x05model\x18\x02 \x01(\t\x12\x0c\n\x04sync\x18\x03 \x01(\x08\x12\x14\n\x0cgenerationId\x18\x04 \x01(\x05\x12\x0f\n\x07\x63lassId\x18\x05 \x01(\x05\x12\x11\n\tclassName\x18\x06 \x01(\t\x12\x16\n\x0egenerationName\x18\x07 \x01(\t\x12\x0f\n\x07modelId\x18\x08 \x01(\x05\"0\n\x08Machines\x12$\n\x08machines\x18\x01 \x03(\x0b\x32\x12.cybertele.Machine\"X\n\x08\x44\x61taType\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07meaning\x18\x03 \x01(\t\x12\x10\n\x08required\x18\x04 \x01(\x08\x12\r\n\x05group\x18\x05 \x01(\t\".\n\tDataTypes\x12!\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x13.cybertele.DataType\"X\n\x0eModelDataTypes\x12\r\n\x05model\x18\x01 \x01(\t\x12&\n\tdataTypes\x18\x02 \x03(\x0b\x32\x13.cybertele.DataType\x12\x0f\n\x07modelId\x18\x03 \x01(\x05\"=\n\x12\x41llModelsDataTypes\x12\'\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x19.cybertele.ModelDataTypes\"?\n\tDataPoint\x12\x0c\n\x04time\x18\x01 \x01(\x03\x12\x12\n\nvalueFloat\x18\x02 \x01(\x02\x12\x10\n\x08valueInt\x18\x03 \x01(\x03\"0\n\nDataPoints\x12\"\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x14.cybertele.DataPoint\"\x87\x01\n\x07Segment\x12\x11\n\tstartTime\x18\x01 \x01(\x03\x12\x0f\n\x07\x65ndTime\x18\x02 \x01(\x03\x12\x13\n\x0b\x64urationSec\x18\x03 \x01(\x03\x12\x0e\n\x06\x63hange\x18\x04 \x01(\x02\x12\x12\n\nstartValue\x18\x05 \x01(\x02\x12\x10\n\x08\x65ndValue\x18\x06 \x01(\x02\x12\r\n\x05trend\x18\x07 \x01(\t\"0\n\x08Segments\x12$\n\x08segments\x18\x01 \x03(\x0b\x32\x12.cybertele.Segment*O\n\x06Status\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0c\n\x08INACTIVE\x10\x02\x12\x06\n\x02OK\x10\x03\x12\t\n\x05\x45RROR\x10\x04\x12\x0b\n\x07WARNING\x10\x05\x42\tZ\x07./protob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,8 +32,8 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'cyber_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\007./proto'
-  _globals['_STATUS']._serialized_start=1265
-  _globals['_STATUS']._serialized_end=1344
+  _globals['_STATUS']._serialized_start=1283
+  _globals['_STATUS']._serialized_end=1362
   _globals['_STATUSREPLY']._serialized_start=26
   _globals['_STATUSREPLY']._serialized_end=74
   _globals['_EMPTY']._serialized_start=76
@@ -43,29 +43,29 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_HEALTHREPLY']._serialized_start=135
   _globals['_HEALTHREPLY']._serialized_end=285
   _globals['_PARSERSTATUS']._serialized_start=287
-  _globals['_PARSERSTATUS']._serialized_end=353
-  _globals['_PAGEREQUEST']._serialized_start=355
-  _globals['_PAGEREQUEST']._serialized_end=409
-  _globals['_PAGINATION']._serialized_start=411
-  _globals['_PAGINATION']._serialized_end=467
-  _globals['_MACHINE']._serialized_start=470
-  _globals['_MACHINE']._serialized_end=619
-  _globals['_MACHINES']._serialized_start=621
-  _globals['_MACHINES']._serialized_end=669
-  _globals['_DATATYPE']._serialized_start=671
-  _globals['_DATATYPE']._serialized_end=759
-  _globals['_DATATYPES']._serialized_start=761
-  _globals['_DATATYPES']._serialized_end=807
-  _globals['_MODELDATATYPES']._serialized_start=809
-  _globals['_MODELDATATYPES']._serialized_end=897
-  _globals['_ALLMODELSDATATYPES']._serialized_start=899
-  _globals['_ALLMODELSDATATYPES']._serialized_end=960
-  _globals['_DATAPOINT']._serialized_start=962
-  _globals['_DATAPOINT']._serialized_end=1025
-  _globals['_DATAPOINTS']._serialized_start=1027
-  _globals['_DATAPOINTS']._serialized_end=1075
-  _globals['_SEGMENT']._serialized_start=1078
-  _globals['_SEGMENT']._serialized_end=1213
-  _globals['_SEGMENTS']._serialized_start=1215
-  _globals['_SEGMENTS']._serialized_end=1263
+  _globals['_PARSERSTATUS']._serialized_end=371
+  _globals['_PAGEREQUEST']._serialized_start=373
+  _globals['_PAGEREQUEST']._serialized_end=427
+  _globals['_PAGINATION']._serialized_start=429
+  _globals['_PAGINATION']._serialized_end=485
+  _globals['_MACHINE']._serialized_start=488
+  _globals['_MACHINE']._serialized_end=637
+  _globals['_MACHINES']._serialized_start=639
+  _globals['_MACHINES']._serialized_end=687
+  _globals['_DATATYPE']._serialized_start=689
+  _globals['_DATATYPE']._serialized_end=777
+  _globals['_DATATYPES']._serialized_start=779
+  _globals['_DATATYPES']._serialized_end=825
+  _globals['_MODELDATATYPES']._serialized_start=827
+  _globals['_MODELDATATYPES']._serialized_end=915
+  _globals['_ALLMODELSDATATYPES']._serialized_start=917
+  _globals['_ALLMODELSDATATYPES']._serialized_end=978
+  _globals['_DATAPOINT']._serialized_start=980
+  _globals['_DATAPOINT']._serialized_end=1043
+  _globals['_DATAPOINTS']._serialized_start=1045
+  _globals['_DATAPOINTS']._serialized_end=1093
+  _globals['_SEGMENT']._serialized_start=1096
+  _globals['_SEGMENT']._serialized_end=1231
+  _globals['_SEGMENTS']._serialized_start=1233
+  _globals['_SEGMENTS']._serialized_end=1281
 # @@protoc_insertion_point(module_scope)

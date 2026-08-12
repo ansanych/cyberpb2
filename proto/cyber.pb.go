@@ -301,6 +301,7 @@ type ParserStatus struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Parser        Status                 `protobuf:"varint,1,opt,name=parser,proto3,enum=cybertele.Status" json:"parser,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	LastTime      string                 `protobuf:"bytes,3,opt,name=lastTime,proto3" json:"lastTime,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -345,6 +346,13 @@ func (x *ParserStatus) GetParser() Status {
 func (x *ParserStatus) GetMessage() string {
 	if x != nil {
 		return x.Message
+	}
+	return ""
+}
+
+func (x *ParserStatus) GetLastTime() string {
+	if x != nil {
+		return x.LastTime
 	}
 	return ""
 }
@@ -1093,10 +1101,11 @@ const file_cyber_proto_rawDesc = "" +
 	"\bpostgres\x18\x01 \x01(\x0e2\x11.cybertele.StatusR\bpostgres\x12'\n" +
 	"\x05mongo\x18\x02 \x01(\x0e2\x11.cybertele.StatusR\x05mongo\x12)\n" +
 	"\x06parser\x18\x03 \x01(\x0e2\x11.cybertele.StatusR\x06parser\x12#\n" +
-	"\x04disk\x18\x04 \x01(\v2\x0f.cybertele.DiskR\x04disk\"S\n" +
+	"\x04disk\x18\x04 \x01(\v2\x0f.cybertele.DiskR\x04disk\"o\n" +
 	"\fParserStatus\x12)\n" +
 	"\x06parser\x18\x01 \x01(\x0e2\x11.cybertele.StatusR\x06parser\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"G\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1a\n" +
+	"\blastTime\x18\x03 \x01(\tR\blastTime\"G\n" +
 	"\vPageRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x0e\n" +
