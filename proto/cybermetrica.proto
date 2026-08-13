@@ -19,6 +19,17 @@ service Cybermetrica {
     rpc GetTimeline (TimelineRequest) returns (Timeline) {}
     rpc GetEvents (TimelineRequest) returns (Events) {}
     rpc AllMachinesWorkhours (Empty) returns (Workhours) {}
+    rpc GetMachineWorkhourHistory(PageRequest) returns (WorkhourHistory) {}
+}
+
+message WorkhourItem {
+    string date = 1;
+    float value = 2;
+}
+
+message WorkhourHistory {
+    repeated WorkhourItem data = 1;
+    string sn = 2;
 }
 
 message MachineWorkhours {

@@ -19,19 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Cybermetrica_Health_FullMethodName                 = "/cybertele.Cybermetrica/Health"
-	Cybermetrica_StartParser_FullMethodName            = "/cybertele.Cybermetrica/StartParser"
-	Cybermetrica_StopParser_FullMethodName             = "/cybertele.Cybermetrica/StopParser"
-	Cybermetrica_GetParserStatus_FullMethodName        = "/cybertele.Cybermetrica/GetParserStatus"
-	Cybermetrica_GetParserLogs_FullMethodName          = "/cybertele.Cybermetrica/GetParserLogs"
-	Cybermetrica_MachineLogs_FullMethodName            = "/cybertele.Cybermetrica/MachineLogs"
-	Cybermetrica_MachineStatisticPeriod_FullMethodName = "/cybertele.Cybermetrica/MachineStatisticPeriod"
-	Cybermetrica_GetTelemetryParams_FullMethodName     = "/cybertele.Cybermetrica/GetTelemetryParams"
-	Cybermetrica_CreateTelemetryParam_FullMethodName   = "/cybertele.Cybermetrica/CreateTelemetryParam"
-	Cybermetrica_UpdateTelemetryParam_FullMethodName   = "/cybertele.Cybermetrica/UpdateTelemetryParam"
-	Cybermetrica_GetTimeline_FullMethodName            = "/cybertele.Cybermetrica/GetTimeline"
-	Cybermetrica_GetEvents_FullMethodName              = "/cybertele.Cybermetrica/GetEvents"
-	Cybermetrica_AllMachinesWorkhours_FullMethodName   = "/cybertele.Cybermetrica/AllMachinesWorkhours"
+	Cybermetrica_Health_FullMethodName                    = "/cybertele.Cybermetrica/Health"
+	Cybermetrica_StartParser_FullMethodName               = "/cybertele.Cybermetrica/StartParser"
+	Cybermetrica_StopParser_FullMethodName                = "/cybertele.Cybermetrica/StopParser"
+	Cybermetrica_GetParserStatus_FullMethodName           = "/cybertele.Cybermetrica/GetParserStatus"
+	Cybermetrica_GetParserLogs_FullMethodName             = "/cybertele.Cybermetrica/GetParserLogs"
+	Cybermetrica_MachineLogs_FullMethodName               = "/cybertele.Cybermetrica/MachineLogs"
+	Cybermetrica_MachineStatisticPeriod_FullMethodName    = "/cybertele.Cybermetrica/MachineStatisticPeriod"
+	Cybermetrica_GetTelemetryParams_FullMethodName        = "/cybertele.Cybermetrica/GetTelemetryParams"
+	Cybermetrica_CreateTelemetryParam_FullMethodName      = "/cybertele.Cybermetrica/CreateTelemetryParam"
+	Cybermetrica_UpdateTelemetryParam_FullMethodName      = "/cybertele.Cybermetrica/UpdateTelemetryParam"
+	Cybermetrica_GetTimeline_FullMethodName               = "/cybertele.Cybermetrica/GetTimeline"
+	Cybermetrica_GetEvents_FullMethodName                 = "/cybertele.Cybermetrica/GetEvents"
+	Cybermetrica_AllMachinesWorkhours_FullMethodName      = "/cybertele.Cybermetrica/AllMachinesWorkhours"
+	Cybermetrica_GetMachineWorkhourHistory_FullMethodName = "/cybertele.Cybermetrica/GetMachineWorkhourHistory"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -51,6 +52,7 @@ type CybermetricaClient interface {
 	GetTimeline(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Timeline, error)
 	GetEvents(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Events, error)
 	AllMachinesWorkhours(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Workhours, error)
+	GetMachineWorkhourHistory(ctx context.Context, in *PageRequest, opts ...grpc.CallOption) (*WorkhourHistory, error)
 }
 
 type cybermetricaClient struct {
@@ -191,6 +193,16 @@ func (c *cybermetricaClient) AllMachinesWorkhours(ctx context.Context, in *Empty
 	return out, nil
 }
 
+func (c *cybermetricaClient) GetMachineWorkhourHistory(ctx context.Context, in *PageRequest, opts ...grpc.CallOption) (*WorkhourHistory, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkhourHistory)
+	err := c.cc.Invoke(ctx, Cybermetrica_GetMachineWorkhourHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CybermetricaServer is the server API for Cybermetrica service.
 // All implementations must embed UnimplementedCybermetricaServer
 // for forward compatibility.
@@ -208,6 +220,7 @@ type CybermetricaServer interface {
 	GetTimeline(context.Context, *TimelineRequest) (*Timeline, error)
 	GetEvents(context.Context, *TimelineRequest) (*Events, error)
 	AllMachinesWorkhours(context.Context, *Empty) (*Workhours, error)
+	GetMachineWorkhourHistory(context.Context, *PageRequest) (*WorkhourHistory, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -256,6 +269,9 @@ func (UnimplementedCybermetricaServer) GetEvents(context.Context, *TimelineReque
 }
 func (UnimplementedCybermetricaServer) AllMachinesWorkhours(context.Context, *Empty) (*Workhours, error) {
 	return nil, status.Error(codes.Unimplemented, "method AllMachinesWorkhours not implemented")
+}
+func (UnimplementedCybermetricaServer) GetMachineWorkhourHistory(context.Context, *PageRequest) (*WorkhourHistory, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMachineWorkhourHistory not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
 func (UnimplementedCybermetricaServer) testEmbeddedByValue()                      {}
@@ -512,6 +528,24 @@ func _Cybermetrica_AllMachinesWorkhours_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cybermetrica_GetMachineWorkhourHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).GetMachineWorkhourHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_GetMachineWorkhourHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).GetMachineWorkhourHistory(ctx, req.(*PageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cybermetrica_ServiceDesc is the grpc.ServiceDesc for Cybermetrica service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -570,6 +604,10 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AllMachinesWorkhours",
 			Handler:    _Cybermetrica_AllMachinesWorkhours_Handler,
+		},
+		{
+			MethodName: "GetMachineWorkhourHistory",
+			Handler:    _Cybermetrica_GetMachineWorkhourHistory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
