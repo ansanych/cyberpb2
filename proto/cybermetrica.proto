@@ -174,4 +174,6 @@ message Event {
     float errorCode = 8;
     bool isValid = 9;
     string system = 10;
+    int64 startTimeUnix = 11;
+    int64 endTimeUnix = 12;
 }

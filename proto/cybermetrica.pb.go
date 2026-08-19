@@ -1389,6 +1389,8 @@ type Event struct {
 	ErrorCode     float32                `protobuf:"fixed32,8,opt,name=errorCode,proto3" json:"errorCode,omitempty"`
 	IsValid       bool                   `protobuf:"varint,9,opt,name=isValid,proto3" json:"isValid,omitempty"`
 	System        string                 `protobuf:"bytes,10,opt,name=system,proto3" json:"system,omitempty"`
+	StartTimeUnix int64                  `protobuf:"varint,11,opt,name=startTimeUnix,proto3" json:"startTimeUnix,omitempty"`
+	EndTimeUnix   int64                  `protobuf:"varint,12,opt,name=endTimeUnix,proto3" json:"endTimeUnix,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1491,6 +1493,20 @@ func (x *Event) GetSystem() string {
 		return x.System
 	}
 	return ""
+}
+
+func (x *Event) GetStartTimeUnix() int64 {
+	if x != nil {
+		return x.StartTimeUnix
+	}
+	return 0
+}
+
+func (x *Event) GetEndTimeUnix() int64 {
+	if x != nil {
+		return x.EndTimeUnix
+	}
+	return 0
 }
 
 var File_cybermetrica_proto protoreflect.FileDescriptor
@@ -1613,7 +1629,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x04data\x18\n" +
 	" \x03(\v2\x1e.cybertele.ConnectionDataBlockR\x04data\"2\n" +
 	"\x06Events\x12(\n" +
-	"\x06events\x18\x01 \x03(\v2\x10.cybertele.EventR\x06events\"\x85\x02\n" +
+	"\x06events\x18\x01 \x03(\v2\x10.cybertele.EventR\x06events\"\xcd\x02\n" +
 	"\x05Event\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1c\n" +
 	"\tstartTime\x18\x02 \x01(\tR\tstartTime\x12\x18\n" +
@@ -1625,7 +1641,9 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\terrorCode\x18\b \x01(\x02R\terrorCode\x12\x18\n" +
 	"\aisValid\x18\t \x01(\bR\aisValid\x12\x16\n" +
 	"\x06system\x18\n" +
-	" \x01(\tR\x06system2\xe6\a\n" +
+	" \x01(\tR\x06system\x12$\n" +
+	"\rstartTimeUnix\x18\v \x01(\x03R\rstartTimeUnix\x12 \n" +
+	"\vendTimeUnix\x18\f \x01(\x03R\vendTimeUnix2\xe6\a\n" +
 	"\fCybermetrica\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
 	"\vStartParser\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x129\n" +
