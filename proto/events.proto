@@ -21,10 +21,11 @@ message GetMachineEventsRequest {
     string sn = 1;
     string date = 2;
     int32 tz = 3;
+    int64 connectionId = 4;
 }
 
 message GetGroupEventsRequest {
-    string sn = 1;
+    repeated string sn = 1;
     string date = 2;
     int32 tz = 3;
 }
@@ -47,4 +48,5 @@ message EventMessage {
     int64 startTimeUnix = 11;
     int64 endTimeUnix = 12;
     string sn = 13;
+    int64 connectionId = 14;
 }
