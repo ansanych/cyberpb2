@@ -45,14 +45,14 @@ class CybereventsStub:
                 request_serializer=events__pb2.SetEventsRequest.SerializeToString,
                 response_deserializer=cyber__pb2.StatusReply.FromString,
                 _registered_method=True)
-        self.GetEvents = channel.unary_unary(
-                '/cybertele.Cyberevents/GetEvents',
-                request_serializer=events__pb2.GetEventsRequest.SerializeToString,
+        self.GetMachineEvents = channel.unary_unary(
+                '/cybertele.Cyberevents/GetMachineEvents',
+                request_serializer=events__pb2.GetMachineEventsRequest.SerializeToString,
                 response_deserializer=events__pb2.EventsReply.FromString,
                 _registered_method=True)
         self.GetGroupEvents = channel.unary_unary(
                 '/cybertele.Cyberevents/GetGroupEvents',
-                request_serializer=events__pb2.GetEventsRequest.SerializeToString,
+                request_serializer=events__pb2.GetGroupEventsRequest.SerializeToString,
                 response_deserializer=events__pb2.EventsReply.FromString,
                 _registered_method=True)
 
@@ -72,7 +72,7 @@ class CybereventsServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetEvents(self, request, context):
+    def GetMachineEvents(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -97,14 +97,14 @@ def add_CybereventsServicer_to_server(servicer, server):
                     request_deserializer=events__pb2.SetEventsRequest.FromString,
                     response_serializer=cyber__pb2.StatusReply.SerializeToString,
             ),
-            'GetEvents': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetEvents,
-                    request_deserializer=events__pb2.GetEventsRequest.FromString,
+            'GetMachineEvents': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMachineEvents,
+                    request_deserializer=events__pb2.GetMachineEventsRequest.FromString,
                     response_serializer=events__pb2.EventsReply.SerializeToString,
             ),
             'GetGroupEvents': grpc.unary_unary_rpc_method_handler(
                     servicer.GetGroupEvents,
-                    request_deserializer=events__pb2.GetEventsRequest.FromString,
+                    request_deserializer=events__pb2.GetGroupEventsRequest.FromString,
                     response_serializer=events__pb2.EventsReply.SerializeToString,
             ),
     }
@@ -173,7 +173,7 @@ class Cyberevents:
             _registered_method=True)
 
     @staticmethod
-    def GetEvents(request,
+    def GetMachineEvents(request,
             target,
             options=(),
             channel_credentials=None,
@@ -186,8 +186,8 @@ class Cyberevents:
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/cybertele.Cyberevents/GetEvents',
-            events__pb2.GetEventsRequest.SerializeToString,
+            '/cybertele.Cyberevents/GetMachineEvents',
+            events__pb2.GetMachineEventsRequest.SerializeToString,
             events__pb2.EventsReply.FromString,
             options,
             channel_credentials,
@@ -214,7 +214,7 @@ class Cyberevents:
             request,
             target,
             '/cybertele.Cyberevents/GetGroupEvents',
-            events__pb2.GetEventsRequest.SerializeToString,
+            events__pb2.GetGroupEventsRequest.SerializeToString,
             events__pb2.EventsReply.FromString,
             options,
             channel_credentials,

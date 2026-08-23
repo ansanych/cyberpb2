@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 import cyber_pb2 as cyber__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0c\x65vents.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"\x12\n\x10SetEventsRequest\"\x12\n\x10GetEventsRequest\"6\n\x0b\x45ventsReply\x12\'\n\x06\x65vents\x18\x01 \x03(\x0b\x32\x17.cybertele.EventMessage\"\xed\x01\n\x0c\x45ventMessage\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x11\n\tstartTime\x18\x02 \x01(\t\x12\x0f\n\x07\x65ndTime\x18\x03 \x01(\t\x12\x0c\n\x04type\x18\x04 \x01(\t\x12\r\n\x05level\x18\x05 \x01(\t\x12\x0f\n\x07message\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x07 \x01(\t\x12\x11\n\terrorCode\x18\x08 \x01(\x02\x12\x0f\n\x07isValid\x18\t \x01(\x08\x12\x0e\n\x06system\x18\n \x01(\t\x12\x15\n\rstartTimeUnix\x18\x0b \x01(\x03\x12\x13\n\x0b\x65ndTimeUnix\x18\x0c \x01(\x03\x12\n\n\x02sn\x18\r \x01(\t2\x94\x02\n\x0b\x43yberevents\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12\x42\n\tSetEvents\x12\x1b.cybertele.SetEventsRequest\x1a\x16.cybertele.StatusReply\"\x00\x12\x42\n\tGetEvents\x12\x1b.cybertele.GetEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x12G\n\x0eGetGroupEvents\x12\x1b.cybertele.GetEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x42\tZ\x07./protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0c\x65vents.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"G\n\x10SetEventsRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\'\n\x06\x65vents\x18\x02 \x03(\x0b\x32\x17.cybertele.EventMessage\"?\n\x17GetMachineEventsRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\n\n\x02tz\x18\x03 \x01(\x05\"=\n\x15GetGroupEventsRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\n\n\x02tz\x18\x03 \x01(\x05\"6\n\x0b\x45ventsReply\x12\'\n\x06\x65vents\x18\x01 \x03(\x0b\x32\x17.cybertele.EventMessage\"\xed\x01\n\x0c\x45ventMessage\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x11\n\tstartTime\x18\x02 \x01(\t\x12\x0f\n\x07\x65ndTime\x18\x03 \x01(\t\x12\x0c\n\x04type\x18\x04 \x01(\t\x12\r\n\x05level\x18\x05 \x01(\t\x12\x0f\n\x07message\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x07 \x01(\t\x12\x11\n\terrorCode\x18\x08 \x01(\x02\x12\x0f\n\x07isValid\x18\t \x01(\x08\x12\x0e\n\x06system\x18\n \x01(\t\x12\x15\n\rstartTimeUnix\x18\x0b \x01(\x03\x12\x13\n\x0b\x65ndTimeUnix\x18\x0c \x01(\x03\x12\n\n\x02sn\x18\r \x01(\t2\xa7\x02\n\x0b\x43yberevents\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12\x42\n\tSetEvents\x12\x1b.cybertele.SetEventsRequest\x1a\x16.cybertele.StatusReply\"\x00\x12P\n\x10GetMachineEvents\x12\".cybertele.GetMachineEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x12L\n\x0eGetGroupEvents\x12 .cybertele.GetGroupEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x42\tZ\x07./protob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,13 +34,15 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\007./proto'
   _globals['_SETEVENTSREQUEST']._serialized_start=40
-  _globals['_SETEVENTSREQUEST']._serialized_end=58
-  _globals['_GETEVENTSREQUEST']._serialized_start=60
-  _globals['_GETEVENTSREQUEST']._serialized_end=78
-  _globals['_EVENTSREPLY']._serialized_start=80
-  _globals['_EVENTSREPLY']._serialized_end=134
-  _globals['_EVENTMESSAGE']._serialized_start=137
-  _globals['_EVENTMESSAGE']._serialized_end=374
-  _globals['_CYBEREVENTS']._serialized_start=377
-  _globals['_CYBEREVENTS']._serialized_end=653
+  _globals['_SETEVENTSREQUEST']._serialized_end=111
+  _globals['_GETMACHINEEVENTSREQUEST']._serialized_start=113
+  _globals['_GETMACHINEEVENTSREQUEST']._serialized_end=176
+  _globals['_GETGROUPEVENTSREQUEST']._serialized_start=178
+  _globals['_GETGROUPEVENTSREQUEST']._serialized_end=239
+  _globals['_EVENTSREPLY']._serialized_start=241
+  _globals['_EVENTSREPLY']._serialized_end=295
+  _globals['_EVENTMESSAGE']._serialized_start=298
+  _globals['_EVENTMESSAGE']._serialized_end=535
+  _globals['_CYBEREVENTS']._serialized_start=538
+  _globals['_CYBEREVENTS']._serialized_end=833
 # @@protoc_insertion_point(module_scope)

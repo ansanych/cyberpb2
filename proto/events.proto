@@ -8,13 +8,26 @@ option go_package = "./proto";
 service Cyberevents {
     rpc Health (Empty) returns (HealthReply) {}
     rpc SetEvents (SetEventsRequest) returns (StatusReply) {}
-    rpc GetEvents (GetEventsRequest) returns (EventsReply) {}
-    rpc GetGroupEvents (GetEventsRequest) returns (EventsReply) {}
+    rpc GetMachineEvents (GetMachineEventsRequest) returns (EventsReply) {}
+    rpc GetGroupEvents (GetGroupEventsRequest) returns (EventsReply) {}
 }
 
-message SetEventsRequest {}
+message SetEventsRequest {
+    string sn = 1;
+    repeated EventMessage events = 2;
+}
 
-message GetEventsRequest {}
+message GetMachineEventsRequest {
+    string sn = 1;
+    string date = 2;
+    int32 tz = 3;
+}
+
+message GetGroupEventsRequest {
+    string sn = 1;
+    string date = 2;
+    int32 tz = 3;
+}
 
 message EventsReply {
     repeated EventMessage events = 1;
