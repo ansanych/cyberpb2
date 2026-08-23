@@ -1,0 +1,37 @@
+syntax = "proto3";
+import "cyber.proto";
+
+package cybertele;
+
+option go_package = "./proto";
+
+service Cyberevents {
+    rpc Health (Empty) returns (HealthReply) {}
+    rpc SetEvents (SetEventsRequest) returns (StatusReply) {}
+    rpc GetEvents (GetEventsRequest) returns (EventsReply) {}
+    rpc GetGroupEvents (GetEventsRequest) returns (EventsReply) {}
+}
+
+message SetEventsRequest {}
+
+message GetEventsRequest {}
+
+message EventsReply {
+    repeated EventMessage events = 1;
+}
+
+message EventMessage {
+    int64 id = 1;
+    string startTime = 2;
+    string endTime = 3;
+    string type = 4;
+    string level = 5;
+    string message = 6;
+    string description = 7;
+    float errorCode = 8;
+    bool isValid = 9;
+    string system = 10;
+    int64 startTimeUnix = 11;
+    int64 endTimeUnix = 12;
+    string sn = 13;
+}

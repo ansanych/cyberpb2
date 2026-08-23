@@ -95,6 +95,11 @@ class CybermetricaStub:
                 request_serializer=cybermetrica__pb2.TimelineRequest.SerializeToString,
                 response_deserializer=cybermetrica__pb2.Events.FromString,
                 _registered_method=True)
+        self.GetGroupEvents = channel.unary_unary(
+                '/cybertele.Cybermetrica/GetGroupEvents',
+                request_serializer=cybermetrica__pb2.GroupEventsRequest.SerializeToString,
+                response_deserializer=cybermetrica__pb2.Events.FromString,
+                _registered_method=True)
         self.AllMachinesWorkhours = channel.unary_unary(
                 '/cybertele.Cybermetrica/AllMachinesWorkhours',
                 request_serializer=cyber__pb2.Empty.SerializeToString,
@@ -182,6 +187,12 @@ class CybermetricaServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetGroupEvents(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def AllMachinesWorkhours(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -255,6 +266,11 @@ def add_CybermetricaServicer_to_server(servicer, server):
             'GetEvents': grpc.unary_unary_rpc_method_handler(
                     servicer.GetEvents,
                     request_deserializer=cybermetrica__pb2.TimelineRequest.FromString,
+                    response_serializer=cybermetrica__pb2.Events.SerializeToString,
+            ),
+            'GetGroupEvents': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGroupEvents,
+                    request_deserializer=cybermetrica__pb2.GroupEventsRequest.FromString,
                     response_serializer=cybermetrica__pb2.Events.SerializeToString,
             ),
             'AllMachinesWorkhours': grpc.unary_unary_rpc_method_handler(
@@ -591,6 +607,33 @@ class Cybermetrica:
             target,
             '/cybertele.Cybermetrica/GetEvents',
             cybermetrica__pb2.TimelineRequest.SerializeToString,
+            cybermetrica__pb2.Events.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetGroupEvents(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cybermetrica/GetGroupEvents',
+            cybermetrica__pb2.GroupEventsRequest.SerializeToString,
             cybermetrica__pb2.Events.FromString,
             options,
             channel_credentials,

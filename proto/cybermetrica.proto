@@ -18,6 +18,7 @@ service Cybermetrica {
     rpc UpdateTelemetryParam (TelemertyParam) returns (StatusReply) {}
     rpc GetTimeline (TimelineRequest) returns (Timeline) {}
     rpc GetEvents (TimelineRequest) returns (Events) {}
+    rpc GetGroupEvents (GroupEventsRequest) returns (Events) {}
     rpc AllMachinesWorkhours (Empty) returns (Workhours) {}
     rpc GetMachineWorkhourHistory(PageRequest) returns (WorkhourHistory) {}
 }
@@ -159,6 +160,8 @@ message Timeline {
     repeated ConnectionDataBlock data = 10;
 }
 
+message GroupEventsRequest {}
+
 message Events {
     repeated Event events = 1;
 }
@@ -176,4 +179,5 @@ message Event {
     string system = 10;
     int64 startTimeUnix = 11;
     int64 endTimeUnix = 12;
+    string sn = 13;
 }
