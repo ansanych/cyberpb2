@@ -49,4 +49,5 @@ message EventMessage {
     int64 endTimeUnix = 12;
     string sn = 13;
     int64 connectionId = 14;
+    int32 errorCodeInt = 15;
 }

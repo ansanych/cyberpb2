@@ -261,6 +261,7 @@ type EventMessage struct {
 	EndTimeUnix   int64                  `protobuf:"varint,12,opt,name=endTimeUnix,proto3" json:"endTimeUnix,omitempty"`
 	Sn            string                 `protobuf:"bytes,13,opt,name=sn,proto3" json:"sn,omitempty"`
 	ConnectionId  int64                  `protobuf:"varint,14,opt,name=connectionId,proto3" json:"connectionId,omitempty"`
+	ErrorCodeInt  int32                  `protobuf:"varint,15,opt,name=errorCodeInt,proto3" json:"errorCodeInt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -393,6 +394,13 @@ func (x *EventMessage) GetConnectionId() int64 {
 	return 0
 }
 
+func (x *EventMessage) GetErrorCodeInt() int32 {
+	if x != nil {
+		return x.ErrorCodeInt
+	}
+	return 0
+}
+
 var File_events_proto protoreflect.FileDescriptor
 
 const file_events_proto_rawDesc = "" +
@@ -411,7 +419,7 @@ const file_events_proto_rawDesc = "" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x12\x0e\n" +
 	"\x02tz\x18\x03 \x01(\x05R\x02tz\">\n" +
 	"\vEventsReply\x12/\n" +
-	"\x06events\x18\x01 \x03(\v2\x17.cybertele.EventMessageR\x06events\"\x88\x03\n" +
+	"\x06events\x18\x01 \x03(\v2\x17.cybertele.EventMessageR\x06events\"\xac\x03\n" +
 	"\fEventMessage\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1c\n" +
 	"\tstartTime\x18\x02 \x01(\tR\tstartTime\x12\x18\n" +
@@ -427,7 +435,8 @@ const file_events_proto_rawDesc = "" +
 	"\rstartTimeUnix\x18\v \x01(\x03R\rstartTimeUnix\x12 \n" +
 	"\vendTimeUnix\x18\f \x01(\x03R\vendTimeUnix\x12\x0e\n" +
 	"\x02sn\x18\r \x01(\tR\x02sn\x12\"\n" +
-	"\fconnectionId\x18\x0e \x01(\x03R\fconnectionId2\xa7\x02\n" +
+	"\fconnectionId\x18\x0e \x01(\x03R\fconnectionId\x12\"\n" +
+	"\ferrorCodeInt\x18\x0f \x01(\x05R\ferrorCodeInt2\xa7\x02\n" +
 	"\vCyberevents\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12B\n" +
 	"\tSetEvents\x12\x1b.cybertele.SetEventsRequest\x1a\x16.cybertele.StatusReply\"\x00\x12P\n" +
