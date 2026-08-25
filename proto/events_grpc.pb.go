@@ -19,10 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Cyberevents_Health_FullMethodName           = "/cybertele.Cyberevents/Health"
-	Cyberevents_SetEvents_FullMethodName        = "/cybertele.Cyberevents/SetEvents"
-	Cyberevents_GetMachineEvents_FullMethodName = "/cybertele.Cyberevents/GetMachineEvents"
-	Cyberevents_GetGroupEvents_FullMethodName   = "/cybertele.Cyberevents/GetGroupEvents"
+	Cyberevents_Health_FullMethodName              = "/cybertele.Cyberevents/Health"
+	Cyberevents_SetEvents_FullMethodName           = "/cybertele.Cyberevents/SetEvents"
+	Cyberevents_GetMachineEvents_FullMethodName    = "/cybertele.Cyberevents/GetMachineEvents"
+	Cyberevents_GetGroupEvents_FullMethodName      = "/cybertele.Cyberevents/GetGroupEvents"
+	Cyberevents_GetGroupEventsCount_FullMethodName = "/cybertele.Cyberevents/GetGroupEventsCount"
 )
 
 // CybereventsClient is the client API for Cyberevents service.
@@ -33,6 +34,7 @@ type CybereventsClient interface {
 	SetEvents(ctx context.Context, in *SetEventsRequest, opts ...grpc.CallOption) (*StatusReply, error)
 	GetMachineEvents(ctx context.Context, in *GetMachineEventsRequest, opts ...grpc.CallOption) (*EventsReply, error)
 	GetGroupEvents(ctx context.Context, in *GetGroupEventsRequest, opts ...grpc.CallOption) (*EventsReply, error)
+	GetGroupEventsCount(ctx context.Context, in *GetGroupEventsRequest, opts ...grpc.CallOption) (*Count, error)
 }
 
 type cybereventsClient struct {
@@ -83,6 +85,16 @@ func (c *cybereventsClient) GetGroupEvents(ctx context.Context, in *GetGroupEven
 	return out, nil
 }
 
+func (c *cybereventsClient) GetGroupEventsCount(ctx context.Context, in *GetGroupEventsRequest, opts ...grpc.CallOption) (*Count, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Count)
+	err := c.cc.Invoke(ctx, Cyberevents_GetGroupEventsCount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CybereventsServer is the server API for Cyberevents service.
 // All implementations must embed UnimplementedCybereventsServer
 // for forward compatibility.
@@ -91,6 +103,7 @@ type CybereventsServer interface {
 	SetEvents(context.Context, *SetEventsRequest) (*StatusReply, error)
 	GetMachineEvents(context.Context, *GetMachineEventsRequest) (*EventsReply, error)
 	GetGroupEvents(context.Context, *GetGroupEventsRequest) (*EventsReply, error)
+	GetGroupEventsCount(context.Context, *GetGroupEventsRequest) (*Count, error)
 	mustEmbedUnimplementedCybereventsServer()
 }
 
@@ -112,6 +125,9 @@ func (UnimplementedCybereventsServer) GetMachineEvents(context.Context, *GetMach
 }
 func (UnimplementedCybereventsServer) GetGroupEvents(context.Context, *GetGroupEventsRequest) (*EventsReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetGroupEvents not implemented")
+}
+func (UnimplementedCybereventsServer) GetGroupEventsCount(context.Context, *GetGroupEventsRequest) (*Count, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetGroupEventsCount not implemented")
 }
 func (UnimplementedCybereventsServer) mustEmbedUnimplementedCybereventsServer() {}
 func (UnimplementedCybereventsServer) testEmbeddedByValue()                     {}
@@ -206,6 +222,24 @@ func _Cyberevents_GetGroupEvents_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cyberevents_GetGroupEventsCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGroupEventsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybereventsServer).GetGroupEventsCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cyberevents_GetGroupEventsCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybereventsServer).GetGroupEventsCount(ctx, req.(*GetGroupEventsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cyberevents_ServiceDesc is the grpc.ServiceDesc for Cyberevents service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +262,10 @@ var Cyberevents_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGroupEvents",
 			Handler:    _Cyberevents_GetGroupEvents_Handler,
+		},
+		{
+			MethodName: "GetGroupEventsCount",
+			Handler:    _Cyberevents_GetGroupEventsCount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

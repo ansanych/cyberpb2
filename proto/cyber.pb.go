@@ -1241,6 +1241,50 @@ func (x *Event) GetErrorCodeInt() int32 {
 	return 0
 }
 
+type Count struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Count         int32                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Count) Reset() {
+	*x = Count{}
+	mi := &file_cyber_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Count) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Count) ProtoMessage() {}
+
+func (x *Count) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Count.ProtoReflect.Descriptor instead.
+func (*Count) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *Count) GetCount() int32 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
 var File_cyber_proto protoreflect.FileDescriptor
 
 const file_cyber_proto_rawDesc = "" +
@@ -1333,7 +1377,9 @@ const file_cyber_proto_rawDesc = "" +
 	"\vendTimeUnix\x18\f \x01(\x03R\vendTimeUnix\x12\x0e\n" +
 	"\x02sn\x18\r \x01(\tR\x02sn\x12\"\n" +
 	"\fconnectionId\x18\x0e \x01(\x03R\fconnectionId\x12\"\n" +
-	"\ferrorCodeInt\x18\x0f \x01(\x05R\ferrorCodeInt*O\n" +
+	"\ferrorCodeInt\x18\x0f \x01(\x05R\ferrorCodeInt\"\x1d\n" +
+	"\x05Count\x12\x14\n" +
+	"\x05count\x18\x01 \x01(\x05R\x05count*O\n" +
 	"\x06Status\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\n" +
 	"\n" +
@@ -1356,7 +1402,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                // 0: cybertele.Status
 	(*StatusReply)(nil),        // 1: cybertele.StatusReply
@@ -1377,6 +1423,7 @@ var file_cyber_proto_goTypes = []any{
 	(*Segment)(nil),            // 16: cybertele.Segment
 	(*Segments)(nil),           // 17: cybertele.Segments
 	(*Event)(nil),              // 18: cybertele.Event
+	(*Count)(nil),              // 19: cybertele.Count
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -1409,7 +1456,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   18,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

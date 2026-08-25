@@ -136,3 +136,7 @@ message Event {
     int64 connectionId = 14;
     int32 errorCodeInt = 15;
 }
+
+message Count {
+    int32 count = 1;
+}

@@ -290,12 +290,13 @@ const file_events_proto_rawDesc = "" +
 	"\tdirection\x18\x05 \x01(\tR\tdirection\x12\x14\n" +
 	"\x05limit\x18\x06 \x01(\x05R\x05limit\"7\n" +
 	"\vEventsReply\x12(\n" +
-	"\x06events\x18\x01 \x03(\v2\x10.cybertele.EventR\x06events2\xa7\x02\n" +
+	"\x06events\x18\x01 \x03(\v2\x10.cybertele.EventR\x06events2\xf4\x02\n" +
 	"\vCyberevents\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12B\n" +
 	"\tSetEvents\x12\x1b.cybertele.SetEventsRequest\x1a\x16.cybertele.StatusReply\"\x00\x12P\n" +
 	"\x10GetMachineEvents\x12\".cybertele.GetMachineEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x12L\n" +
-	"\x0eGetGroupEvents\x12 .cybertele.GetGroupEventsRequest\x1a\x16.cybertele.EventsReply\"\x00B\tZ\a./protob\x06proto3"
+	"\x0eGetGroupEvents\x12 .cybertele.GetGroupEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x12K\n" +
+	"\x13GetGroupEventsCount\x12 .cybertele.GetGroupEventsRequest\x1a\x10.cybertele.Count\"\x00B\tZ\a./protob\x06proto3"
 
 var (
 	file_events_proto_rawDescOnce sync.Once
@@ -319,6 +320,7 @@ var file_events_proto_goTypes = []any{
 	(*Empty)(nil),                   // 5: cybertele.Empty
 	(*HealthReply)(nil),             // 6: cybertele.HealthReply
 	(*StatusReply)(nil),             // 7: cybertele.StatusReply
+	(*Count)(nil),                   // 8: cybertele.Count
 }
 var file_events_proto_depIdxs = []int32{
 	4, // 0: cybertele.SetEventsRequest.events:type_name -> cybertele.Event
@@ -327,12 +329,14 @@ var file_events_proto_depIdxs = []int32{
 	0, // 3: cybertele.Cyberevents.SetEvents:input_type -> cybertele.SetEventsRequest
 	1, // 4: cybertele.Cyberevents.GetMachineEvents:input_type -> cybertele.GetMachineEventsRequest
 	2, // 5: cybertele.Cyberevents.GetGroupEvents:input_type -> cybertele.GetGroupEventsRequest
-	6, // 6: cybertele.Cyberevents.Health:output_type -> cybertele.HealthReply
-	7, // 7: cybertele.Cyberevents.SetEvents:output_type -> cybertele.StatusReply
-	3, // 8: cybertele.Cyberevents.GetMachineEvents:output_type -> cybertele.EventsReply
-	3, // 9: cybertele.Cyberevents.GetGroupEvents:output_type -> cybertele.EventsReply
-	6, // [6:10] is the sub-list for method output_type
-	2, // [2:6] is the sub-list for method input_type
+	2, // 6: cybertele.Cyberevents.GetGroupEventsCount:input_type -> cybertele.GetGroupEventsRequest
+	6, // 7: cybertele.Cyberevents.Health:output_type -> cybertele.HealthReply
+	7, // 8: cybertele.Cyberevents.SetEvents:output_type -> cybertele.StatusReply
+	3, // 9: cybertele.Cyberevents.GetMachineEvents:output_type -> cybertele.EventsReply
+	3, // 10: cybertele.Cyberevents.GetGroupEvents:output_type -> cybertele.EventsReply
+	8, // 11: cybertele.Cyberevents.GetGroupEventsCount:output_type -> cybertele.Count
+	7, // [7:12] is the sub-list for method output_type
+	2, // [2:7] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
