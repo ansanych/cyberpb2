@@ -146,6 +146,9 @@ type GetGroupEventsRequest struct {
 	Sn            []string               `protobuf:"bytes,1,rep,name=sn,proto3" json:"sn,omitempty"`
 	Date          string                 `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
 	Tz            int32                  `protobuf:"varint,3,opt,name=tz,proto3" json:"tz,omitempty"`
+	FromId        int64                  `protobuf:"varint,4,opt,name=fromId,proto3" json:"fromId,omitempty"`
+	Direction     string                 `protobuf:"bytes,5,opt,name=direction,proto3" json:"direction,omitempty"`
+	Limit         int32                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -197,6 +200,27 @@ func (x *GetGroupEventsRequest) GetDate() string {
 func (x *GetGroupEventsRequest) GetTz() int32 {
 	if x != nil {
 		return x.Tz
+	}
+	return 0
+}
+
+func (x *GetGroupEventsRequest) GetFromId() int64 {
+	if x != nil {
+		return x.FromId
+	}
+	return 0
+}
+
+func (x *GetGroupEventsRequest) GetDirection() string {
+	if x != nil {
+		return x.Direction
+	}
+	return ""
+}
+
+func (x *GetGroupEventsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
 	}
 	return 0
 }
@@ -257,11 +281,14 @@ const file_events_proto_rawDesc = "" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x12\n" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x12\x0e\n" +
 	"\x02tz\x18\x03 \x01(\x05R\x02tz\x12\"\n" +
-	"\fconnectionId\x18\x04 \x01(\x03R\fconnectionId\"K\n" +
+	"\fconnectionId\x18\x04 \x01(\x03R\fconnectionId\"\x97\x01\n" +
 	"\x15GetGroupEventsRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x03(\tR\x02sn\x12\x12\n" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x12\x0e\n" +
-	"\x02tz\x18\x03 \x01(\x05R\x02tz\"7\n" +
+	"\x02tz\x18\x03 \x01(\x05R\x02tz\x12\x16\n" +
+	"\x06fromId\x18\x04 \x01(\x03R\x06fromId\x12\x1c\n" +
+	"\tdirection\x18\x05 \x01(\tR\tdirection\x12\x14\n" +
+	"\x05limit\x18\x06 \x01(\x05R\x05limit\"7\n" +
 	"\vEventsReply\x12(\n" +
 	"\x06events\x18\x01 \x03(\v2\x10.cybertele.EventR\x06events2\xa7\x02\n" +
 	"\vCyberevents\x124\n" +

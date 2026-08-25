@@ -28,6 +28,9 @@ message GetGroupEventsRequest {
     repeated string sn = 1;
     string date = 2;
     int32 tz = 3;
+    int64 fromId = 4;
+    string direction = 5;
+    int32 limit = 6;
 }
 
 message EventsReply {
