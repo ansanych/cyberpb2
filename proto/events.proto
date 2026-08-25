@@ -10,7 +10,12 @@ service Cyberevents {
     rpc SetEvents (SetEventsRequest) returns (StatusReply) {}
     rpc GetMachineEvents (GetMachineEventsRequest) returns (EventsReply) {}
     rpc GetGroupEvents (GetGroupEventsRequest) returns (EventsReply) {}
-    rpc GetGroupEventsCount (GetGroupEventsRequest) returns (Count) {}
+    rpc GetGroupEventsCount (GetGroupEventsRequest) returns (EventsCount) {}
+}
+
+message EventsCount {
+    int32 events = 1;
+    int32 errors = 2;
 }
 
 message SetEventsRequest {

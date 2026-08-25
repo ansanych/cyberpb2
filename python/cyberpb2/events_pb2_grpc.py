@@ -58,7 +58,7 @@ class CybereventsStub:
         self.GetGroupEventsCount = channel.unary_unary(
                 '/cybertele.Cyberevents/GetGroupEventsCount',
                 request_serializer=events__pb2.GetGroupEventsRequest.SerializeToString,
-                response_deserializer=cyber__pb2.Count.FromString,
+                response_deserializer=events__pb2.EventsCount.FromString,
                 _registered_method=True)
 
 
@@ -121,7 +121,7 @@ def add_CybereventsServicer_to_server(servicer, server):
             'GetGroupEventsCount': grpc.unary_unary_rpc_method_handler(
                     servicer.GetGroupEventsCount,
                     request_deserializer=events__pb2.GetGroupEventsRequest.FromString,
-                    response_serializer=cyber__pb2.Count.SerializeToString,
+                    response_serializer=events__pb2.EventsCount.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -258,7 +258,7 @@ class Cyberevents:
             target,
             '/cybertele.Cyberevents/GetGroupEventsCount',
             events__pb2.GetGroupEventsRequest.SerializeToString,
-            cyber__pb2.Count.FromString,
+            events__pb2.EventsCount.FromString,
             options,
             channel_credentials,
             insecure,

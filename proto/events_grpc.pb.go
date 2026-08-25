@@ -34,7 +34,7 @@ type CybereventsClient interface {
 	SetEvents(ctx context.Context, in *SetEventsRequest, opts ...grpc.CallOption) (*StatusReply, error)
 	GetMachineEvents(ctx context.Context, in *GetMachineEventsRequest, opts ...grpc.CallOption) (*EventsReply, error)
 	GetGroupEvents(ctx context.Context, in *GetGroupEventsRequest, opts ...grpc.CallOption) (*EventsReply, error)
-	GetGroupEventsCount(ctx context.Context, in *GetGroupEventsRequest, opts ...grpc.CallOption) (*Count, error)
+	GetGroupEventsCount(ctx context.Context, in *GetGroupEventsRequest, opts ...grpc.CallOption) (*EventsCount, error)
 }
 
 type cybereventsClient struct {
@@ -85,9 +85,9 @@ func (c *cybereventsClient) GetGroupEvents(ctx context.Context, in *GetGroupEven
 	return out, nil
 }
 
-func (c *cybereventsClient) GetGroupEventsCount(ctx context.Context, in *GetGroupEventsRequest, opts ...grpc.CallOption) (*Count, error) {
+func (c *cybereventsClient) GetGroupEventsCount(ctx context.Context, in *GetGroupEventsRequest, opts ...grpc.CallOption) (*EventsCount, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Count)
+	out := new(EventsCount)
 	err := c.cc.Invoke(ctx, Cyberevents_GetGroupEventsCount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -103,7 +103,7 @@ type CybereventsServer interface {
 	SetEvents(context.Context, *SetEventsRequest) (*StatusReply, error)
 	GetMachineEvents(context.Context, *GetMachineEventsRequest) (*EventsReply, error)
 	GetGroupEvents(context.Context, *GetGroupEventsRequest) (*EventsReply, error)
-	GetGroupEventsCount(context.Context, *GetGroupEventsRequest) (*Count, error)
+	GetGroupEventsCount(context.Context, *GetGroupEventsRequest) (*EventsCount, error)
 	mustEmbedUnimplementedCybereventsServer()
 }
 
@@ -126,7 +126,7 @@ func (UnimplementedCybereventsServer) GetMachineEvents(context.Context, *GetMach
 func (UnimplementedCybereventsServer) GetGroupEvents(context.Context, *GetGroupEventsRequest) (*EventsReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetGroupEvents not implemented")
 }
-func (UnimplementedCybereventsServer) GetGroupEventsCount(context.Context, *GetGroupEventsRequest) (*Count, error) {
+func (UnimplementedCybereventsServer) GetGroupEventsCount(context.Context, *GetGroupEventsRequest) (*EventsCount, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetGroupEventsCount not implemented")
 }
 func (UnimplementedCybereventsServer) mustEmbedUnimplementedCybereventsServer() {}
