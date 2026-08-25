@@ -1085,6 +1085,162 @@ func (x *Segments) GetSegments() []*Segment {
 	return nil
 }
 
+type Event struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	StartTime     string                 `protobuf:"bytes,2,opt,name=startTime,proto3" json:"startTime,omitempty"`
+	EndTime       string                 `protobuf:"bytes,3,opt,name=endTime,proto3" json:"endTime,omitempty"`
+	Type          string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
+	Level         string                 `protobuf:"bytes,5,opt,name=level,proto3" json:"level,omitempty"`
+	Message       string                 `protobuf:"bytes,6,opt,name=message,proto3" json:"message,omitempty"`
+	Description   string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
+	ErrorCode     float32                `protobuf:"fixed32,8,opt,name=errorCode,proto3" json:"errorCode,omitempty"`
+	IsValid       bool                   `protobuf:"varint,9,opt,name=isValid,proto3" json:"isValid,omitempty"`
+	System        string                 `protobuf:"bytes,10,opt,name=system,proto3" json:"system,omitempty"`
+	StartTimeUnix int64                  `protobuf:"varint,11,opt,name=startTimeUnix,proto3" json:"startTimeUnix,omitempty"`
+	EndTimeUnix   int64                  `protobuf:"varint,12,opt,name=endTimeUnix,proto3" json:"endTimeUnix,omitempty"`
+	Sn            string                 `protobuf:"bytes,13,opt,name=sn,proto3" json:"sn,omitempty"`
+	ConnectionId  int64                  `protobuf:"varint,14,opt,name=connectionId,proto3" json:"connectionId,omitempty"`
+	ErrorCodeInt  int32                  `protobuf:"varint,15,opt,name=errorCodeInt,proto3" json:"errorCodeInt,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Event) Reset() {
+	*x = Event{}
+	mi := &file_cyber_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Event) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Event) ProtoMessage() {}
+
+func (x *Event) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Event.ProtoReflect.Descriptor instead.
+func (*Event) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *Event) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Event) GetStartTime() string {
+	if x != nil {
+		return x.StartTime
+	}
+	return ""
+}
+
+func (x *Event) GetEndTime() string {
+	if x != nil {
+		return x.EndTime
+	}
+	return ""
+}
+
+func (x *Event) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Event) GetLevel() string {
+	if x != nil {
+		return x.Level
+	}
+	return ""
+}
+
+func (x *Event) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *Event) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *Event) GetErrorCode() float32 {
+	if x != nil {
+		return x.ErrorCode
+	}
+	return 0
+}
+
+func (x *Event) GetIsValid() bool {
+	if x != nil {
+		return x.IsValid
+	}
+	return false
+}
+
+func (x *Event) GetSystem() string {
+	if x != nil {
+		return x.System
+	}
+	return ""
+}
+
+func (x *Event) GetStartTimeUnix() int64 {
+	if x != nil {
+		return x.StartTimeUnix
+	}
+	return 0
+}
+
+func (x *Event) GetEndTimeUnix() int64 {
+	if x != nil {
+		return x.EndTimeUnix
+	}
+	return 0
+}
+
+func (x *Event) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *Event) GetConnectionId() int64 {
+	if x != nil {
+		return x.ConnectionId
+	}
+	return 0
+}
+
+func (x *Event) GetErrorCodeInt() int32 {
+	if x != nil {
+		return x.ErrorCodeInt
+	}
+	return 0
+}
+
 var File_cyber_proto protoreflect.FileDescriptor
 
 const file_cyber_proto_rawDesc = "" +
@@ -1160,7 +1316,24 @@ const file_cyber_proto_rawDesc = "" +
 	"\bendValue\x18\x06 \x01(\x02R\bendValue\x12\x14\n" +
 	"\x05trend\x18\a \x01(\tR\x05trend\":\n" +
 	"\bSegments\x12.\n" +
-	"\bsegments\x18\x01 \x03(\v2\x12.cybertele.SegmentR\bsegments*O\n" +
+	"\bsegments\x18\x01 \x03(\v2\x12.cybertele.SegmentR\bsegments\"\xa5\x03\n" +
+	"\x05Event\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1c\n" +
+	"\tstartTime\x18\x02 \x01(\tR\tstartTime\x12\x18\n" +
+	"\aendTime\x18\x03 \x01(\tR\aendTime\x12\x12\n" +
+	"\x04type\x18\x04 \x01(\tR\x04type\x12\x14\n" +
+	"\x05level\x18\x05 \x01(\tR\x05level\x12\x18\n" +
+	"\amessage\x18\x06 \x01(\tR\amessage\x12 \n" +
+	"\vdescription\x18\a \x01(\tR\vdescription\x12\x1c\n" +
+	"\terrorCode\x18\b \x01(\x02R\terrorCode\x12\x18\n" +
+	"\aisValid\x18\t \x01(\bR\aisValid\x12\x16\n" +
+	"\x06system\x18\n" +
+	" \x01(\tR\x06system\x12$\n" +
+	"\rstartTimeUnix\x18\v \x01(\x03R\rstartTimeUnix\x12 \n" +
+	"\vendTimeUnix\x18\f \x01(\x03R\vendTimeUnix\x12\x0e\n" +
+	"\x02sn\x18\r \x01(\tR\x02sn\x12\"\n" +
+	"\fconnectionId\x18\x0e \x01(\x03R\fconnectionId\x12\"\n" +
+	"\ferrorCodeInt\x18\x0f \x01(\x05R\ferrorCodeInt*O\n" +
 	"\x06Status\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\n" +
 	"\n" +
@@ -1183,7 +1356,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                // 0: cybertele.Status
 	(*StatusReply)(nil),        // 1: cybertele.StatusReply
@@ -1203,6 +1376,7 @@ var file_cyber_proto_goTypes = []any{
 	(*DataPoints)(nil),         // 15: cybertele.DataPoints
 	(*Segment)(nil),            // 16: cybertele.Segment
 	(*Segments)(nil),           // 17: cybertele.Segments
+	(*Event)(nil),              // 18: cybertele.Event
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -1235,7 +1409,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   17,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

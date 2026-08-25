@@ -14,7 +14,7 @@ service Cyberevents {
 
 message SetEventsRequest {
     string sn = 1;
-    repeated EventMessage events = 2;
+    repeated Event events = 2;
 }
 
 message GetMachineEventsRequest {
@@ -31,23 +31,5 @@ message GetGroupEventsRequest {
 }
 
 message EventsReply {
-    repeated EventMessage events = 1;
-}
-
-message EventMessage {
-    int64 id = 1;
-    string startTime = 2;
-    string endTime = 3;
-    string type = 4;
-    string level = 5;
-    string message = 6;
-    string description = 7;
-    float errorCode = 8;
-    bool isValid = 9;
-    string system = 10;
-    int64 startTimeUnix = 11;
-    int64 endTimeUnix = 12;
-    string sn = 13;
-    int64 connectionId = 14;
-    int32 errorCodeInt = 15;
+    repeated Event events = 1;
 }

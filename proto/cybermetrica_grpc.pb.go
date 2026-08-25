@@ -30,8 +30,6 @@ const (
 	Cybermetrica_CreateTelemetryParam_FullMethodName      = "/cybertele.Cybermetrica/CreateTelemetryParam"
 	Cybermetrica_UpdateTelemetryParam_FullMethodName      = "/cybertele.Cybermetrica/UpdateTelemetryParam"
 	Cybermetrica_GetTimeline_FullMethodName               = "/cybertele.Cybermetrica/GetTimeline"
-	Cybermetrica_GetEvents_FullMethodName                 = "/cybertele.Cybermetrica/GetEvents"
-	Cybermetrica_GetGroupEvents_FullMethodName            = "/cybertele.Cybermetrica/GetGroupEvents"
 	Cybermetrica_AllMachinesWorkhours_FullMethodName      = "/cybertele.Cybermetrica/AllMachinesWorkhours"
 	Cybermetrica_GetMachineWorkhourHistory_FullMethodName = "/cybertele.Cybermetrica/GetMachineWorkhourHistory"
 )
@@ -51,8 +49,6 @@ type CybermetricaClient interface {
 	CreateTelemetryParam(ctx context.Context, in *TelemertyParam, opts ...grpc.CallOption) (*StatusReply, error)
 	UpdateTelemetryParam(ctx context.Context, in *TelemertyParam, opts ...grpc.CallOption) (*StatusReply, error)
 	GetTimeline(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Timeline, error)
-	GetEvents(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Events, error)
-	GetGroupEvents(ctx context.Context, in *GroupEventsRequest, opts ...grpc.CallOption) (*Events, error)
 	AllMachinesWorkhours(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Workhours, error)
 	GetMachineWorkhourHistory(ctx context.Context, in *PageRequest, opts ...grpc.CallOption) (*WorkhourHistory, error)
 }
@@ -175,26 +171,6 @@ func (c *cybermetricaClient) GetTimeline(ctx context.Context, in *TimelineReques
 	return out, nil
 }
 
-func (c *cybermetricaClient) GetEvents(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Events, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Events)
-	err := c.cc.Invoke(ctx, Cybermetrica_GetEvents_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *cybermetricaClient) GetGroupEvents(ctx context.Context, in *GroupEventsRequest, opts ...grpc.CallOption) (*Events, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Events)
-	err := c.cc.Invoke(ctx, Cybermetrica_GetGroupEvents_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *cybermetricaClient) AllMachinesWorkhours(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Workhours, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Workhours)
@@ -230,8 +206,6 @@ type CybermetricaServer interface {
 	CreateTelemetryParam(context.Context, *TelemertyParam) (*StatusReply, error)
 	UpdateTelemetryParam(context.Context, *TelemertyParam) (*StatusReply, error)
 	GetTimeline(context.Context, *TimelineRequest) (*Timeline, error)
-	GetEvents(context.Context, *TimelineRequest) (*Events, error)
-	GetGroupEvents(context.Context, *GroupEventsRequest) (*Events, error)
 	AllMachinesWorkhours(context.Context, *Empty) (*Workhours, error)
 	GetMachineWorkhourHistory(context.Context, *PageRequest) (*WorkhourHistory, error)
 	mustEmbedUnimplementedCybermetricaServer()
@@ -276,12 +250,6 @@ func (UnimplementedCybermetricaServer) UpdateTelemetryParam(context.Context, *Te
 }
 func (UnimplementedCybermetricaServer) GetTimeline(context.Context, *TimelineRequest) (*Timeline, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTimeline not implemented")
-}
-func (UnimplementedCybermetricaServer) GetEvents(context.Context, *TimelineRequest) (*Events, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetEvents not implemented")
-}
-func (UnimplementedCybermetricaServer) GetGroupEvents(context.Context, *GroupEventsRequest) (*Events, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetGroupEvents not implemented")
 }
 func (UnimplementedCybermetricaServer) AllMachinesWorkhours(context.Context, *Empty) (*Workhours, error) {
 	return nil, status.Error(codes.Unimplemented, "method AllMachinesWorkhours not implemented")
@@ -508,42 +476,6 @@ func _Cybermetrica_GetTimeline_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Cybermetrica_GetEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TimelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CybermetricaServer).GetEvents(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Cybermetrica_GetEvents_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CybermetricaServer).GetEvents(ctx, req.(*TimelineRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Cybermetrica_GetGroupEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GroupEventsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CybermetricaServer).GetGroupEvents(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Cybermetrica_GetGroupEvents_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CybermetricaServer).GetGroupEvents(ctx, req.(*GroupEventsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Cybermetrica_AllMachinesWorkhours_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
@@ -630,14 +562,6 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTimeline",
 			Handler:    _Cybermetrica_GetTimeline_Handler,
-		},
-		{
-			MethodName: "GetEvents",
-			Handler:    _Cybermetrica_GetEvents_Handler,
-		},
-		{
-			MethodName: "GetGroupEvents",
-			Handler:    _Cybermetrica_GetGroupEvents_Handler,
 		},
 		{
 			MethodName: "AllMachinesWorkhours",

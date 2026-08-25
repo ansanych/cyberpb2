@@ -24,7 +24,7 @@ const (
 type SetEventsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
-	Events        []*EventMessage        `protobuf:"bytes,2,rep,name=events,proto3" json:"events,omitempty"`
+	Events        []*Event               `protobuf:"bytes,2,rep,name=events,proto3" json:"events,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -66,7 +66,7 @@ func (x *SetEventsRequest) GetSn() string {
 	return ""
 }
 
-func (x *SetEventsRequest) GetEvents() []*EventMessage {
+func (x *SetEventsRequest) GetEvents() []*Event {
 	if x != nil {
 		return x.Events
 	}
@@ -203,7 +203,7 @@ func (x *GetGroupEventsRequest) GetTz() int32 {
 
 type EventsReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Events        []*EventMessage        `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
+	Events        []*Event               `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -238,177 +238,21 @@ func (*EventsReply) Descriptor() ([]byte, []int) {
 	return file_events_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *EventsReply) GetEvents() []*EventMessage {
+func (x *EventsReply) GetEvents() []*Event {
 	if x != nil {
 		return x.Events
 	}
 	return nil
 }
 
-type EventMessage struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	StartTime     string                 `protobuf:"bytes,2,opt,name=startTime,proto3" json:"startTime,omitempty"`
-	EndTime       string                 `protobuf:"bytes,3,opt,name=endTime,proto3" json:"endTime,omitempty"`
-	Type          string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
-	Level         string                 `protobuf:"bytes,5,opt,name=level,proto3" json:"level,omitempty"`
-	Message       string                 `protobuf:"bytes,6,opt,name=message,proto3" json:"message,omitempty"`
-	Description   string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
-	ErrorCode     float32                `protobuf:"fixed32,8,opt,name=errorCode,proto3" json:"errorCode,omitempty"`
-	IsValid       bool                   `protobuf:"varint,9,opt,name=isValid,proto3" json:"isValid,omitempty"`
-	System        string                 `protobuf:"bytes,10,opt,name=system,proto3" json:"system,omitempty"`
-	StartTimeUnix int64                  `protobuf:"varint,11,opt,name=startTimeUnix,proto3" json:"startTimeUnix,omitempty"`
-	EndTimeUnix   int64                  `protobuf:"varint,12,opt,name=endTimeUnix,proto3" json:"endTimeUnix,omitempty"`
-	Sn            string                 `protobuf:"bytes,13,opt,name=sn,proto3" json:"sn,omitempty"`
-	ConnectionId  int64                  `protobuf:"varint,14,opt,name=connectionId,proto3" json:"connectionId,omitempty"`
-	ErrorCodeInt  int32                  `protobuf:"varint,15,opt,name=errorCodeInt,proto3" json:"errorCodeInt,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EventMessage) Reset() {
-	*x = EventMessage{}
-	mi := &file_events_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EventMessage) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EventMessage) ProtoMessage() {}
-
-func (x *EventMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_events_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EventMessage.ProtoReflect.Descriptor instead.
-func (*EventMessage) Descriptor() ([]byte, []int) {
-	return file_events_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *EventMessage) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *EventMessage) GetStartTime() string {
-	if x != nil {
-		return x.StartTime
-	}
-	return ""
-}
-
-func (x *EventMessage) GetEndTime() string {
-	if x != nil {
-		return x.EndTime
-	}
-	return ""
-}
-
-func (x *EventMessage) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
-
-func (x *EventMessage) GetLevel() string {
-	if x != nil {
-		return x.Level
-	}
-	return ""
-}
-
-func (x *EventMessage) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *EventMessage) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
-func (x *EventMessage) GetErrorCode() float32 {
-	if x != nil {
-		return x.ErrorCode
-	}
-	return 0
-}
-
-func (x *EventMessage) GetIsValid() bool {
-	if x != nil {
-		return x.IsValid
-	}
-	return false
-}
-
-func (x *EventMessage) GetSystem() string {
-	if x != nil {
-		return x.System
-	}
-	return ""
-}
-
-func (x *EventMessage) GetStartTimeUnix() int64 {
-	if x != nil {
-		return x.StartTimeUnix
-	}
-	return 0
-}
-
-func (x *EventMessage) GetEndTimeUnix() int64 {
-	if x != nil {
-		return x.EndTimeUnix
-	}
-	return 0
-}
-
-func (x *EventMessage) GetSn() string {
-	if x != nil {
-		return x.Sn
-	}
-	return ""
-}
-
-func (x *EventMessage) GetConnectionId() int64 {
-	if x != nil {
-		return x.ConnectionId
-	}
-	return 0
-}
-
-func (x *EventMessage) GetErrorCodeInt() int32 {
-	if x != nil {
-		return x.ErrorCodeInt
-	}
-	return 0
-}
-
 var File_events_proto protoreflect.FileDescriptor
 
 const file_events_proto_rawDesc = "" +
 	"\n" +
-	"\fevents.proto\x12\tcybertele\x1a\vcyber.proto\"S\n" +
+	"\fevents.proto\x12\tcybertele\x1a\vcyber.proto\"L\n" +
 	"\x10SetEventsRequest\x12\x0e\n" +
-	"\x02sn\x18\x01 \x01(\tR\x02sn\x12/\n" +
-	"\x06events\x18\x02 \x03(\v2\x17.cybertele.EventMessageR\x06events\"q\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12(\n" +
+	"\x06events\x18\x02 \x03(\v2\x10.cybertele.EventR\x06events\"q\n" +
 	"\x17GetMachineEventsRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x12\n" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x12\x0e\n" +
@@ -417,26 +261,9 @@ const file_events_proto_rawDesc = "" +
 	"\x15GetGroupEventsRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x03(\tR\x02sn\x12\x12\n" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x12\x0e\n" +
-	"\x02tz\x18\x03 \x01(\x05R\x02tz\">\n" +
-	"\vEventsReply\x12/\n" +
-	"\x06events\x18\x01 \x03(\v2\x17.cybertele.EventMessageR\x06events\"\xac\x03\n" +
-	"\fEventMessage\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1c\n" +
-	"\tstartTime\x18\x02 \x01(\tR\tstartTime\x12\x18\n" +
-	"\aendTime\x18\x03 \x01(\tR\aendTime\x12\x12\n" +
-	"\x04type\x18\x04 \x01(\tR\x04type\x12\x14\n" +
-	"\x05level\x18\x05 \x01(\tR\x05level\x12\x18\n" +
-	"\amessage\x18\x06 \x01(\tR\amessage\x12 \n" +
-	"\vdescription\x18\a \x01(\tR\vdescription\x12\x1c\n" +
-	"\terrorCode\x18\b \x01(\x02R\terrorCode\x12\x18\n" +
-	"\aisValid\x18\t \x01(\bR\aisValid\x12\x16\n" +
-	"\x06system\x18\n" +
-	" \x01(\tR\x06system\x12$\n" +
-	"\rstartTimeUnix\x18\v \x01(\x03R\rstartTimeUnix\x12 \n" +
-	"\vendTimeUnix\x18\f \x01(\x03R\vendTimeUnix\x12\x0e\n" +
-	"\x02sn\x18\r \x01(\tR\x02sn\x12\"\n" +
-	"\fconnectionId\x18\x0e \x01(\x03R\fconnectionId\x12\"\n" +
-	"\ferrorCodeInt\x18\x0f \x01(\x05R\ferrorCodeInt2\xa7\x02\n" +
+	"\x02tz\x18\x03 \x01(\x05R\x02tz\"7\n" +
+	"\vEventsReply\x12(\n" +
+	"\x06events\x18\x01 \x03(\v2\x10.cybertele.EventR\x06events2\xa7\x02\n" +
 	"\vCyberevents\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12B\n" +
 	"\tSetEvents\x12\x1b.cybertele.SetEventsRequest\x1a\x16.cybertele.StatusReply\"\x00\x12P\n" +
@@ -455,20 +282,20 @@ func file_events_proto_rawDescGZIP() []byte {
 	return file_events_proto_rawDescData
 }
 
-var file_events_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_events_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_events_proto_goTypes = []any{
 	(*SetEventsRequest)(nil),        // 0: cybertele.SetEventsRequest
 	(*GetMachineEventsRequest)(nil), // 1: cybertele.GetMachineEventsRequest
 	(*GetGroupEventsRequest)(nil),   // 2: cybertele.GetGroupEventsRequest
 	(*EventsReply)(nil),             // 3: cybertele.EventsReply
-	(*EventMessage)(nil),            // 4: cybertele.EventMessage
+	(*Event)(nil),                   // 4: cybertele.Event
 	(*Empty)(nil),                   // 5: cybertele.Empty
 	(*HealthReply)(nil),             // 6: cybertele.HealthReply
 	(*StatusReply)(nil),             // 7: cybertele.StatusReply
 }
 var file_events_proto_depIdxs = []int32{
-	4, // 0: cybertele.SetEventsRequest.events:type_name -> cybertele.EventMessage
-	4, // 1: cybertele.EventsReply.events:type_name -> cybertele.EventMessage
+	4, // 0: cybertele.SetEventsRequest.events:type_name -> cybertele.Event
+	4, // 1: cybertele.EventsReply.events:type_name -> cybertele.Event
 	5, // 2: cybertele.Cyberevents.Health:input_type -> cybertele.Empty
 	0, // 3: cybertele.Cyberevents.SetEvents:input_type -> cybertele.SetEventsRequest
 	1, // 4: cybertele.Cyberevents.GetMachineEvents:input_type -> cybertele.GetMachineEventsRequest
@@ -496,7 +323,7 @@ func file_events_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_events_proto_rawDesc), len(file_events_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
