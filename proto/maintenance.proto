@@ -9,7 +9,7 @@ service MaintenanceForecast {
     rpc Health (Empty) returns (HealthReply) {}
     rpc GetForecast (ForecastRequest) returns (ForecastReply) {}
     rpc BuildForecast (ForecastRequest) returns (ForecastReply) {}
-    rpc GetMahineForecasts (ForecastRequest) returns (ForecastReply) {}
+    rpc GetMahineForecasts (ForecastRequest) returns (ForecastsReply) {}
 }
 
 message ForecastRequest {
@@ -28,4 +28,8 @@ message ForecastReply {
     repeated ForecastItem history = 3;
     repeated ForecastItem forecast = 4;
     repeated ForecastItem maintenance = 5;
+}
+
+message ForecastsReply {
+    repeated ForecastReply forecasts = 1;
 }

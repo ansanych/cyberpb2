@@ -201,6 +201,50 @@ func (x *ForecastReply) GetMaintenance() []*ForecastItem {
 	return nil
 }
 
+type ForecastsReply struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Forecasts     []*ForecastReply       `protobuf:"bytes,1,rep,name=forecasts,proto3" json:"forecasts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ForecastsReply) Reset() {
+	*x = ForecastsReply{}
+	mi := &file_maintenance_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ForecastsReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ForecastsReply) ProtoMessage() {}
+
+func (x *ForecastsReply) ProtoReflect() protoreflect.Message {
+	mi := &file_maintenance_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ForecastsReply.ProtoReflect.Descriptor instead.
+func (*ForecastsReply) Descriptor() ([]byte, []int) {
+	return file_maintenance_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ForecastsReply) GetForecasts() []*ForecastReply {
+	if x != nil {
+		return x.Forecasts
+	}
+	return nil
+}
+
 var File_maintenance_proto protoreflect.FileDescriptor
 
 const file_maintenance_proto_rawDesc = "" +
@@ -217,12 +261,14 @@ const file_maintenance_proto_rawDesc = "" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x121\n" +
 	"\ahistory\x18\x03 \x03(\v2\x17.cybertele.ForecastItemR\ahistory\x123\n" +
 	"\bforecast\x18\x04 \x03(\v2\x17.cybertele.ForecastItemR\bforecast\x129\n" +
-	"\vmaintenance\x18\x05 \x03(\v2\x17.cybertele.ForecastItemR\vmaintenance2\xa9\x02\n" +
+	"\vmaintenance\x18\x05 \x03(\v2\x17.cybertele.ForecastItemR\vmaintenance\"H\n" +
+	"\x0eForecastsReply\x126\n" +
+	"\tforecasts\x18\x01 \x03(\v2\x18.cybertele.ForecastReplyR\tforecasts2\xaa\x02\n" +
 	"\x13MaintenanceForecast\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12E\n" +
 	"\vGetForecast\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00\x12G\n" +
-	"\rBuildForecast\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00\x12L\n" +
-	"\x12GetMahineForecasts\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00B\tZ\a./protob\x06proto3"
+	"\rBuildForecast\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00\x12M\n" +
+	"\x12GetMahineForecasts\x12\x1a.cybertele.ForecastRequest\x1a\x19.cybertele.ForecastsReply\"\x00B\tZ\a./protob\x06proto3"
 
 var (
 	file_maintenance_proto_rawDescOnce sync.Once
@@ -236,31 +282,33 @@ func file_maintenance_proto_rawDescGZIP() []byte {
 	return file_maintenance_proto_rawDescData
 }
 
-var file_maintenance_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_maintenance_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_maintenance_proto_goTypes = []any{
 	(*ForecastRequest)(nil), // 0: cybertele.ForecastRequest
 	(*ForecastItem)(nil),    // 1: cybertele.ForecastItem
 	(*ForecastReply)(nil),   // 2: cybertele.ForecastReply
-	(*Empty)(nil),           // 3: cybertele.Empty
-	(*HealthReply)(nil),     // 4: cybertele.HealthReply
+	(*ForecastsReply)(nil),  // 3: cybertele.ForecastsReply
+	(*Empty)(nil),           // 4: cybertele.Empty
+	(*HealthReply)(nil),     // 5: cybertele.HealthReply
 }
 var file_maintenance_proto_depIdxs = []int32{
 	1, // 0: cybertele.ForecastReply.history:type_name -> cybertele.ForecastItem
 	1, // 1: cybertele.ForecastReply.forecast:type_name -> cybertele.ForecastItem
 	1, // 2: cybertele.ForecastReply.maintenance:type_name -> cybertele.ForecastItem
-	3, // 3: cybertele.MaintenanceForecast.Health:input_type -> cybertele.Empty
-	0, // 4: cybertele.MaintenanceForecast.GetForecast:input_type -> cybertele.ForecastRequest
-	0, // 5: cybertele.MaintenanceForecast.BuildForecast:input_type -> cybertele.ForecastRequest
-	0, // 6: cybertele.MaintenanceForecast.GetMahineForecasts:input_type -> cybertele.ForecastRequest
-	4, // 7: cybertele.MaintenanceForecast.Health:output_type -> cybertele.HealthReply
-	2, // 8: cybertele.MaintenanceForecast.GetForecast:output_type -> cybertele.ForecastReply
-	2, // 9: cybertele.MaintenanceForecast.BuildForecast:output_type -> cybertele.ForecastReply
-	2, // 10: cybertele.MaintenanceForecast.GetMahineForecasts:output_type -> cybertele.ForecastReply
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	2, // 3: cybertele.ForecastsReply.forecasts:type_name -> cybertele.ForecastReply
+	4, // 4: cybertele.MaintenanceForecast.Health:input_type -> cybertele.Empty
+	0, // 5: cybertele.MaintenanceForecast.GetForecast:input_type -> cybertele.ForecastRequest
+	0, // 6: cybertele.MaintenanceForecast.BuildForecast:input_type -> cybertele.ForecastRequest
+	0, // 7: cybertele.MaintenanceForecast.GetMahineForecasts:input_type -> cybertele.ForecastRequest
+	5, // 8: cybertele.MaintenanceForecast.Health:output_type -> cybertele.HealthReply
+	2, // 9: cybertele.MaintenanceForecast.GetForecast:output_type -> cybertele.ForecastReply
+	2, // 10: cybertele.MaintenanceForecast.BuildForecast:output_type -> cybertele.ForecastReply
+	3, // 11: cybertele.MaintenanceForecast.GetMahineForecasts:output_type -> cybertele.ForecastsReply
+	8, // [8:12] is the sub-list for method output_type
+	4, // [4:8] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_maintenance_proto_init() }
@@ -275,7 +323,7 @@ func file_maintenance_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_maintenance_proto_rawDesc), len(file_maintenance_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

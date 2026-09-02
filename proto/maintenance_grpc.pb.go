@@ -32,7 +32,7 @@ type MaintenanceForecastClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
 	GetForecast(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error)
 	BuildForecast(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error)
-	GetMahineForecasts(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error)
+	GetMahineForecasts(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastsReply, error)
 }
 
 type maintenanceForecastClient struct {
@@ -73,9 +73,9 @@ func (c *maintenanceForecastClient) BuildForecast(ctx context.Context, in *Forec
 	return out, nil
 }
 
-func (c *maintenanceForecastClient) GetMahineForecasts(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error) {
+func (c *maintenanceForecastClient) GetMahineForecasts(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastsReply, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ForecastReply)
+	out := new(ForecastsReply)
 	err := c.cc.Invoke(ctx, MaintenanceForecast_GetMahineForecasts_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -90,7 +90,7 @@ type MaintenanceForecastServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
 	GetForecast(context.Context, *ForecastRequest) (*ForecastReply, error)
 	BuildForecast(context.Context, *ForecastRequest) (*ForecastReply, error)
-	GetMahineForecasts(context.Context, *ForecastRequest) (*ForecastReply, error)
+	GetMahineForecasts(context.Context, *ForecastRequest) (*ForecastsReply, error)
 	mustEmbedUnimplementedMaintenanceForecastServer()
 }
 
@@ -110,7 +110,7 @@ func (UnimplementedMaintenanceForecastServer) GetForecast(context.Context, *Fore
 func (UnimplementedMaintenanceForecastServer) BuildForecast(context.Context, *ForecastRequest) (*ForecastReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method BuildForecast not implemented")
 }
-func (UnimplementedMaintenanceForecastServer) GetMahineForecasts(context.Context, *ForecastRequest) (*ForecastReply, error) {
+func (UnimplementedMaintenanceForecastServer) GetMahineForecasts(context.Context, *ForecastRequest) (*ForecastsReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMahineForecasts not implemented")
 }
 func (UnimplementedMaintenanceForecastServer) mustEmbedUnimplementedMaintenanceForecastServer() {}

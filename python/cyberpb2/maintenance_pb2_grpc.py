@@ -53,7 +53,7 @@ class MaintenanceForecastStub:
         self.GetMahineForecasts = channel.unary_unary(
                 '/cybertele.MaintenanceForecast/GetMahineForecasts',
                 request_serializer=maintenance__pb2.ForecastRequest.SerializeToString,
-                response_deserializer=maintenance__pb2.ForecastReply.FromString,
+                response_deserializer=maintenance__pb2.ForecastsReply.FromString,
                 _registered_method=True)
 
 
@@ -105,7 +105,7 @@ def add_MaintenanceForecastServicer_to_server(servicer, server):
             'GetMahineForecasts': grpc.unary_unary_rpc_method_handler(
                     servicer.GetMahineForecasts,
                     request_deserializer=maintenance__pb2.ForecastRequest.FromString,
-                    response_serializer=maintenance__pb2.ForecastReply.SerializeToString,
+                    response_serializer=maintenance__pb2.ForecastsReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -215,7 +215,7 @@ class MaintenanceForecast:
             target,
             '/cybertele.MaintenanceForecast/GetMahineForecasts',
             maintenance__pb2.ForecastRequest.SerializeToString,
-            maintenance__pb2.ForecastReply.FromString,
+            maintenance__pb2.ForecastsReply.FromString,
             options,
             channel_credentials,
             insecure,
