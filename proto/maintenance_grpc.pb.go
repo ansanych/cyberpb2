@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MaintenanceForecast_Health_FullMethodName = "/cybertele.MaintenanceForecast/Health"
+	MaintenanceForecast_Health_FullMethodName      = "/cybertele.MaintenanceForecast/Health"
+	MaintenanceForecast_GetForecast_FullMethodName = "/cybertele.MaintenanceForecast/GetForecast"
 )
 
 // MaintenanceForecastClient is the client API for MaintenanceForecast service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MaintenanceForecastClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
+	GetForecast(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error)
 }
 
 type maintenanceForecastClient struct {
@@ -47,11 +49,22 @@ func (c *maintenanceForecastClient) Health(ctx context.Context, in *Empty, opts 
 	return out, nil
 }
 
+func (c *maintenanceForecastClient) GetForecast(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ForecastReply)
+	err := c.cc.Invoke(ctx, MaintenanceForecast_GetForecast_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MaintenanceForecastServer is the server API for MaintenanceForecast service.
 // All implementations must embed UnimplementedMaintenanceForecastServer
 // for forward compatibility.
 type MaintenanceForecastServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
+	GetForecast(context.Context, *ForecastRequest) (*ForecastReply, error)
 	mustEmbedUnimplementedMaintenanceForecastServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedMaintenanceForecastServer struct{}
 
 func (UnimplementedMaintenanceForecastServer) Health(context.Context, *Empty) (*HealthReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method Health not implemented")
+}
+func (UnimplementedMaintenanceForecastServer) GetForecast(context.Context, *ForecastRequest) (*ForecastReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetForecast not implemented")
 }
 func (UnimplementedMaintenanceForecastServer) mustEmbedUnimplementedMaintenanceForecastServer() {}
 func (UnimplementedMaintenanceForecastServer) testEmbeddedByValue()                             {}
@@ -104,6 +120,24 @@ func _MaintenanceForecast_Health_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MaintenanceForecast_GetForecast_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForecastRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaintenanceForecastServer).GetForecast(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MaintenanceForecast_GetForecast_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaintenanceForecastServer).GetForecast(ctx, req.(*ForecastRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MaintenanceForecast_ServiceDesc is the grpc.ServiceDesc for MaintenanceForecast service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var MaintenanceForecast_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Health",
 			Handler:    _MaintenanceForecast_Health_Handler,
+		},
+		{
+			MethodName: "GetForecast",
+			Handler:    _MaintenanceForecast_GetForecast_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

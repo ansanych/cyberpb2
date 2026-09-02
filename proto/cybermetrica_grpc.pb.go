@@ -50,7 +50,7 @@ type CybermetricaClient interface {
 	UpdateTelemetryParam(ctx context.Context, in *TelemertyParam, opts ...grpc.CallOption) (*StatusReply, error)
 	GetTimeline(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Timeline, error)
 	AllMachinesWorkhours(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Workhours, error)
-	GetMachineWorkhourHistory(ctx context.Context, in *PageRequest, opts ...grpc.CallOption) (*WorkhourHistory, error)
+	GetMachineWorkhourHistory(ctx context.Context, in *HistoryRequest, opts ...grpc.CallOption) (*WorkhourHistory, error)
 }
 
 type cybermetricaClient struct {
@@ -181,7 +181,7 @@ func (c *cybermetricaClient) AllMachinesWorkhours(ctx context.Context, in *Empty
 	return out, nil
 }
 
-func (c *cybermetricaClient) GetMachineWorkhourHistory(ctx context.Context, in *PageRequest, opts ...grpc.CallOption) (*WorkhourHistory, error) {
+func (c *cybermetricaClient) GetMachineWorkhourHistory(ctx context.Context, in *HistoryRequest, opts ...grpc.CallOption) (*WorkhourHistory, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WorkhourHistory)
 	err := c.cc.Invoke(ctx, Cybermetrica_GetMachineWorkhourHistory_FullMethodName, in, out, cOpts...)
@@ -207,7 +207,7 @@ type CybermetricaServer interface {
 	UpdateTelemetryParam(context.Context, *TelemertyParam) (*StatusReply, error)
 	GetTimeline(context.Context, *TimelineRequest) (*Timeline, error)
 	AllMachinesWorkhours(context.Context, *Empty) (*Workhours, error)
-	GetMachineWorkhourHistory(context.Context, *PageRequest) (*WorkhourHistory, error)
+	GetMachineWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -254,7 +254,7 @@ func (UnimplementedCybermetricaServer) GetTimeline(context.Context, *TimelineReq
 func (UnimplementedCybermetricaServer) AllMachinesWorkhours(context.Context, *Empty) (*Workhours, error) {
 	return nil, status.Error(codes.Unimplemented, "method AllMachinesWorkhours not implemented")
 }
-func (UnimplementedCybermetricaServer) GetMachineWorkhourHistory(context.Context, *PageRequest) (*WorkhourHistory, error) {
+func (UnimplementedCybermetricaServer) GetMachineWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMachineWorkhourHistory not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
@@ -495,7 +495,7 @@ func _Cybermetrica_AllMachinesWorkhours_Handler(srv interface{}, ctx context.Con
 }
 
 func _Cybermetrica_GetMachineWorkhourHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PageRequest)
+	in := new(HistoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -507,7 +507,7 @@ func _Cybermetrica_GetMachineWorkhourHistory_Handler(srv interface{}, ctx contex
 		FullMethod: Cybermetrica_GetMachineWorkhourHistory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CybermetricaServer).GetMachineWorkhourHistory(ctx, req.(*PageRequest))
+		return srv.(CybermetricaServer).GetMachineWorkhourHistory(ctx, req.(*HistoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

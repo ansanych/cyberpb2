@@ -7,4 +7,23 @@ option go_package = "./proto";
 
 service MaintenanceForecast {
     rpc Health (Empty) returns (HealthReply) {}
+    rpc GetForecast (ForecastRequest) returns (ForecastReply) {}
+}
+
+message ForecastRequest {
+    string sn = 1;
+    string date = 2;
+}
+
+message ForecastItem {
+    string date = 1;
+    float value = 2;
+}
+
+message ForecastReply {
+    string sn = 1;
+    string date = 2;
+    repeated ForecastItem history = 3;
+    repeated ForecastItem forecast = 4;
+    repeated ForecastItem maintenance = 5;
 }

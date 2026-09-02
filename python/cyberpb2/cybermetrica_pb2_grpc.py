@@ -97,7 +97,7 @@ class CybermetricaStub:
                 _registered_method=True)
         self.GetMachineWorkhourHistory = channel.unary_unary(
                 '/cybertele.Cybermetrica/GetMachineWorkhourHistory',
-                request_serializer=cyber__pb2.PageRequest.SerializeToString,
+                request_serializer=cybermetrica__pb2.HistoryRequest.SerializeToString,
                 response_deserializer=cybermetrica__pb2.WorkhourHistory.FromString,
                 _registered_method=True)
 
@@ -248,7 +248,7 @@ def add_CybermetricaServicer_to_server(servicer, server):
             ),
             'GetMachineWorkhourHistory': grpc.unary_unary_rpc_method_handler(
                     servicer.GetMachineWorkhourHistory,
-                    request_deserializer=cyber__pb2.PageRequest.FromString,
+                    request_deserializer=cybermetrica__pb2.HistoryRequest.FromString,
                     response_serializer=cybermetrica__pb2.WorkhourHistory.SerializeToString,
             ),
     }
@@ -601,7 +601,7 @@ class Cybermetrica:
             request,
             target,
             '/cybertele.Cybermetrica/GetMachineWorkhourHistory',
-            cyber__pb2.PageRequest.SerializeToString,
+            cybermetrica__pb2.HistoryRequest.SerializeToString,
             cybermetrica__pb2.WorkhourHistory.FromString,
             options,
             channel_credentials,

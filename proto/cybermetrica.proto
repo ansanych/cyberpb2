@@ -18,7 +18,12 @@ service Cybermetrica {
     rpc UpdateTelemetryParam (TelemertyParam) returns (StatusReply) {}
     rpc GetTimeline (TimelineRequest) returns (Timeline) {}
     rpc AllMachinesWorkhours (Empty) returns (Workhours) {}
-    rpc GetMachineWorkhourHistory(PageRequest) returns (WorkhourHistory) {}
+    rpc GetMachineWorkhourHistory(HistoryRequest) returns (WorkhourHistory) {}
+}
+
+message HistoryRequest {
+    string sn = 1;
+    string date = 2;
 }
 
 message WorkhourItem {

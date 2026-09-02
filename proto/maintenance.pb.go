@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -20,26 +21,240 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type ForecastRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Date          string                 `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ForecastRequest) Reset() {
+	*x = ForecastRequest{}
+	mi := &file_maintenance_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ForecastRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ForecastRequest) ProtoMessage() {}
+
+func (x *ForecastRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_maintenance_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ForecastRequest.ProtoReflect.Descriptor instead.
+func (*ForecastRequest) Descriptor() ([]byte, []int) {
+	return file_maintenance_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *ForecastRequest) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *ForecastRequest) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+type ForecastItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Date          string                 `protobuf:"bytes,1,opt,name=date,proto3" json:"date,omitempty"`
+	Value         float32                `protobuf:"fixed32,2,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ForecastItem) Reset() {
+	*x = ForecastItem{}
+	mi := &file_maintenance_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ForecastItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ForecastItem) ProtoMessage() {}
+
+func (x *ForecastItem) ProtoReflect() protoreflect.Message {
+	mi := &file_maintenance_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ForecastItem.ProtoReflect.Descriptor instead.
+func (*ForecastItem) Descriptor() ([]byte, []int) {
+	return file_maintenance_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ForecastItem) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+func (x *ForecastItem) GetValue() float32 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+type ForecastReply struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Date          string                 `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
+	History       []*ForecastItem        `protobuf:"bytes,3,rep,name=history,proto3" json:"history,omitempty"`
+	Forecast      []*ForecastItem        `protobuf:"bytes,4,rep,name=forecast,proto3" json:"forecast,omitempty"`
+	Maintenance   []*ForecastItem        `protobuf:"bytes,5,rep,name=maintenance,proto3" json:"maintenance,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ForecastReply) Reset() {
+	*x = ForecastReply{}
+	mi := &file_maintenance_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ForecastReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ForecastReply) ProtoMessage() {}
+
+func (x *ForecastReply) ProtoReflect() protoreflect.Message {
+	mi := &file_maintenance_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ForecastReply.ProtoReflect.Descriptor instead.
+func (*ForecastReply) Descriptor() ([]byte, []int) {
+	return file_maintenance_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ForecastReply) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *ForecastReply) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+func (x *ForecastReply) GetHistory() []*ForecastItem {
+	if x != nil {
+		return x.History
+	}
+	return nil
+}
+
+func (x *ForecastReply) GetForecast() []*ForecastItem {
+	if x != nil {
+		return x.Forecast
+	}
+	return nil
+}
+
+func (x *ForecastReply) GetMaintenance() []*ForecastItem {
+	if x != nil {
+		return x.Maintenance
+	}
+	return nil
+}
+
 var File_maintenance_proto protoreflect.FileDescriptor
 
 const file_maintenance_proto_rawDesc = "" +
 	"\n" +
-	"\x11maintenance.proto\x12\tcybertele\x1a\vcyber.proto2K\n" +
+	"\x11maintenance.proto\x12\tcybertele\x1a\vcyber.proto\"5\n" +
+	"\x0fForecastRequest\x12\x0e\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x12\n" +
+	"\x04date\x18\x02 \x01(\tR\x04date\"8\n" +
+	"\fForecastItem\x12\x12\n" +
+	"\x04date\x18\x01 \x01(\tR\x04date\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x02R\x05value\"\xd6\x01\n" +
+	"\rForecastReply\x12\x0e\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x12\n" +
+	"\x04date\x18\x02 \x01(\tR\x04date\x121\n" +
+	"\ahistory\x18\x03 \x03(\v2\x17.cybertele.ForecastItemR\ahistory\x123\n" +
+	"\bforecast\x18\x04 \x03(\v2\x17.cybertele.ForecastItemR\bforecast\x129\n" +
+	"\vmaintenance\x18\x05 \x03(\v2\x17.cybertele.ForecastItemR\vmaintenance2\x92\x01\n" +
 	"\x13MaintenanceForecast\x124\n" +
-	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00B\tZ\a./protob\x06proto3"
+	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12E\n" +
+	"\vGetForecast\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00B\tZ\a./protob\x06proto3"
 
+var (
+	file_maintenance_proto_rawDescOnce sync.Once
+	file_maintenance_proto_rawDescData []byte
+)
+
+func file_maintenance_proto_rawDescGZIP() []byte {
+	file_maintenance_proto_rawDescOnce.Do(func() {
+		file_maintenance_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_maintenance_proto_rawDesc), len(file_maintenance_proto_rawDesc)))
+	})
+	return file_maintenance_proto_rawDescData
+}
+
+var file_maintenance_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_maintenance_proto_goTypes = []any{
-	(*Empty)(nil),       // 0: cybertele.Empty
-	(*HealthReply)(nil), // 1: cybertele.HealthReply
+	(*ForecastRequest)(nil), // 0: cybertele.ForecastRequest
+	(*ForecastItem)(nil),    // 1: cybertele.ForecastItem
+	(*ForecastReply)(nil),   // 2: cybertele.ForecastReply
+	(*Empty)(nil),           // 3: cybertele.Empty
+	(*HealthReply)(nil),     // 4: cybertele.HealthReply
 }
 var file_maintenance_proto_depIdxs = []int32{
-	0, // 0: cybertele.MaintenanceForecast.Health:input_type -> cybertele.Empty
-	1, // 1: cybertele.MaintenanceForecast.Health:output_type -> cybertele.HealthReply
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: cybertele.ForecastReply.history:type_name -> cybertele.ForecastItem
+	1, // 1: cybertele.ForecastReply.forecast:type_name -> cybertele.ForecastItem
+	1, // 2: cybertele.ForecastReply.maintenance:type_name -> cybertele.ForecastItem
+	3, // 3: cybertele.MaintenanceForecast.Health:input_type -> cybertele.Empty
+	0, // 4: cybertele.MaintenanceForecast.GetForecast:input_type -> cybertele.ForecastRequest
+	4, // 5: cybertele.MaintenanceForecast.Health:output_type -> cybertele.HealthReply
+	2, // 6: cybertele.MaintenanceForecast.GetForecast:output_type -> cybertele.ForecastReply
+	5, // [5:7] is the sub-list for method output_type
+	3, // [3:5] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_maintenance_proto_init() }
@@ -54,12 +269,13 @@ func file_maintenance_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_maintenance_proto_rawDesc), len(file_maintenance_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_maintenance_proto_goTypes,
 		DependencyIndexes: file_maintenance_proto_depIdxs,
+		MessageInfos:      file_maintenance_proto_msgTypes,
 	}.Build()
 	File_maintenance_proto = out.File
 	file_maintenance_proto_goTypes = nil
