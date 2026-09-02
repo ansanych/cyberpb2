@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 import cyber_pb2 as cyber__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11maintenance.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"+\n\x0f\x46orecastRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\"+\n\x0c\x46orecastItem\x12\x0c\n\x04\x64\x61te\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"\xac\x01\n\rForecastReply\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12(\n\x07history\x18\x03 \x03(\x0b\x32\x17.cybertele.ForecastItem\x12)\n\x08\x66orecast\x18\x04 \x03(\x0b\x32\x17.cybertele.ForecastItem\x12,\n\x0bmaintenance\x18\x05 \x03(\x0b\x32\x17.cybertele.ForecastItem2\x92\x01\n\x13MaintenanceForecast\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12\x45\n\x0bGetForecast\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00\x42\tZ\x07./protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11maintenance.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"+\n\x0f\x46orecastRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\"+\n\x0c\x46orecastItem\x12\x0c\n\x04\x64\x61te\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"\xac\x01\n\rForecastReply\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12(\n\x07history\x18\x03 \x03(\x0b\x32\x17.cybertele.ForecastItem\x12)\n\x08\x66orecast\x18\x04 \x03(\x0b\x32\x17.cybertele.ForecastItem\x12,\n\x0bmaintenance\x18\x05 \x03(\x0b\x32\x17.cybertele.ForecastItem2\xa9\x02\n\x13MaintenanceForecast\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12\x45\n\x0bGetForecast\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00\x12G\n\rBuildForecast\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00\x12L\n\x12GetMahineForecasts\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00\x42\tZ\x07./protob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -40,5 +40,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_FORECASTREPLY']._serialized_start=136
   _globals['_FORECASTREPLY']._serialized_end=308
   _globals['_MAINTENANCEFORECAST']._serialized_start=311
-  _globals['_MAINTENANCEFORECAST']._serialized_end=457
+  _globals['_MAINTENANCEFORECAST']._serialized_end=608
 # @@protoc_insertion_point(module_scope)

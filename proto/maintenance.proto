@@ -8,6 +8,8 @@ option go_package = "./proto";
 service MaintenanceForecast {
     rpc Health (Empty) returns (HealthReply) {}
     rpc GetForecast (ForecastRequest) returns (ForecastReply) {}
+    rpc BuildForecast (ForecastRequest) returns (ForecastReply) {}
+    rpc GetMahineForecasts (ForecastRequest) returns (ForecastReply) {}
 }
 
 message ForecastRequest {

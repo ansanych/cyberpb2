@@ -45,6 +45,16 @@ class MaintenanceForecastStub:
                 request_serializer=maintenance__pb2.ForecastRequest.SerializeToString,
                 response_deserializer=maintenance__pb2.ForecastReply.FromString,
                 _registered_method=True)
+        self.BuildForecast = channel.unary_unary(
+                '/cybertele.MaintenanceForecast/BuildForecast',
+                request_serializer=maintenance__pb2.ForecastRequest.SerializeToString,
+                response_deserializer=maintenance__pb2.ForecastReply.FromString,
+                _registered_method=True)
+        self.GetMahineForecasts = channel.unary_unary(
+                '/cybertele.MaintenanceForecast/GetMahineForecasts',
+                request_serializer=maintenance__pb2.ForecastRequest.SerializeToString,
+                response_deserializer=maintenance__pb2.ForecastReply.FromString,
+                _registered_method=True)
 
 
 class MaintenanceForecastServicer:
@@ -62,6 +72,18 @@ class MaintenanceForecastServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def BuildForecast(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMahineForecasts(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MaintenanceForecastServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -72,6 +94,16 @@ def add_MaintenanceForecastServicer_to_server(servicer, server):
             ),
             'GetForecast': grpc.unary_unary_rpc_method_handler(
                     servicer.GetForecast,
+                    request_deserializer=maintenance__pb2.ForecastRequest.FromString,
+                    response_serializer=maintenance__pb2.ForecastReply.SerializeToString,
+            ),
+            'BuildForecast': grpc.unary_unary_rpc_method_handler(
+                    servicer.BuildForecast,
+                    request_deserializer=maintenance__pb2.ForecastRequest.FromString,
+                    response_serializer=maintenance__pb2.ForecastReply.SerializeToString,
+            ),
+            'GetMahineForecasts': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMahineForecasts,
                     request_deserializer=maintenance__pb2.ForecastRequest.FromString,
                     response_serializer=maintenance__pb2.ForecastReply.SerializeToString,
             ),
@@ -128,6 +160,60 @@ class MaintenanceForecast:
             request,
             target,
             '/cybertele.MaintenanceForecast/GetForecast',
+            maintenance__pb2.ForecastRequest.SerializeToString,
+            maintenance__pb2.ForecastReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BuildForecast(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.MaintenanceForecast/BuildForecast',
+            maintenance__pb2.ForecastRequest.SerializeToString,
+            maintenance__pb2.ForecastReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMahineForecasts(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.MaintenanceForecast/GetMahineForecasts',
             maintenance__pb2.ForecastRequest.SerializeToString,
             maintenance__pb2.ForecastReply.FromString,
             options,

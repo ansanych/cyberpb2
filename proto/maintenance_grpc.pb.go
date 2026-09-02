@@ -19,8 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MaintenanceForecast_Health_FullMethodName      = "/cybertele.MaintenanceForecast/Health"
-	MaintenanceForecast_GetForecast_FullMethodName = "/cybertele.MaintenanceForecast/GetForecast"
+	MaintenanceForecast_Health_FullMethodName             = "/cybertele.MaintenanceForecast/Health"
+	MaintenanceForecast_GetForecast_FullMethodName        = "/cybertele.MaintenanceForecast/GetForecast"
+	MaintenanceForecast_BuildForecast_FullMethodName      = "/cybertele.MaintenanceForecast/BuildForecast"
+	MaintenanceForecast_GetMahineForecasts_FullMethodName = "/cybertele.MaintenanceForecast/GetMahineForecasts"
 )
 
 // MaintenanceForecastClient is the client API for MaintenanceForecast service.
@@ -29,6 +31,8 @@ const (
 type MaintenanceForecastClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
 	GetForecast(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error)
+	BuildForecast(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error)
+	GetMahineForecasts(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error)
 }
 
 type maintenanceForecastClient struct {
@@ -59,12 +63,34 @@ func (c *maintenanceForecastClient) GetForecast(ctx context.Context, in *Forecas
 	return out, nil
 }
 
+func (c *maintenanceForecastClient) BuildForecast(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ForecastReply)
+	err := c.cc.Invoke(ctx, MaintenanceForecast_BuildForecast_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *maintenanceForecastClient) GetMahineForecasts(ctx context.Context, in *ForecastRequest, opts ...grpc.CallOption) (*ForecastReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ForecastReply)
+	err := c.cc.Invoke(ctx, MaintenanceForecast_GetMahineForecasts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MaintenanceForecastServer is the server API for MaintenanceForecast service.
 // All implementations must embed UnimplementedMaintenanceForecastServer
 // for forward compatibility.
 type MaintenanceForecastServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
 	GetForecast(context.Context, *ForecastRequest) (*ForecastReply, error)
+	BuildForecast(context.Context, *ForecastRequest) (*ForecastReply, error)
+	GetMahineForecasts(context.Context, *ForecastRequest) (*ForecastReply, error)
 	mustEmbedUnimplementedMaintenanceForecastServer()
 }
 
@@ -80,6 +106,12 @@ func (UnimplementedMaintenanceForecastServer) Health(context.Context, *Empty) (*
 }
 func (UnimplementedMaintenanceForecastServer) GetForecast(context.Context, *ForecastRequest) (*ForecastReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetForecast not implemented")
+}
+func (UnimplementedMaintenanceForecastServer) BuildForecast(context.Context, *ForecastRequest) (*ForecastReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method BuildForecast not implemented")
+}
+func (UnimplementedMaintenanceForecastServer) GetMahineForecasts(context.Context, *ForecastRequest) (*ForecastReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMahineForecasts not implemented")
 }
 func (UnimplementedMaintenanceForecastServer) mustEmbedUnimplementedMaintenanceForecastServer() {}
 func (UnimplementedMaintenanceForecastServer) testEmbeddedByValue()                             {}
@@ -138,6 +170,42 @@ func _MaintenanceForecast_GetForecast_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MaintenanceForecast_BuildForecast_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForecastRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaintenanceForecastServer).BuildForecast(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MaintenanceForecast_BuildForecast_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaintenanceForecastServer).BuildForecast(ctx, req.(*ForecastRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MaintenanceForecast_GetMahineForecasts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForecastRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaintenanceForecastServer).GetMahineForecasts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MaintenanceForecast_GetMahineForecasts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaintenanceForecastServer).GetMahineForecasts(ctx, req.(*ForecastRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MaintenanceForecast_ServiceDesc is the grpc.ServiceDesc for MaintenanceForecast service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +220,14 @@ var MaintenanceForecast_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetForecast",
 			Handler:    _MaintenanceForecast_GetForecast_Handler,
+		},
+		{
+			MethodName: "BuildForecast",
+			Handler:    _MaintenanceForecast_BuildForecast_Handler,
+		},
+		{
+			MethodName: "GetMahineForecasts",
+			Handler:    _MaintenanceForecast_GetMahineForecasts_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

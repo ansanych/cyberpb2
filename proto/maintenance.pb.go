@@ -217,10 +217,12 @@ const file_maintenance_proto_rawDesc = "" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x121\n" +
 	"\ahistory\x18\x03 \x03(\v2\x17.cybertele.ForecastItemR\ahistory\x123\n" +
 	"\bforecast\x18\x04 \x03(\v2\x17.cybertele.ForecastItemR\bforecast\x129\n" +
-	"\vmaintenance\x18\x05 \x03(\v2\x17.cybertele.ForecastItemR\vmaintenance2\x92\x01\n" +
+	"\vmaintenance\x18\x05 \x03(\v2\x17.cybertele.ForecastItemR\vmaintenance2\xa9\x02\n" +
 	"\x13MaintenanceForecast\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12E\n" +
-	"\vGetForecast\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00B\tZ\a./protob\x06proto3"
+	"\vGetForecast\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00\x12G\n" +
+	"\rBuildForecast\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00\x12L\n" +
+	"\x12GetMahineForecasts\x12\x1a.cybertele.ForecastRequest\x1a\x18.cybertele.ForecastReply\"\x00B\tZ\a./protob\x06proto3"
 
 var (
 	file_maintenance_proto_rawDescOnce sync.Once
@@ -248,10 +250,14 @@ var file_maintenance_proto_depIdxs = []int32{
 	1, // 2: cybertele.ForecastReply.maintenance:type_name -> cybertele.ForecastItem
 	3, // 3: cybertele.MaintenanceForecast.Health:input_type -> cybertele.Empty
 	0, // 4: cybertele.MaintenanceForecast.GetForecast:input_type -> cybertele.ForecastRequest
-	4, // 5: cybertele.MaintenanceForecast.Health:output_type -> cybertele.HealthReply
-	2, // 6: cybertele.MaintenanceForecast.GetForecast:output_type -> cybertele.ForecastReply
-	5, // [5:7] is the sub-list for method output_type
-	3, // [3:5] is the sub-list for method input_type
+	0, // 5: cybertele.MaintenanceForecast.BuildForecast:input_type -> cybertele.ForecastRequest
+	0, // 6: cybertele.MaintenanceForecast.GetMahineForecasts:input_type -> cybertele.ForecastRequest
+	4, // 7: cybertele.MaintenanceForecast.Health:output_type -> cybertele.HealthReply
+	2, // 8: cybertele.MaintenanceForecast.GetForecast:output_type -> cybertele.ForecastReply
+	2, // 9: cybertele.MaintenanceForecast.BuildForecast:output_type -> cybertele.ForecastReply
+	2, // 10: cybertele.MaintenanceForecast.GetMahineForecasts:output_type -> cybertele.ForecastReply
+	7, // [7:11] is the sub-list for method output_type
+	3, // [3:7] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
 	3, // [3:3] is the sub-list for extension extendee
 	0, // [0:3] is the sub-list for field type_name
