@@ -28,6 +28,7 @@ message ForecastReply {
     repeated ForecastItem history = 3;
     repeated ForecastItem forecast = 4;
     repeated ForecastItem maintenance = 5;
+    int32 periodicity = 6;
 }
 
 message ForecastsReply {

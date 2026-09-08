@@ -32,6 +32,7 @@ const (
 	Cybermetrica_GetTimeline_FullMethodName               = "/cybertele.Cybermetrica/GetTimeline"
 	Cybermetrica_AllMachinesWorkhours_FullMethodName      = "/cybertele.Cybermetrica/AllMachinesWorkhours"
 	Cybermetrica_GetMachineWorkhourHistory_FullMethodName = "/cybertele.Cybermetrica/GetMachineWorkhourHistory"
+	Cybermetrica_GetLastMachinesData_FullMethodName       = "/cybertele.Cybermetrica/GetLastMachinesData"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -51,6 +52,7 @@ type CybermetricaClient interface {
 	GetTimeline(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Timeline, error)
 	AllMachinesWorkhours(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Workhours, error)
 	GetMachineWorkhourHistory(ctx context.Context, in *HistoryRequest, opts ...grpc.CallOption) (*WorkhourHistory, error)
+	GetLastMachinesData(ctx context.Context, in *LastDataRequest, opts ...grpc.CallOption) (*Timeline, error)
 }
 
 type cybermetricaClient struct {
@@ -191,6 +193,16 @@ func (c *cybermetricaClient) GetMachineWorkhourHistory(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *cybermetricaClient) GetLastMachinesData(ctx context.Context, in *LastDataRequest, opts ...grpc.CallOption) (*Timeline, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Timeline)
+	err := c.cc.Invoke(ctx, Cybermetrica_GetLastMachinesData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CybermetricaServer is the server API for Cybermetrica service.
 // All implementations must embed UnimplementedCybermetricaServer
 // for forward compatibility.
@@ -208,6 +220,7 @@ type CybermetricaServer interface {
 	GetTimeline(context.Context, *TimelineRequest) (*Timeline, error)
 	AllMachinesWorkhours(context.Context, *Empty) (*Workhours, error)
 	GetMachineWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error)
+	GetLastMachinesData(context.Context, *LastDataRequest) (*Timeline, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -256,6 +269,9 @@ func (UnimplementedCybermetricaServer) AllMachinesWorkhours(context.Context, *Em
 }
 func (UnimplementedCybermetricaServer) GetMachineWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMachineWorkhourHistory not implemented")
+}
+func (UnimplementedCybermetricaServer) GetLastMachinesData(context.Context, *LastDataRequest) (*Timeline, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetLastMachinesData not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
 func (UnimplementedCybermetricaServer) testEmbeddedByValue()                      {}
@@ -512,6 +528,24 @@ func _Cybermetrica_GetMachineWorkhourHistory_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cybermetrica_GetLastMachinesData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LastDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).GetLastMachinesData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_GetLastMachinesData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).GetLastMachinesData(ctx, req.(*LastDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cybermetrica_ServiceDesc is the grpc.ServiceDesc for Cybermetrica service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -570,6 +604,10 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMachineWorkhourHistory",
 			Handler:    _Cybermetrica_GetMachineWorkhourHistory_Handler,
+		},
+		{
+			MethodName: "GetLastMachinesData",
+			Handler:    _Cybermetrica_GetLastMachinesData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

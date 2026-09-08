@@ -132,6 +132,7 @@ type ForecastReply struct {
 	History       []*ForecastItem        `protobuf:"bytes,3,rep,name=history,proto3" json:"history,omitempty"`
 	Forecast      []*ForecastItem        `protobuf:"bytes,4,rep,name=forecast,proto3" json:"forecast,omitempty"`
 	Maintenance   []*ForecastItem        `protobuf:"bytes,5,rep,name=maintenance,proto3" json:"maintenance,omitempty"`
+	Periodicity   int32                  `protobuf:"varint,6,opt,name=periodicity,proto3" json:"periodicity,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -201,6 +202,13 @@ func (x *ForecastReply) GetMaintenance() []*ForecastItem {
 	return nil
 }
 
+func (x *ForecastReply) GetPeriodicity() int32 {
+	if x != nil {
+		return x.Periodicity
+	}
+	return 0
+}
+
 type ForecastsReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Forecasts     []*ForecastReply       `protobuf:"bytes,1,rep,name=forecasts,proto3" json:"forecasts,omitempty"`
@@ -255,13 +263,14 @@ const file_maintenance_proto_rawDesc = "" +
 	"\x04date\x18\x02 \x01(\tR\x04date\"8\n" +
 	"\fForecastItem\x12\x12\n" +
 	"\x04date\x18\x01 \x01(\tR\x04date\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x02R\x05value\"\xd6\x01\n" +
+	"\x05value\x18\x02 \x01(\x02R\x05value\"\xf8\x01\n" +
 	"\rForecastReply\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x12\n" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x121\n" +
 	"\ahistory\x18\x03 \x03(\v2\x17.cybertele.ForecastItemR\ahistory\x123\n" +
 	"\bforecast\x18\x04 \x03(\v2\x17.cybertele.ForecastItemR\bforecast\x129\n" +
-	"\vmaintenance\x18\x05 \x03(\v2\x17.cybertele.ForecastItemR\vmaintenance\"H\n" +
+	"\vmaintenance\x18\x05 \x03(\v2\x17.cybertele.ForecastItemR\vmaintenance\x12 \n" +
+	"\vperiodicity\x18\x06 \x01(\x05R\vperiodicity\"H\n" +
 	"\x0eForecastsReply\x126\n" +
 	"\tforecasts\x18\x01 \x03(\v2\x18.cybertele.ForecastReplyR\tforecasts2\xaa\x02\n" +
 	"\x13MaintenanceForecast\x124\n" +
