@@ -52,7 +52,7 @@ type CybermetricaClient interface {
 	GetTimeline(ctx context.Context, in *TimelineRequest, opts ...grpc.CallOption) (*Timeline, error)
 	AllMachinesWorkhours(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Workhours, error)
 	GetMachineWorkhourHistory(ctx context.Context, in *HistoryRequest, opts ...grpc.CallOption) (*WorkhourHistory, error)
-	GetLastMachinesData(ctx context.Context, in *LastDataRequest, opts ...grpc.CallOption) (*Timeline, error)
+	GetLastMachinesData(ctx context.Context, in *LastDataRequest, opts ...grpc.CallOption) (*LastDatas, error)
 }
 
 type cybermetricaClient struct {
@@ -193,9 +193,9 @@ func (c *cybermetricaClient) GetMachineWorkhourHistory(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *cybermetricaClient) GetLastMachinesData(ctx context.Context, in *LastDataRequest, opts ...grpc.CallOption) (*Timeline, error) {
+func (c *cybermetricaClient) GetLastMachinesData(ctx context.Context, in *LastDataRequest, opts ...grpc.CallOption) (*LastDatas, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Timeline)
+	out := new(LastDatas)
 	err := c.cc.Invoke(ctx, Cybermetrica_GetLastMachinesData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -220,7 +220,7 @@ type CybermetricaServer interface {
 	GetTimeline(context.Context, *TimelineRequest) (*Timeline, error)
 	AllMachinesWorkhours(context.Context, *Empty) (*Workhours, error)
 	GetMachineWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error)
-	GetLastMachinesData(context.Context, *LastDataRequest) (*Timeline, error)
+	GetLastMachinesData(context.Context, *LastDataRequest) (*LastDatas, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -270,7 +270,7 @@ func (UnimplementedCybermetricaServer) AllMachinesWorkhours(context.Context, *Em
 func (UnimplementedCybermetricaServer) GetMachineWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMachineWorkhourHistory not implemented")
 }
-func (UnimplementedCybermetricaServer) GetLastMachinesData(context.Context, *LastDataRequest) (*Timeline, error) {
+func (UnimplementedCybermetricaServer) GetLastMachinesData(context.Context, *LastDataRequest) (*LastDatas, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetLastMachinesData not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}

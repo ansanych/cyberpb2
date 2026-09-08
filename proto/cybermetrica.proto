@@ -19,15 +19,27 @@ service Cybermetrica {
     rpc GetTimeline (TimelineRequest) returns (Timeline) {}
     rpc AllMachinesWorkhours (Empty) returns (Workhours) {}
     rpc GetMachineWorkhourHistory(HistoryRequest) returns (WorkhourHistory) {}
-    rpc GetLastMachinesData (LastDataRequest) returns (Timeline) {}
+    rpc GetLastMachinesData (LastDataRequest) returns (LastDatas) {}
 }
 
 message LastDataRequest {
     repeated string sn = 1;
-    string date = 2;
-    int32 tz = 3;
+    int32 tz = 2;
 }
 
+message LastData {
+  string   sn             = 1;  
+  repeated string params = 2;   
+  repeated LastDataRow data = 3; 
+}
+
+message LastDataRow {
+  repeated float dataValues = 1; 
+}
+
+message LastDatas {
+  repeated LastData machines = 1; 
+}
 
 message HistoryRequest {
     string sn = 1;

@@ -103,7 +103,7 @@ class CybermetricaStub:
         self.GetLastMachinesData = channel.unary_unary(
                 '/cybertele.Cybermetrica/GetLastMachinesData',
                 request_serializer=cybermetrica__pb2.LastDataRequest.SerializeToString,
-                response_deserializer=cybermetrica__pb2.Timeline.FromString,
+                response_deserializer=cybermetrica__pb2.LastDatas.FromString,
                 _registered_method=True)
 
 
@@ -265,7 +265,7 @@ def add_CybermetricaServicer_to_server(servicer, server):
             'GetLastMachinesData': grpc.unary_unary_rpc_method_handler(
                     servicer.GetLastMachinesData,
                     request_deserializer=cybermetrica__pb2.LastDataRequest.FromString,
-                    response_serializer=cybermetrica__pb2.Timeline.SerializeToString,
+                    response_serializer=cybermetrica__pb2.LastDatas.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -645,7 +645,7 @@ class Cybermetrica:
             target,
             '/cybertele.Cybermetrica/GetLastMachinesData',
             cybermetrica__pb2.LastDataRequest.SerializeToString,
-            cybermetrica__pb2.Timeline.FromString,
+            cybermetrica__pb2.LastDatas.FromString,
             options,
             channel_credentials,
             insecure,
