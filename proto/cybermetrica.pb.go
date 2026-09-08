@@ -78,6 +78,7 @@ type LastData struct {
 	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 	Params        []string               `protobuf:"bytes,2,rep,name=params,proto3" json:"params,omitempty"`
 	Data          []*LastDataRow         `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
+	Datetime      string                 `protobuf:"bytes,4,opt,name=datetime,proto3" json:"datetime,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -131,6 +132,13 @@ func (x *LastData) GetData() []*LastDataRow {
 		return x.Data
 	}
 	return nil
+}
+
+func (x *LastData) GetDatetime() string {
+	if x != nil {
+		return x.Datetime
+	}
+	return ""
 }
 
 type LastDataRow struct {
@@ -1592,11 +1600,12 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x12cybermetrica.proto\x12\tcybertele\x1a\vcyber.proto\"1\n" +
 	"\x0fLastDataRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x03(\tR\x02sn\x12\x0e\n" +
-	"\x02tz\x18\x02 \x01(\x05R\x02tz\"^\n" +
+	"\x02tz\x18\x02 \x01(\x05R\x02tz\"z\n" +
 	"\bLastData\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x16\n" +
 	"\x06params\x18\x02 \x03(\tR\x06params\x12*\n" +
-	"\x04data\x18\x03 \x03(\v2\x16.cybertele.LastDataRowR\x04data\"-\n" +
+	"\x04data\x18\x03 \x03(\v2\x16.cybertele.LastDataRowR\x04data\x12\x1a\n" +
+	"\bdatetime\x18\x04 \x01(\tR\bdatetime\"-\n" +
 	"\vLastDataRow\x12\x1e\n" +
 	"\n" +
 	"dataValues\x18\x01 \x03(\x02R\n" +
