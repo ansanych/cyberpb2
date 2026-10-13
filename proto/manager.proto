@@ -1,0 +1,13 @@
+syntax = "proto3";
+import "cyber.proto";
+
+package cybertele;
+
+option go_package = "./proto";
+
+service Manager {
+    rpc Health (Empty) returns (HealthReply) {}
+    rpc SetSetCyberService(CyberService) returns (StatusReply) {}
+    rpc GetCyberService(StringRequest) returns (CyberService) {}
+    rpc GetCyberServices(Empty) returns (CyberServices) {}
+}

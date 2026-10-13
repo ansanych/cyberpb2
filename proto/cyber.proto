@@ -140,3 +140,17 @@ message Event {
 message Count {
     int32 count = 1;
 }
+
+message CyberService {
+    string service = 1;
+    string host = 2;
+    int32 port = 3;
+}
+
+message CyberServices {
+    repeated CyberService services = 1;
+}
+
+message StringRequest {
+    string request = 1;
+}

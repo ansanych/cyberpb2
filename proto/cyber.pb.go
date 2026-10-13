@@ -1285,6 +1285,154 @@ func (x *Count) GetCount() int32 {
 	return 0
 }
 
+type CyberService struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Service       string                 `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
+	Host          string                 `protobuf:"bytes,2,opt,name=host,proto3" json:"host,omitempty"`
+	Port          int32                  `protobuf:"varint,3,opt,name=port,proto3" json:"port,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CyberService) Reset() {
+	*x = CyberService{}
+	mi := &file_cyber_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CyberService) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CyberService) ProtoMessage() {}
+
+func (x *CyberService) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CyberService.ProtoReflect.Descriptor instead.
+func (*CyberService) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *CyberService) GetService() string {
+	if x != nil {
+		return x.Service
+	}
+	return ""
+}
+
+func (x *CyberService) GetHost() string {
+	if x != nil {
+		return x.Host
+	}
+	return ""
+}
+
+func (x *CyberService) GetPort() int32 {
+	if x != nil {
+		return x.Port
+	}
+	return 0
+}
+
+type CyberServices struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Services      []*CyberService        `protobuf:"bytes,1,rep,name=services,proto3" json:"services,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CyberServices) Reset() {
+	*x = CyberServices{}
+	mi := &file_cyber_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CyberServices) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CyberServices) ProtoMessage() {}
+
+func (x *CyberServices) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CyberServices.ProtoReflect.Descriptor instead.
+func (*CyberServices) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *CyberServices) GetServices() []*CyberService {
+	if x != nil {
+		return x.Services
+	}
+	return nil
+}
+
+type StringRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Request       string                 `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StringRequest) Reset() {
+	*x = StringRequest{}
+	mi := &file_cyber_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StringRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StringRequest) ProtoMessage() {}
+
+func (x *StringRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StringRequest.ProtoReflect.Descriptor instead.
+func (*StringRequest) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *StringRequest) GetRequest() string {
+	if x != nil {
+		return x.Request
+	}
+	return ""
+}
+
 var File_cyber_proto protoreflect.FileDescriptor
 
 const file_cyber_proto_rawDesc = "" +
@@ -1379,7 +1527,15 @@ const file_cyber_proto_rawDesc = "" +
 	"\fconnectionId\x18\x0e \x01(\x03R\fconnectionId\x12\"\n" +
 	"\ferrorCodeInt\x18\x0f \x01(\x05R\ferrorCodeInt\"\x1d\n" +
 	"\x05Count\x12\x14\n" +
-	"\x05count\x18\x01 \x01(\x05R\x05count*O\n" +
+	"\x05count\x18\x01 \x01(\x05R\x05count\"P\n" +
+	"\fCyberService\x12\x18\n" +
+	"\aservice\x18\x01 \x01(\tR\aservice\x12\x12\n" +
+	"\x04host\x18\x02 \x01(\tR\x04host\x12\x12\n" +
+	"\x04port\x18\x03 \x01(\x05R\x04port\"D\n" +
+	"\rCyberServices\x123\n" +
+	"\bservices\x18\x01 \x03(\v2\x17.cybertele.CyberServiceR\bservices\")\n" +
+	"\rStringRequest\x12\x18\n" +
+	"\arequest\x18\x01 \x01(\tR\arequest*O\n" +
 	"\x06Status\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\n" +
 	"\n" +
@@ -1402,7 +1558,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                // 0: cybertele.Status
 	(*StatusReply)(nil),        // 1: cybertele.StatusReply
@@ -1424,6 +1580,9 @@ var file_cyber_proto_goTypes = []any{
 	(*Segments)(nil),           // 17: cybertele.Segments
 	(*Event)(nil),              // 18: cybertele.Event
 	(*Count)(nil),              // 19: cybertele.Count
+	(*CyberService)(nil),       // 20: cybertele.CyberService
+	(*CyberServices)(nil),      // 21: cybertele.CyberServices
+	(*StringRequest)(nil),      // 22: cybertele.StringRequest
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -1438,11 +1597,12 @@ var file_cyber_proto_depIdxs = []int32{
 	12, // 9: cybertele.AllModelsDataTypes.data:type_name -> cybertele.ModelDataTypes
 	14, // 10: cybertele.DataPoints.data:type_name -> cybertele.DataPoint
 	16, // 11: cybertele.Segments.segments:type_name -> cybertele.Segment
-	12, // [12:12] is the sub-list for method output_type
-	12, // [12:12] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	20, // 12: cybertele.CyberServices.services:type_name -> cybertele.CyberService
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -1456,7 +1616,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   19,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
