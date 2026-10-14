@@ -24,10 +24,10 @@ var File_manager_proto protoreflect.FileDescriptor
 
 const file_manager_proto_rawDesc = "" +
 	"\n" +
-	"\rmanager.proto\x12\tcybertele\x1a\vcyber.proto2\x92\x02\n" +
+	"\rmanager.proto\x12\tcybertele\x1a\vcyber.proto2\x8f\x02\n" +
 	"\aManager\x124\n" +
-	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12G\n" +
-	"\x12SetSetCyberService\x12\x17.cybertele.CyberService\x1a\x16.cybertele.StatusReply\"\x00\x12F\n" +
+	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12D\n" +
+	"\x0fSetCyberService\x12\x17.cybertele.CyberService\x1a\x16.cybertele.StatusReply\"\x00\x12F\n" +
 	"\x0fGetCyberService\x12\x18.cybertele.StringRequest\x1a\x17.cybertele.CyberService\"\x00\x12@\n" +
 	"\x10GetCyberServices\x12\x10.cybertele.Empty\x1a\x18.cybertele.CyberServices\"\x00B\tZ\a./protob\x06proto3"
 
@@ -41,11 +41,11 @@ var file_manager_proto_goTypes = []any{
 }
 var file_manager_proto_depIdxs = []int32{
 	0, // 0: cybertele.Manager.Health:input_type -> cybertele.Empty
-	1, // 1: cybertele.Manager.SetSetCyberService:input_type -> cybertele.CyberService
+	1, // 1: cybertele.Manager.SetCyberService:input_type -> cybertele.CyberService
 	2, // 2: cybertele.Manager.GetCyberService:input_type -> cybertele.StringRequest
 	0, // 3: cybertele.Manager.GetCyberServices:input_type -> cybertele.Empty
 	3, // 4: cybertele.Manager.Health:output_type -> cybertele.HealthReply
-	4, // 5: cybertele.Manager.SetSetCyberService:output_type -> cybertele.StatusReply
+	4, // 5: cybertele.Manager.SetCyberService:output_type -> cybertele.StatusReply
 	1, // 6: cybertele.Manager.GetCyberService:output_type -> cybertele.CyberService
 	5, // 7: cybertele.Manager.GetCyberServices:output_type -> cybertele.CyberServices
 	4, // [4:8] is the sub-list for method output_type

@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Manager_Health_FullMethodName             = "/cybertele.Manager/Health"
-	Manager_SetSetCyberService_FullMethodName = "/cybertele.Manager/SetSetCyberService"
-	Manager_GetCyberService_FullMethodName    = "/cybertele.Manager/GetCyberService"
-	Manager_GetCyberServices_FullMethodName   = "/cybertele.Manager/GetCyberServices"
+	Manager_Health_FullMethodName           = "/cybertele.Manager/Health"
+	Manager_SetCyberService_FullMethodName  = "/cybertele.Manager/SetCyberService"
+	Manager_GetCyberService_FullMethodName  = "/cybertele.Manager/GetCyberService"
+	Manager_GetCyberServices_FullMethodName = "/cybertele.Manager/GetCyberServices"
 )
 
 // ManagerClient is the client API for Manager service.
@@ -30,7 +30,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ManagerClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
-	SetSetCyberService(ctx context.Context, in *CyberService, opts ...grpc.CallOption) (*StatusReply, error)
+	SetCyberService(ctx context.Context, in *CyberService, opts ...grpc.CallOption) (*StatusReply, error)
 	GetCyberService(ctx context.Context, in *StringRequest, opts ...grpc.CallOption) (*CyberService, error)
 	GetCyberServices(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CyberServices, error)
 }
@@ -53,10 +53,10 @@ func (c *managerClient) Health(ctx context.Context, in *Empty, opts ...grpc.Call
 	return out, nil
 }
 
-func (c *managerClient) SetSetCyberService(ctx context.Context, in *CyberService, opts ...grpc.CallOption) (*StatusReply, error) {
+func (c *managerClient) SetCyberService(ctx context.Context, in *CyberService, opts ...grpc.CallOption) (*StatusReply, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(StatusReply)
-	err := c.cc.Invoke(ctx, Manager_SetSetCyberService_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Manager_SetCyberService_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +88,7 @@ func (c *managerClient) GetCyberServices(ctx context.Context, in *Empty, opts ..
 // for forward compatibility.
 type ManagerServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
-	SetSetCyberService(context.Context, *CyberService) (*StatusReply, error)
+	SetCyberService(context.Context, *CyberService) (*StatusReply, error)
 	GetCyberService(context.Context, *StringRequest) (*CyberService, error)
 	GetCyberServices(context.Context, *Empty) (*CyberServices, error)
 	mustEmbedUnimplementedManagerServer()
@@ -104,8 +104,8 @@ type UnimplementedManagerServer struct{}
 func (UnimplementedManagerServer) Health(context.Context, *Empty) (*HealthReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method Health not implemented")
 }
-func (UnimplementedManagerServer) SetSetCyberService(context.Context, *CyberService) (*StatusReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method SetSetCyberService not implemented")
+func (UnimplementedManagerServer) SetCyberService(context.Context, *CyberService) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetCyberService not implemented")
 }
 func (UnimplementedManagerServer) GetCyberService(context.Context, *StringRequest) (*CyberService, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetCyberService not implemented")
@@ -152,20 +152,20 @@ func _Manager_Health_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Manager_SetSetCyberService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Manager_SetCyberService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CyberService)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ManagerServer).SetSetCyberService(ctx, in)
+		return srv.(ManagerServer).SetCyberService(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Manager_SetSetCyberService_FullMethodName,
+		FullMethod: Manager_SetCyberService_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagerServer).SetSetCyberService(ctx, req.(*CyberService))
+		return srv.(ManagerServer).SetCyberService(ctx, req.(*CyberService))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -218,8 +218,8 @@ var Manager_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Manager_Health_Handler,
 		},
 		{
-			MethodName: "SetSetCyberService",
-			Handler:    _Manager_SetSetCyberService_Handler,
+			MethodName: "SetCyberService",
+			Handler:    _Manager_SetCyberService_Handler,
 		},
 		{
 			MethodName: "GetCyberService",
