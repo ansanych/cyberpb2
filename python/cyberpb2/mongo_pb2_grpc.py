@@ -4,7 +4,6 @@ import grpc
 import warnings
 
 from . import cyber_pb2 as cyber__pb2
-import mongo_pb2 as mongo__pb2
 
 GRPC_GENERATED_VERSION = '1.83.0'
 GRPC_VERSION = grpc.__version__
@@ -43,27 +42,27 @@ class MongoAuxStub:
         self.GetMongoMachineTypes = channel.unary_unary(
                 '/cybertele.MongoAux/GetMongoMachineTypes',
                 request_serializer=cyber__pb2.Empty.SerializeToString,
-                response_deserializer=mongo__pb2.MongoMachineTypes.FromString,
+                response_deserializer=cyber__pb2.MongoMachineTypes.FromString,
                 _registered_method=True)
         self.GetMongoMachines = channel.unary_unary(
                 '/cybertele.MongoAux/GetMongoMachines',
-                request_serializer=mongo__pb2.MongoRequest.SerializeToString,
-                response_deserializer=mongo__pb2.MongoMachines.FromString,
+                request_serializer=cyber__pb2.MongoRequest.SerializeToString,
+                response_deserializer=cyber__pb2.MongoMachines.FromString,
                 _registered_method=True)
         self.GetMongoErrors = channel.unary_unary(
                 '/cybertele.MongoAux/GetMongoErrors',
-                request_serializer=mongo__pb2.MongoRequest.SerializeToString,
-                response_deserializer=mongo__pb2.MongoErrors.FromString,
+                request_serializer=cyber__pb2.MongoRequest.SerializeToString,
+                response_deserializer=cyber__pb2.MongoErrors.FromString,
                 _registered_method=True)
         self.GetMongoDataTypes = channel.unary_unary(
                 '/cybertele.MongoAux/GetMongoDataTypes',
                 request_serializer=cyber__pb2.Empty.SerializeToString,
-                response_deserializer=mongo__pb2.MongoDataTypes.FromString,
+                response_deserializer=cyber__pb2.MongoDataTypes.FromString,
                 _registered_method=True)
         self.GetMongoAllErrors = channel.unary_unary(
                 '/cybertele.MongoAux/GetMongoAllErrors',
-                request_serializer=mongo__pb2.MongoRequest.SerializeToString,
-                response_deserializer=mongo__pb2.MongoErrors.FromString,
+                request_serializer=cyber__pb2.MongoRequest.SerializeToString,
+                response_deserializer=cyber__pb2.MongoErrors.FromString,
                 _registered_method=True)
 
 
@@ -117,27 +116,27 @@ def add_MongoAuxServicer_to_server(servicer, server):
             'GetMongoMachineTypes': grpc.unary_unary_rpc_method_handler(
                     servicer.GetMongoMachineTypes,
                     request_deserializer=cyber__pb2.Empty.FromString,
-                    response_serializer=mongo__pb2.MongoMachineTypes.SerializeToString,
+                    response_serializer=cyber__pb2.MongoMachineTypes.SerializeToString,
             ),
             'GetMongoMachines': grpc.unary_unary_rpc_method_handler(
                     servicer.GetMongoMachines,
-                    request_deserializer=mongo__pb2.MongoRequest.FromString,
-                    response_serializer=mongo__pb2.MongoMachines.SerializeToString,
+                    request_deserializer=cyber__pb2.MongoRequest.FromString,
+                    response_serializer=cyber__pb2.MongoMachines.SerializeToString,
             ),
             'GetMongoErrors': grpc.unary_unary_rpc_method_handler(
                     servicer.GetMongoErrors,
-                    request_deserializer=mongo__pb2.MongoRequest.FromString,
-                    response_serializer=mongo__pb2.MongoErrors.SerializeToString,
+                    request_deserializer=cyber__pb2.MongoRequest.FromString,
+                    response_serializer=cyber__pb2.MongoErrors.SerializeToString,
             ),
             'GetMongoDataTypes': grpc.unary_unary_rpc_method_handler(
                     servicer.GetMongoDataTypes,
                     request_deserializer=cyber__pb2.Empty.FromString,
-                    response_serializer=mongo__pb2.MongoDataTypes.SerializeToString,
+                    response_serializer=cyber__pb2.MongoDataTypes.SerializeToString,
             ),
             'GetMongoAllErrors': grpc.unary_unary_rpc_method_handler(
                     servicer.GetMongoAllErrors,
-                    request_deserializer=mongo__pb2.MongoRequest.FromString,
-                    response_serializer=mongo__pb2.MongoErrors.SerializeToString,
+                    request_deserializer=cyber__pb2.MongoRequest.FromString,
+                    response_serializer=cyber__pb2.MongoErrors.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -193,7 +192,7 @@ class MongoAux:
             target,
             '/cybertele.MongoAux/GetMongoMachineTypes',
             cyber__pb2.Empty.SerializeToString,
-            mongo__pb2.MongoMachineTypes.FromString,
+            cyber__pb2.MongoMachineTypes.FromString,
             options,
             channel_credentials,
             insecure,
@@ -219,8 +218,8 @@ class MongoAux:
             request,
             target,
             '/cybertele.MongoAux/GetMongoMachines',
-            mongo__pb2.MongoRequest.SerializeToString,
-            mongo__pb2.MongoMachines.FromString,
+            cyber__pb2.MongoRequest.SerializeToString,
+            cyber__pb2.MongoMachines.FromString,
             options,
             channel_credentials,
             insecure,
@@ -246,8 +245,8 @@ class MongoAux:
             request,
             target,
             '/cybertele.MongoAux/GetMongoErrors',
-            mongo__pb2.MongoRequest.SerializeToString,
-            mongo__pb2.MongoErrors.FromString,
+            cyber__pb2.MongoRequest.SerializeToString,
+            cyber__pb2.MongoErrors.FromString,
             options,
             channel_credentials,
             insecure,
@@ -274,7 +273,7 @@ class MongoAux:
             target,
             '/cybertele.MongoAux/GetMongoDataTypes',
             cyber__pb2.Empty.SerializeToString,
-            mongo__pb2.MongoDataTypes.FromString,
+            cyber__pb2.MongoDataTypes.FromString,
             options,
             channel_credentials,
             insecure,
@@ -300,8 +299,8 @@ class MongoAux:
             request,
             target,
             '/cybertele.MongoAux/GetMongoAllErrors',
-            mongo__pb2.MongoRequest.SerializeToString,
-            mongo__pb2.MongoErrors.FromString,
+            cyber__pb2.MongoRequest.SerializeToString,
+            cyber__pb2.MongoErrors.FromString,
             options,
             channel_credentials,
             insecure,

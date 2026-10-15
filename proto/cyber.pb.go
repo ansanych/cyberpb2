@@ -1545,6 +1545,570 @@ func (x *TelemertyParam) GetDescription() string {
 	return ""
 }
 
+type MongoRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	MachineType   string                 `protobuf:"bytes,2,opt,name=machineType,proto3" json:"machineType,omitempty"`
+	ErrorCode     []float32              `protobuf:"fixed32,3,rep,packed,name=errorCode,proto3" json:"errorCode,omitempty"`
+	ErrorCodeInt  []int32                `protobuf:"varint,4,rep,packed,name=errorCodeInt,proto3" json:"errorCodeInt,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MongoRequest) Reset() {
+	*x = MongoRequest{}
+	mi := &file_cyber_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MongoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MongoRequest) ProtoMessage() {}
+
+func (x *MongoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MongoRequest.ProtoReflect.Descriptor instead.
+func (*MongoRequest) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *MongoRequest) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *MongoRequest) GetMachineType() string {
+	if x != nil {
+		return x.MachineType
+	}
+	return ""
+}
+
+func (x *MongoRequest) GetErrorCode() []float32 {
+	if x != nil {
+		return x.ErrorCode
+	}
+	return nil
+}
+
+func (x *MongoRequest) GetErrorCodeInt() []int32 {
+	if x != nil {
+		return x.ErrorCodeInt
+	}
+	return nil
+}
+
+type MongoMachineType struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Name            string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Type            string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	LocarusProtocol int32                  `protobuf:"varint,3,opt,name=locarusProtocol,proto3" json:"locarusProtocol,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *MongoMachineType) Reset() {
+	*x = MongoMachineType{}
+	mi := &file_cyber_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MongoMachineType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MongoMachineType) ProtoMessage() {}
+
+func (x *MongoMachineType) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MongoMachineType.ProtoReflect.Descriptor instead.
+func (*MongoMachineType) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *MongoMachineType) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *MongoMachineType) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *MongoMachineType) GetLocarusProtocol() int32 {
+	if x != nil {
+		return x.LocarusProtocol
+	}
+	return 0
+}
+
+type MongoMachineTypes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []*MongoMachineType    `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MongoMachineTypes) Reset() {
+	*x = MongoMachineTypes{}
+	mi := &file_cyber_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MongoMachineTypes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MongoMachineTypes) ProtoMessage() {}
+
+func (x *MongoMachineTypes) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MongoMachineTypes.ProtoReflect.Descriptor instead.
+func (*MongoMachineTypes) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *MongoMachineTypes) GetData() []*MongoMachineType {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type MongoMachine struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	MachineType   string                 `protobuf:"bytes,2,opt,name=machineType,proto3" json:"machineType,omitempty"`
+	Imei          string                 `protobuf:"bytes,3,opt,name=imei,proto3" json:"imei,omitempty"`
+	Status        bool                   `protobuf:"varint,4,opt,name=status,proto3" json:"status,omitempty"`
+	ExpDate       string                 `protobuf:"bytes,5,opt,name=expDate,proto3" json:"expDate,omitempty"`
+	Trackable     bool                   `protobuf:"varint,6,opt,name=trackable,proto3" json:"trackable,omitempty"`
+	Type          string                 `protobuf:"bytes,7,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MongoMachine) Reset() {
+	*x = MongoMachine{}
+	mi := &file_cyber_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MongoMachine) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MongoMachine) ProtoMessage() {}
+
+func (x *MongoMachine) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MongoMachine.ProtoReflect.Descriptor instead.
+func (*MongoMachine) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *MongoMachine) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *MongoMachine) GetMachineType() string {
+	if x != nil {
+		return x.MachineType
+	}
+	return ""
+}
+
+func (x *MongoMachine) GetImei() string {
+	if x != nil {
+		return x.Imei
+	}
+	return ""
+}
+
+func (x *MongoMachine) GetStatus() bool {
+	if x != nil {
+		return x.Status
+	}
+	return false
+}
+
+func (x *MongoMachine) GetExpDate() string {
+	if x != nil {
+		return x.ExpDate
+	}
+	return ""
+}
+
+func (x *MongoMachine) GetTrackable() bool {
+	if x != nil {
+		return x.Trackable
+	}
+	return false
+}
+
+func (x *MongoMachine) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+type MongoMachines struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []*MongoMachine        `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MongoMachines) Reset() {
+	*x = MongoMachines{}
+	mi := &file_cyber_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MongoMachines) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MongoMachines) ProtoMessage() {}
+
+func (x *MongoMachines) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MongoMachines.ProtoReflect.Descriptor instead.
+func (*MongoMachines) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *MongoMachines) GetData() []*MongoMachine {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type MongoError struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          float32                `protobuf:"fixed32,1,opt,name=code,proto3" json:"code,omitempty"`
+	Text          string                 `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
+	Level         string                 `protobuf:"bytes,3,opt,name=level,proto3" json:"level,omitempty"`
+	Type          string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
+	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	System        string                 `protobuf:"bytes,6,opt,name=system,proto3" json:"system,omitempty"`
+	CodeInt       int32                  `protobuf:"varint,7,opt,name=codeInt,proto3" json:"codeInt,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MongoError) Reset() {
+	*x = MongoError{}
+	mi := &file_cyber_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MongoError) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MongoError) ProtoMessage() {}
+
+func (x *MongoError) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MongoError.ProtoReflect.Descriptor instead.
+func (*MongoError) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *MongoError) GetCode() float32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *MongoError) GetText() string {
+	if x != nil {
+		return x.Text
+	}
+	return ""
+}
+
+func (x *MongoError) GetLevel() string {
+	if x != nil {
+		return x.Level
+	}
+	return ""
+}
+
+func (x *MongoError) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *MongoError) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *MongoError) GetSystem() string {
+	if x != nil {
+		return x.System
+	}
+	return ""
+}
+
+func (x *MongoError) GetCodeInt() int32 {
+	if x != nil {
+		return x.CodeInt
+	}
+	return 0
+}
+
+type MongoErrors struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []*MongoError          `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	MachineType   string                 `protobuf:"bytes,2,opt,name=machineType,proto3" json:"machineType,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MongoErrors) Reset() {
+	*x = MongoErrors{}
+	mi := &file_cyber_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MongoErrors) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MongoErrors) ProtoMessage() {}
+
+func (x *MongoErrors) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MongoErrors.ProtoReflect.Descriptor instead.
+func (*MongoErrors) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *MongoErrors) GetData() []*MongoError {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *MongoErrors) GetMachineType() string {
+	if x != nil {
+		return x.MachineType
+	}
+	return ""
+}
+
+type MongoDataType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Group         string                 `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	CodeName      string                 `protobuf:"bytes,2,opt,name=codeName,proto3" json:"codeName,omitempty"`
+	FullName      string                 `protobuf:"bytes,3,opt,name=fullName,proto3" json:"fullName,omitempty"`
+	Meaning       string                 `protobuf:"bytes,4,opt,name=meaning,proto3" json:"meaning,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MongoDataType) Reset() {
+	*x = MongoDataType{}
+	mi := &file_cyber_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MongoDataType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MongoDataType) ProtoMessage() {}
+
+func (x *MongoDataType) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MongoDataType.ProtoReflect.Descriptor instead.
+func (*MongoDataType) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *MongoDataType) GetGroup() string {
+	if x != nil {
+		return x.Group
+	}
+	return ""
+}
+
+func (x *MongoDataType) GetCodeName() string {
+	if x != nil {
+		return x.CodeName
+	}
+	return ""
+}
+
+func (x *MongoDataType) GetFullName() string {
+	if x != nil {
+		return x.FullName
+	}
+	return ""
+}
+
+func (x *MongoDataType) GetMeaning() string {
+	if x != nil {
+		return x.Meaning
+	}
+	return ""
+}
+
+type MongoDataTypes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []*MongoDataType       `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MongoDataTypes) Reset() {
+	*x = MongoDataTypes{}
+	mi := &file_cyber_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MongoDataTypes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MongoDataTypes) ProtoMessage() {}
+
+func (x *MongoDataTypes) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MongoDataTypes.ProtoReflect.Descriptor instead.
+func (*MongoDataTypes) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *MongoDataTypes) GetData() []*MongoDataType {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 var File_cyber_proto protoreflect.FileDescriptor
 
 const file_cyber_proto_rawDesc = "" +
@@ -1654,7 +2218,47 @@ const file_cyber_proto_rawDesc = "" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12\x14\n" +
 	"\x05units\x18\x03 \x01(\tR\x05units\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription*O\n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\"\x82\x01\n" +
+	"\fMongoRequest\x12\x0e\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12 \n" +
+	"\vmachineType\x18\x02 \x01(\tR\vmachineType\x12\x1c\n" +
+	"\terrorCode\x18\x03 \x03(\x02R\terrorCode\x12\"\n" +
+	"\ferrorCodeInt\x18\x04 \x03(\x05R\ferrorCodeInt\"d\n" +
+	"\x10MongoMachineType\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\x12(\n" +
+	"\x0flocarusProtocol\x18\x03 \x01(\x05R\x0flocarusProtocol\"D\n" +
+	"\x11MongoMachineTypes\x12/\n" +
+	"\x04data\x18\x01 \x03(\v2\x1b.cybertele.MongoMachineTypeR\x04data\"\xb8\x01\n" +
+	"\fMongoMachine\x12\x0e\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12 \n" +
+	"\vmachineType\x18\x02 \x01(\tR\vmachineType\x12\x12\n" +
+	"\x04imei\x18\x03 \x01(\tR\x04imei\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\bR\x06status\x12\x18\n" +
+	"\aexpDate\x18\x05 \x01(\tR\aexpDate\x12\x1c\n" +
+	"\ttrackable\x18\x06 \x01(\bR\ttrackable\x12\x12\n" +
+	"\x04type\x18\a \x01(\tR\x04type\"<\n" +
+	"\rMongoMachines\x12+\n" +
+	"\x04data\x18\x01 \x03(\v2\x17.cybertele.MongoMachineR\x04data\"\xb2\x01\n" +
+	"\n" +
+	"MongoError\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\x02R\x04code\x12\x12\n" +
+	"\x04text\x18\x02 \x01(\tR\x04text\x12\x14\n" +
+	"\x05level\x18\x03 \x01(\tR\x05level\x12\x12\n" +
+	"\x04type\x18\x04 \x01(\tR\x04type\x12 \n" +
+	"\vdescription\x18\x05 \x01(\tR\vdescription\x12\x16\n" +
+	"\x06system\x18\x06 \x01(\tR\x06system\x12\x18\n" +
+	"\acodeInt\x18\a \x01(\x05R\acodeInt\"Z\n" +
+	"\vMongoErrors\x12)\n" +
+	"\x04data\x18\x01 \x03(\v2\x15.cybertele.MongoErrorR\x04data\x12 \n" +
+	"\vmachineType\x18\x02 \x01(\tR\vmachineType\"w\n" +
+	"\rMongoDataType\x12\x14\n" +
+	"\x05group\x18\x01 \x01(\tR\x05group\x12\x1a\n" +
+	"\bcodeName\x18\x02 \x01(\tR\bcodeName\x12\x1a\n" +
+	"\bfullName\x18\x03 \x01(\tR\bfullName\x12\x18\n" +
+	"\ameaning\x18\x04 \x01(\tR\ameaning\">\n" +
+	"\x0eMongoDataTypes\x12,\n" +
+	"\x04data\x18\x01 \x03(\v2\x18.cybertele.MongoDataTypeR\x04data*O\n" +
 	"\x06Status\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\n" +
 	"\n" +
@@ -1677,7 +2281,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                // 0: cybertele.Status
 	(*StatusReply)(nil),        // 1: cybertele.StatusReply
@@ -1704,6 +2308,15 @@ var file_cyber_proto_goTypes = []any{
 	(*StringRequest)(nil),      // 22: cybertele.StringRequest
 	(*TelemertyParams)(nil),    // 23: cybertele.TelemertyParams
 	(*TelemertyParam)(nil),     // 24: cybertele.TelemertyParam
+	(*MongoRequest)(nil),       // 25: cybertele.MongoRequest
+	(*MongoMachineType)(nil),   // 26: cybertele.MongoMachineType
+	(*MongoMachineTypes)(nil),  // 27: cybertele.MongoMachineTypes
+	(*MongoMachine)(nil),       // 28: cybertele.MongoMachine
+	(*MongoMachines)(nil),      // 29: cybertele.MongoMachines
+	(*MongoError)(nil),         // 30: cybertele.MongoError
+	(*MongoErrors)(nil),        // 31: cybertele.MongoErrors
+	(*MongoDataType)(nil),      // 32: cybertele.MongoDataType
+	(*MongoDataTypes)(nil),     // 33: cybertele.MongoDataTypes
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -1720,11 +2333,15 @@ var file_cyber_proto_depIdxs = []int32{
 	16, // 11: cybertele.Segments.segments:type_name -> cybertele.Segment
 	20, // 12: cybertele.CyberServices.services:type_name -> cybertele.CyberService
 	24, // 13: cybertele.TelemertyParams.params:type_name -> cybertele.TelemertyParam
-	14, // [14:14] is the sub-list for method output_type
-	14, // [14:14] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	26, // 14: cybertele.MongoMachineTypes.data:type_name -> cybertele.MongoMachineType
+	28, // 15: cybertele.MongoMachines.data:type_name -> cybertele.MongoMachine
+	30, // 16: cybertele.MongoErrors.data:type_name -> cybertele.MongoError
+	32, // 17: cybertele.MongoDataTypes.data:type_name -> cybertele.MongoDataType
+	18, // [18:18] is the sub-list for method output_type
+	18, // [18:18] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -1738,7 +2355,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   24,
+			NumMessages:   33,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

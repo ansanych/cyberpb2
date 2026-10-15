@@ -19,9 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Info_Health_FullMethodName             = "/cybertele.Info/Health"
-	Info_GetMachines_FullMethodName        = "/cybertele.Info/GetMachines"
-	Info_GetTelemetryParams_FullMethodName = "/cybertele.Info/GetTelemetryParams"
+	Info_Health_FullMethodName               = "/cybertele.Info/Health"
+	Info_GetMachines_FullMethodName          = "/cybertele.Info/GetMachines"
+	Info_GetTelemetryParams_FullMethodName   = "/cybertele.Info/GetTelemetryParams"
+	Info_GetMongoMachineTypes_FullMethodName = "/cybertele.Info/GetMongoMachineTypes"
+	Info_GetMongoMachines_FullMethodName     = "/cybertele.Info/GetMongoMachines"
+	Info_GetMongoErrors_FullMethodName       = "/cybertele.Info/GetMongoErrors"
+	Info_GetMongoDataTypes_FullMethodName    = "/cybertele.Info/GetMongoDataTypes"
+	Info_GetMongoAllErrors_FullMethodName    = "/cybertele.Info/GetMongoAllErrors"
 )
 
 // InfoClient is the client API for Info service.
@@ -31,6 +36,11 @@ type InfoClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
 	GetMachines(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Machines, error)
 	GetTelemetryParams(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemertyParams, error)
+	GetMongoMachineTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MongoMachineTypes, error)
+	GetMongoMachines(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoMachines, error)
+	GetMongoErrors(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoErrors, error)
+	GetMongoDataTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MongoDataTypes, error)
+	GetMongoAllErrors(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoErrors, error)
 }
 
 type infoClient struct {
@@ -71,6 +81,56 @@ func (c *infoClient) GetTelemetryParams(ctx context.Context, in *Empty, opts ...
 	return out, nil
 }
 
+func (c *infoClient) GetMongoMachineTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MongoMachineTypes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MongoMachineTypes)
+	err := c.cc.Invoke(ctx, Info_GetMongoMachineTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetMongoMachines(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoMachines, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MongoMachines)
+	err := c.cc.Invoke(ctx, Info_GetMongoMachines_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetMongoErrors(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoErrors, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MongoErrors)
+	err := c.cc.Invoke(ctx, Info_GetMongoErrors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetMongoDataTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MongoDataTypes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MongoDataTypes)
+	err := c.cc.Invoke(ctx, Info_GetMongoDataTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetMongoAllErrors(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoErrors, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MongoErrors)
+	err := c.cc.Invoke(ctx, Info_GetMongoAllErrors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InfoServer is the server API for Info service.
 // All implementations must embed UnimplementedInfoServer
 // for forward compatibility.
@@ -78,6 +138,11 @@ type InfoServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
 	GetMachines(context.Context, *Empty) (*Machines, error)
 	GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error)
+	GetMongoMachineTypes(context.Context, *Empty) (*MongoMachineTypes, error)
+	GetMongoMachines(context.Context, *MongoRequest) (*MongoMachines, error)
+	GetMongoErrors(context.Context, *MongoRequest) (*MongoErrors, error)
+	GetMongoDataTypes(context.Context, *Empty) (*MongoDataTypes, error)
+	GetMongoAllErrors(context.Context, *MongoRequest) (*MongoErrors, error)
 	mustEmbedUnimplementedInfoServer()
 }
 
@@ -96,6 +161,21 @@ func (UnimplementedInfoServer) GetMachines(context.Context, *Empty) (*Machines, 
 }
 func (UnimplementedInfoServer) GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTelemetryParams not implemented")
+}
+func (UnimplementedInfoServer) GetMongoMachineTypes(context.Context, *Empty) (*MongoMachineTypes, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMongoMachineTypes not implemented")
+}
+func (UnimplementedInfoServer) GetMongoMachines(context.Context, *MongoRequest) (*MongoMachines, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMongoMachines not implemented")
+}
+func (UnimplementedInfoServer) GetMongoErrors(context.Context, *MongoRequest) (*MongoErrors, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMongoErrors not implemented")
+}
+func (UnimplementedInfoServer) GetMongoDataTypes(context.Context, *Empty) (*MongoDataTypes, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMongoDataTypes not implemented")
+}
+func (UnimplementedInfoServer) GetMongoAllErrors(context.Context, *MongoRequest) (*MongoErrors, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMongoAllErrors not implemented")
 }
 func (UnimplementedInfoServer) mustEmbedUnimplementedInfoServer() {}
 func (UnimplementedInfoServer) testEmbeddedByValue()              {}
@@ -172,6 +252,96 @@ func _Info_GetTelemetryParams_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Info_GetMongoMachineTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetMongoMachineTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetMongoMachineTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetMongoMachineTypes(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetMongoMachines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MongoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetMongoMachines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetMongoMachines_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetMongoMachines(ctx, req.(*MongoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetMongoErrors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MongoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetMongoErrors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetMongoErrors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetMongoErrors(ctx, req.(*MongoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetMongoDataTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetMongoDataTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetMongoDataTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetMongoDataTypes(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetMongoAllErrors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MongoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetMongoAllErrors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetMongoAllErrors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetMongoAllErrors(ctx, req.(*MongoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Info_ServiceDesc is the grpc.ServiceDesc for Info service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +360,26 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTelemetryParams",
 			Handler:    _Info_GetTelemetryParams_Handler,
+		},
+		{
+			MethodName: "GetMongoMachineTypes",
+			Handler:    _Info_GetMongoMachineTypes_Handler,
+		},
+		{
+			MethodName: "GetMongoMachines",
+			Handler:    _Info_GetMongoMachines_Handler,
+		},
+		{
+			MethodName: "GetMongoErrors",
+			Handler:    _Info_GetMongoErrors_Handler,
+		},
+		{
+			MethodName: "GetMongoDataTypes",
+			Handler:    _Info_GetMongoDataTypes_Handler,
+		},
+		{
+			MethodName: "GetMongoAllErrors",
+			Handler:    _Info_GetMongoAllErrors_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
