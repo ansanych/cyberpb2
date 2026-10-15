@@ -1433,6 +1433,118 @@ func (x *StringRequest) GetRequest() string {
 	return ""
 }
 
+type TelemertyParams struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Params        []*TelemertyParam      `protobuf:"bytes,1,rep,name=params,proto3" json:"params,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemertyParams) Reset() {
+	*x = TelemertyParams{}
+	mi := &file_cyber_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemertyParams) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemertyParams) ProtoMessage() {}
+
+func (x *TelemertyParams) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemertyParams.ProtoReflect.Descriptor instead.
+func (*TelemertyParams) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *TelemertyParams) GetParams() []*TelemertyParam {
+	if x != nil {
+		return x.Params
+	}
+	return nil
+}
+
+type TelemertyParam struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
+	Units         string                 `protobuf:"bytes,3,opt,name=units,proto3" json:"units,omitempty"`
+	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemertyParam) Reset() {
+	*x = TelemertyParam{}
+	mi := &file_cyber_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemertyParam) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemertyParam) ProtoMessage() {}
+
+func (x *TelemertyParam) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemertyParam.ProtoReflect.Descriptor instead.
+func (*TelemertyParam) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *TelemertyParam) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *TelemertyParam) GetLabel() string {
+	if x != nil {
+		return x.Label
+	}
+	return ""
+}
+
+func (x *TelemertyParam) GetUnits() string {
+	if x != nil {
+		return x.Units
+	}
+	return ""
+}
+
+func (x *TelemertyParam) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
 var File_cyber_proto protoreflect.FileDescriptor
 
 const file_cyber_proto_rawDesc = "" +
@@ -1535,7 +1647,14 @@ const file_cyber_proto_rawDesc = "" +
 	"\rCyberServices\x123\n" +
 	"\bservices\x18\x01 \x03(\v2\x17.cybertele.CyberServiceR\bservices\")\n" +
 	"\rStringRequest\x12\x18\n" +
-	"\arequest\x18\x01 \x01(\tR\arequest*O\n" +
+	"\arequest\x18\x01 \x01(\tR\arequest\"D\n" +
+	"\x0fTelemertyParams\x121\n" +
+	"\x06params\x18\x01 \x03(\v2\x19.cybertele.TelemertyParamR\x06params\"r\n" +
+	"\x0eTelemertyParam\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
+	"\x05label\x18\x02 \x01(\tR\x05label\x12\x14\n" +
+	"\x05units\x18\x03 \x01(\tR\x05units\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription*O\n" +
 	"\x06Status\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\n" +
 	"\n" +
@@ -1558,7 +1677,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                // 0: cybertele.Status
 	(*StatusReply)(nil),        // 1: cybertele.StatusReply
@@ -1583,6 +1702,8 @@ var file_cyber_proto_goTypes = []any{
 	(*CyberService)(nil),       // 20: cybertele.CyberService
 	(*CyberServices)(nil),      // 21: cybertele.CyberServices
 	(*StringRequest)(nil),      // 22: cybertele.StringRequest
+	(*TelemertyParams)(nil),    // 23: cybertele.TelemertyParams
+	(*TelemertyParam)(nil),     // 24: cybertele.TelemertyParam
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -1598,11 +1719,12 @@ var file_cyber_proto_depIdxs = []int32{
 	14, // 10: cybertele.DataPoints.data:type_name -> cybertele.DataPoint
 	16, // 11: cybertele.Segments.segments:type_name -> cybertele.Segment
 	20, // 12: cybertele.CyberServices.services:type_name -> cybertele.CyberService
-	13, // [13:13] is the sub-list for method output_type
-	13, // [13:13] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	24, // 13: cybertele.TelemertyParams.params:type_name -> cybertele.TelemertyParam
+	14, // [14:14] is the sub-list for method output_type
+	14, // [14:14] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -1616,7 +1738,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   22,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

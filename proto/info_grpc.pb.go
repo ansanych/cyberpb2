@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Info_Health_FullMethodName      = "/cybertele.Info/Health"
-	Info_GetMachines_FullMethodName = "/cybertele.Info/GetMachines"
+	Info_Health_FullMethodName             = "/cybertele.Info/Health"
+	Info_GetMachines_FullMethodName        = "/cybertele.Info/GetMachines"
+	Info_GetTelemetryParams_FullMethodName = "/cybertele.Info/GetTelemetryParams"
 )
 
 // InfoClient is the client API for Info service.
@@ -29,6 +30,7 @@ const (
 type InfoClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
 	GetMachines(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Machines, error)
+	GetTelemetryParams(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemertyParams, error)
 }
 
 type infoClient struct {
@@ -59,12 +61,23 @@ func (c *infoClient) GetMachines(ctx context.Context, in *Empty, opts ...grpc.Ca
 	return out, nil
 }
 
+func (c *infoClient) GetTelemetryParams(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemertyParams, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TelemertyParams)
+	err := c.cc.Invoke(ctx, Info_GetTelemetryParams_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InfoServer is the server API for Info service.
 // All implementations must embed UnimplementedInfoServer
 // for forward compatibility.
 type InfoServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
 	GetMachines(context.Context, *Empty) (*Machines, error)
+	GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error)
 	mustEmbedUnimplementedInfoServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedInfoServer) Health(context.Context, *Empty) (*HealthReply, er
 }
 func (UnimplementedInfoServer) GetMachines(context.Context, *Empty) (*Machines, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMachines not implemented")
+}
+func (UnimplementedInfoServer) GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTelemetryParams not implemented")
 }
 func (UnimplementedInfoServer) mustEmbedUnimplementedInfoServer() {}
 func (UnimplementedInfoServer) testEmbeddedByValue()              {}
@@ -138,6 +154,24 @@ func _Info_GetMachines_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Info_GetTelemetryParams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetTelemetryParams(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetTelemetryParams_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetTelemetryParams(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Info_ServiceDesc is the grpc.ServiceDesc for Info service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMachines",
 			Handler:    _Info_GetMachines_Handler,
+		},
+		{
+			MethodName: "GetTelemetryParams",
+			Handler:    _Info_GetTelemetryParams_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

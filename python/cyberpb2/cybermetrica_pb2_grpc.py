@@ -73,16 +73,16 @@ class CybermetricaStub:
         self.GetTelemetryParams = channel.unary_unary(
                 '/cybertele.Cybermetrica/GetTelemetryParams',
                 request_serializer=cyber__pb2.Empty.SerializeToString,
-                response_deserializer=cybermetrica__pb2.TelemertyParams.FromString,
+                response_deserializer=cyber__pb2.TelemertyParams.FromString,
                 _registered_method=True)
         self.CreateTelemetryParam = channel.unary_unary(
                 '/cybertele.Cybermetrica/CreateTelemetryParam',
-                request_serializer=cybermetrica__pb2.TelemertyParam.SerializeToString,
+                request_serializer=cyber__pb2.TelemertyParam.SerializeToString,
                 response_deserializer=cyber__pb2.StatusReply.FromString,
                 _registered_method=True)
         self.UpdateTelemetryParam = channel.unary_unary(
                 '/cybertele.Cybermetrica/UpdateTelemetryParam',
-                request_serializer=cybermetrica__pb2.TelemertyParam.SerializeToString,
+                request_serializer=cyber__pb2.TelemertyParam.SerializeToString,
                 response_deserializer=cyber__pb2.StatusReply.FromString,
                 _registered_method=True)
         self.GetTimeline = channel.unary_unary(
@@ -235,16 +235,16 @@ def add_CybermetricaServicer_to_server(servicer, server):
             'GetTelemetryParams': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTelemetryParams,
                     request_deserializer=cyber__pb2.Empty.FromString,
-                    response_serializer=cybermetrica__pb2.TelemertyParams.SerializeToString,
+                    response_serializer=cyber__pb2.TelemertyParams.SerializeToString,
             ),
             'CreateTelemetryParam': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateTelemetryParam,
-                    request_deserializer=cybermetrica__pb2.TelemertyParam.FromString,
+                    request_deserializer=cyber__pb2.TelemertyParam.FromString,
                     response_serializer=cyber__pb2.StatusReply.SerializeToString,
             ),
             'UpdateTelemetryParam': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateTelemetryParam,
-                    request_deserializer=cybermetrica__pb2.TelemertyParam.FromString,
+                    request_deserializer=cyber__pb2.TelemertyParam.FromString,
                     response_serializer=cyber__pb2.StatusReply.SerializeToString,
             ),
             'GetTimeline': grpc.unary_unary_rpc_method_handler(
@@ -483,7 +483,7 @@ class Cybermetrica:
             target,
             '/cybertele.Cybermetrica/GetTelemetryParams',
             cyber__pb2.Empty.SerializeToString,
-            cybermetrica__pb2.TelemertyParams.FromString,
+            cyber__pb2.TelemertyParams.FromString,
             options,
             channel_credentials,
             insecure,
@@ -509,7 +509,7 @@ class Cybermetrica:
             request,
             target,
             '/cybertele.Cybermetrica/CreateTelemetryParam',
-            cybermetrica__pb2.TelemertyParam.SerializeToString,
+            cyber__pb2.TelemertyParam.SerializeToString,
             cyber__pb2.StatusReply.FromString,
             options,
             channel_credentials,
@@ -536,7 +536,7 @@ class Cybermetrica:
             request,
             target,
             '/cybertele.Cybermetrica/UpdateTelemetryParam',
-            cybermetrica__pb2.TelemertyParam.SerializeToString,
+            cyber__pb2.TelemertyParam.SerializeToString,
             cyber__pb2.StatusReply.FromString,
             options,
             channel_credentials,

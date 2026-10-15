@@ -154,3 +154,14 @@ message CyberServices {
 message StringRequest {
     string request = 1;
 }
+
+message TelemertyParams {
+    repeated TelemertyParam params = 1;
+}
+
+message TelemertyParam {
+    string code = 1;
+    string label = 2;
+    string units = 3;
+    string description = 4;
+}

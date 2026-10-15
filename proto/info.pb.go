@@ -25,23 +25,27 @@ var File_info_proto protoreflect.FileDescriptor
 const file_info_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"info.proto\x12\tcybertele\x1a\vcyber.proto2t\n" +
+	"info.proto\x12\tcybertele\x1a\vcyber.proto2\xba\x01\n" +
 	"\x04Info\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x126\n" +
-	"\vGetMachines\x12\x10.cybertele.Empty\x1a\x13.cybertele.Machines\"\x00B\tZ\a./protob\x06proto3"
+	"\vGetMachines\x12\x10.cybertele.Empty\x1a\x13.cybertele.Machines\"\x00\x12D\n" +
+	"\x12GetTelemetryParams\x12\x10.cybertele.Empty\x1a\x1a.cybertele.TelemertyParams\"\x00B\tZ\a./protob\x06proto3"
 
 var file_info_proto_goTypes = []any{
-	(*Empty)(nil),       // 0: cybertele.Empty
-	(*HealthReply)(nil), // 1: cybertele.HealthReply
-	(*Machines)(nil),    // 2: cybertele.Machines
+	(*Empty)(nil),           // 0: cybertele.Empty
+	(*HealthReply)(nil),     // 1: cybertele.HealthReply
+	(*Machines)(nil),        // 2: cybertele.Machines
+	(*TelemertyParams)(nil), // 3: cybertele.TelemertyParams
 }
 var file_info_proto_depIdxs = []int32{
 	0, // 0: cybertele.Info.Health:input_type -> cybertele.Empty
 	0, // 1: cybertele.Info.GetMachines:input_type -> cybertele.Empty
-	1, // 2: cybertele.Info.Health:output_type -> cybertele.HealthReply
-	2, // 3: cybertele.Info.GetMachines:output_type -> cybertele.Machines
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	0, // 2: cybertele.Info.GetTelemetryParams:input_type -> cybertele.Empty
+	1, // 3: cybertele.Info.Health:output_type -> cybertele.HealthReply
+	2, // 4: cybertele.Info.GetMachines:output_type -> cybertele.Machines
+	3, // 5: cybertele.Info.GetTelemetryParams:output_type -> cybertele.TelemertyParams
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

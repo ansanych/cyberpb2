@@ -137,17 +137,6 @@ message StatisticPeriod {
     int64 connection = 12;
 }
 
-message TelemertyParams {
-    repeated TelemertyParam params = 1;
-}
-
-message TelemertyParam {
-    string code = 1;
-    string label = 2;
-    string units = 3;
-    string description = 4;
-}
-
 message TimelineRequest {
     string sn = 1;
     string date = 2;

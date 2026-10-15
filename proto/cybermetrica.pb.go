@@ -1133,118 +1133,6 @@ func (x *StatisticPeriod) GetConnection() int64 {
 	return 0
 }
 
-type TelemertyParams struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Params        []*TelemertyParam      `protobuf:"bytes,1,rep,name=params,proto3" json:"params,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TelemertyParams) Reset() {
-	*x = TelemertyParams{}
-	mi := &file_cybermetrica_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TelemertyParams) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TelemertyParams) ProtoMessage() {}
-
-func (x *TelemertyParams) ProtoReflect() protoreflect.Message {
-	mi := &file_cybermetrica_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TelemertyParams.ProtoReflect.Descriptor instead.
-func (*TelemertyParams) Descriptor() ([]byte, []int) {
-	return file_cybermetrica_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *TelemertyParams) GetParams() []*TelemertyParam {
-	if x != nil {
-		return x.Params
-	}
-	return nil
-}
-
-type TelemertyParam struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
-	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
-	Units         string                 `protobuf:"bytes,3,opt,name=units,proto3" json:"units,omitempty"`
-	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TelemertyParam) Reset() {
-	*x = TelemertyParam{}
-	mi := &file_cybermetrica_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TelemertyParam) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TelemertyParam) ProtoMessage() {}
-
-func (x *TelemertyParam) ProtoReflect() protoreflect.Message {
-	mi := &file_cybermetrica_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TelemertyParam.ProtoReflect.Descriptor instead.
-func (*TelemertyParam) Descriptor() ([]byte, []int) {
-	return file_cybermetrica_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *TelemertyParam) GetCode() string {
-	if x != nil {
-		return x.Code
-	}
-	return ""
-}
-
-func (x *TelemertyParam) GetLabel() string {
-	if x != nil {
-		return x.Label
-	}
-	return ""
-}
-
-func (x *TelemertyParam) GetUnits() string {
-	if x != nil {
-		return x.Units
-	}
-	return ""
-}
-
-func (x *TelemertyParam) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
 type TimelineRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
@@ -1256,7 +1144,7 @@ type TimelineRequest struct {
 
 func (x *TimelineRequest) Reset() {
 	*x = TimelineRequest{}
-	mi := &file_cybermetrica_proto_msgTypes[18]
+	mi := &file_cybermetrica_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1268,7 +1156,7 @@ func (x *TimelineRequest) String() string {
 func (*TimelineRequest) ProtoMessage() {}
 
 func (x *TimelineRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_cybermetrica_proto_msgTypes[18]
+	mi := &file_cybermetrica_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1281,7 +1169,7 @@ func (x *TimelineRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TimelineRequest.ProtoReflect.Descriptor instead.
 func (*TimelineRequest) Descriptor() ([]byte, []int) {
-	return file_cybermetrica_proto_rawDescGZIP(), []int{18}
+	return file_cybermetrica_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *TimelineRequest) GetSn() string {
@@ -1314,7 +1202,7 @@ type DataValuesRow struct {
 
 func (x *DataValuesRow) Reset() {
 	*x = DataValuesRow{}
-	mi := &file_cybermetrica_proto_msgTypes[19]
+	mi := &file_cybermetrica_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1326,7 +1214,7 @@ func (x *DataValuesRow) String() string {
 func (*DataValuesRow) ProtoMessage() {}
 
 func (x *DataValuesRow) ProtoReflect() protoreflect.Message {
-	mi := &file_cybermetrica_proto_msgTypes[19]
+	mi := &file_cybermetrica_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1339,7 +1227,7 @@ func (x *DataValuesRow) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataValuesRow.ProtoReflect.Descriptor instead.
 func (*DataValuesRow) Descriptor() ([]byte, []int) {
-	return file_cybermetrica_proto_rawDescGZIP(), []int{19}
+	return file_cybermetrica_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DataValuesRow) GetValues() []float32 {
@@ -1360,7 +1248,7 @@ type ConnectionDataBlock struct {
 
 func (x *ConnectionDataBlock) Reset() {
 	*x = ConnectionDataBlock{}
-	mi := &file_cybermetrica_proto_msgTypes[20]
+	mi := &file_cybermetrica_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1372,7 +1260,7 @@ func (x *ConnectionDataBlock) String() string {
 func (*ConnectionDataBlock) ProtoMessage() {}
 
 func (x *ConnectionDataBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_cybermetrica_proto_msgTypes[20]
+	mi := &file_cybermetrica_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1385,7 +1273,7 @@ func (x *ConnectionDataBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConnectionDataBlock.ProtoReflect.Descriptor instead.
 func (*ConnectionDataBlock) Descriptor() ([]byte, []int) {
-	return file_cybermetrica_proto_rawDescGZIP(), []int{20}
+	return file_cybermetrica_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ConnectionDataBlock) GetId() int64 {
@@ -1421,7 +1309,7 @@ type EventBlock struct {
 
 func (x *EventBlock) Reset() {
 	*x = EventBlock{}
-	mi := &file_cybermetrica_proto_msgTypes[21]
+	mi := &file_cybermetrica_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1433,7 +1321,7 @@ func (x *EventBlock) String() string {
 func (*EventBlock) ProtoMessage() {}
 
 func (x *EventBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_cybermetrica_proto_msgTypes[21]
+	mi := &file_cybermetrica_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1446,7 +1334,7 @@ func (x *EventBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EventBlock.ProtoReflect.Descriptor instead.
 func (*EventBlock) Descriptor() ([]byte, []int) {
-	return file_cybermetrica_proto_rawDescGZIP(), []int{21}
+	return file_cybermetrica_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *EventBlock) GetStart() int64 {
@@ -1495,7 +1383,7 @@ type Timeline struct {
 
 func (x *Timeline) Reset() {
 	*x = Timeline{}
-	mi := &file_cybermetrica_proto_msgTypes[22]
+	mi := &file_cybermetrica_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1507,7 +1395,7 @@ func (x *Timeline) String() string {
 func (*Timeline) ProtoMessage() {}
 
 func (x *Timeline) ProtoReflect() protoreflect.Message {
-	mi := &file_cybermetrica_proto_msgTypes[22]
+	mi := &file_cybermetrica_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1520,7 +1408,7 @@ func (x *Timeline) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Timeline.ProtoReflect.Descriptor instead.
 func (*Timeline) Descriptor() ([]byte, []int) {
-	return file_cybermetrica_proto_rawDescGZIP(), []int{22}
+	return file_cybermetrica_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *Timeline) GetSn() string {
@@ -1691,14 +1579,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\verrorsCount\x18\v \x01(\x05R\verrorsCount\x12\x1e\n" +
 	"\n" +
 	"connection\x18\f \x01(\x03R\n" +
-	"connection\"D\n" +
-	"\x0fTelemertyParams\x121\n" +
-	"\x06params\x18\x01 \x03(\v2\x19.cybertele.TelemertyParamR\x06params\"r\n" +
-	"\x0eTelemertyParam\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
-	"\x05label\x18\x02 \x01(\tR\x05label\x12\x14\n" +
-	"\x05units\x18\x03 \x01(\tR\x05units\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\"E\n" +
+	"connection\"E\n" +
 	"\x0fTimelineRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x12\n" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x12\x0e\n" +
@@ -1758,7 +1639,7 @@ func file_cybermetrica_proto_rawDescGZIP() []byte {
 	return file_cybermetrica_proto_rawDescData
 }
 
-var file_cybermetrica_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_cybermetrica_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_cybermetrica_proto_goTypes = []any{
 	(*LastDataRequest)(nil),         // 0: cybertele.LastDataRequest
 	(*LastData)(nil),                // 1: cybertele.LastData
@@ -1776,18 +1657,18 @@ var file_cybermetrica_proto_goTypes = []any{
 	(*StatisticFuel)(nil),           // 13: cybertele.StatisticFuel
 	(*StatisticPeriodItem)(nil),     // 14: cybertele.StatisticPeriodItem
 	(*StatisticPeriod)(nil),         // 15: cybertele.StatisticPeriod
-	(*TelemertyParams)(nil),         // 16: cybertele.TelemertyParams
-	(*TelemertyParam)(nil),          // 17: cybertele.TelemertyParam
-	(*TimelineRequest)(nil),         // 18: cybertele.TimelineRequest
-	(*DataValuesRow)(nil),           // 19: cybertele.DataValuesRow
-	(*ConnectionDataBlock)(nil),     // 20: cybertele.ConnectionDataBlock
-	(*EventBlock)(nil),              // 21: cybertele.EventBlock
-	(*Timeline)(nil),                // 22: cybertele.Timeline
-	(*Pagination)(nil),              // 23: cybertele.Pagination
-	(*Empty)(nil),                   // 24: cybertele.Empty
-	(*PageRequest)(nil),             // 25: cybertele.PageRequest
-	(*HealthReply)(nil),             // 26: cybertele.HealthReply
-	(*ParserStatus)(nil),            // 27: cybertele.ParserStatus
+	(*TimelineRequest)(nil),         // 16: cybertele.TimelineRequest
+	(*DataValuesRow)(nil),           // 17: cybertele.DataValuesRow
+	(*ConnectionDataBlock)(nil),     // 18: cybertele.ConnectionDataBlock
+	(*EventBlock)(nil),              // 19: cybertele.EventBlock
+	(*Timeline)(nil),                // 20: cybertele.Timeline
+	(*Pagination)(nil),              // 21: cybertele.Pagination
+	(*Empty)(nil),                   // 22: cybertele.Empty
+	(*PageRequest)(nil),             // 23: cybertele.PageRequest
+	(*TelemertyParam)(nil),          // 24: cybertele.TelemertyParam
+	(*HealthReply)(nil),             // 25: cybertele.HealthReply
+	(*ParserStatus)(nil),            // 26: cybertele.ParserStatus
+	(*TelemertyParams)(nil),         // 27: cybertele.TelemertyParams
 	(*StatusReply)(nil),             // 28: cybertele.StatusReply
 }
 var file_cybermetrica_proto_depIdxs = []int32{
@@ -1796,51 +1677,50 @@ var file_cybermetrica_proto_depIdxs = []int32{
 	5,  // 2: cybertele.WorkhourHistory.data:type_name -> cybertele.WorkhourItem
 	7,  // 3: cybertele.Workhours.data:type_name -> cybertele.MachineWorkhours
 	9,  // 4: cybertele.ParserMetricaLogsReply.data:type_name -> cybertele.ParserMetricaLog
-	23, // 5: cybertele.ParserMetricaLogsReply.pagination:type_name -> cybertele.Pagination
+	21, // 5: cybertele.ParserMetricaLogsReply.pagination:type_name -> cybertele.Pagination
 	12, // 6: cybertele.StatisticPeriodItem.engine:type_name -> cybertele.StatisticEngine
 	13, // 7: cybertele.StatisticPeriodItem.fuel:type_name -> cybertele.StatisticFuel
 	14, // 8: cybertele.StatisticPeriod.data:type_name -> cybertele.StatisticPeriodItem
 	13, // 9: cybertele.StatisticPeriod.fuel:type_name -> cybertele.StatisticFuel
-	17, // 10: cybertele.TelemertyParams.params:type_name -> cybertele.TelemertyParam
-	19, // 11: cybertele.ConnectionDataBlock.dataValues:type_name -> cybertele.DataValuesRow
-	21, // 12: cybertele.Timeline.connections:type_name -> cybertele.EventBlock
-	21, // 13: cybertele.Timeline.engines:type_name -> cybertele.EventBlock
-	21, // 14: cybertele.Timeline.jobs:type_name -> cybertele.EventBlock
-	21, // 15: cybertele.Timeline.errors:type_name -> cybertele.EventBlock
-	20, // 16: cybertele.Timeline.data:type_name -> cybertele.ConnectionDataBlock
-	24, // 17: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
-	24, // 18: cybertele.Cybermetrica.StartParser:input_type -> cybertele.Empty
-	24, // 19: cybertele.Cybermetrica.StopParser:input_type -> cybertele.Empty
-	24, // 20: cybertele.Cybermetrica.GetParserStatus:input_type -> cybertele.Empty
-	25, // 21: cybertele.Cybermetrica.GetParserLogs:input_type -> cybertele.PageRequest
-	25, // 22: cybertele.Cybermetrica.MachineLogs:input_type -> cybertele.PageRequest
-	11, // 23: cybertele.Cybermetrica.MachineStatisticPeriod:input_type -> cybertele.MachineStatisticRequest
-	24, // 24: cybertele.Cybermetrica.GetTelemetryParams:input_type -> cybertele.Empty
-	17, // 25: cybertele.Cybermetrica.CreateTelemetryParam:input_type -> cybertele.TelemertyParam
-	17, // 26: cybertele.Cybermetrica.UpdateTelemetryParam:input_type -> cybertele.TelemertyParam
-	18, // 27: cybertele.Cybermetrica.GetTimeline:input_type -> cybertele.TimelineRequest
-	24, // 28: cybertele.Cybermetrica.AllMachinesWorkhours:input_type -> cybertele.Empty
-	4,  // 29: cybertele.Cybermetrica.GetMachineWorkhourHistory:input_type -> cybertele.HistoryRequest
-	0,  // 30: cybertele.Cybermetrica.GetLastMachinesData:input_type -> cybertele.LastDataRequest
-	26, // 31: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
-	27, // 32: cybertele.Cybermetrica.StartParser:output_type -> cybertele.ParserStatus
-	27, // 33: cybertele.Cybermetrica.StopParser:output_type -> cybertele.ParserStatus
-	27, // 34: cybertele.Cybermetrica.GetParserStatus:output_type -> cybertele.ParserStatus
-	10, // 35: cybertele.Cybermetrica.GetParserLogs:output_type -> cybertele.ParserMetricaLogsReply
-	10, // 36: cybertele.Cybermetrica.MachineLogs:output_type -> cybertele.ParserMetricaLogsReply
-	15, // 37: cybertele.Cybermetrica.MachineStatisticPeriod:output_type -> cybertele.StatisticPeriod
-	16, // 38: cybertele.Cybermetrica.GetTelemetryParams:output_type -> cybertele.TelemertyParams
-	28, // 39: cybertele.Cybermetrica.CreateTelemetryParam:output_type -> cybertele.StatusReply
-	28, // 40: cybertele.Cybermetrica.UpdateTelemetryParam:output_type -> cybertele.StatusReply
-	22, // 41: cybertele.Cybermetrica.GetTimeline:output_type -> cybertele.Timeline
-	8,  // 42: cybertele.Cybermetrica.AllMachinesWorkhours:output_type -> cybertele.Workhours
-	6,  // 43: cybertele.Cybermetrica.GetMachineWorkhourHistory:output_type -> cybertele.WorkhourHistory
-	3,  // 44: cybertele.Cybermetrica.GetLastMachinesData:output_type -> cybertele.LastDatas
-	31, // [31:45] is the sub-list for method output_type
-	17, // [17:31] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	17, // 10: cybertele.ConnectionDataBlock.dataValues:type_name -> cybertele.DataValuesRow
+	19, // 11: cybertele.Timeline.connections:type_name -> cybertele.EventBlock
+	19, // 12: cybertele.Timeline.engines:type_name -> cybertele.EventBlock
+	19, // 13: cybertele.Timeline.jobs:type_name -> cybertele.EventBlock
+	19, // 14: cybertele.Timeline.errors:type_name -> cybertele.EventBlock
+	18, // 15: cybertele.Timeline.data:type_name -> cybertele.ConnectionDataBlock
+	22, // 16: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
+	22, // 17: cybertele.Cybermetrica.StartParser:input_type -> cybertele.Empty
+	22, // 18: cybertele.Cybermetrica.StopParser:input_type -> cybertele.Empty
+	22, // 19: cybertele.Cybermetrica.GetParserStatus:input_type -> cybertele.Empty
+	23, // 20: cybertele.Cybermetrica.GetParserLogs:input_type -> cybertele.PageRequest
+	23, // 21: cybertele.Cybermetrica.MachineLogs:input_type -> cybertele.PageRequest
+	11, // 22: cybertele.Cybermetrica.MachineStatisticPeriod:input_type -> cybertele.MachineStatisticRequest
+	22, // 23: cybertele.Cybermetrica.GetTelemetryParams:input_type -> cybertele.Empty
+	24, // 24: cybertele.Cybermetrica.CreateTelemetryParam:input_type -> cybertele.TelemertyParam
+	24, // 25: cybertele.Cybermetrica.UpdateTelemetryParam:input_type -> cybertele.TelemertyParam
+	16, // 26: cybertele.Cybermetrica.GetTimeline:input_type -> cybertele.TimelineRequest
+	22, // 27: cybertele.Cybermetrica.AllMachinesWorkhours:input_type -> cybertele.Empty
+	4,  // 28: cybertele.Cybermetrica.GetMachineWorkhourHistory:input_type -> cybertele.HistoryRequest
+	0,  // 29: cybertele.Cybermetrica.GetLastMachinesData:input_type -> cybertele.LastDataRequest
+	25, // 30: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
+	26, // 31: cybertele.Cybermetrica.StartParser:output_type -> cybertele.ParserStatus
+	26, // 32: cybertele.Cybermetrica.StopParser:output_type -> cybertele.ParserStatus
+	26, // 33: cybertele.Cybermetrica.GetParserStatus:output_type -> cybertele.ParserStatus
+	10, // 34: cybertele.Cybermetrica.GetParserLogs:output_type -> cybertele.ParserMetricaLogsReply
+	10, // 35: cybertele.Cybermetrica.MachineLogs:output_type -> cybertele.ParserMetricaLogsReply
+	15, // 36: cybertele.Cybermetrica.MachineStatisticPeriod:output_type -> cybertele.StatisticPeriod
+	27, // 37: cybertele.Cybermetrica.GetTelemetryParams:output_type -> cybertele.TelemertyParams
+	28, // 38: cybertele.Cybermetrica.CreateTelemetryParam:output_type -> cybertele.StatusReply
+	28, // 39: cybertele.Cybermetrica.UpdateTelemetryParam:output_type -> cybertele.StatusReply
+	20, // 40: cybertele.Cybermetrica.GetTimeline:output_type -> cybertele.Timeline
+	8,  // 41: cybertele.Cybermetrica.AllMachinesWorkhours:output_type -> cybertele.Workhours
+	6,  // 42: cybertele.Cybermetrica.GetMachineWorkhourHistory:output_type -> cybertele.WorkhourHistory
+	3,  // 43: cybertele.Cybermetrica.GetLastMachinesData:output_type -> cybertele.LastDatas
+	30, // [30:44] is the sub-list for method output_type
+	16, // [16:30] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_cybermetrica_proto_init() }
@@ -1855,7 +1735,7 @@ func file_cybermetrica_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cybermetrica_proto_rawDesc), len(file_cybermetrica_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   23,
+			NumMessages:   21,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
