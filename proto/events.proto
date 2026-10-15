@@ -11,6 +11,17 @@ service Cyberevents {
     rpc GetMachineEvents (GetMachineEventsRequest) returns (EventsReply) {}
     rpc GetGroupEvents (GetGroupEventsRequest) returns (EventsReply) {}
     rpc GetGroupEventsCount (GetGroupEventsRequest) returns (EventsCount) {}
+    rpc GetEventTypes (Empty) returns (EventTypes) {}
+}
+
+message EventType {
+    int32 id = 1;
+    string code = 2;
+    string label = 3;
+}
+
+message EventTypes {
+    repeated EventType data = 1;
 }
 
 message EventsCount {

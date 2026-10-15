@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 import cyber_pb2 as cyber__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0c\x65vents.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"-\n\x0b\x45ventsCount\x12\x0e\n\x06\x65vents\x18\x01 \x01(\x05\x12\x0e\n\x06\x65rrors\x18\x02 \x01(\x05\"@\n\x10SetEventsRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12 \n\x06\x65vents\x18\x02 \x03(\x0b\x32\x10.cybertele.Event\"U\n\x17GetMachineEventsRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\n\n\x02tz\x18\x03 \x01(\x05\x12\x14\n\x0c\x63onnectionId\x18\x04 \x01(\x03\"o\n\x15GetGroupEventsRequest\x12\n\n\x02sn\x18\x01 \x03(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\n\n\x02tz\x18\x03 \x01(\x05\x12\x0e\n\x06\x66romId\x18\x04 \x01(\x03\x12\x11\n\tdirection\x18\x05 \x01(\t\x12\r\n\x05limit\x18\x06 \x01(\x05\"/\n\x0b\x45ventsReply\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.cybertele.Event2\xfa\x02\n\x0b\x43yberevents\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12\x42\n\tSetEvents\x12\x1b.cybertele.SetEventsRequest\x1a\x16.cybertele.StatusReply\"\x00\x12P\n\x10GetMachineEvents\x12\".cybertele.GetMachineEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x12L\n\x0eGetGroupEvents\x12 .cybertele.GetGroupEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x12Q\n\x13GetGroupEventsCount\x12 .cybertele.GetGroupEventsRequest\x1a\x16.cybertele.EventsCount\"\x00\x42\tZ\x07./protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0c\x65vents.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"4\n\tEventType\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\x12\r\n\x05label\x18\x03 \x01(\t\"0\n\nEventTypes\x12\"\n\x04\x64\x61ta\x18\x01 \x03(\x0b\x32\x14.cybertele.EventType\"-\n\x0b\x45ventsCount\x12\x0e\n\x06\x65vents\x18\x01 \x01(\x05\x12\x0e\n\x06\x65rrors\x18\x02 \x01(\x05\"@\n\x10SetEventsRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12 \n\x06\x65vents\x18\x02 \x03(\x0b\x32\x10.cybertele.Event\"U\n\x17GetMachineEventsRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\n\n\x02tz\x18\x03 \x01(\x05\x12\x14\n\x0c\x63onnectionId\x18\x04 \x01(\x03\"o\n\x15GetGroupEventsRequest\x12\n\n\x02sn\x18\x01 \x03(\t\x12\x0c\n\x04\x64\x61te\x18\x02 \x01(\t\x12\n\n\x02tz\x18\x03 \x01(\x05\x12\x0e\n\x06\x66romId\x18\x04 \x01(\x03\x12\x11\n\tdirection\x18\x05 \x01(\t\x12\r\n\x05limit\x18\x06 \x01(\x05\"/\n\x0b\x45ventsReply\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.cybertele.Event2\xb6\x03\n\x0b\x43yberevents\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12\x42\n\tSetEvents\x12\x1b.cybertele.SetEventsRequest\x1a\x16.cybertele.StatusReply\"\x00\x12P\n\x10GetMachineEvents\x12\".cybertele.GetMachineEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x12L\n\x0eGetGroupEvents\x12 .cybertele.GetGroupEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x12Q\n\x13GetGroupEventsCount\x12 .cybertele.GetGroupEventsRequest\x1a\x16.cybertele.EventsCount\"\x00\x12:\n\rGetEventTypes\x12\x10.cybertele.Empty\x1a\x15.cybertele.EventTypes\"\x00\x42\tZ\x07./protob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,16 +33,20 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'events_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\007./proto'
-  _globals['_EVENTSCOUNT']._serialized_start=40
-  _globals['_EVENTSCOUNT']._serialized_end=85
-  _globals['_SETEVENTSREQUEST']._serialized_start=87
-  _globals['_SETEVENTSREQUEST']._serialized_end=151
-  _globals['_GETMACHINEEVENTSREQUEST']._serialized_start=153
-  _globals['_GETMACHINEEVENTSREQUEST']._serialized_end=238
-  _globals['_GETGROUPEVENTSREQUEST']._serialized_start=240
-  _globals['_GETGROUPEVENTSREQUEST']._serialized_end=351
-  _globals['_EVENTSREPLY']._serialized_start=353
-  _globals['_EVENTSREPLY']._serialized_end=400
-  _globals['_CYBEREVENTS']._serialized_start=403
-  _globals['_CYBEREVENTS']._serialized_end=781
+  _globals['_EVENTTYPE']._serialized_start=40
+  _globals['_EVENTTYPE']._serialized_end=92
+  _globals['_EVENTTYPES']._serialized_start=94
+  _globals['_EVENTTYPES']._serialized_end=142
+  _globals['_EVENTSCOUNT']._serialized_start=144
+  _globals['_EVENTSCOUNT']._serialized_end=189
+  _globals['_SETEVENTSREQUEST']._serialized_start=191
+  _globals['_SETEVENTSREQUEST']._serialized_end=255
+  _globals['_GETMACHINEEVENTSREQUEST']._serialized_start=257
+  _globals['_GETMACHINEEVENTSREQUEST']._serialized_end=342
+  _globals['_GETGROUPEVENTSREQUEST']._serialized_start=344
+  _globals['_GETGROUPEVENTSREQUEST']._serialized_end=455
+  _globals['_EVENTSREPLY']._serialized_start=457
+  _globals['_EVENTSREPLY']._serialized_end=504
+  _globals['_CYBEREVENTS']._serialized_start=507
+  _globals['_CYBEREVENTS']._serialized_end=945
 # @@protoc_insertion_point(module_scope)

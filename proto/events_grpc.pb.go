@@ -24,6 +24,7 @@ const (
 	Cyberevents_GetMachineEvents_FullMethodName    = "/cybertele.Cyberevents/GetMachineEvents"
 	Cyberevents_GetGroupEvents_FullMethodName      = "/cybertele.Cyberevents/GetGroupEvents"
 	Cyberevents_GetGroupEventsCount_FullMethodName = "/cybertele.Cyberevents/GetGroupEventsCount"
+	Cyberevents_GetEventTypes_FullMethodName       = "/cybertele.Cyberevents/GetEventTypes"
 )
 
 // CybereventsClient is the client API for Cyberevents service.
@@ -35,6 +36,7 @@ type CybereventsClient interface {
 	GetMachineEvents(ctx context.Context, in *GetMachineEventsRequest, opts ...grpc.CallOption) (*EventsReply, error)
 	GetGroupEvents(ctx context.Context, in *GetGroupEventsRequest, opts ...grpc.CallOption) (*EventsReply, error)
 	GetGroupEventsCount(ctx context.Context, in *GetGroupEventsRequest, opts ...grpc.CallOption) (*EventsCount, error)
+	GetEventTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*EventTypes, error)
 }
 
 type cybereventsClient struct {
@@ -95,6 +97,16 @@ func (c *cybereventsClient) GetGroupEventsCount(ctx context.Context, in *GetGrou
 	return out, nil
 }
 
+func (c *cybereventsClient) GetEventTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*EventTypes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EventTypes)
+	err := c.cc.Invoke(ctx, Cyberevents_GetEventTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CybereventsServer is the server API for Cyberevents service.
 // All implementations must embed UnimplementedCybereventsServer
 // for forward compatibility.
@@ -104,6 +116,7 @@ type CybereventsServer interface {
 	GetMachineEvents(context.Context, *GetMachineEventsRequest) (*EventsReply, error)
 	GetGroupEvents(context.Context, *GetGroupEventsRequest) (*EventsReply, error)
 	GetGroupEventsCount(context.Context, *GetGroupEventsRequest) (*EventsCount, error)
+	GetEventTypes(context.Context, *Empty) (*EventTypes, error)
 	mustEmbedUnimplementedCybereventsServer()
 }
 
@@ -128,6 +141,9 @@ func (UnimplementedCybereventsServer) GetGroupEvents(context.Context, *GetGroupE
 }
 func (UnimplementedCybereventsServer) GetGroupEventsCount(context.Context, *GetGroupEventsRequest) (*EventsCount, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetGroupEventsCount not implemented")
+}
+func (UnimplementedCybereventsServer) GetEventTypes(context.Context, *Empty) (*EventTypes, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetEventTypes not implemented")
 }
 func (UnimplementedCybereventsServer) mustEmbedUnimplementedCybereventsServer() {}
 func (UnimplementedCybereventsServer) testEmbeddedByValue()                     {}
@@ -240,6 +256,24 @@ func _Cyberevents_GetGroupEventsCount_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cyberevents_GetEventTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybereventsServer).GetEventTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cyberevents_GetEventTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybereventsServer).GetEventTypes(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cyberevents_ServiceDesc is the grpc.ServiceDesc for Cyberevents service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +300,10 @@ var Cyberevents_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGroupEventsCount",
 			Handler:    _Cyberevents_GetGroupEventsCount_Handler,
+		},
+		{
+			MethodName: "GetEventTypes",
+			Handler:    _Cyberevents_GetEventTypes_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
