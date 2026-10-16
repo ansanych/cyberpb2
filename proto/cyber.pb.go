@@ -2117,6 +2117,162 @@ func (x *MongoDataTypes) GetData() []*MongoDataType {
 	return nil
 }
 
+type HistoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Date          string                 `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HistoryRequest) Reset() {
+	*x = HistoryRequest{}
+	mi := &file_cyber_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HistoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HistoryRequest) ProtoMessage() {}
+
+func (x *HistoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HistoryRequest.ProtoReflect.Descriptor instead.
+func (*HistoryRequest) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *HistoryRequest) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *HistoryRequest) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+type WorkhourItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Date          string                 `protobuf:"bytes,1,opt,name=date,proto3" json:"date,omitempty"`
+	Value         float32                `protobuf:"fixed32,2,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WorkhourItem) Reset() {
+	*x = WorkhourItem{}
+	mi := &file_cyber_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WorkhourItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WorkhourItem) ProtoMessage() {}
+
+func (x *WorkhourItem) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WorkhourItem.ProtoReflect.Descriptor instead.
+func (*WorkhourItem) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *WorkhourItem) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+func (x *WorkhourItem) GetValue() float32 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+type WorkhourHistory struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []*WorkhourItem        `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	Sn            string                 `protobuf:"bytes,2,opt,name=sn,proto3" json:"sn,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WorkhourHistory) Reset() {
+	*x = WorkhourHistory{}
+	mi := &file_cyber_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WorkhourHistory) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WorkhourHistory) ProtoMessage() {}
+
+func (x *WorkhourHistory) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WorkhourHistory.ProtoReflect.Descriptor instead.
+func (*WorkhourHistory) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *WorkhourHistory) GetData() []*WorkhourItem {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *WorkhourHistory) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
 var File_cyber_proto protoreflect.FileDescriptor
 
 const file_cyber_proto_rawDesc = "" +
@@ -2267,7 +2423,16 @@ const file_cyber_proto_rawDesc = "" +
 	"\bfullName\x18\x03 \x01(\tR\bfullName\x12\x18\n" +
 	"\ameaning\x18\x04 \x01(\tR\ameaning\">\n" +
 	"\x0eMongoDataTypes\x12,\n" +
-	"\x04data\x18\x01 \x03(\v2\x18.cybertele.MongoDataTypeR\x04data*O\n" +
+	"\x04data\x18\x01 \x03(\v2\x18.cybertele.MongoDataTypeR\x04data\"4\n" +
+	"\x0eHistoryRequest\x12\x0e\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x12\n" +
+	"\x04date\x18\x02 \x01(\tR\x04date\"8\n" +
+	"\fWorkhourItem\x12\x12\n" +
+	"\x04date\x18\x01 \x01(\tR\x04date\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x02R\x05value\"N\n" +
+	"\x0fWorkhourHistory\x12+\n" +
+	"\x04data\x18\x01 \x03(\v2\x17.cybertele.WorkhourItemR\x04data\x12\x0e\n" +
+	"\x02sn\x18\x02 \x01(\tR\x02sn*O\n" +
 	"\x06Status\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\n" +
 	"\n" +
@@ -2290,7 +2455,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                // 0: cybertele.Status
 	(*StatusReply)(nil),        // 1: cybertele.StatusReply
@@ -2326,6 +2491,9 @@ var file_cyber_proto_goTypes = []any{
 	(*MongoErrors)(nil),        // 31: cybertele.MongoErrors
 	(*MongoDataType)(nil),      // 32: cybertele.MongoDataType
 	(*MongoDataTypes)(nil),     // 33: cybertele.MongoDataTypes
+	(*HistoryRequest)(nil),     // 34: cybertele.HistoryRequest
+	(*WorkhourItem)(nil),       // 35: cybertele.WorkhourItem
+	(*WorkhourHistory)(nil),    // 36: cybertele.WorkhourHistory
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -2346,11 +2514,12 @@ var file_cyber_proto_depIdxs = []int32{
 	28, // 15: cybertele.MongoMachines.data:type_name -> cybertele.MongoMachine
 	30, // 16: cybertele.MongoErrors.data:type_name -> cybertele.MongoError
 	32, // 17: cybertele.MongoDataTypes.data:type_name -> cybertele.MongoDataType
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	35, // 18: cybertele.WorkhourHistory.data:type_name -> cybertele.WorkhourItem
+	19, // [19:19] is the sub-list for method output_type
+	19, // [19:19] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -2364,7 +2533,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   33,
+			NumMessages:   36,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -24,19 +24,24 @@ var File_parser_proto protoreflect.FileDescriptor
 
 const file_parser_proto_rawDesc = "" +
 	"\n" +
-	"\fparser.proto\x12\tcybertele\x1a\vcyber.proto2>\n" +
+	"\fparser.proto\x12\tcybertele\x1a\vcyber.proto\x1a\x12cybermetrica.proto2\x8d\x01\n" +
 	"\x06Parser\x124\n" +
-	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00B\tZ\a./protob\x06proto3"
+	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12M\n" +
+	"\x12GetWorkhourHistory\x12\x19.cybertele.HistoryRequest\x1a\x1a.cybertele.WorkhourHistory\"\x00B\tZ\a./protob\x06proto3"
 
 var file_parser_proto_goTypes = []any{
-	(*Empty)(nil),       // 0: cybertele.Empty
-	(*HealthReply)(nil), // 1: cybertele.HealthReply
+	(*Empty)(nil),           // 0: cybertele.Empty
+	(*HistoryRequest)(nil),  // 1: cybertele.HistoryRequest
+	(*HealthReply)(nil),     // 2: cybertele.HealthReply
+	(*WorkhourHistory)(nil), // 3: cybertele.WorkhourHistory
 }
 var file_parser_proto_depIdxs = []int32{
 	0, // 0: cybertele.Parser.Health:input_type -> cybertele.Empty
-	1, // 1: cybertele.Parser.Health:output_type -> cybertele.HealthReply
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	1, // 1: cybertele.Parser.GetWorkhourHistory:input_type -> cybertele.HistoryRequest
+	2, // 2: cybertele.Parser.Health:output_type -> cybertele.HealthReply
+	3, // 3: cybertele.Parser.GetWorkhourHistory:output_type -> cybertele.WorkhourHistory
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -48,6 +53,7 @@ func file_parser_proto_init() {
 		return
 	}
 	file_cyber_proto_init()
+	file_cybermetrica_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

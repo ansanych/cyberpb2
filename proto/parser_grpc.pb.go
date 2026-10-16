@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Parser_Health_FullMethodName = "/cybertele.Parser/Health"
+	Parser_Health_FullMethodName             = "/cybertele.Parser/Health"
+	Parser_GetWorkhourHistory_FullMethodName = "/cybertele.Parser/GetWorkhourHistory"
 )
 
 // ParserClient is the client API for Parser service.
@@ -27,6 +28,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ParserClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
+	// GetWorkhourHistory возвращает историю наработки машины по дням
+	// (агрегат agg_wh из ct-parser). Сообщения переиспользуются из cybermetrica.proto.
+	GetWorkhourHistory(ctx context.Context, in *HistoryRequest, opts ...grpc.CallOption) (*WorkhourHistory, error)
 }
 
 type parserClient struct {
@@ -47,11 +51,24 @@ func (c *parserClient) Health(ctx context.Context, in *Empty, opts ...grpc.CallO
 	return out, nil
 }
 
+func (c *parserClient) GetWorkhourHistory(ctx context.Context, in *HistoryRequest, opts ...grpc.CallOption) (*WorkhourHistory, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkhourHistory)
+	err := c.cc.Invoke(ctx, Parser_GetWorkhourHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ParserServer is the server API for Parser service.
 // All implementations must embed UnimplementedParserServer
 // for forward compatibility.
 type ParserServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
+	// GetWorkhourHistory возвращает историю наработки машины по дням
+	// (агрегат agg_wh из ct-parser). Сообщения переиспользуются из cybermetrica.proto.
+	GetWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error)
 	mustEmbedUnimplementedParserServer()
 }
 
@@ -64,6 +81,9 @@ type UnimplementedParserServer struct{}
 
 func (UnimplementedParserServer) Health(context.Context, *Empty) (*HealthReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method Health not implemented")
+}
+func (UnimplementedParserServer) GetWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetWorkhourHistory not implemented")
 }
 func (UnimplementedParserServer) mustEmbedUnimplementedParserServer() {}
 func (UnimplementedParserServer) testEmbeddedByValue()                {}
@@ -104,6 +124,24 @@ func _Parser_Health_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Parser_GetWorkhourHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ParserServer).GetWorkhourHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Parser_GetWorkhourHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ParserServer).GetWorkhourHistory(ctx, req.(*HistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Parser_ServiceDesc is the grpc.ServiceDesc for Parser service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +152,10 @@ var Parser_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Health",
 			Handler:    _Parser_Health_Handler,
+		},
+		{
+			MethodName: "GetWorkhourHistory",
+			Handler:    _Parser_GetWorkhourHistory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

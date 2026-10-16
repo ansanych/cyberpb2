@@ -1,5 +1,6 @@
 syntax = "proto3";
 import "cyber.proto";
+import "cybermetrica.proto";
 
 package cybertele;
 
@@ -7,4 +8,7 @@ option go_package = "./proto";
 
 service Parser {
     rpc Health (Empty) returns (HealthReply) {}
+    // GetWorkhourHistory возвращает историю наработки машины по дням
+    // (агрегат agg_wh из ct-parser). Сообщения переиспользуются из cybermetrica.proto.
+    rpc GetWorkhourHistory (HistoryRequest) returns (WorkhourHistory) {}
 }
