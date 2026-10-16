@@ -478,17 +478,18 @@ func (x *Pagination) GetTotal() int32 {
 }
 
 type Machine struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	Sn             string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
-	Model          string                 `protobuf:"bytes,2,opt,name=model,proto3" json:"model,omitempty"`
-	Sync           bool                   `protobuf:"varint,3,opt,name=sync,proto3" json:"sync,omitempty"`
-	GenerationId   int32                  `protobuf:"varint,4,opt,name=generationId,proto3" json:"generationId,omitempty"`
-	ClassId        int32                  `protobuf:"varint,5,opt,name=classId,proto3" json:"classId,omitempty"`
-	ClassName      string                 `protobuf:"bytes,6,opt,name=className,proto3" json:"className,omitempty"`
-	GenerationName string                 `protobuf:"bytes,7,opt,name=generationName,proto3" json:"generationName,omitempty"`
-	ModelId        int32                  `protobuf:"varint,8,opt,name=modelId,proto3" json:"modelId,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Sn                string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Model             string                 `protobuf:"bytes,2,opt,name=model,proto3" json:"model,omitempty"`
+	Sync              bool                   `protobuf:"varint,3,opt,name=sync,proto3" json:"sync,omitempty"`
+	GenerationId      int32                  `protobuf:"varint,4,opt,name=generationId,proto3" json:"generationId,omitempty"`
+	ClassId           int32                  `protobuf:"varint,5,opt,name=classId,proto3" json:"classId,omitempty"`
+	ClassName         string                 `protobuf:"bytes,6,opt,name=className,proto3" json:"className,omitempty"`
+	GenerationName    string                 `protobuf:"bytes,7,opt,name=generationName,proto3" json:"generationName,omitempty"`
+	ModelId           int32                  `protobuf:"varint,8,opt,name=modelId,proto3" json:"modelId,omitempty"`
+	MaintenancePeriod int32                  `protobuf:"varint,9,opt,name=maintenancePeriod,proto3" json:"maintenancePeriod,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *Machine) Reset() {
@@ -573,6 +574,13 @@ func (x *Machine) GetGenerationName() string {
 func (x *Machine) GetModelId() int32 {
 	if x != nil {
 		return x.ModelId
+	}
+	return 0
+}
+
+func (x *Machine) GetMaintenancePeriod() int32 {
+	if x != nil {
+		return x.MaintenancePeriod
 	}
 	return 0
 }
@@ -2138,7 +2146,7 @@ const file_cyber_proto_rawDesc = "" +
 	"Pagination\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x14\n" +
-	"\x05total\x18\x03 \x01(\x05R\x05total\"\xe1\x01\n" +
+	"\x05total\x18\x03 \x01(\x05R\x05total\"\x8f\x02\n" +
 	"\aMachine\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x14\n" +
 	"\x05model\x18\x02 \x01(\tR\x05model\x12\x12\n" +
@@ -2147,7 +2155,8 @@ const file_cyber_proto_rawDesc = "" +
 	"\aclassId\x18\x05 \x01(\x05R\aclassId\x12\x1c\n" +
 	"\tclassName\x18\x06 \x01(\tR\tclassName\x12&\n" +
 	"\x0egenerationName\x18\a \x01(\tR\x0egenerationName\x12\x18\n" +
-	"\amodelId\x18\b \x01(\x05R\amodelId\":\n" +
+	"\amodelId\x18\b \x01(\x05R\amodelId\x12,\n" +
+	"\x11maintenancePeriod\x18\t \x01(\x05R\x11maintenancePeriod\":\n" +
 	"\bMachines\x12.\n" +
 	"\bmachines\x18\x01 \x03(\v2\x12.cybertele.MachineR\bmachines\"~\n" +
 	"\bDataType\x12\x12\n" +

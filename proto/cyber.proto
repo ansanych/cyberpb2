@@ -67,6 +67,7 @@ message Machine {
     string className = 6;
     string generationName = 7;
     int32 modelId = 8;
+    int32 maintenancePeriod = 9;
 }
 
 message Machines {
