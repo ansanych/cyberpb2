@@ -8,4 +8,5 @@ option go_package = "./proto";
 service Cyberfuel {
     rpc Health (Empty) returns (HealthReply) {}
     rpc CalcEvents (DataPoints) returns (Segments) {}
+    rpc ConvertToLiters (DataPoints) returns (DataPoints) {}
 }

@@ -104,6 +104,7 @@ message DataPoint {
 
 message DataPoints {
     repeated DataPoint data = 1;
+    string sn = 2;
 }
 
 message Segment {
@@ -238,4 +239,27 @@ message WorkhourItem {
 message WorkhourHistory {
     repeated WorkhourItem data = 1;
     string sn = 2;
+}
+
+message FuelCalibrationPoint {
+    int64 percent = 1;
+    int64 liter = 2;
+}
+
+message FuelCalibrationType {
+    int32 ID = 1;
+    string name = 2;
+    repeated FuelCalibrationPoint data = 3;
+}
+
+message FuelCalibration {
+    int32 ID = 1;
+    int32 templateID = 2;
+    int32 classID = 3;
+    int32 generationID = 4;
+    FuelCalibrationType calibration = 5;
+}
+
+message FuelCalibrations {
+    repeated FuelCalibration data = 1;
 }

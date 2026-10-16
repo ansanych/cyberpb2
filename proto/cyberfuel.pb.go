@@ -24,11 +24,12 @@ var File_cyberfuel_proto protoreflect.FileDescriptor
 
 const file_cyberfuel_proto_rawDesc = "" +
 	"\n" +
-	"\x0fcyberfuel.proto\x12\tcybertele\x1a\vcyber.proto2}\n" +
+	"\x0fcyberfuel.proto\x12\tcybertele\x1a\vcyber.proto2\xc0\x01\n" +
 	"\tCyberfuel\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
 	"\n" +
-	"CalcEvents\x12\x15.cybertele.DataPoints\x1a\x13.cybertele.Segments\"\x00B\tZ\a./protob\x06proto3"
+	"CalcEvents\x12\x15.cybertele.DataPoints\x1a\x13.cybertele.Segments\"\x00\x12A\n" +
+	"\x0fConvertToLiters\x12\x15.cybertele.DataPoints\x1a\x15.cybertele.DataPoints\"\x00B\tZ\a./protob\x06proto3"
 
 var file_cyberfuel_proto_goTypes = []any{
 	(*Empty)(nil),       // 0: cybertele.Empty
@@ -39,10 +40,12 @@ var file_cyberfuel_proto_goTypes = []any{
 var file_cyberfuel_proto_depIdxs = []int32{
 	0, // 0: cybertele.Cyberfuel.Health:input_type -> cybertele.Empty
 	1, // 1: cybertele.Cyberfuel.CalcEvents:input_type -> cybertele.DataPoints
-	2, // 2: cybertele.Cyberfuel.Health:output_type -> cybertele.HealthReply
-	3, // 3: cybertele.Cyberfuel.CalcEvents:output_type -> cybertele.Segments
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	1, // 2: cybertele.Cyberfuel.ConvertToLiters:input_type -> cybertele.DataPoints
+	2, // 3: cybertele.Cyberfuel.Health:output_type -> cybertele.HealthReply
+	3, // 4: cybertele.Cyberfuel.CalcEvents:output_type -> cybertele.Segments
+	1, // 5: cybertele.Cyberfuel.ConvertToLiters:output_type -> cybertele.DataPoints
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

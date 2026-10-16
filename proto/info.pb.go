@@ -25,7 +25,7 @@ var File_info_proto protoreflect.FileDescriptor
 const file_info_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"info.proto\x12\tcybertele\x1a\vcyber.proto2\x9e\x04\n" +
+	"info.proto\x12\tcybertele\x1a\vcyber.proto2\xe6\x04\n" +
 	"\x04Info\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x126\n" +
 	"\vGetMachines\x12\x10.cybertele.Empty\x1a\x13.cybertele.Machines\"\x00\x12D\n" +
@@ -34,7 +34,8 @@ const file_info_proto_rawDesc = "" +
 	"\x10GetMongoMachines\x12\x17.cybertele.MongoRequest\x1a\x18.cybertele.MongoMachines\"\x00\x12C\n" +
 	"\x0eGetMongoErrors\x12\x17.cybertele.MongoRequest\x1a\x16.cybertele.MongoErrors\"\x00\x12B\n" +
 	"\x11GetMongoDataTypes\x12\x10.cybertele.Empty\x1a\x19.cybertele.MongoDataTypes\"\x00\x12F\n" +
-	"\x11GetMongoAllErrors\x12\x17.cybertele.MongoRequest\x1a\x16.cybertele.MongoErrors\"\x00B\tZ\a./protob\x06proto3"
+	"\x11GetMongoAllErrors\x12\x17.cybertele.MongoRequest\x1a\x16.cybertele.MongoErrors\"\x00\x12F\n" +
+	"\x13GetFuelCalibrations\x12\x10.cybertele.Empty\x1a\x1b.cybertele.FuelCalibrations\"\x00B\tZ\a./protob\x06proto3"
 
 var file_info_proto_goTypes = []any{
 	(*Empty)(nil),             // 0: cybertele.Empty
@@ -46,6 +47,7 @@ var file_info_proto_goTypes = []any{
 	(*MongoMachines)(nil),     // 6: cybertele.MongoMachines
 	(*MongoErrors)(nil),       // 7: cybertele.MongoErrors
 	(*MongoDataTypes)(nil),    // 8: cybertele.MongoDataTypes
+	(*FuelCalibrations)(nil),  // 9: cybertele.FuelCalibrations
 }
 var file_info_proto_depIdxs = []int32{
 	0, // 0: cybertele.Info.Health:input_type -> cybertele.Empty
@@ -56,16 +58,18 @@ var file_info_proto_depIdxs = []int32{
 	1, // 5: cybertele.Info.GetMongoErrors:input_type -> cybertele.MongoRequest
 	0, // 6: cybertele.Info.GetMongoDataTypes:input_type -> cybertele.Empty
 	1, // 7: cybertele.Info.GetMongoAllErrors:input_type -> cybertele.MongoRequest
-	2, // 8: cybertele.Info.Health:output_type -> cybertele.HealthReply
-	3, // 9: cybertele.Info.GetMachines:output_type -> cybertele.Machines
-	4, // 10: cybertele.Info.GetTelemetryParams:output_type -> cybertele.TelemertyParams
-	5, // 11: cybertele.Info.GetMongoMachineTypes:output_type -> cybertele.MongoMachineTypes
-	6, // 12: cybertele.Info.GetMongoMachines:output_type -> cybertele.MongoMachines
-	7, // 13: cybertele.Info.GetMongoErrors:output_type -> cybertele.MongoErrors
-	8, // 14: cybertele.Info.GetMongoDataTypes:output_type -> cybertele.MongoDataTypes
-	7, // 15: cybertele.Info.GetMongoAllErrors:output_type -> cybertele.MongoErrors
-	8, // [8:16] is the sub-list for method output_type
-	0, // [0:8] is the sub-list for method input_type
+	0, // 8: cybertele.Info.GetFuelCalibrations:input_type -> cybertele.Empty
+	2, // 9: cybertele.Info.Health:output_type -> cybertele.HealthReply
+	3, // 10: cybertele.Info.GetMachines:output_type -> cybertele.Machines
+	4, // 11: cybertele.Info.GetTelemetryParams:output_type -> cybertele.TelemertyParams
+	5, // 12: cybertele.Info.GetMongoMachineTypes:output_type -> cybertele.MongoMachineTypes
+	6, // 13: cybertele.Info.GetMongoMachines:output_type -> cybertele.MongoMachines
+	7, // 14: cybertele.Info.GetMongoErrors:output_type -> cybertele.MongoErrors
+	8, // 15: cybertele.Info.GetMongoDataTypes:output_type -> cybertele.MongoDataTypes
+	7, // 16: cybertele.Info.GetMongoAllErrors:output_type -> cybertele.MongoErrors
+	9, // 17: cybertele.Info.GetFuelCalibrations:output_type -> cybertele.FuelCalibrations
+	9, // [9:18] is the sub-list for method output_type
+	0, // [0:9] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

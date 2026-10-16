@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 import cyber_pb2 as cyber__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0f\x63yberfuel.proto\x12\tcybertele\x1a\x0b\x63yber.proto2}\n\tCyberfuel\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n\nCalcEvents\x12\x15.cybertele.DataPoints\x1a\x13.cybertele.Segments\"\x00\x42\tZ\x07./protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0f\x63yberfuel.proto\x12\tcybertele\x1a\x0b\x63yber.proto2\xc0\x01\n\tCyberfuel\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n\nCalcEvents\x12\x15.cybertele.DataPoints\x1a\x13.cybertele.Segments\"\x00\x12\x41\n\x0f\x43onvertToLiters\x12\x15.cybertele.DataPoints\x1a\x15.cybertele.DataPoints\"\x00\x42\tZ\x07./protob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,6 +33,6 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'cyberfuel_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\007./proto'
-  _globals['_CYBERFUEL']._serialized_start=43
-  _globals['_CYBERFUEL']._serialized_end=168
+  _globals['_CYBERFUEL']._serialized_start=44
+  _globals['_CYBERFUEL']._serialized_end=236
 # @@protoc_insertion_point(module_scope)

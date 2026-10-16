@@ -916,6 +916,7 @@ func (x *DataPoint) GetValueInt() int64 {
 type DataPoints struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Data          []*DataPoint           `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	Sn            string                 `protobuf:"bytes,2,opt,name=sn,proto3" json:"sn,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -955,6 +956,13 @@ func (x *DataPoints) GetData() []*DataPoint {
 		return x.Data
 	}
 	return nil
+}
+
+func (x *DataPoints) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
 }
 
 type Segment struct {
@@ -2273,6 +2281,238 @@ func (x *WorkhourHistory) GetSn() string {
 	return ""
 }
 
+type FuelCalibrationPoint struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Percent       int64                  `protobuf:"varint,1,opt,name=percent,proto3" json:"percent,omitempty"`
+	Liter         int64                  `protobuf:"varint,2,opt,name=liter,proto3" json:"liter,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FuelCalibrationPoint) Reset() {
+	*x = FuelCalibrationPoint{}
+	mi := &file_cyber_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FuelCalibrationPoint) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FuelCalibrationPoint) ProtoMessage() {}
+
+func (x *FuelCalibrationPoint) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FuelCalibrationPoint.ProtoReflect.Descriptor instead.
+func (*FuelCalibrationPoint) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *FuelCalibrationPoint) GetPercent() int64 {
+	if x != nil {
+		return x.Percent
+	}
+	return 0
+}
+
+func (x *FuelCalibrationPoint) GetLiter() int64 {
+	if x != nil {
+		return x.Liter
+	}
+	return 0
+}
+
+type FuelCalibrationType struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	ID            int32                   `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	Name          string                  `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Data          []*FuelCalibrationPoint `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FuelCalibrationType) Reset() {
+	*x = FuelCalibrationType{}
+	mi := &file_cyber_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FuelCalibrationType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FuelCalibrationType) ProtoMessage() {}
+
+func (x *FuelCalibrationType) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FuelCalibrationType.ProtoReflect.Descriptor instead.
+func (*FuelCalibrationType) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *FuelCalibrationType) GetID() int32 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *FuelCalibrationType) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *FuelCalibrationType) GetData() []*FuelCalibrationPoint {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type FuelCalibration struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ID            int32                  `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	TemplateID    int32                  `protobuf:"varint,2,opt,name=templateID,proto3" json:"templateID,omitempty"`
+	ClassID       int32                  `protobuf:"varint,3,opt,name=classID,proto3" json:"classID,omitempty"`
+	GenerationID  int32                  `protobuf:"varint,4,opt,name=generationID,proto3" json:"generationID,omitempty"`
+	Calibration   *FuelCalibrationType   `protobuf:"bytes,5,opt,name=calibration,proto3" json:"calibration,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FuelCalibration) Reset() {
+	*x = FuelCalibration{}
+	mi := &file_cyber_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FuelCalibration) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FuelCalibration) ProtoMessage() {}
+
+func (x *FuelCalibration) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FuelCalibration.ProtoReflect.Descriptor instead.
+func (*FuelCalibration) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *FuelCalibration) GetID() int32 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *FuelCalibration) GetTemplateID() int32 {
+	if x != nil {
+		return x.TemplateID
+	}
+	return 0
+}
+
+func (x *FuelCalibration) GetClassID() int32 {
+	if x != nil {
+		return x.ClassID
+	}
+	return 0
+}
+
+func (x *FuelCalibration) GetGenerationID() int32 {
+	if x != nil {
+		return x.GenerationID
+	}
+	return 0
+}
+
+func (x *FuelCalibration) GetCalibration() *FuelCalibrationType {
+	if x != nil {
+		return x.Calibration
+	}
+	return nil
+}
+
+type FuelCalibrations struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []*FuelCalibration     `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FuelCalibrations) Reset() {
+	*x = FuelCalibrations{}
+	mi := &file_cyber_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FuelCalibrations) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FuelCalibrations) ProtoMessage() {}
+
+func (x *FuelCalibrations) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FuelCalibrations.ProtoReflect.Descriptor instead.
+func (*FuelCalibrations) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *FuelCalibrations) GetData() []*FuelCalibration {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 var File_cyber_proto protoreflect.FileDescriptor
 
 const file_cyber_proto_rawDesc = "" +
@@ -2334,10 +2574,11 @@ const file_cyber_proto_rawDesc = "" +
 	"\n" +
 	"valueFloat\x18\x02 \x01(\x02R\n" +
 	"valueFloat\x12\x1a\n" +
-	"\bvalueInt\x18\x03 \x01(\x03R\bvalueInt\"6\n" +
+	"\bvalueInt\x18\x03 \x01(\x03R\bvalueInt\"F\n" +
 	"\n" +
 	"DataPoints\x12(\n" +
-	"\x04data\x18\x01 \x03(\v2\x14.cybertele.DataPointR\x04data\"\xcd\x01\n" +
+	"\x04data\x18\x01 \x03(\v2\x14.cybertele.DataPointR\x04data\x12\x0e\n" +
+	"\x02sn\x18\x02 \x01(\tR\x02sn\"\xcd\x01\n" +
 	"\aSegment\x12\x1c\n" +
 	"\tstartTime\x18\x01 \x01(\x03R\tstartTime\x12\x18\n" +
 	"\aendTime\x18\x02 \x01(\x03R\aendTime\x12 \n" +
@@ -2432,7 +2673,24 @@ const file_cyber_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\x02R\x05value\"N\n" +
 	"\x0fWorkhourHistory\x12+\n" +
 	"\x04data\x18\x01 \x03(\v2\x17.cybertele.WorkhourItemR\x04data\x12\x0e\n" +
-	"\x02sn\x18\x02 \x01(\tR\x02sn*O\n" +
+	"\x02sn\x18\x02 \x01(\tR\x02sn\"F\n" +
+	"\x14FuelCalibrationPoint\x12\x18\n" +
+	"\apercent\x18\x01 \x01(\x03R\apercent\x12\x14\n" +
+	"\x05liter\x18\x02 \x01(\x03R\x05liter\"n\n" +
+	"\x13FuelCalibrationType\x12\x0e\n" +
+	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x123\n" +
+	"\x04data\x18\x03 \x03(\v2\x1f.cybertele.FuelCalibrationPointR\x04data\"\xc1\x01\n" +
+	"\x0fFuelCalibration\x12\x0e\n" +
+	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x1e\n" +
+	"\n" +
+	"templateID\x18\x02 \x01(\x05R\n" +
+	"templateID\x12\x18\n" +
+	"\aclassID\x18\x03 \x01(\x05R\aclassID\x12\"\n" +
+	"\fgenerationID\x18\x04 \x01(\x05R\fgenerationID\x12@\n" +
+	"\vcalibration\x18\x05 \x01(\v2\x1e.cybertele.FuelCalibrationTypeR\vcalibration\"B\n" +
+	"\x10FuelCalibrations\x12.\n" +
+	"\x04data\x18\x01 \x03(\v2\x1a.cybertele.FuelCalibrationR\x04data*O\n" +
 	"\x06Status\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\n" +
 	"\n" +
@@ -2455,45 +2713,49 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 40)
 var file_cyber_proto_goTypes = []any{
-	(Status)(0),                // 0: cybertele.Status
-	(*StatusReply)(nil),        // 1: cybertele.StatusReply
-	(*Empty)(nil),              // 2: cybertele.Empty
-	(*Disk)(nil),               // 3: cybertele.Disk
-	(*HealthReply)(nil),        // 4: cybertele.HealthReply
-	(*ParserStatus)(nil),       // 5: cybertele.ParserStatus
-	(*PageRequest)(nil),        // 6: cybertele.PageRequest
-	(*Pagination)(nil),         // 7: cybertele.Pagination
-	(*Machine)(nil),            // 8: cybertele.Machine
-	(*Machines)(nil),           // 9: cybertele.Machines
-	(*DataType)(nil),           // 10: cybertele.DataType
-	(*DataTypes)(nil),          // 11: cybertele.DataTypes
-	(*ModelDataTypes)(nil),     // 12: cybertele.ModelDataTypes
-	(*AllModelsDataTypes)(nil), // 13: cybertele.AllModelsDataTypes
-	(*DataPoint)(nil),          // 14: cybertele.DataPoint
-	(*DataPoints)(nil),         // 15: cybertele.DataPoints
-	(*Segment)(nil),            // 16: cybertele.Segment
-	(*Segments)(nil),           // 17: cybertele.Segments
-	(*Event)(nil),              // 18: cybertele.Event
-	(*Count)(nil),              // 19: cybertele.Count
-	(*CyberService)(nil),       // 20: cybertele.CyberService
-	(*CyberServices)(nil),      // 21: cybertele.CyberServices
-	(*StringRequest)(nil),      // 22: cybertele.StringRequest
-	(*TelemertyParams)(nil),    // 23: cybertele.TelemertyParams
-	(*TelemertyParam)(nil),     // 24: cybertele.TelemertyParam
-	(*MongoRequest)(nil),       // 25: cybertele.MongoRequest
-	(*MongoMachineType)(nil),   // 26: cybertele.MongoMachineType
-	(*MongoMachineTypes)(nil),  // 27: cybertele.MongoMachineTypes
-	(*MongoMachine)(nil),       // 28: cybertele.MongoMachine
-	(*MongoMachines)(nil),      // 29: cybertele.MongoMachines
-	(*MongoError)(nil),         // 30: cybertele.MongoError
-	(*MongoErrors)(nil),        // 31: cybertele.MongoErrors
-	(*MongoDataType)(nil),      // 32: cybertele.MongoDataType
-	(*MongoDataTypes)(nil),     // 33: cybertele.MongoDataTypes
-	(*HistoryRequest)(nil),     // 34: cybertele.HistoryRequest
-	(*WorkhourItem)(nil),       // 35: cybertele.WorkhourItem
-	(*WorkhourHistory)(nil),    // 36: cybertele.WorkhourHistory
+	(Status)(0),                  // 0: cybertele.Status
+	(*StatusReply)(nil),          // 1: cybertele.StatusReply
+	(*Empty)(nil),                // 2: cybertele.Empty
+	(*Disk)(nil),                 // 3: cybertele.Disk
+	(*HealthReply)(nil),          // 4: cybertele.HealthReply
+	(*ParserStatus)(nil),         // 5: cybertele.ParserStatus
+	(*PageRequest)(nil),          // 6: cybertele.PageRequest
+	(*Pagination)(nil),           // 7: cybertele.Pagination
+	(*Machine)(nil),              // 8: cybertele.Machine
+	(*Machines)(nil),             // 9: cybertele.Machines
+	(*DataType)(nil),             // 10: cybertele.DataType
+	(*DataTypes)(nil),            // 11: cybertele.DataTypes
+	(*ModelDataTypes)(nil),       // 12: cybertele.ModelDataTypes
+	(*AllModelsDataTypes)(nil),   // 13: cybertele.AllModelsDataTypes
+	(*DataPoint)(nil),            // 14: cybertele.DataPoint
+	(*DataPoints)(nil),           // 15: cybertele.DataPoints
+	(*Segment)(nil),              // 16: cybertele.Segment
+	(*Segments)(nil),             // 17: cybertele.Segments
+	(*Event)(nil),                // 18: cybertele.Event
+	(*Count)(nil),                // 19: cybertele.Count
+	(*CyberService)(nil),         // 20: cybertele.CyberService
+	(*CyberServices)(nil),        // 21: cybertele.CyberServices
+	(*StringRequest)(nil),        // 22: cybertele.StringRequest
+	(*TelemertyParams)(nil),      // 23: cybertele.TelemertyParams
+	(*TelemertyParam)(nil),       // 24: cybertele.TelemertyParam
+	(*MongoRequest)(nil),         // 25: cybertele.MongoRequest
+	(*MongoMachineType)(nil),     // 26: cybertele.MongoMachineType
+	(*MongoMachineTypes)(nil),    // 27: cybertele.MongoMachineTypes
+	(*MongoMachine)(nil),         // 28: cybertele.MongoMachine
+	(*MongoMachines)(nil),        // 29: cybertele.MongoMachines
+	(*MongoError)(nil),           // 30: cybertele.MongoError
+	(*MongoErrors)(nil),          // 31: cybertele.MongoErrors
+	(*MongoDataType)(nil),        // 32: cybertele.MongoDataType
+	(*MongoDataTypes)(nil),       // 33: cybertele.MongoDataTypes
+	(*HistoryRequest)(nil),       // 34: cybertele.HistoryRequest
+	(*WorkhourItem)(nil),         // 35: cybertele.WorkhourItem
+	(*WorkhourHistory)(nil),      // 36: cybertele.WorkhourHistory
+	(*FuelCalibrationPoint)(nil), // 37: cybertele.FuelCalibrationPoint
+	(*FuelCalibrationType)(nil),  // 38: cybertele.FuelCalibrationType
+	(*FuelCalibration)(nil),      // 39: cybertele.FuelCalibration
+	(*FuelCalibrations)(nil),     // 40: cybertele.FuelCalibrations
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -2515,11 +2777,14 @@ var file_cyber_proto_depIdxs = []int32{
 	30, // 16: cybertele.MongoErrors.data:type_name -> cybertele.MongoError
 	32, // 17: cybertele.MongoDataTypes.data:type_name -> cybertele.MongoDataType
 	35, // 18: cybertele.WorkhourHistory.data:type_name -> cybertele.WorkhourItem
-	19, // [19:19] is the sub-list for method output_type
-	19, // [19:19] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	37, // 19: cybertele.FuelCalibrationType.data:type_name -> cybertele.FuelCalibrationPoint
+	38, // 20: cybertele.FuelCalibration.calibration:type_name -> cybertele.FuelCalibrationType
+	39, // 21: cybertele.FuelCalibrations.data:type_name -> cybertele.FuelCalibration
+	22, // [22:22] is the sub-list for method output_type
+	22, // [22:22] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -2533,7 +2798,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   36,
+			NumMessages:   40,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

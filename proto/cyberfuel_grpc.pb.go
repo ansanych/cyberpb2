@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Cyberfuel_Health_FullMethodName     = "/cybertele.Cyberfuel/Health"
-	Cyberfuel_CalcEvents_FullMethodName = "/cybertele.Cyberfuel/CalcEvents"
+	Cyberfuel_Health_FullMethodName          = "/cybertele.Cyberfuel/Health"
+	Cyberfuel_CalcEvents_FullMethodName      = "/cybertele.Cyberfuel/CalcEvents"
+	Cyberfuel_ConvertToLiters_FullMethodName = "/cybertele.Cyberfuel/ConvertToLiters"
 )
 
 // CyberfuelClient is the client API for Cyberfuel service.
@@ -29,6 +30,7 @@ const (
 type CyberfuelClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
 	CalcEvents(ctx context.Context, in *DataPoints, opts ...grpc.CallOption) (*Segments, error)
+	ConvertToLiters(ctx context.Context, in *DataPoints, opts ...grpc.CallOption) (*DataPoints, error)
 }
 
 type cyberfuelClient struct {
@@ -59,12 +61,23 @@ func (c *cyberfuelClient) CalcEvents(ctx context.Context, in *DataPoints, opts .
 	return out, nil
 }
 
+func (c *cyberfuelClient) ConvertToLiters(ctx context.Context, in *DataPoints, opts ...grpc.CallOption) (*DataPoints, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DataPoints)
+	err := c.cc.Invoke(ctx, Cyberfuel_ConvertToLiters_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CyberfuelServer is the server API for Cyberfuel service.
 // All implementations must embed UnimplementedCyberfuelServer
 // for forward compatibility.
 type CyberfuelServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
 	CalcEvents(context.Context, *DataPoints) (*Segments, error)
+	ConvertToLiters(context.Context, *DataPoints) (*DataPoints, error)
 	mustEmbedUnimplementedCyberfuelServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedCyberfuelServer) Health(context.Context, *Empty) (*HealthRepl
 }
 func (UnimplementedCyberfuelServer) CalcEvents(context.Context, *DataPoints) (*Segments, error) {
 	return nil, status.Error(codes.Unimplemented, "method CalcEvents not implemented")
+}
+func (UnimplementedCyberfuelServer) ConvertToLiters(context.Context, *DataPoints) (*DataPoints, error) {
+	return nil, status.Error(codes.Unimplemented, "method ConvertToLiters not implemented")
 }
 func (UnimplementedCyberfuelServer) mustEmbedUnimplementedCyberfuelServer() {}
 func (UnimplementedCyberfuelServer) testEmbeddedByValue()                   {}
@@ -138,6 +154,24 @@ func _Cyberfuel_CalcEvents_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cyberfuel_ConvertToLiters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DataPoints)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CyberfuelServer).ConvertToLiters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cyberfuel_ConvertToLiters_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CyberfuelServer).ConvertToLiters(ctx, req.(*DataPoints))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cyberfuel_ServiceDesc is the grpc.ServiceDesc for Cyberfuel service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var Cyberfuel_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CalcEvents",
 			Handler:    _Cyberfuel_CalcEvents_Handler,
+		},
+		{
+			MethodName: "ConvertToLiters",
+			Handler:    _Cyberfuel_ConvertToLiters_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

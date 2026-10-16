@@ -27,6 +27,7 @@ const (
 	Info_GetMongoErrors_FullMethodName       = "/cybertele.Info/GetMongoErrors"
 	Info_GetMongoDataTypes_FullMethodName    = "/cybertele.Info/GetMongoDataTypes"
 	Info_GetMongoAllErrors_FullMethodName    = "/cybertele.Info/GetMongoAllErrors"
+	Info_GetFuelCalibrations_FullMethodName  = "/cybertele.Info/GetFuelCalibrations"
 )
 
 // InfoClient is the client API for Info service.
@@ -41,6 +42,7 @@ type InfoClient interface {
 	GetMongoErrors(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoErrors, error)
 	GetMongoDataTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MongoDataTypes, error)
 	GetMongoAllErrors(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoErrors, error)
+	GetFuelCalibrations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FuelCalibrations, error)
 }
 
 type infoClient struct {
@@ -131,6 +133,16 @@ func (c *infoClient) GetMongoAllErrors(ctx context.Context, in *MongoRequest, op
 	return out, nil
 }
 
+func (c *infoClient) GetFuelCalibrations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FuelCalibrations, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FuelCalibrations)
+	err := c.cc.Invoke(ctx, Info_GetFuelCalibrations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InfoServer is the server API for Info service.
 // All implementations must embed UnimplementedInfoServer
 // for forward compatibility.
@@ -143,6 +155,7 @@ type InfoServer interface {
 	GetMongoErrors(context.Context, *MongoRequest) (*MongoErrors, error)
 	GetMongoDataTypes(context.Context, *Empty) (*MongoDataTypes, error)
 	GetMongoAllErrors(context.Context, *MongoRequest) (*MongoErrors, error)
+	GetFuelCalibrations(context.Context, *Empty) (*FuelCalibrations, error)
 	mustEmbedUnimplementedInfoServer()
 }
 
@@ -176,6 +189,9 @@ func (UnimplementedInfoServer) GetMongoDataTypes(context.Context, *Empty) (*Mong
 }
 func (UnimplementedInfoServer) GetMongoAllErrors(context.Context, *MongoRequest) (*MongoErrors, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMongoAllErrors not implemented")
+}
+func (UnimplementedInfoServer) GetFuelCalibrations(context.Context, *Empty) (*FuelCalibrations, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFuelCalibrations not implemented")
 }
 func (UnimplementedInfoServer) mustEmbedUnimplementedInfoServer() {}
 func (UnimplementedInfoServer) testEmbeddedByValue()              {}
@@ -342,6 +358,24 @@ func _Info_GetMongoAllErrors_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Info_GetFuelCalibrations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetFuelCalibrations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetFuelCalibrations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetFuelCalibrations(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Info_ServiceDesc is the grpc.ServiceDesc for Info service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -380,6 +414,10 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMongoAllErrors",
 			Handler:    _Info_GetMongoAllErrors_Handler,
+		},
+		{
+			MethodName: "GetFuelCalibrations",
+			Handler:    _Info_GetFuelCalibrations_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

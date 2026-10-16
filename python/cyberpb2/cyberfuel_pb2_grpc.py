@@ -44,6 +44,11 @@ class CyberfuelStub:
                 request_serializer=cyber__pb2.DataPoints.SerializeToString,
                 response_deserializer=cyber__pb2.Segments.FromString,
                 _registered_method=True)
+        self.ConvertToLiters = channel.unary_unary(
+                '/cybertele.Cyberfuel/ConvertToLiters',
+                request_serializer=cyber__pb2.DataPoints.SerializeToString,
+                response_deserializer=cyber__pb2.DataPoints.FromString,
+                _registered_method=True)
 
 
 class CyberfuelServicer:
@@ -61,6 +66,12 @@ class CyberfuelServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ConvertToLiters(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CyberfuelServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -73,6 +84,11 @@ def add_CyberfuelServicer_to_server(servicer, server):
                     servicer.CalcEvents,
                     request_deserializer=cyber__pb2.DataPoints.FromString,
                     response_serializer=cyber__pb2.Segments.SerializeToString,
+            ),
+            'ConvertToLiters': grpc.unary_unary_rpc_method_handler(
+                    servicer.ConvertToLiters,
+                    request_deserializer=cyber__pb2.DataPoints.FromString,
+                    response_serializer=cyber__pb2.DataPoints.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -129,6 +145,33 @@ class Cyberfuel:
             '/cybertele.Cyberfuel/CalcEvents',
             cyber__pb2.DataPoints.SerializeToString,
             cyber__pb2.Segments.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ConvertToLiters(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cyberfuel/ConvertToLiters',
+            cyber__pb2.DataPoints.SerializeToString,
+            cyber__pb2.DataPoints.FromString,
             options,
             channel_credentials,
             insecure,

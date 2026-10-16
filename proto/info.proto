@@ -14,4 +14,5 @@ service Info {
     rpc GetMongoErrors (MongoRequest) returns (MongoErrors) {}
     rpc GetMongoDataTypes (Empty) returns (MongoDataTypes) {}
     rpc GetMongoAllErrors (MongoRequest) returns (MongoErrors) {}
+    rpc GetFuelCalibrations (Empty) returns (FuelCalibrations) {}
 }
