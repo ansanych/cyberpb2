@@ -68,6 +68,10 @@ message Machine {
     string generationName = 7;
     int32 modelId = 8;
     int32 maintenancePeriod = 9;
+    int32 templateId = 10;
+    string template = 11;
+    int32 webModelId = 12;
+    string webModel = 13;
 }
 
 message Machines {

@@ -488,6 +488,10 @@ type Machine struct {
 	GenerationName    string                 `protobuf:"bytes,7,opt,name=generationName,proto3" json:"generationName,omitempty"`
 	ModelId           int32                  `protobuf:"varint,8,opt,name=modelId,proto3" json:"modelId,omitempty"`
 	MaintenancePeriod int32                  `protobuf:"varint,9,opt,name=maintenancePeriod,proto3" json:"maintenancePeriod,omitempty"`
+	TemplateId        int32                  `protobuf:"varint,10,opt,name=templateId,proto3" json:"templateId,omitempty"`
+	Template          string                 `protobuf:"bytes,11,opt,name=template,proto3" json:"template,omitempty"`
+	WebModelId        int32                  `protobuf:"varint,12,opt,name=webModelId,proto3" json:"webModelId,omitempty"`
+	WebModel          string                 `protobuf:"bytes,13,opt,name=webModel,proto3" json:"webModel,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -583,6 +587,34 @@ func (x *Machine) GetMaintenancePeriod() int32 {
 		return x.MaintenancePeriod
 	}
 	return 0
+}
+
+func (x *Machine) GetTemplateId() int32 {
+	if x != nil {
+		return x.TemplateId
+	}
+	return 0
+}
+
+func (x *Machine) GetTemplate() string {
+	if x != nil {
+		return x.Template
+	}
+	return ""
+}
+
+func (x *Machine) GetWebModelId() int32 {
+	if x != nil {
+		return x.WebModelId
+	}
+	return 0
+}
+
+func (x *Machine) GetWebModel() string {
+	if x != nil {
+		return x.WebModel
+	}
+	return ""
 }
 
 type Machines struct {
@@ -2542,7 +2574,7 @@ const file_cyber_proto_rawDesc = "" +
 	"Pagination\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x14\n" +
-	"\x05total\x18\x03 \x01(\x05R\x05total\"\x8f\x02\n" +
+	"\x05total\x18\x03 \x01(\x05R\x05total\"\x87\x03\n" +
 	"\aMachine\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x14\n" +
 	"\x05model\x18\x02 \x01(\tR\x05model\x12\x12\n" +
@@ -2552,7 +2584,16 @@ const file_cyber_proto_rawDesc = "" +
 	"\tclassName\x18\x06 \x01(\tR\tclassName\x12&\n" +
 	"\x0egenerationName\x18\a \x01(\tR\x0egenerationName\x12\x18\n" +
 	"\amodelId\x18\b \x01(\x05R\amodelId\x12,\n" +
-	"\x11maintenancePeriod\x18\t \x01(\x05R\x11maintenancePeriod\":\n" +
+	"\x11maintenancePeriod\x18\t \x01(\x05R\x11maintenancePeriod\x12\x1e\n" +
+	"\n" +
+	"templateId\x18\n" +
+	" \x01(\x05R\n" +
+	"templateId\x12\x1a\n" +
+	"\btemplate\x18\v \x01(\tR\btemplate\x12\x1e\n" +
+	"\n" +
+	"webModelId\x18\f \x01(\x05R\n" +
+	"webModelId\x12\x1a\n" +
+	"\bwebModel\x18\r \x01(\tR\bwebModel\":\n" +
 	"\bMachines\x12.\n" +
 	"\bmachines\x18\x01 \x03(\v2\x12.cybertele.MachineR\bmachines\"~\n" +
 	"\bDataType\x12\x12\n" +
