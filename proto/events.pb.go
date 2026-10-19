@@ -381,6 +381,76 @@ func (x *GetGroupEventsRequest) GetLimit() int32 {
 	return 0
 }
 
+// GetMachineErrorsPeriodRequest — запрос ошибок машины за период.
+// from/to — даты в формате "2006-01-02" (включительно), tz — часовой пояс машины.
+type GetMachineErrorsPeriodRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	From          string                 `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`
+	To            string                 `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`
+	Tz            int32                  `protobuf:"varint,4,opt,name=tz,proto3" json:"tz,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetMachineErrorsPeriodRequest) Reset() {
+	*x = GetMachineErrorsPeriodRequest{}
+	mi := &file_events_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetMachineErrorsPeriodRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetMachineErrorsPeriodRequest) ProtoMessage() {}
+
+func (x *GetMachineErrorsPeriodRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_events_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetMachineErrorsPeriodRequest.ProtoReflect.Descriptor instead.
+func (*GetMachineErrorsPeriodRequest) Descriptor() ([]byte, []int) {
+	return file_events_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetMachineErrorsPeriodRequest) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *GetMachineErrorsPeriodRequest) GetFrom() string {
+	if x != nil {
+		return x.From
+	}
+	return ""
+}
+
+func (x *GetMachineErrorsPeriodRequest) GetTo() string {
+	if x != nil {
+		return x.To
+	}
+	return ""
+}
+
+func (x *GetMachineErrorsPeriodRequest) GetTz() int32 {
+	if x != nil {
+		return x.Tz
+	}
+	return 0
+}
+
 type EventsReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Events        []*Event               `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
@@ -390,7 +460,7 @@ type EventsReply struct {
 
 func (x *EventsReply) Reset() {
 	*x = EventsReply{}
-	mi := &file_events_proto_msgTypes[6]
+	mi := &file_events_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -402,7 +472,7 @@ func (x *EventsReply) String() string {
 func (*EventsReply) ProtoMessage() {}
 
 func (x *EventsReply) ProtoReflect() protoreflect.Message {
-	mi := &file_events_proto_msgTypes[6]
+	mi := &file_events_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -415,7 +485,7 @@ func (x *EventsReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EventsReply.ProtoReflect.Descriptor instead.
 func (*EventsReply) Descriptor() ([]byte, []int) {
-	return file_events_proto_rawDescGZIP(), []int{6}
+	return file_events_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *EventsReply) GetEvents() []*Event {
@@ -454,15 +524,21 @@ const file_events_proto_rawDesc = "" +
 	"\x02tz\x18\x03 \x01(\x05R\x02tz\x12\x16\n" +
 	"\x06fromId\x18\x04 \x01(\x03R\x06fromId\x12\x1c\n" +
 	"\tdirection\x18\x05 \x01(\tR\tdirection\x12\x14\n" +
-	"\x05limit\x18\x06 \x01(\x05R\x05limit\"7\n" +
+	"\x05limit\x18\x06 \x01(\x05R\x05limit\"c\n" +
+	"\x1dGetMachineErrorsPeriodRequest\x12\x0e\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x12\n" +
+	"\x04from\x18\x02 \x01(\tR\x04from\x12\x0e\n" +
+	"\x02to\x18\x03 \x01(\tR\x02to\x12\x0e\n" +
+	"\x02tz\x18\x04 \x01(\x05R\x02tz\"7\n" +
 	"\vEventsReply\x12(\n" +
-	"\x06events\x18\x01 \x03(\v2\x10.cybertele.EventR\x06events2\xb6\x03\n" +
+	"\x06events\x18\x01 \x03(\v2\x10.cybertele.EventR\x06events2\x94\x04\n" +
 	"\vCyberevents\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12B\n" +
 	"\tSetEvents\x12\x1b.cybertele.SetEventsRequest\x1a\x16.cybertele.StatusReply\"\x00\x12P\n" +
 	"\x10GetMachineEvents\x12\".cybertele.GetMachineEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x12L\n" +
 	"\x0eGetGroupEvents\x12 .cybertele.GetGroupEventsRequest\x1a\x16.cybertele.EventsReply\"\x00\x12Q\n" +
-	"\x13GetGroupEventsCount\x12 .cybertele.GetGroupEventsRequest\x1a\x16.cybertele.EventsCount\"\x00\x12:\n" +
+	"\x13GetGroupEventsCount\x12 .cybertele.GetGroupEventsRequest\x1a\x16.cybertele.EventsCount\"\x00\x12\\\n" +
+	"\x16GetMachineErrorsPeriod\x12(.cybertele.GetMachineErrorsPeriodRequest\x1a\x16.cybertele.EventsReply\"\x00\x12:\n" +
 	"\rGetEventTypes\x12\x10.cybertele.Empty\x1a\x15.cybertele.EventTypes\"\x00B\tZ\a./protob\x06proto3"
 
 var (
@@ -477,38 +553,41 @@ func file_events_proto_rawDescGZIP() []byte {
 	return file_events_proto_rawDescData
 }
 
-var file_events_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_events_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_events_proto_goTypes = []any{
-	(*EventType)(nil),               // 0: cybertele.EventType
-	(*EventTypes)(nil),              // 1: cybertele.EventTypes
-	(*EventsCount)(nil),             // 2: cybertele.EventsCount
-	(*SetEventsRequest)(nil),        // 3: cybertele.SetEventsRequest
-	(*GetMachineEventsRequest)(nil), // 4: cybertele.GetMachineEventsRequest
-	(*GetGroupEventsRequest)(nil),   // 5: cybertele.GetGroupEventsRequest
-	(*EventsReply)(nil),             // 6: cybertele.EventsReply
-	(*Event)(nil),                   // 7: cybertele.Event
-	(*Empty)(nil),                   // 8: cybertele.Empty
-	(*HealthReply)(nil),             // 9: cybertele.HealthReply
-	(*StatusReply)(nil),             // 10: cybertele.StatusReply
+	(*EventType)(nil),                     // 0: cybertele.EventType
+	(*EventTypes)(nil),                    // 1: cybertele.EventTypes
+	(*EventsCount)(nil),                   // 2: cybertele.EventsCount
+	(*SetEventsRequest)(nil),              // 3: cybertele.SetEventsRequest
+	(*GetMachineEventsRequest)(nil),       // 4: cybertele.GetMachineEventsRequest
+	(*GetGroupEventsRequest)(nil),         // 5: cybertele.GetGroupEventsRequest
+	(*GetMachineErrorsPeriodRequest)(nil), // 6: cybertele.GetMachineErrorsPeriodRequest
+	(*EventsReply)(nil),                   // 7: cybertele.EventsReply
+	(*Event)(nil),                         // 8: cybertele.Event
+	(*Empty)(nil),                         // 9: cybertele.Empty
+	(*HealthReply)(nil),                   // 10: cybertele.HealthReply
+	(*StatusReply)(nil),                   // 11: cybertele.StatusReply
 }
 var file_events_proto_depIdxs = []int32{
 	0,  // 0: cybertele.EventTypes.data:type_name -> cybertele.EventType
-	7,  // 1: cybertele.SetEventsRequest.events:type_name -> cybertele.Event
-	7,  // 2: cybertele.EventsReply.events:type_name -> cybertele.Event
-	8,  // 3: cybertele.Cyberevents.Health:input_type -> cybertele.Empty
+	8,  // 1: cybertele.SetEventsRequest.events:type_name -> cybertele.Event
+	8,  // 2: cybertele.EventsReply.events:type_name -> cybertele.Event
+	9,  // 3: cybertele.Cyberevents.Health:input_type -> cybertele.Empty
 	3,  // 4: cybertele.Cyberevents.SetEvents:input_type -> cybertele.SetEventsRequest
 	4,  // 5: cybertele.Cyberevents.GetMachineEvents:input_type -> cybertele.GetMachineEventsRequest
 	5,  // 6: cybertele.Cyberevents.GetGroupEvents:input_type -> cybertele.GetGroupEventsRequest
 	5,  // 7: cybertele.Cyberevents.GetGroupEventsCount:input_type -> cybertele.GetGroupEventsRequest
-	8,  // 8: cybertele.Cyberevents.GetEventTypes:input_type -> cybertele.Empty
-	9,  // 9: cybertele.Cyberevents.Health:output_type -> cybertele.HealthReply
-	10, // 10: cybertele.Cyberevents.SetEvents:output_type -> cybertele.StatusReply
-	6,  // 11: cybertele.Cyberevents.GetMachineEvents:output_type -> cybertele.EventsReply
-	6,  // 12: cybertele.Cyberevents.GetGroupEvents:output_type -> cybertele.EventsReply
-	2,  // 13: cybertele.Cyberevents.GetGroupEventsCount:output_type -> cybertele.EventsCount
-	1,  // 14: cybertele.Cyberevents.GetEventTypes:output_type -> cybertele.EventTypes
-	9,  // [9:15] is the sub-list for method output_type
-	3,  // [3:9] is the sub-list for method input_type
+	6,  // 8: cybertele.Cyberevents.GetMachineErrorsPeriod:input_type -> cybertele.GetMachineErrorsPeriodRequest
+	9,  // 9: cybertele.Cyberevents.GetEventTypes:input_type -> cybertele.Empty
+	10, // 10: cybertele.Cyberevents.Health:output_type -> cybertele.HealthReply
+	11, // 11: cybertele.Cyberevents.SetEvents:output_type -> cybertele.StatusReply
+	7,  // 12: cybertele.Cyberevents.GetMachineEvents:output_type -> cybertele.EventsReply
+	7,  // 13: cybertele.Cyberevents.GetGroupEvents:output_type -> cybertele.EventsReply
+	2,  // 14: cybertele.Cyberevents.GetGroupEventsCount:output_type -> cybertele.EventsCount
+	7,  // 15: cybertele.Cyberevents.GetMachineErrorsPeriod:output_type -> cybertele.EventsReply
+	1,  // 16: cybertele.Cyberevents.GetEventTypes:output_type -> cybertele.EventTypes
+	10, // [10:17] is the sub-list for method output_type
+	3,  // [3:10] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
 	3,  // [3:3] is the sub-list for extension extendee
 	0,  // [0:3] is the sub-list for field type_name
@@ -526,7 +605,7 @@ func file_events_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_events_proto_rawDesc), len(file_events_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

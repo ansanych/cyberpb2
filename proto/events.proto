@@ -11,6 +11,7 @@ service Cyberevents {
     rpc GetMachineEvents (GetMachineEventsRequest) returns (EventsReply) {}
     rpc GetGroupEvents (GetGroupEventsRequest) returns (EventsReply) {}
     rpc GetGroupEventsCount (GetGroupEventsRequest) returns (EventsCount) {}
+    rpc GetMachineErrorsPeriod (GetMachineErrorsPeriodRequest) returns (EventsReply) {}
     rpc GetEventTypes (Empty) returns (EventTypes) {}
 }
 
@@ -48,6 +49,15 @@ message GetGroupEventsRequest {
     int64 fromId = 4;
     string direction = 5;
     int32 limit = 6;
+}
+
+// GetMachineErrorsPeriodRequest — запрос ошибок машины за период.
+// from/to — даты в формате "2006-01-02" (включительно), tz — часовой пояс машины.
+message GetMachineErrorsPeriodRequest {
+    string sn = 1;
+    string from = 2;
+    string to = 3;
+    int32 tz = 4;
 }
 
 message EventsReply {
