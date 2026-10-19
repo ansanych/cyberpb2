@@ -235,6 +235,7 @@ type HealthReply struct {
 	Mongo         Status                 `protobuf:"varint,2,opt,name=mongo,proto3,enum=cybertele.Status" json:"mongo,omitempty"`
 	Parser        Status                 `protobuf:"varint,3,opt,name=parser,proto3,enum=cybertele.Status" json:"parser,omitempty"`
 	Disk          *Disk                  `protobuf:"bytes,4,opt,name=disk,proto3" json:"disk,omitempty"`
+	Aggregator    Status                 `protobuf:"varint,5,opt,name=aggregator,proto3,enum=cybertele.Status" json:"aggregator,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -295,6 +296,13 @@ func (x *HealthReply) GetDisk() *Disk {
 		return x.Disk
 	}
 	return nil
+}
+
+func (x *HealthReply) GetAggregator() Status {
+	if x != nil {
+		return x.Aggregator
+	}
+	return Status_UNKNOWN
 }
 
 type ParserStatus struct {
@@ -2556,12 +2564,15 @@ const file_cyber_proto_rawDesc = "" +
 	"\x04Disk\x12\x10\n" +
 	"\x03all\x18\x01 \x01(\x02R\x03all\x12\x12\n" +
 	"\x04used\x18\x02 \x01(\x02R\x04used\x12\x12\n" +
-	"\x04free\x18\x03 \x01(\x02R\x04free\"\xb5\x01\n" +
+	"\x04free\x18\x03 \x01(\x02R\x04free\"\xe8\x01\n" +
 	"\vHealthReply\x12-\n" +
 	"\bpostgres\x18\x01 \x01(\x0e2\x11.cybertele.StatusR\bpostgres\x12'\n" +
 	"\x05mongo\x18\x02 \x01(\x0e2\x11.cybertele.StatusR\x05mongo\x12)\n" +
 	"\x06parser\x18\x03 \x01(\x0e2\x11.cybertele.StatusR\x06parser\x12#\n" +
-	"\x04disk\x18\x04 \x01(\v2\x0f.cybertele.DiskR\x04disk\"o\n" +
+	"\x04disk\x18\x04 \x01(\v2\x0f.cybertele.DiskR\x04disk\x121\n" +
+	"\n" +
+	"aggregator\x18\x05 \x01(\x0e2\x11.cybertele.StatusR\n" +
+	"aggregator\"o\n" +
 	"\fParserStatus\x12)\n" +
 	"\x06parser\x18\x01 \x01(\x0e2\x11.cybertele.StatusR\x06parser\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1a\n" +
@@ -2804,28 +2815,29 @@ var file_cyber_proto_depIdxs = []int32{
 	0,  // 2: cybertele.HealthReply.mongo:type_name -> cybertele.Status
 	0,  // 3: cybertele.HealthReply.parser:type_name -> cybertele.Status
 	3,  // 4: cybertele.HealthReply.disk:type_name -> cybertele.Disk
-	0,  // 5: cybertele.ParserStatus.parser:type_name -> cybertele.Status
-	8,  // 6: cybertele.Machines.machines:type_name -> cybertele.Machine
-	10, // 7: cybertele.DataTypes.data:type_name -> cybertele.DataType
-	10, // 8: cybertele.ModelDataTypes.dataTypes:type_name -> cybertele.DataType
-	12, // 9: cybertele.AllModelsDataTypes.data:type_name -> cybertele.ModelDataTypes
-	14, // 10: cybertele.DataPoints.data:type_name -> cybertele.DataPoint
-	16, // 11: cybertele.Segments.segments:type_name -> cybertele.Segment
-	20, // 12: cybertele.CyberServices.services:type_name -> cybertele.CyberService
-	24, // 13: cybertele.TelemertyParams.params:type_name -> cybertele.TelemertyParam
-	26, // 14: cybertele.MongoMachineTypes.data:type_name -> cybertele.MongoMachineType
-	28, // 15: cybertele.MongoMachines.data:type_name -> cybertele.MongoMachine
-	30, // 16: cybertele.MongoErrors.data:type_name -> cybertele.MongoError
-	32, // 17: cybertele.MongoDataTypes.data:type_name -> cybertele.MongoDataType
-	35, // 18: cybertele.WorkhourHistory.data:type_name -> cybertele.WorkhourItem
-	37, // 19: cybertele.FuelCalibrationType.data:type_name -> cybertele.FuelCalibrationPoint
-	38, // 20: cybertele.FuelCalibration.calibration:type_name -> cybertele.FuelCalibrationType
-	39, // 21: cybertele.FuelCalibrations.data:type_name -> cybertele.FuelCalibration
-	22, // [22:22] is the sub-list for method output_type
-	22, // [22:22] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	0,  // 5: cybertele.HealthReply.aggregator:type_name -> cybertele.Status
+	0,  // 6: cybertele.ParserStatus.parser:type_name -> cybertele.Status
+	8,  // 7: cybertele.Machines.machines:type_name -> cybertele.Machine
+	10, // 8: cybertele.DataTypes.data:type_name -> cybertele.DataType
+	10, // 9: cybertele.ModelDataTypes.dataTypes:type_name -> cybertele.DataType
+	12, // 10: cybertele.AllModelsDataTypes.data:type_name -> cybertele.ModelDataTypes
+	14, // 11: cybertele.DataPoints.data:type_name -> cybertele.DataPoint
+	16, // 12: cybertele.Segments.segments:type_name -> cybertele.Segment
+	20, // 13: cybertele.CyberServices.services:type_name -> cybertele.CyberService
+	24, // 14: cybertele.TelemertyParams.params:type_name -> cybertele.TelemertyParam
+	26, // 15: cybertele.MongoMachineTypes.data:type_name -> cybertele.MongoMachineType
+	28, // 16: cybertele.MongoMachines.data:type_name -> cybertele.MongoMachine
+	30, // 17: cybertele.MongoErrors.data:type_name -> cybertele.MongoError
+	32, // 18: cybertele.MongoDataTypes.data:type_name -> cybertele.MongoDataType
+	35, // 19: cybertele.WorkhourHistory.data:type_name -> cybertele.WorkhourItem
+	37, // 20: cybertele.FuelCalibrationType.data:type_name -> cybertele.FuelCalibrationPoint
+	38, // 21: cybertele.FuelCalibration.calibration:type_name -> cybertele.FuelCalibrationType
+	39, // 22: cybertele.FuelCalibrations.data:type_name -> cybertele.FuelCalibration
+	23, // [23:23] is the sub-list for method output_type
+	23, // [23:23] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }

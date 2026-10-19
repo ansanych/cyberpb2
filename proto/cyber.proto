@@ -38,6 +38,7 @@ message HealthReply {
     Status mongo = 2;
     Status parser = 3;
     Disk disk = 4;
+    Status aggregator = 5;
 }
 
 message ParserStatus {
