@@ -33,6 +33,7 @@ const (
 	Cybermetrica_AllMachinesWorkhours_FullMethodName      = "/cybertele.Cybermetrica/AllMachinesWorkhours"
 	Cybermetrica_GetMachineWorkhourHistory_FullMethodName = "/cybertele.Cybermetrica/GetMachineWorkhourHistory"
 	Cybermetrica_GetLastMachinesData_FullMethodName       = "/cybertele.Cybermetrica/GetLastMachinesData"
+	Cybermetrica_GetMachineCoords_FullMethodName          = "/cybertele.Cybermetrica/GetMachineCoords"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -53,6 +54,7 @@ type CybermetricaClient interface {
 	AllMachinesWorkhours(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Workhours, error)
 	GetMachineWorkhourHistory(ctx context.Context, in *HistoryRequest, opts ...grpc.CallOption) (*WorkhourHistory, error)
 	GetLastMachinesData(ctx context.Context, in *LastDataRequest, opts ...grpc.CallOption) (*LastDatas, error)
+	GetMachineCoords(ctx context.Context, in *CoordsRequest, opts ...grpc.CallOption) (*Coords, error)
 }
 
 type cybermetricaClient struct {
@@ -203,6 +205,16 @@ func (c *cybermetricaClient) GetLastMachinesData(ctx context.Context, in *LastDa
 	return out, nil
 }
 
+func (c *cybermetricaClient) GetMachineCoords(ctx context.Context, in *CoordsRequest, opts ...grpc.CallOption) (*Coords, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Coords)
+	err := c.cc.Invoke(ctx, Cybermetrica_GetMachineCoords_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CybermetricaServer is the server API for Cybermetrica service.
 // All implementations must embed UnimplementedCybermetricaServer
 // for forward compatibility.
@@ -221,6 +233,7 @@ type CybermetricaServer interface {
 	AllMachinesWorkhours(context.Context, *Empty) (*Workhours, error)
 	GetMachineWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error)
 	GetLastMachinesData(context.Context, *LastDataRequest) (*LastDatas, error)
+	GetMachineCoords(context.Context, *CoordsRequest) (*Coords, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -272,6 +285,9 @@ func (UnimplementedCybermetricaServer) GetMachineWorkhourHistory(context.Context
 }
 func (UnimplementedCybermetricaServer) GetLastMachinesData(context.Context, *LastDataRequest) (*LastDatas, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetLastMachinesData not implemented")
+}
+func (UnimplementedCybermetricaServer) GetMachineCoords(context.Context, *CoordsRequest) (*Coords, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMachineCoords not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
 func (UnimplementedCybermetricaServer) testEmbeddedByValue()                      {}
@@ -546,6 +562,24 @@ func _Cybermetrica_GetLastMachinesData_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cybermetrica_GetMachineCoords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CoordsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).GetMachineCoords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_GetMachineCoords_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).GetMachineCoords(ctx, req.(*CoordsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cybermetrica_ServiceDesc is the grpc.ServiceDesc for Cybermetrica service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -608,6 +642,10 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLastMachinesData",
 			Handler:    _Cybermetrica_GetLastMachinesData_Handler,
+		},
+		{
+			MethodName: "GetMachineCoords",
+			Handler:    _Cybermetrica_GetMachineCoords_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

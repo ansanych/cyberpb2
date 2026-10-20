@@ -20,6 +20,26 @@ service Cybermetrica {
     rpc AllMachinesWorkhours (Empty) returns (Workhours) {}
     rpc GetMachineWorkhourHistory(HistoryRequest) returns (WorkhourHistory) {}
     rpc GetLastMachinesData (LastDataRequest) returns (LastDatas) {}
+    rpc GetMachineCoords (CoordsRequest) returns (Coords) {}
+}
+
+message CoordsRequest {
+    string sn = 1;
+    string date = 2;
+    int32 tz = 3;
+}
+
+message CoordsPoint {
+    int64 time = 1;
+    double lat = 2;
+    double lon = 3;
+}
+
+message Coords {
+    string sn = 1;
+    string date = 2;
+    int32 tz = 3;
+    repeated CoordsPoint points = 4;
 }
 
 message LastDataRequest {

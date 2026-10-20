@@ -105,6 +105,11 @@ class CybermetricaStub:
                 request_serializer=cybermetrica__pb2.LastDataRequest.SerializeToString,
                 response_deserializer=cybermetrica__pb2.LastDatas.FromString,
                 _registered_method=True)
+        self.GetMachineCoords = channel.unary_unary(
+                '/cybertele.Cybermetrica/GetMachineCoords',
+                request_serializer=cybermetrica__pb2.CoordsRequest.SerializeToString,
+                response_deserializer=cybermetrica__pb2.Coords.FromString,
+                _registered_method=True)
 
 
 class CybermetricaServicer:
@@ -194,6 +199,12 @@ class CybermetricaServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetMachineCoords(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CybermetricaServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -266,6 +277,11 @@ def add_CybermetricaServicer_to_server(servicer, server):
                     servicer.GetLastMachinesData,
                     request_deserializer=cybermetrica__pb2.LastDataRequest.FromString,
                     response_serializer=cybermetrica__pb2.LastDatas.SerializeToString,
+            ),
+            'GetMachineCoords': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMachineCoords,
+                    request_deserializer=cybermetrica__pb2.CoordsRequest.FromString,
+                    response_serializer=cybermetrica__pb2.Coords.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -646,6 +662,33 @@ class Cybermetrica:
             '/cybertele.Cybermetrica/GetLastMachinesData',
             cybermetrica__pb2.LastDataRequest.SerializeToString,
             cybermetrica__pb2.LastDatas.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMachineCoords(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cybermetrica/GetMachineCoords',
+            cybermetrica__pb2.CoordsRequest.SerializeToString,
+            cybermetrica__pb2.Coords.FromString,
             options,
             channel_credentials,
             insecure,
