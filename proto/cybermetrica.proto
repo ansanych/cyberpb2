@@ -31,15 +31,17 @@ message CoordsRequest {
 
 message CoordsPoint {
     int64 time = 1;
-    double lat = 2;
-    double lon = 3;
+    int32 shift = 2;
+    double lat = 3;
+    double lon = 4;
 }
 
 message Coords {
     string sn = 1;
     string date = 2;
     int32 tz = 3;
-    repeated CoordsPoint points = 4;
+    int64 start = 4;
+    repeated CoordsPoint points = 5;
 }
 
 message LastDataRequest {

@@ -84,8 +84,9 @@ func (x *CoordsRequest) GetTz() int32 {
 type CoordsPoint struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Time          int64                  `protobuf:"varint,1,opt,name=time,proto3" json:"time,omitempty"`
-	Lat           float64                `protobuf:"fixed64,2,opt,name=lat,proto3" json:"lat,omitempty"`
-	Lon           float64                `protobuf:"fixed64,3,opt,name=lon,proto3" json:"lon,omitempty"`
+	Shift         int32                  `protobuf:"varint,2,opt,name=shift,proto3" json:"shift,omitempty"`
+	Lat           float64                `protobuf:"fixed64,3,opt,name=lat,proto3" json:"lat,omitempty"`
+	Lon           float64                `protobuf:"fixed64,4,opt,name=lon,proto3" json:"lon,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -127,6 +128,13 @@ func (x *CoordsPoint) GetTime() int64 {
 	return 0
 }
 
+func (x *CoordsPoint) GetShift() int32 {
+	if x != nil {
+		return x.Shift
+	}
+	return 0
+}
+
 func (x *CoordsPoint) GetLat() float64 {
 	if x != nil {
 		return x.Lat
@@ -146,7 +154,8 @@ type Coords struct {
 	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 	Date          string                 `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
 	Tz            int32                  `protobuf:"varint,3,opt,name=tz,proto3" json:"tz,omitempty"`
-	Points        []*CoordsPoint         `protobuf:"bytes,4,rep,name=points,proto3" json:"points,omitempty"`
+	Start         int64                  `protobuf:"varint,4,opt,name=start,proto3" json:"start,omitempty"`
+	Points        []*CoordsPoint         `protobuf:"bytes,5,rep,name=points,proto3" json:"points,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -198,6 +207,13 @@ func (x *Coords) GetDate() string {
 func (x *Coords) GetTz() int32 {
 	if x != nil {
 		return x.Tz
+	}
+	return 0
+}
+
+func (x *Coords) GetStart() int64 {
+	if x != nil {
+		return x.Start
 	}
 	return 0
 }
@@ -1521,16 +1537,18 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\rCoordsRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x12\n" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x12\x0e\n" +
-	"\x02tz\x18\x03 \x01(\x05R\x02tz\"E\n" +
+	"\x02tz\x18\x03 \x01(\x05R\x02tz\"[\n" +
 	"\vCoordsPoint\x12\x12\n" +
-	"\x04time\x18\x01 \x01(\x03R\x04time\x12\x10\n" +
-	"\x03lat\x18\x02 \x01(\x01R\x03lat\x12\x10\n" +
-	"\x03lon\x18\x03 \x01(\x01R\x03lon\"l\n" +
+	"\x04time\x18\x01 \x01(\x03R\x04time\x12\x14\n" +
+	"\x05shift\x18\x02 \x01(\x05R\x05shift\x12\x10\n" +
+	"\x03lat\x18\x03 \x01(\x01R\x03lat\x12\x10\n" +
+	"\x03lon\x18\x04 \x01(\x01R\x03lon\"\x82\x01\n" +
 	"\x06Coords\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x12\n" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x12\x0e\n" +
-	"\x02tz\x18\x03 \x01(\x05R\x02tz\x12.\n" +
-	"\x06points\x18\x04 \x03(\v2\x16.cybertele.CoordsPointR\x06points\"1\n" +
+	"\x02tz\x18\x03 \x01(\x05R\x02tz\x12\x14\n" +
+	"\x05start\x18\x04 \x01(\x03R\x05start\x12.\n" +
+	"\x06points\x18\x05 \x03(\v2\x16.cybertele.CoordsPointR\x06points\"1\n" +
 	"\x0fLastDataRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x03(\tR\x02sn\x12\x0e\n" +
 	"\x02tz\x18\x02 \x01(\x05R\x02tz\"z\n" +
