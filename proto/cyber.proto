@@ -272,3 +272,20 @@ message FuelCalibration {
 message FuelCalibrations {
     repeated FuelCalibration data = 1;
 }
+
+message FuelCalibrationMatching {
+    int32 templateID = 1;
+    string templateName = 2;
+    int32 classID = 3;
+    string className = 4;
+    int32 generationID = 5;
+    string generationName = 6;
+    int64 machinesCount = 7;
+    int64 modelsCount = 8;
+    repeated string models = 9;
+    FuelCalibrationType calibration = 10;
+}
+
+message FuelCalibrationMatchings {
+    repeated FuelCalibrationMatching data = 1;
+}

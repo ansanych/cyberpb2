@@ -22,4 +22,5 @@ service Info {
     rpc SetFuelCalibrationType(FuelCalibrationType) returns(StatusReply) {}
     rpc UpdateFuelCalibrationType(FuelCalibrationType) returns(StatusReply) {}
     rpc DeleteFuelCalibrationType(FuelCalibrationType) returns(StatusReply) {}
+    rpc GetFuelCalibrationMatchings(Empty) returns(FuelCalibrationMatchings) {}
 }

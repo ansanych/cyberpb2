@@ -24,7 +24,7 @@ var File_parser_proto protoreflect.FileDescriptor
 
 const file_parser_proto_rawDesc = "" +
 	"\n" +
-	"\fparser.proto\x12\tcybertele\x1a\vcyber.proto\x1a\x12cybermetrica.proto2\x8d\x01\n" +
+	"\fparser.proto\x12\tcybertele\x1a\vcyber.proto2\x8d\x01\n" +
 	"\x06Parser\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12M\n" +
 	"\x12GetWorkhourHistory\x12\x19.cybertele.HistoryRequest\x1a\x1a.cybertele.WorkhourHistory\"\x00B\tZ\a./protob\x06proto3"
@@ -53,7 +53,6 @@ func file_parser_proto_init() {
 		return
 	}
 	file_cyber_proto_init()
-	file_cybermetrica_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

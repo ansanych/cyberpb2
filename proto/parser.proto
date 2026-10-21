@@ -1,6 +1,5 @@
 syntax = "proto3";
 import "cyber.proto";
-import "cybermetrica.proto";
 
 package cybertele;
 

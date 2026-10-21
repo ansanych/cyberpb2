@@ -19,22 +19,23 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Info_Health_FullMethodName                    = "/cybertele.Info/Health"
-	Info_GetMachines_FullMethodName               = "/cybertele.Info/GetMachines"
-	Info_GetTelemetryParams_FullMethodName        = "/cybertele.Info/GetTelemetryParams"
-	Info_GetMongoMachineTypes_FullMethodName      = "/cybertele.Info/GetMongoMachineTypes"
-	Info_GetMongoMachines_FullMethodName          = "/cybertele.Info/GetMongoMachines"
-	Info_GetMongoErrors_FullMethodName            = "/cybertele.Info/GetMongoErrors"
-	Info_GetMongoDataTypes_FullMethodName         = "/cybertele.Info/GetMongoDataTypes"
-	Info_GetMongoAllErrors_FullMethodName         = "/cybertele.Info/GetMongoAllErrors"
-	Info_GetFuelCalibrations_FullMethodName       = "/cybertele.Info/GetFuelCalibrations"
-	Info_SetFuelCalibration_FullMethodName        = "/cybertele.Info/SetFuelCalibration"
-	Info_UpdateFuelCalibration_FullMethodName     = "/cybertele.Info/UpdateFuelCalibration"
-	Info_DeleteFuelCalibration_FullMethodName     = "/cybertele.Info/DeleteFuelCalibration"
-	Info_GetFuelCalibrationTypes_FullMethodName   = "/cybertele.Info/GetFuelCalibrationTypes"
-	Info_SetFuelCalibrationType_FullMethodName    = "/cybertele.Info/SetFuelCalibrationType"
-	Info_UpdateFuelCalibrationType_FullMethodName = "/cybertele.Info/UpdateFuelCalibrationType"
-	Info_DeleteFuelCalibrationType_FullMethodName = "/cybertele.Info/DeleteFuelCalibrationType"
+	Info_Health_FullMethodName                      = "/cybertele.Info/Health"
+	Info_GetMachines_FullMethodName                 = "/cybertele.Info/GetMachines"
+	Info_GetTelemetryParams_FullMethodName          = "/cybertele.Info/GetTelemetryParams"
+	Info_GetMongoMachineTypes_FullMethodName        = "/cybertele.Info/GetMongoMachineTypes"
+	Info_GetMongoMachines_FullMethodName            = "/cybertele.Info/GetMongoMachines"
+	Info_GetMongoErrors_FullMethodName              = "/cybertele.Info/GetMongoErrors"
+	Info_GetMongoDataTypes_FullMethodName           = "/cybertele.Info/GetMongoDataTypes"
+	Info_GetMongoAllErrors_FullMethodName           = "/cybertele.Info/GetMongoAllErrors"
+	Info_GetFuelCalibrations_FullMethodName         = "/cybertele.Info/GetFuelCalibrations"
+	Info_SetFuelCalibration_FullMethodName          = "/cybertele.Info/SetFuelCalibration"
+	Info_UpdateFuelCalibration_FullMethodName       = "/cybertele.Info/UpdateFuelCalibration"
+	Info_DeleteFuelCalibration_FullMethodName       = "/cybertele.Info/DeleteFuelCalibration"
+	Info_GetFuelCalibrationTypes_FullMethodName     = "/cybertele.Info/GetFuelCalibrationTypes"
+	Info_SetFuelCalibrationType_FullMethodName      = "/cybertele.Info/SetFuelCalibrationType"
+	Info_UpdateFuelCalibrationType_FullMethodName   = "/cybertele.Info/UpdateFuelCalibrationType"
+	Info_DeleteFuelCalibrationType_FullMethodName   = "/cybertele.Info/DeleteFuelCalibrationType"
+	Info_GetFuelCalibrationMatchings_FullMethodName = "/cybertele.Info/GetFuelCalibrationMatchings"
 )
 
 // InfoClient is the client API for Info service.
@@ -57,6 +58,7 @@ type InfoClient interface {
 	SetFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error)
 	UpdateFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error)
 	DeleteFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error)
+	GetFuelCalibrationMatchings(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FuelCalibrationMatchings, error)
 }
 
 type infoClient struct {
@@ -227,6 +229,16 @@ func (c *infoClient) DeleteFuelCalibrationType(ctx context.Context, in *FuelCali
 	return out, nil
 }
 
+func (c *infoClient) GetFuelCalibrationMatchings(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FuelCalibrationMatchings, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FuelCalibrationMatchings)
+	err := c.cc.Invoke(ctx, Info_GetFuelCalibrationMatchings_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InfoServer is the server API for Info service.
 // All implementations must embed UnimplementedInfoServer
 // for forward compatibility.
@@ -247,6 +259,7 @@ type InfoServer interface {
 	SetFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error)
 	UpdateFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error)
 	DeleteFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error)
+	GetFuelCalibrationMatchings(context.Context, *Empty) (*FuelCalibrationMatchings, error)
 	mustEmbedUnimplementedInfoServer()
 }
 
@@ -304,6 +317,9 @@ func (UnimplementedInfoServer) UpdateFuelCalibrationType(context.Context, *FuelC
 }
 func (UnimplementedInfoServer) DeleteFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteFuelCalibrationType not implemented")
+}
+func (UnimplementedInfoServer) GetFuelCalibrationMatchings(context.Context, *Empty) (*FuelCalibrationMatchings, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFuelCalibrationMatchings not implemented")
 }
 func (UnimplementedInfoServer) mustEmbedUnimplementedInfoServer() {}
 func (UnimplementedInfoServer) testEmbeddedByValue()              {}
@@ -614,6 +630,24 @@ func _Info_DeleteFuelCalibrationType_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Info_GetFuelCalibrationMatchings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetFuelCalibrationMatchings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetFuelCalibrationMatchings_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetFuelCalibrationMatchings(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Info_ServiceDesc is the grpc.ServiceDesc for Info service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -684,6 +718,10 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteFuelCalibrationType",
 			Handler:    _Info_DeleteFuelCalibrationType_Handler,
+		},
+		{
+			MethodName: "GetFuelCalibrationMatchings",
+			Handler:    _Info_GetFuelCalibrationMatchings_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

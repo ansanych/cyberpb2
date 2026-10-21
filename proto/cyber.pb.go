@@ -2597,6 +2597,166 @@ func (x *FuelCalibrations) GetData() []*FuelCalibration {
 	return nil
 }
 
+type FuelCalibrationMatching struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	TemplateID     int32                  `protobuf:"varint,1,opt,name=templateID,proto3" json:"templateID,omitempty"`
+	TemplateName   string                 `protobuf:"bytes,2,opt,name=templateName,proto3" json:"templateName,omitempty"`
+	ClassID        int32                  `protobuf:"varint,3,opt,name=classID,proto3" json:"classID,omitempty"`
+	ClassName      string                 `protobuf:"bytes,4,opt,name=className,proto3" json:"className,omitempty"`
+	GenerationID   int32                  `protobuf:"varint,5,opt,name=generationID,proto3" json:"generationID,omitempty"`
+	GenerationName string                 `protobuf:"bytes,6,opt,name=generationName,proto3" json:"generationName,omitempty"`
+	MachinesCount  int64                  `protobuf:"varint,7,opt,name=machinesCount,proto3" json:"machinesCount,omitempty"`
+	ModelsCount    int64                  `protobuf:"varint,8,opt,name=modelsCount,proto3" json:"modelsCount,omitempty"`
+	Models         []string               `protobuf:"bytes,9,rep,name=models,proto3" json:"models,omitempty"`
+	Calibration    *FuelCalibrationType   `protobuf:"bytes,10,opt,name=calibration,proto3" json:"calibration,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *FuelCalibrationMatching) Reset() {
+	*x = FuelCalibrationMatching{}
+	mi := &file_cyber_proto_msgTypes[41]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FuelCalibrationMatching) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FuelCalibrationMatching) ProtoMessage() {}
+
+func (x *FuelCalibrationMatching) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[41]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FuelCalibrationMatching.ProtoReflect.Descriptor instead.
+func (*FuelCalibrationMatching) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{41}
+}
+
+func (x *FuelCalibrationMatching) GetTemplateID() int32 {
+	if x != nil {
+		return x.TemplateID
+	}
+	return 0
+}
+
+func (x *FuelCalibrationMatching) GetTemplateName() string {
+	if x != nil {
+		return x.TemplateName
+	}
+	return ""
+}
+
+func (x *FuelCalibrationMatching) GetClassID() int32 {
+	if x != nil {
+		return x.ClassID
+	}
+	return 0
+}
+
+func (x *FuelCalibrationMatching) GetClassName() string {
+	if x != nil {
+		return x.ClassName
+	}
+	return ""
+}
+
+func (x *FuelCalibrationMatching) GetGenerationID() int32 {
+	if x != nil {
+		return x.GenerationID
+	}
+	return 0
+}
+
+func (x *FuelCalibrationMatching) GetGenerationName() string {
+	if x != nil {
+		return x.GenerationName
+	}
+	return ""
+}
+
+func (x *FuelCalibrationMatching) GetMachinesCount() int64 {
+	if x != nil {
+		return x.MachinesCount
+	}
+	return 0
+}
+
+func (x *FuelCalibrationMatching) GetModelsCount() int64 {
+	if x != nil {
+		return x.ModelsCount
+	}
+	return 0
+}
+
+func (x *FuelCalibrationMatching) GetModels() []string {
+	if x != nil {
+		return x.Models
+	}
+	return nil
+}
+
+func (x *FuelCalibrationMatching) GetCalibration() *FuelCalibrationType {
+	if x != nil {
+		return x.Calibration
+	}
+	return nil
+}
+
+type FuelCalibrationMatchings struct {
+	state         protoimpl.MessageState     `protogen:"open.v1"`
+	Data          []*FuelCalibrationMatching `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FuelCalibrationMatchings) Reset() {
+	*x = FuelCalibrationMatchings{}
+	mi := &file_cyber_proto_msgTypes[42]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FuelCalibrationMatchings) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FuelCalibrationMatchings) ProtoMessage() {}
+
+func (x *FuelCalibrationMatchings) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[42]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FuelCalibrationMatchings.ProtoReflect.Descriptor instead.
+func (*FuelCalibrationMatchings) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{42}
+}
+
+func (x *FuelCalibrationMatchings) GetData() []*FuelCalibrationMatching {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 var File_cyber_proto protoreflect.FileDescriptor
 
 const file_cyber_proto_rawDesc = "" +
@@ -2788,7 +2948,23 @@ const file_cyber_proto_rawDesc = "" +
 	"\fgenerationID\x18\x04 \x01(\x05R\fgenerationID\x12@\n" +
 	"\vcalibration\x18\x05 \x01(\v2\x1e.cybertele.FuelCalibrationTypeR\vcalibration\"B\n" +
 	"\x10FuelCalibrations\x12.\n" +
-	"\x04data\x18\x01 \x03(\v2\x1a.cybertele.FuelCalibrationR\x04data*O\n" +
+	"\x04data\x18\x01 \x03(\v2\x1a.cybertele.FuelCalibrationR\x04data\"\x83\x03\n" +
+	"\x17FuelCalibrationMatching\x12\x1e\n" +
+	"\n" +
+	"templateID\x18\x01 \x01(\x05R\n" +
+	"templateID\x12\"\n" +
+	"\ftemplateName\x18\x02 \x01(\tR\ftemplateName\x12\x18\n" +
+	"\aclassID\x18\x03 \x01(\x05R\aclassID\x12\x1c\n" +
+	"\tclassName\x18\x04 \x01(\tR\tclassName\x12\"\n" +
+	"\fgenerationID\x18\x05 \x01(\x05R\fgenerationID\x12&\n" +
+	"\x0egenerationName\x18\x06 \x01(\tR\x0egenerationName\x12$\n" +
+	"\rmachinesCount\x18\a \x01(\x03R\rmachinesCount\x12 \n" +
+	"\vmodelsCount\x18\b \x01(\x03R\vmodelsCount\x12\x16\n" +
+	"\x06models\x18\t \x03(\tR\x06models\x12@\n" +
+	"\vcalibration\x18\n" +
+	" \x01(\v2\x1e.cybertele.FuelCalibrationTypeR\vcalibration\"R\n" +
+	"\x18FuelCalibrationMatchings\x126\n" +
+	"\x04data\x18\x01 \x03(\v2\".cybertele.FuelCalibrationMatchingR\x04data*O\n" +
 	"\x06Status\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\n" +
 	"\n" +
@@ -2811,50 +2987,52 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 43)
 var file_cyber_proto_goTypes = []any{
-	(Status)(0),                  // 0: cybertele.Status
-	(*StatusReply)(nil),          // 1: cybertele.StatusReply
-	(*Empty)(nil),                // 2: cybertele.Empty
-	(*Disk)(nil),                 // 3: cybertele.Disk
-	(*HealthReply)(nil),          // 4: cybertele.HealthReply
-	(*ParserStatus)(nil),         // 5: cybertele.ParserStatus
-	(*PageRequest)(nil),          // 6: cybertele.PageRequest
-	(*Pagination)(nil),           // 7: cybertele.Pagination
-	(*Machine)(nil),              // 8: cybertele.Machine
-	(*Machines)(nil),             // 9: cybertele.Machines
-	(*DataType)(nil),             // 10: cybertele.DataType
-	(*DataTypes)(nil),            // 11: cybertele.DataTypes
-	(*ModelDataTypes)(nil),       // 12: cybertele.ModelDataTypes
-	(*AllModelsDataTypes)(nil),   // 13: cybertele.AllModelsDataTypes
-	(*DataPoint)(nil),            // 14: cybertele.DataPoint
-	(*DataPoints)(nil),           // 15: cybertele.DataPoints
-	(*Segment)(nil),              // 16: cybertele.Segment
-	(*Segments)(nil),             // 17: cybertele.Segments
-	(*Event)(nil),                // 18: cybertele.Event
-	(*Count)(nil),                // 19: cybertele.Count
-	(*CyberService)(nil),         // 20: cybertele.CyberService
-	(*CyberServices)(nil),        // 21: cybertele.CyberServices
-	(*StringRequest)(nil),        // 22: cybertele.StringRequest
-	(*TelemertyParams)(nil),      // 23: cybertele.TelemertyParams
-	(*TelemertyParam)(nil),       // 24: cybertele.TelemertyParam
-	(*MongoRequest)(nil),         // 25: cybertele.MongoRequest
-	(*MongoMachineType)(nil),     // 26: cybertele.MongoMachineType
-	(*MongoMachineTypes)(nil),    // 27: cybertele.MongoMachineTypes
-	(*MongoMachine)(nil),         // 28: cybertele.MongoMachine
-	(*MongoMachines)(nil),        // 29: cybertele.MongoMachines
-	(*MongoError)(nil),           // 30: cybertele.MongoError
-	(*MongoErrors)(nil),          // 31: cybertele.MongoErrors
-	(*MongoDataType)(nil),        // 32: cybertele.MongoDataType
-	(*MongoDataTypes)(nil),       // 33: cybertele.MongoDataTypes
-	(*HistoryRequest)(nil),       // 34: cybertele.HistoryRequest
-	(*WorkhourItem)(nil),         // 35: cybertele.WorkhourItem
-	(*WorkhourHistory)(nil),      // 36: cybertele.WorkhourHistory
-	(*FuelCalibrationPoint)(nil), // 37: cybertele.FuelCalibrationPoint
-	(*FuelCalibrationType)(nil),  // 38: cybertele.FuelCalibrationType
-	(*FuelCalibrationTypes)(nil), // 39: cybertele.FuelCalibrationTypes
-	(*FuelCalibration)(nil),      // 40: cybertele.FuelCalibration
-	(*FuelCalibrations)(nil),     // 41: cybertele.FuelCalibrations
+	(Status)(0),                      // 0: cybertele.Status
+	(*StatusReply)(nil),              // 1: cybertele.StatusReply
+	(*Empty)(nil),                    // 2: cybertele.Empty
+	(*Disk)(nil),                     // 3: cybertele.Disk
+	(*HealthReply)(nil),              // 4: cybertele.HealthReply
+	(*ParserStatus)(nil),             // 5: cybertele.ParserStatus
+	(*PageRequest)(nil),              // 6: cybertele.PageRequest
+	(*Pagination)(nil),               // 7: cybertele.Pagination
+	(*Machine)(nil),                  // 8: cybertele.Machine
+	(*Machines)(nil),                 // 9: cybertele.Machines
+	(*DataType)(nil),                 // 10: cybertele.DataType
+	(*DataTypes)(nil),                // 11: cybertele.DataTypes
+	(*ModelDataTypes)(nil),           // 12: cybertele.ModelDataTypes
+	(*AllModelsDataTypes)(nil),       // 13: cybertele.AllModelsDataTypes
+	(*DataPoint)(nil),                // 14: cybertele.DataPoint
+	(*DataPoints)(nil),               // 15: cybertele.DataPoints
+	(*Segment)(nil),                  // 16: cybertele.Segment
+	(*Segments)(nil),                 // 17: cybertele.Segments
+	(*Event)(nil),                    // 18: cybertele.Event
+	(*Count)(nil),                    // 19: cybertele.Count
+	(*CyberService)(nil),             // 20: cybertele.CyberService
+	(*CyberServices)(nil),            // 21: cybertele.CyberServices
+	(*StringRequest)(nil),            // 22: cybertele.StringRequest
+	(*TelemertyParams)(nil),          // 23: cybertele.TelemertyParams
+	(*TelemertyParam)(nil),           // 24: cybertele.TelemertyParam
+	(*MongoRequest)(nil),             // 25: cybertele.MongoRequest
+	(*MongoMachineType)(nil),         // 26: cybertele.MongoMachineType
+	(*MongoMachineTypes)(nil),        // 27: cybertele.MongoMachineTypes
+	(*MongoMachine)(nil),             // 28: cybertele.MongoMachine
+	(*MongoMachines)(nil),            // 29: cybertele.MongoMachines
+	(*MongoError)(nil),               // 30: cybertele.MongoError
+	(*MongoErrors)(nil),              // 31: cybertele.MongoErrors
+	(*MongoDataType)(nil),            // 32: cybertele.MongoDataType
+	(*MongoDataTypes)(nil),           // 33: cybertele.MongoDataTypes
+	(*HistoryRequest)(nil),           // 34: cybertele.HistoryRequest
+	(*WorkhourItem)(nil),             // 35: cybertele.WorkhourItem
+	(*WorkhourHistory)(nil),          // 36: cybertele.WorkhourHistory
+	(*FuelCalibrationPoint)(nil),     // 37: cybertele.FuelCalibrationPoint
+	(*FuelCalibrationType)(nil),      // 38: cybertele.FuelCalibrationType
+	(*FuelCalibrationTypes)(nil),     // 39: cybertele.FuelCalibrationTypes
+	(*FuelCalibration)(nil),          // 40: cybertele.FuelCalibration
+	(*FuelCalibrations)(nil),         // 41: cybertele.FuelCalibrations
+	(*FuelCalibrationMatching)(nil),  // 42: cybertele.FuelCalibrationMatching
+	(*FuelCalibrationMatchings)(nil), // 43: cybertele.FuelCalibrationMatchings
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -2881,11 +3059,13 @@ var file_cyber_proto_depIdxs = []int32{
 	38, // 21: cybertele.FuelCalibrationTypes.types:type_name -> cybertele.FuelCalibrationType
 	38, // 22: cybertele.FuelCalibration.calibration:type_name -> cybertele.FuelCalibrationType
 	40, // 23: cybertele.FuelCalibrations.data:type_name -> cybertele.FuelCalibration
-	24, // [24:24] is the sub-list for method output_type
-	24, // [24:24] is the sub-list for method input_type
-	24, // [24:24] is the sub-list for extension type_name
-	24, // [24:24] is the sub-list for extension extendee
-	0,  // [0:24] is the sub-list for field type_name
+	38, // 24: cybertele.FuelCalibrationMatching.calibration:type_name -> cybertele.FuelCalibrationType
+	42, // 25: cybertele.FuelCalibrationMatchings.data:type_name -> cybertele.FuelCalibrationMatching
+	26, // [26:26] is the sub-list for method output_type
+	26, // [26:26] is the sub-list for method input_type
+	26, // [26:26] is the sub-list for extension type_name
+	26, // [26:26] is the sub-list for extension extendee
+	0,  // [0:26] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -2899,7 +3079,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   41,
+			NumMessages:   43,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
