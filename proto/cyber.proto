@@ -267,6 +267,7 @@ message FuelCalibration {
     int32 classID = 3;
     int32 generationID = 4;
     FuelCalibrationType calibration = 5;
+    string comment = 6;
 }
 
 message FuelCalibrations {
@@ -284,6 +285,7 @@ message FuelCalibrationMatching {
     int64 modelsCount = 8;
     repeated string models = 9;
     FuelCalibrationType calibration = 10;
+    string comment = 11;
 }
 
 message FuelCalibrationMatchings {

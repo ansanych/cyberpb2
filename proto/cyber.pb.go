@@ -2484,6 +2484,7 @@ type FuelCalibration struct {
 	ClassID       int32                  `protobuf:"varint,3,opt,name=classID,proto3" json:"classID,omitempty"`
 	GenerationID  int32                  `protobuf:"varint,4,opt,name=generationID,proto3" json:"generationID,omitempty"`
 	Calibration   *FuelCalibrationType   `protobuf:"bytes,5,opt,name=calibration,proto3" json:"calibration,omitempty"`
+	Comment       string                 `protobuf:"bytes,6,opt,name=comment,proto3" json:"comment,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2553,6 +2554,13 @@ func (x *FuelCalibration) GetCalibration() *FuelCalibrationType {
 	return nil
 }
 
+func (x *FuelCalibration) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
 type FuelCalibrations struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Data          []*FuelCalibration     `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
@@ -2609,6 +2617,7 @@ type FuelCalibrationMatching struct {
 	ModelsCount    int64                  `protobuf:"varint,8,opt,name=modelsCount,proto3" json:"modelsCount,omitempty"`
 	Models         []string               `protobuf:"bytes,9,rep,name=models,proto3" json:"models,omitempty"`
 	Calibration    *FuelCalibrationType   `protobuf:"bytes,10,opt,name=calibration,proto3" json:"calibration,omitempty"`
+	Comment        string                 `protobuf:"bytes,11,opt,name=comment,proto3" json:"comment,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -2711,6 +2720,13 @@ func (x *FuelCalibrationMatching) GetCalibration() *FuelCalibrationType {
 		return x.Calibration
 	}
 	return nil
+}
+
+func (x *FuelCalibrationMatching) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
 }
 
 type FuelCalibrationMatchings struct {
@@ -2938,7 +2954,7 @@ const file_cyber_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x123\n" +
 	"\x04data\x18\x03 \x03(\v2\x1f.cybertele.FuelCalibrationPointR\x04data\"L\n" +
 	"\x14FuelCalibrationTypes\x124\n" +
-	"\x05types\x18\x01 \x03(\v2\x1e.cybertele.FuelCalibrationTypeR\x05types\"\xc1\x01\n" +
+	"\x05types\x18\x01 \x03(\v2\x1e.cybertele.FuelCalibrationTypeR\x05types\"\xdb\x01\n" +
 	"\x0fFuelCalibration\x12\x0e\n" +
 	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x1e\n" +
 	"\n" +
@@ -2946,9 +2962,10 @@ const file_cyber_proto_rawDesc = "" +
 	"templateID\x12\x18\n" +
 	"\aclassID\x18\x03 \x01(\x05R\aclassID\x12\"\n" +
 	"\fgenerationID\x18\x04 \x01(\x05R\fgenerationID\x12@\n" +
-	"\vcalibration\x18\x05 \x01(\v2\x1e.cybertele.FuelCalibrationTypeR\vcalibration\"B\n" +
+	"\vcalibration\x18\x05 \x01(\v2\x1e.cybertele.FuelCalibrationTypeR\vcalibration\x12\x18\n" +
+	"\acomment\x18\x06 \x01(\tR\acomment\"B\n" +
 	"\x10FuelCalibrations\x12.\n" +
-	"\x04data\x18\x01 \x03(\v2\x1a.cybertele.FuelCalibrationR\x04data\"\x83\x03\n" +
+	"\x04data\x18\x01 \x03(\v2\x1a.cybertele.FuelCalibrationR\x04data\"\x9d\x03\n" +
 	"\x17FuelCalibrationMatching\x12\x1e\n" +
 	"\n" +
 	"templateID\x18\x01 \x01(\x05R\n" +
@@ -2962,7 +2979,8 @@ const file_cyber_proto_rawDesc = "" +
 	"\vmodelsCount\x18\b \x01(\x03R\vmodelsCount\x12\x16\n" +
 	"\x06models\x18\t \x03(\tR\x06models\x12@\n" +
 	"\vcalibration\x18\n" +
-	" \x01(\v2\x1e.cybertele.FuelCalibrationTypeR\vcalibration\"R\n" +
+	" \x01(\v2\x1e.cybertele.FuelCalibrationTypeR\vcalibration\x12\x18\n" +
+	"\acomment\x18\v \x01(\tR\acomment\"R\n" +
 	"\x18FuelCalibrationMatchings\x126\n" +
 	"\x04data\x18\x01 \x03(\v2\".cybertele.FuelCalibrationMatchingR\x04data*O\n" +
 	"\x06Status\x12\v\n" +
