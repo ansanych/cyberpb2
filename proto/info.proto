@@ -15,4 +15,11 @@ service Info {
     rpc GetMongoDataTypes (Empty) returns (MongoDataTypes) {}
     rpc GetMongoAllErrors (MongoRequest) returns (MongoErrors) {}
     rpc GetFuelCalibrations (Empty) returns (FuelCalibrations) {}
+    rpc SetFuelCalibration(FuelCalibration)returns(StatusReply){}
+    rpc UpdateFuelCalibration(FuelCalibration)returns(StatusReply){}
+    rpc DeleteFuelCalibration(FuelCalibration)returns(StatusReply){}
+    rpc GetFuelCalibrationTypes(Empty) returns(FuelCalibrationTypes) {}
+    rpc SetFuelCalibrationType(FuelCalibrationType) returns(StatusReply) {}
+    rpc UpdateFuelCalibrationType(FuelCalibrationType) returns(StatusReply) {}
+    rpc DeleteFuelCalibrationType(FuelCalibrationType) returns(StatusReply) {}
 }

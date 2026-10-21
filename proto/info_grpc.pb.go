@@ -19,15 +19,22 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Info_Health_FullMethodName               = "/cybertele.Info/Health"
-	Info_GetMachines_FullMethodName          = "/cybertele.Info/GetMachines"
-	Info_GetTelemetryParams_FullMethodName   = "/cybertele.Info/GetTelemetryParams"
-	Info_GetMongoMachineTypes_FullMethodName = "/cybertele.Info/GetMongoMachineTypes"
-	Info_GetMongoMachines_FullMethodName     = "/cybertele.Info/GetMongoMachines"
-	Info_GetMongoErrors_FullMethodName       = "/cybertele.Info/GetMongoErrors"
-	Info_GetMongoDataTypes_FullMethodName    = "/cybertele.Info/GetMongoDataTypes"
-	Info_GetMongoAllErrors_FullMethodName    = "/cybertele.Info/GetMongoAllErrors"
-	Info_GetFuelCalibrations_FullMethodName  = "/cybertele.Info/GetFuelCalibrations"
+	Info_Health_FullMethodName                    = "/cybertele.Info/Health"
+	Info_GetMachines_FullMethodName               = "/cybertele.Info/GetMachines"
+	Info_GetTelemetryParams_FullMethodName        = "/cybertele.Info/GetTelemetryParams"
+	Info_GetMongoMachineTypes_FullMethodName      = "/cybertele.Info/GetMongoMachineTypes"
+	Info_GetMongoMachines_FullMethodName          = "/cybertele.Info/GetMongoMachines"
+	Info_GetMongoErrors_FullMethodName            = "/cybertele.Info/GetMongoErrors"
+	Info_GetMongoDataTypes_FullMethodName         = "/cybertele.Info/GetMongoDataTypes"
+	Info_GetMongoAllErrors_FullMethodName         = "/cybertele.Info/GetMongoAllErrors"
+	Info_GetFuelCalibrations_FullMethodName       = "/cybertele.Info/GetFuelCalibrations"
+	Info_SetFuelCalibration_FullMethodName        = "/cybertele.Info/SetFuelCalibration"
+	Info_UpdateFuelCalibration_FullMethodName     = "/cybertele.Info/UpdateFuelCalibration"
+	Info_DeleteFuelCalibration_FullMethodName     = "/cybertele.Info/DeleteFuelCalibration"
+	Info_GetFuelCalibrationTypes_FullMethodName   = "/cybertele.Info/GetFuelCalibrationTypes"
+	Info_SetFuelCalibrationType_FullMethodName    = "/cybertele.Info/SetFuelCalibrationType"
+	Info_UpdateFuelCalibrationType_FullMethodName = "/cybertele.Info/UpdateFuelCalibrationType"
+	Info_DeleteFuelCalibrationType_FullMethodName = "/cybertele.Info/DeleteFuelCalibrationType"
 )
 
 // InfoClient is the client API for Info service.
@@ -43,6 +50,13 @@ type InfoClient interface {
 	GetMongoDataTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MongoDataTypes, error)
 	GetMongoAllErrors(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoErrors, error)
 	GetFuelCalibrations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FuelCalibrations, error)
+	SetFuelCalibration(ctx context.Context, in *FuelCalibration, opts ...grpc.CallOption) (*StatusReply, error)
+	UpdateFuelCalibration(ctx context.Context, in *FuelCalibration, opts ...grpc.CallOption) (*StatusReply, error)
+	DeleteFuelCalibration(ctx context.Context, in *FuelCalibration, opts ...grpc.CallOption) (*StatusReply, error)
+	GetFuelCalibrationTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FuelCalibrationTypes, error)
+	SetFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error)
+	UpdateFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error)
+	DeleteFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error)
 }
 
 type infoClient struct {
@@ -143,6 +157,76 @@ func (c *infoClient) GetFuelCalibrations(ctx context.Context, in *Empty, opts ..
 	return out, nil
 }
 
+func (c *infoClient) SetFuelCalibration(ctx context.Context, in *FuelCalibration, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_SetFuelCalibration_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) UpdateFuelCalibration(ctx context.Context, in *FuelCalibration, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_UpdateFuelCalibration_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) DeleteFuelCalibration(ctx context.Context, in *FuelCalibration, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_DeleteFuelCalibration_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetFuelCalibrationTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FuelCalibrationTypes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FuelCalibrationTypes)
+	err := c.cc.Invoke(ctx, Info_GetFuelCalibrationTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) SetFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_SetFuelCalibrationType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) UpdateFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_UpdateFuelCalibrationType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) DeleteFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_DeleteFuelCalibrationType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InfoServer is the server API for Info service.
 // All implementations must embed UnimplementedInfoServer
 // for forward compatibility.
@@ -156,6 +240,13 @@ type InfoServer interface {
 	GetMongoDataTypes(context.Context, *Empty) (*MongoDataTypes, error)
 	GetMongoAllErrors(context.Context, *MongoRequest) (*MongoErrors, error)
 	GetFuelCalibrations(context.Context, *Empty) (*FuelCalibrations, error)
+	SetFuelCalibration(context.Context, *FuelCalibration) (*StatusReply, error)
+	UpdateFuelCalibration(context.Context, *FuelCalibration) (*StatusReply, error)
+	DeleteFuelCalibration(context.Context, *FuelCalibration) (*StatusReply, error)
+	GetFuelCalibrationTypes(context.Context, *Empty) (*FuelCalibrationTypes, error)
+	SetFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error)
+	UpdateFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error)
+	DeleteFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error)
 	mustEmbedUnimplementedInfoServer()
 }
 
@@ -192,6 +283,27 @@ func (UnimplementedInfoServer) GetMongoAllErrors(context.Context, *MongoRequest)
 }
 func (UnimplementedInfoServer) GetFuelCalibrations(context.Context, *Empty) (*FuelCalibrations, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetFuelCalibrations not implemented")
+}
+func (UnimplementedInfoServer) SetFuelCalibration(context.Context, *FuelCalibration) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetFuelCalibration not implemented")
+}
+func (UnimplementedInfoServer) UpdateFuelCalibration(context.Context, *FuelCalibration) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateFuelCalibration not implemented")
+}
+func (UnimplementedInfoServer) DeleteFuelCalibration(context.Context, *FuelCalibration) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteFuelCalibration not implemented")
+}
+func (UnimplementedInfoServer) GetFuelCalibrationTypes(context.Context, *Empty) (*FuelCalibrationTypes, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFuelCalibrationTypes not implemented")
+}
+func (UnimplementedInfoServer) SetFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetFuelCalibrationType not implemented")
+}
+func (UnimplementedInfoServer) UpdateFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateFuelCalibrationType not implemented")
+}
+func (UnimplementedInfoServer) DeleteFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteFuelCalibrationType not implemented")
 }
 func (UnimplementedInfoServer) mustEmbedUnimplementedInfoServer() {}
 func (UnimplementedInfoServer) testEmbeddedByValue()              {}
@@ -376,6 +488,132 @@ func _Info_GetFuelCalibrations_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Info_SetFuelCalibration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FuelCalibration)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).SetFuelCalibration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_SetFuelCalibration_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).SetFuelCalibration(ctx, req.(*FuelCalibration))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_UpdateFuelCalibration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FuelCalibration)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).UpdateFuelCalibration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_UpdateFuelCalibration_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).UpdateFuelCalibration(ctx, req.(*FuelCalibration))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_DeleteFuelCalibration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FuelCalibration)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).DeleteFuelCalibration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_DeleteFuelCalibration_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).DeleteFuelCalibration(ctx, req.(*FuelCalibration))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetFuelCalibrationTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetFuelCalibrationTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetFuelCalibrationTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetFuelCalibrationTypes(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_SetFuelCalibrationType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FuelCalibrationType)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).SetFuelCalibrationType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_SetFuelCalibrationType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).SetFuelCalibrationType(ctx, req.(*FuelCalibrationType))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_UpdateFuelCalibrationType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FuelCalibrationType)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).UpdateFuelCalibrationType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_UpdateFuelCalibrationType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).UpdateFuelCalibrationType(ctx, req.(*FuelCalibrationType))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_DeleteFuelCalibrationType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FuelCalibrationType)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).DeleteFuelCalibrationType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_DeleteFuelCalibrationType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).DeleteFuelCalibrationType(ctx, req.(*FuelCalibrationType))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Info_ServiceDesc is the grpc.ServiceDesc for Info service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -418,6 +656,34 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFuelCalibrations",
 			Handler:    _Info_GetFuelCalibrations_Handler,
+		},
+		{
+			MethodName: "SetFuelCalibration",
+			Handler:    _Info_SetFuelCalibration_Handler,
+		},
+		{
+			MethodName: "UpdateFuelCalibration",
+			Handler:    _Info_UpdateFuelCalibration_Handler,
+		},
+		{
+			MethodName: "DeleteFuelCalibration",
+			Handler:    _Info_DeleteFuelCalibration_Handler,
+		},
+		{
+			MethodName: "GetFuelCalibrationTypes",
+			Handler:    _Info_GetFuelCalibrationTypes_Handler,
+		},
+		{
+			MethodName: "SetFuelCalibrationType",
+			Handler:    _Info_SetFuelCalibrationType_Handler,
+		},
+		{
+			MethodName: "UpdateFuelCalibrationType",
+			Handler:    _Info_UpdateFuelCalibrationType_Handler,
+		},
+		{
+			MethodName: "DeleteFuelCalibrationType",
+			Handler:    _Info_DeleteFuelCalibrationType_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

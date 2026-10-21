@@ -2433,6 +2433,50 @@ func (x *FuelCalibrationType) GetData() []*FuelCalibrationPoint {
 	return nil
 }
 
+type FuelCalibrationTypes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Types         []*FuelCalibrationType `protobuf:"bytes,1,rep,name=types,proto3" json:"types,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FuelCalibrationTypes) Reset() {
+	*x = FuelCalibrationTypes{}
+	mi := &file_cyber_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FuelCalibrationTypes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FuelCalibrationTypes) ProtoMessage() {}
+
+func (x *FuelCalibrationTypes) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FuelCalibrationTypes.ProtoReflect.Descriptor instead.
+func (*FuelCalibrationTypes) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *FuelCalibrationTypes) GetTypes() []*FuelCalibrationType {
+	if x != nil {
+		return x.Types
+	}
+	return nil
+}
+
 type FuelCalibration struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ID            int32                  `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
@@ -2446,7 +2490,7 @@ type FuelCalibration struct {
 
 func (x *FuelCalibration) Reset() {
 	*x = FuelCalibration{}
-	mi := &file_cyber_proto_msgTypes[38]
+	mi := &file_cyber_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2458,7 +2502,7 @@ func (x *FuelCalibration) String() string {
 func (*FuelCalibration) ProtoMessage() {}
 
 func (x *FuelCalibration) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[38]
+	mi := &file_cyber_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2471,7 +2515,7 @@ func (x *FuelCalibration) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuelCalibration.ProtoReflect.Descriptor instead.
 func (*FuelCalibration) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{38}
+	return file_cyber_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *FuelCalibration) GetID() int32 {
@@ -2518,7 +2562,7 @@ type FuelCalibrations struct {
 
 func (x *FuelCalibrations) Reset() {
 	*x = FuelCalibrations{}
-	mi := &file_cyber_proto_msgTypes[39]
+	mi := &file_cyber_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2530,7 +2574,7 @@ func (x *FuelCalibrations) String() string {
 func (*FuelCalibrations) ProtoMessage() {}
 
 func (x *FuelCalibrations) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[39]
+	mi := &file_cyber_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2543,7 +2587,7 @@ func (x *FuelCalibrations) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuelCalibrations.ProtoReflect.Descriptor instead.
 func (*FuelCalibrations) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{39}
+	return file_cyber_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *FuelCalibrations) GetData() []*FuelCalibration {
@@ -2732,7 +2776,9 @@ const file_cyber_proto_rawDesc = "" +
 	"\x13FuelCalibrationType\x12\x0e\n" +
 	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x123\n" +
-	"\x04data\x18\x03 \x03(\v2\x1f.cybertele.FuelCalibrationPointR\x04data\"\xc1\x01\n" +
+	"\x04data\x18\x03 \x03(\v2\x1f.cybertele.FuelCalibrationPointR\x04data\"L\n" +
+	"\x14FuelCalibrationTypes\x124\n" +
+	"\x05types\x18\x01 \x03(\v2\x1e.cybertele.FuelCalibrationTypeR\x05types\"\xc1\x01\n" +
 	"\x0fFuelCalibration\x12\x0e\n" +
 	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x1e\n" +
 	"\n" +
@@ -2765,7 +2811,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 40)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                  // 0: cybertele.Status
 	(*StatusReply)(nil),          // 1: cybertele.StatusReply
@@ -2806,8 +2852,9 @@ var file_cyber_proto_goTypes = []any{
 	(*WorkhourHistory)(nil),      // 36: cybertele.WorkhourHistory
 	(*FuelCalibrationPoint)(nil), // 37: cybertele.FuelCalibrationPoint
 	(*FuelCalibrationType)(nil),  // 38: cybertele.FuelCalibrationType
-	(*FuelCalibration)(nil),      // 39: cybertele.FuelCalibration
-	(*FuelCalibrations)(nil),     // 40: cybertele.FuelCalibrations
+	(*FuelCalibrationTypes)(nil), // 39: cybertele.FuelCalibrationTypes
+	(*FuelCalibration)(nil),      // 40: cybertele.FuelCalibration
+	(*FuelCalibrations)(nil),     // 41: cybertele.FuelCalibrations
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -2831,13 +2878,14 @@ var file_cyber_proto_depIdxs = []int32{
 	32, // 18: cybertele.MongoDataTypes.data:type_name -> cybertele.MongoDataType
 	35, // 19: cybertele.WorkhourHistory.data:type_name -> cybertele.WorkhourItem
 	37, // 20: cybertele.FuelCalibrationType.data:type_name -> cybertele.FuelCalibrationPoint
-	38, // 21: cybertele.FuelCalibration.calibration:type_name -> cybertele.FuelCalibrationType
-	39, // 22: cybertele.FuelCalibrations.data:type_name -> cybertele.FuelCalibration
-	23, // [23:23] is the sub-list for method output_type
-	23, // [23:23] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	38, // 21: cybertele.FuelCalibrationTypes.types:type_name -> cybertele.FuelCalibrationType
+	38, // 22: cybertele.FuelCalibration.calibration:type_name -> cybertele.FuelCalibrationType
+	40, // 23: cybertele.FuelCalibrations.data:type_name -> cybertele.FuelCalibration
+	24, // [24:24] is the sub-list for method output_type
+	24, // [24:24] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -2851,7 +2899,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   40,
+			NumMessages:   41,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -257,6 +257,10 @@ message FuelCalibrationType {
     repeated FuelCalibrationPoint data = 3;
 }
 
+message FuelCalibrationTypes {
+    repeated FuelCalibrationType types = 1;
+}
+
 message FuelCalibration {
     int32 ID = 1;
     int32 templateID = 2;
