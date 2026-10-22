@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -20,32 +21,219 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// RecalculateRequest — запрос принудительного пересчёта топлива машины.
+// recalculate — пересчитать fuel_recalculate + fuel_hourly (статистика);
+// fuelit — пересчитать FUELIT в telemetry_data (таймлайн);
+// dateFrom/dateTo — период (YYYY-MM-DD), пустые значения = вся история.
+type RecalculateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Recalculate   bool                   `protobuf:"varint,2,opt,name=recalculate,proto3" json:"recalculate,omitempty"`
+	Fuelit        bool                   `protobuf:"varint,3,opt,name=fuelit,proto3" json:"fuelit,omitempty"`
+	DateFrom      string                 `protobuf:"bytes,4,opt,name=dateFrom,proto3" json:"dateFrom,omitempty"`
+	DateTo        string                 `protobuf:"bytes,5,opt,name=dateTo,proto3" json:"dateTo,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RecalculateRequest) Reset() {
+	*x = RecalculateRequest{}
+	mi := &file_cyberfuel_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RecalculateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RecalculateRequest) ProtoMessage() {}
+
+func (x *RecalculateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_cyberfuel_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RecalculateRequest.ProtoReflect.Descriptor instead.
+func (*RecalculateRequest) Descriptor() ([]byte, []int) {
+	return file_cyberfuel_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *RecalculateRequest) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *RecalculateRequest) GetRecalculate() bool {
+	if x != nil {
+		return x.Recalculate
+	}
+	return false
+}
+
+func (x *RecalculateRequest) GetFuelit() bool {
+	if x != nil {
+		return x.Fuelit
+	}
+	return false
+}
+
+func (x *RecalculateRequest) GetDateFrom() string {
+	if x != nil {
+		return x.DateFrom
+	}
+	return ""
+}
+
+func (x *RecalculateRequest) GetDateTo() string {
+	if x != nil {
+		return x.DateTo
+	}
+	return ""
+}
+
+// RecalculateReply — результат принудительного пересчёта.
+type RecalculateReply struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Ok                bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	Message           string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	RecalculatedHours int32                  `protobuf:"varint,3,opt,name=recalculatedHours,proto3" json:"recalculatedHours,omitempty"`
+	AggregatedDays    int32                  `protobuf:"varint,4,opt,name=aggregatedDays,proto3" json:"aggregatedDays,omitempty"`
+	FuelitConnections int32                  `protobuf:"varint,5,opt,name=fuelitConnections,proto3" json:"fuelitConnections,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *RecalculateReply) Reset() {
+	*x = RecalculateReply{}
+	mi := &file_cyberfuel_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RecalculateReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RecalculateReply) ProtoMessage() {}
+
+func (x *RecalculateReply) ProtoReflect() protoreflect.Message {
+	mi := &file_cyberfuel_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RecalculateReply.ProtoReflect.Descriptor instead.
+func (*RecalculateReply) Descriptor() ([]byte, []int) {
+	return file_cyberfuel_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *RecalculateReply) GetOk() bool {
+	if x != nil {
+		return x.Ok
+	}
+	return false
+}
+
+func (x *RecalculateReply) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *RecalculateReply) GetRecalculatedHours() int32 {
+	if x != nil {
+		return x.RecalculatedHours
+	}
+	return 0
+}
+
+func (x *RecalculateReply) GetAggregatedDays() int32 {
+	if x != nil {
+		return x.AggregatedDays
+	}
+	return 0
+}
+
+func (x *RecalculateReply) GetFuelitConnections() int32 {
+	if x != nil {
+		return x.FuelitConnections
+	}
+	return 0
+}
+
 var File_cyberfuel_proto protoreflect.FileDescriptor
 
 const file_cyberfuel_proto_rawDesc = "" +
 	"\n" +
-	"\x0fcyberfuel.proto\x12\tcybertele\x1a\vcyber.proto2\xc0\x01\n" +
+	"\x0fcyberfuel.proto\x12\tcybertele\x1a\vcyber.proto\"\x92\x01\n" +
+	"\x12RecalculateRequest\x12\x0e\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12 \n" +
+	"\vrecalculate\x18\x02 \x01(\bR\vrecalculate\x12\x16\n" +
+	"\x06fuelit\x18\x03 \x01(\bR\x06fuelit\x12\x1a\n" +
+	"\bdateFrom\x18\x04 \x01(\tR\bdateFrom\x12\x16\n" +
+	"\x06dateTo\x18\x05 \x01(\tR\x06dateTo\"\xc0\x01\n" +
+	"\x10RecalculateReply\x12\x0e\n" +
+	"\x02ok\x18\x01 \x01(\bR\x02ok\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12,\n" +
+	"\x11recalculatedHours\x18\x03 \x01(\x05R\x11recalculatedHours\x12&\n" +
+	"\x0eaggregatedDays\x18\x04 \x01(\x05R\x0eaggregatedDays\x12,\n" +
+	"\x11fuelitConnections\x18\x05 \x01(\x05R\x11fuelitConnections2\x94\x02\n" +
 	"\tCyberfuel\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
 	"\n" +
 	"CalcEvents\x12\x15.cybertele.DataPoints\x1a\x13.cybertele.Segments\"\x00\x12A\n" +
-	"\x0fConvertToLiters\x12\x15.cybertele.DataPoints\x1a\x15.cybertele.DataPoints\"\x00B\tZ\a./protob\x06proto3"
+	"\x0fConvertToLiters\x12\x15.cybertele.DataPoints\x1a\x15.cybertele.DataPoints\"\x00\x12R\n" +
+	"\x12RecalculateMachine\x12\x1d.cybertele.RecalculateRequest\x1a\x1b.cybertele.RecalculateReply\"\x00B\tZ\a./protob\x06proto3"
 
+var (
+	file_cyberfuel_proto_rawDescOnce sync.Once
+	file_cyberfuel_proto_rawDescData []byte
+)
+
+func file_cyberfuel_proto_rawDescGZIP() []byte {
+	file_cyberfuel_proto_rawDescOnce.Do(func() {
+		file_cyberfuel_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_cyberfuel_proto_rawDesc), len(file_cyberfuel_proto_rawDesc)))
+	})
+	return file_cyberfuel_proto_rawDescData
+}
+
+var file_cyberfuel_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_cyberfuel_proto_goTypes = []any{
-	(*Empty)(nil),       // 0: cybertele.Empty
-	(*DataPoints)(nil),  // 1: cybertele.DataPoints
-	(*HealthReply)(nil), // 2: cybertele.HealthReply
-	(*Segments)(nil),    // 3: cybertele.Segments
+	(*RecalculateRequest)(nil), // 0: cybertele.RecalculateRequest
+	(*RecalculateReply)(nil),   // 1: cybertele.RecalculateReply
+	(*Empty)(nil),              // 2: cybertele.Empty
+	(*DataPoints)(nil),         // 3: cybertele.DataPoints
+	(*HealthReply)(nil),        // 4: cybertele.HealthReply
+	(*Segments)(nil),           // 5: cybertele.Segments
 }
 var file_cyberfuel_proto_depIdxs = []int32{
-	0, // 0: cybertele.Cyberfuel.Health:input_type -> cybertele.Empty
-	1, // 1: cybertele.Cyberfuel.CalcEvents:input_type -> cybertele.DataPoints
-	1, // 2: cybertele.Cyberfuel.ConvertToLiters:input_type -> cybertele.DataPoints
-	2, // 3: cybertele.Cyberfuel.Health:output_type -> cybertele.HealthReply
-	3, // 4: cybertele.Cyberfuel.CalcEvents:output_type -> cybertele.Segments
-	1, // 5: cybertele.Cyberfuel.ConvertToLiters:output_type -> cybertele.DataPoints
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	2, // 0: cybertele.Cyberfuel.Health:input_type -> cybertele.Empty
+	3, // 1: cybertele.Cyberfuel.CalcEvents:input_type -> cybertele.DataPoints
+	3, // 2: cybertele.Cyberfuel.ConvertToLiters:input_type -> cybertele.DataPoints
+	0, // 3: cybertele.Cyberfuel.RecalculateMachine:input_type -> cybertele.RecalculateRequest
+	4, // 4: cybertele.Cyberfuel.Health:output_type -> cybertele.HealthReply
+	5, // 5: cybertele.Cyberfuel.CalcEvents:output_type -> cybertele.Segments
+	3, // 6: cybertele.Cyberfuel.ConvertToLiters:output_type -> cybertele.DataPoints
+	1, // 7: cybertele.Cyberfuel.RecalculateMachine:output_type -> cybertele.RecalculateReply
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -63,12 +251,13 @@ func file_cyberfuel_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyberfuel_proto_rawDesc), len(file_cyberfuel_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_cyberfuel_proto_goTypes,
 		DependencyIndexes: file_cyberfuel_proto_depIdxs,
+		MessageInfos:      file_cyberfuel_proto_msgTypes,
 	}.Build()
 	File_cyberfuel_proto = out.File
 	file_cyberfuel_proto_goTypes = nil

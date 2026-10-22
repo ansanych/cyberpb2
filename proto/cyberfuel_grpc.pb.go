@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Cyberfuel_Health_FullMethodName          = "/cybertele.Cyberfuel/Health"
-	Cyberfuel_CalcEvents_FullMethodName      = "/cybertele.Cyberfuel/CalcEvents"
-	Cyberfuel_ConvertToLiters_FullMethodName = "/cybertele.Cyberfuel/ConvertToLiters"
+	Cyberfuel_Health_FullMethodName             = "/cybertele.Cyberfuel/Health"
+	Cyberfuel_CalcEvents_FullMethodName         = "/cybertele.Cyberfuel/CalcEvents"
+	Cyberfuel_ConvertToLiters_FullMethodName    = "/cybertele.Cyberfuel/ConvertToLiters"
+	Cyberfuel_RecalculateMachine_FullMethodName = "/cybertele.Cyberfuel/RecalculateMachine"
 )
 
 // CyberfuelClient is the client API for Cyberfuel service.
@@ -31,6 +32,7 @@ type CyberfuelClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
 	CalcEvents(ctx context.Context, in *DataPoints, opts ...grpc.CallOption) (*Segments, error)
 	ConvertToLiters(ctx context.Context, in *DataPoints, opts ...grpc.CallOption) (*DataPoints, error)
+	RecalculateMachine(ctx context.Context, in *RecalculateRequest, opts ...grpc.CallOption) (*RecalculateReply, error)
 }
 
 type cyberfuelClient struct {
@@ -71,6 +73,16 @@ func (c *cyberfuelClient) ConvertToLiters(ctx context.Context, in *DataPoints, o
 	return out, nil
 }
 
+func (c *cyberfuelClient) RecalculateMachine(ctx context.Context, in *RecalculateRequest, opts ...grpc.CallOption) (*RecalculateReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RecalculateReply)
+	err := c.cc.Invoke(ctx, Cyberfuel_RecalculateMachine_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CyberfuelServer is the server API for Cyberfuel service.
 // All implementations must embed UnimplementedCyberfuelServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type CyberfuelServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
 	CalcEvents(context.Context, *DataPoints) (*Segments, error)
 	ConvertToLiters(context.Context, *DataPoints) (*DataPoints, error)
+	RecalculateMachine(context.Context, *RecalculateRequest) (*RecalculateReply, error)
 	mustEmbedUnimplementedCyberfuelServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedCyberfuelServer) CalcEvents(context.Context, *DataPoints) (*S
 }
 func (UnimplementedCyberfuelServer) ConvertToLiters(context.Context, *DataPoints) (*DataPoints, error) {
 	return nil, status.Error(codes.Unimplemented, "method ConvertToLiters not implemented")
+}
+func (UnimplementedCyberfuelServer) RecalculateMachine(context.Context, *RecalculateRequest) (*RecalculateReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method RecalculateMachine not implemented")
 }
 func (UnimplementedCyberfuelServer) mustEmbedUnimplementedCyberfuelServer() {}
 func (UnimplementedCyberfuelServer) testEmbeddedByValue()                   {}
@@ -172,6 +188,24 @@ func _Cyberfuel_ConvertToLiters_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cyberfuel_RecalculateMachine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecalculateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CyberfuelServer).RecalculateMachine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cyberfuel_RecalculateMachine_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CyberfuelServer).RecalculateMachine(ctx, req.(*RecalculateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cyberfuel_ServiceDesc is the grpc.ServiceDesc for Cyberfuel service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var Cyberfuel_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConvertToLiters",
 			Handler:    _Cyberfuel_ConvertToLiters_Handler,
+		},
+		{
+			MethodName: "RecalculateMachine",
+			Handler:    _Cyberfuel_RecalculateMachine_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

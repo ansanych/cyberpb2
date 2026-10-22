@@ -4,6 +4,7 @@ import grpc
 import warnings
 
 from . import cyber_pb2 as cyber__pb2
+import cyberfuel_pb2 as cyberfuel__pb2
 
 GRPC_GENERATED_VERSION = '1.83.0'
 GRPC_VERSION = grpc.__version__
@@ -49,6 +50,11 @@ class CyberfuelStub:
                 request_serializer=cyber__pb2.DataPoints.SerializeToString,
                 response_deserializer=cyber__pb2.DataPoints.FromString,
                 _registered_method=True)
+        self.RecalculateMachine = channel.unary_unary(
+                '/cybertele.Cyberfuel/RecalculateMachine',
+                request_serializer=cyberfuel__pb2.RecalculateRequest.SerializeToString,
+                response_deserializer=cyberfuel__pb2.RecalculateReply.FromString,
+                _registered_method=True)
 
 
 class CyberfuelServicer:
@@ -72,6 +78,12 @@ class CyberfuelServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def RecalculateMachine(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CyberfuelServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -89,6 +101,11 @@ def add_CyberfuelServicer_to_server(servicer, server):
                     servicer.ConvertToLiters,
                     request_deserializer=cyber__pb2.DataPoints.FromString,
                     response_serializer=cyber__pb2.DataPoints.SerializeToString,
+            ),
+            'RecalculateMachine': grpc.unary_unary_rpc_method_handler(
+                    servicer.RecalculateMachine,
+                    request_deserializer=cyberfuel__pb2.RecalculateRequest.FromString,
+                    response_serializer=cyberfuel__pb2.RecalculateReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -172,6 +189,33 @@ class Cyberfuel:
             '/cybertele.Cyberfuel/ConvertToLiters',
             cyber__pb2.DataPoints.SerializeToString,
             cyber__pb2.DataPoints.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def RecalculateMachine(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cyberfuel/RecalculateMachine',
+            cyberfuel__pb2.RecalculateRequest.SerializeToString,
+            cyberfuel__pb2.RecalculateReply.FromString,
             options,
             channel_credentials,
             insecure,

@@ -9,4 +9,26 @@ service Cyberfuel {
     rpc Health (Empty) returns (HealthReply) {}
     rpc CalcEvents (DataPoints) returns (Segments) {}
     rpc ConvertToLiters (DataPoints) returns (DataPoints) {}
+    rpc RecalculateMachine (RecalculateRequest) returns (RecalculateReply) {}
+}
+
+// RecalculateRequest — запрос принудительного пересчёта топлива машины.
+// recalculate — пересчитать fuel_recalculate + fuel_hourly (статистика);
+// fuelit — пересчитать FUELIT в telemetry_data (таймлайн);
+// dateFrom/dateTo — период (YYYY-MM-DD), пустые значения = вся история.
+message RecalculateRequest {
+    string sn = 1;
+    bool recalculate = 2;
+    bool fuelit = 3;
+    string dateFrom = 4;
+    string dateTo = 5;
+}
+
+// RecalculateReply — результат принудительного пересчёта.
+message RecalculateReply {
+    bool ok = 1;
+    string message = 2;
+    int32 recalculatedHours = 3;
+    int32 aggregatedDays = 4;
+    int32 fuelitConnections = 5;
 }
