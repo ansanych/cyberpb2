@@ -55,6 +55,16 @@ class CyberfuelStub:
                 request_serializer=cyberfuel__pb2.RecalculateRequest.SerializeToString,
                 response_deserializer=cyberfuel__pb2.RecalculateReply.FromString,
                 _registered_method=True)
+        self.RecalculateMachines = channel.unary_unary(
+                '/cybertele.Cyberfuel/RecalculateMachines',
+                request_serializer=cyberfuel__pb2.RecalculateMachinesRequest.SerializeToString,
+                response_deserializer=cyberfuel__pb2.RecalculateMachinesReply.FromString,
+                _registered_method=True)
+        self.GetMachinesByTemplate = channel.unary_unary(
+                '/cybertele.Cyberfuel/GetMachinesByTemplate',
+                request_serializer=cyberfuel__pb2.TemplateRequest.SerializeToString,
+                response_deserializer=cyber__pb2.Machines.FromString,
+                _registered_method=True)
 
 
 class CyberfuelServicer:
@@ -84,6 +94,18 @@ class CyberfuelServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def RecalculateMachines(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMachinesByTemplate(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CyberfuelServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -106,6 +128,16 @@ def add_CyberfuelServicer_to_server(servicer, server):
                     servicer.RecalculateMachine,
                     request_deserializer=cyberfuel__pb2.RecalculateRequest.FromString,
                     response_serializer=cyberfuel__pb2.RecalculateReply.SerializeToString,
+            ),
+            'RecalculateMachines': grpc.unary_unary_rpc_method_handler(
+                    servicer.RecalculateMachines,
+                    request_deserializer=cyberfuel__pb2.RecalculateMachinesRequest.FromString,
+                    response_serializer=cyberfuel__pb2.RecalculateMachinesReply.SerializeToString,
+            ),
+            'GetMachinesByTemplate': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMachinesByTemplate,
+                    request_deserializer=cyberfuel__pb2.TemplateRequest.FromString,
+                    response_serializer=cyber__pb2.Machines.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -216,6 +248,60 @@ class Cyberfuel:
             '/cybertele.Cyberfuel/RecalculateMachine',
             cyberfuel__pb2.RecalculateRequest.SerializeToString,
             cyberfuel__pb2.RecalculateReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def RecalculateMachines(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cyberfuel/RecalculateMachines',
+            cyberfuel__pb2.RecalculateMachinesRequest.SerializeToString,
+            cyberfuel__pb2.RecalculateMachinesReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMachinesByTemplate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cyberfuel/GetMachinesByTemplate',
+            cyberfuel__pb2.TemplateRequest.SerializeToString,
+            cyber__pb2.Machines.FromString,
             options,
             channel_credentials,
             insecure,

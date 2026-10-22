@@ -178,6 +178,255 @@ func (x *RecalculateReply) GetFuelitConnections() int32 {
 	return 0
 }
 
+// TemplateRequest — признак шаблон/класс/поколение для поиска машин.
+type TemplateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TemplateID    int32                  `protobuf:"varint,1,opt,name=templateID,proto3" json:"templateID,omitempty"`
+	ClassID       int32                  `protobuf:"varint,2,opt,name=classID,proto3" json:"classID,omitempty"`
+	GenerationID  int32                  `protobuf:"varint,3,opt,name=generationID,proto3" json:"generationID,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TemplateRequest) Reset() {
+	*x = TemplateRequest{}
+	mi := &file_cyberfuel_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TemplateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TemplateRequest) ProtoMessage() {}
+
+func (x *TemplateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_cyberfuel_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TemplateRequest.ProtoReflect.Descriptor instead.
+func (*TemplateRequest) Descriptor() ([]byte, []int) {
+	return file_cyberfuel_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *TemplateRequest) GetTemplateID() int32 {
+	if x != nil {
+		return x.TemplateID
+	}
+	return 0
+}
+
+func (x *TemplateRequest) GetClassID() int32 {
+	if x != nil {
+		return x.ClassID
+	}
+	return 0
+}
+
+func (x *TemplateRequest) GetGenerationID() int32 {
+	if x != nil {
+		return x.GenerationID
+	}
+	return 0
+}
+
+// RecalculateMachinesRequest — запрос массового пересчёта топлива машин
+// по признаку шаблон/класс/поколение. recalculate — fuel_recalculate + fuel_hourly;
+// fuelit — FUELIT в telemetry_data; dateFrom/dateTo — период (пусто = вся история).
+type RecalculateMachinesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TemplateID    int32                  `protobuf:"varint,1,opt,name=templateID,proto3" json:"templateID,omitempty"`
+	ClassID       int32                  `protobuf:"varint,2,opt,name=classID,proto3" json:"classID,omitempty"`
+	GenerationID  int32                  `protobuf:"varint,3,opt,name=generationID,proto3" json:"generationID,omitempty"`
+	Recalculate   bool                   `protobuf:"varint,4,opt,name=recalculate,proto3" json:"recalculate,omitempty"`
+	Fuelit        bool                   `protobuf:"varint,5,opt,name=fuelit,proto3" json:"fuelit,omitempty"`
+	DateFrom      string                 `protobuf:"bytes,6,opt,name=dateFrom,proto3" json:"dateFrom,omitempty"`
+	DateTo        string                 `protobuf:"bytes,7,opt,name=dateTo,proto3" json:"dateTo,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RecalculateMachinesRequest) Reset() {
+	*x = RecalculateMachinesRequest{}
+	mi := &file_cyberfuel_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RecalculateMachinesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RecalculateMachinesRequest) ProtoMessage() {}
+
+func (x *RecalculateMachinesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_cyberfuel_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RecalculateMachinesRequest.ProtoReflect.Descriptor instead.
+func (*RecalculateMachinesRequest) Descriptor() ([]byte, []int) {
+	return file_cyberfuel_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *RecalculateMachinesRequest) GetTemplateID() int32 {
+	if x != nil {
+		return x.TemplateID
+	}
+	return 0
+}
+
+func (x *RecalculateMachinesRequest) GetClassID() int32 {
+	if x != nil {
+		return x.ClassID
+	}
+	return 0
+}
+
+func (x *RecalculateMachinesRequest) GetGenerationID() int32 {
+	if x != nil {
+		return x.GenerationID
+	}
+	return 0
+}
+
+func (x *RecalculateMachinesRequest) GetRecalculate() bool {
+	if x != nil {
+		return x.Recalculate
+	}
+	return false
+}
+
+func (x *RecalculateMachinesRequest) GetFuelit() bool {
+	if x != nil {
+		return x.Fuelit
+	}
+	return false
+}
+
+func (x *RecalculateMachinesRequest) GetDateFrom() string {
+	if x != nil {
+		return x.DateFrom
+	}
+	return ""
+}
+
+func (x *RecalculateMachinesRequest) GetDateTo() string {
+	if x != nil {
+		return x.DateTo
+	}
+	return ""
+}
+
+// RecalculateMachinesReply — результат массового пересчёта.
+type RecalculateMachinesReply struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Ok                bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	Message           string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Machines          int32                  `protobuf:"varint,3,opt,name=machines,proto3" json:"machines,omitempty"`
+	RecalculatedHours int32                  `protobuf:"varint,4,opt,name=recalculatedHours,proto3" json:"recalculatedHours,omitempty"`
+	AggregatedDays    int32                  `protobuf:"varint,5,opt,name=aggregatedDays,proto3" json:"aggregatedDays,omitempty"`
+	FuelitConnections int32                  `protobuf:"varint,6,opt,name=fuelitConnections,proto3" json:"fuelitConnections,omitempty"`
+	Errors            []string               `protobuf:"bytes,7,rep,name=errors,proto3" json:"errors,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *RecalculateMachinesReply) Reset() {
+	*x = RecalculateMachinesReply{}
+	mi := &file_cyberfuel_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RecalculateMachinesReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RecalculateMachinesReply) ProtoMessage() {}
+
+func (x *RecalculateMachinesReply) ProtoReflect() protoreflect.Message {
+	mi := &file_cyberfuel_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RecalculateMachinesReply.ProtoReflect.Descriptor instead.
+func (*RecalculateMachinesReply) Descriptor() ([]byte, []int) {
+	return file_cyberfuel_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *RecalculateMachinesReply) GetOk() bool {
+	if x != nil {
+		return x.Ok
+	}
+	return false
+}
+
+func (x *RecalculateMachinesReply) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *RecalculateMachinesReply) GetMachines() int32 {
+	if x != nil {
+		return x.Machines
+	}
+	return 0
+}
+
+func (x *RecalculateMachinesReply) GetRecalculatedHours() int32 {
+	if x != nil {
+		return x.RecalculatedHours
+	}
+	return 0
+}
+
+func (x *RecalculateMachinesReply) GetAggregatedDays() int32 {
+	if x != nil {
+		return x.AggregatedDays
+	}
+	return 0
+}
+
+func (x *RecalculateMachinesReply) GetFuelitConnections() int32 {
+	if x != nil {
+		return x.FuelitConnections
+	}
+	return 0
+}
+
+func (x *RecalculateMachinesReply) GetErrors() []string {
+	if x != nil {
+		return x.Errors
+	}
+	return nil
+}
+
 var File_cyberfuel_proto protoreflect.FileDescriptor
 
 const file_cyberfuel_proto_rawDesc = "" +
@@ -194,13 +443,39 @@ const file_cyberfuel_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12,\n" +
 	"\x11recalculatedHours\x18\x03 \x01(\x05R\x11recalculatedHours\x12&\n" +
 	"\x0eaggregatedDays\x18\x04 \x01(\x05R\x0eaggregatedDays\x12,\n" +
-	"\x11fuelitConnections\x18\x05 \x01(\x05R\x11fuelitConnections2\x94\x02\n" +
+	"\x11fuelitConnections\x18\x05 \x01(\x05R\x11fuelitConnections\"o\n" +
+	"\x0fTemplateRequest\x12\x1e\n" +
+	"\n" +
+	"templateID\x18\x01 \x01(\x05R\n" +
+	"templateID\x12\x18\n" +
+	"\aclassID\x18\x02 \x01(\x05R\aclassID\x12\"\n" +
+	"\fgenerationID\x18\x03 \x01(\x05R\fgenerationID\"\xe8\x01\n" +
+	"\x1aRecalculateMachinesRequest\x12\x1e\n" +
+	"\n" +
+	"templateID\x18\x01 \x01(\x05R\n" +
+	"templateID\x12\x18\n" +
+	"\aclassID\x18\x02 \x01(\x05R\aclassID\x12\"\n" +
+	"\fgenerationID\x18\x03 \x01(\x05R\fgenerationID\x12 \n" +
+	"\vrecalculate\x18\x04 \x01(\bR\vrecalculate\x12\x16\n" +
+	"\x06fuelit\x18\x05 \x01(\bR\x06fuelit\x12\x1a\n" +
+	"\bdateFrom\x18\x06 \x01(\tR\bdateFrom\x12\x16\n" +
+	"\x06dateTo\x18\a \x01(\tR\x06dateTo\"\xfc\x01\n" +
+	"\x18RecalculateMachinesReply\x12\x0e\n" +
+	"\x02ok\x18\x01 \x01(\bR\x02ok\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1a\n" +
+	"\bmachines\x18\x03 \x01(\x05R\bmachines\x12,\n" +
+	"\x11recalculatedHours\x18\x04 \x01(\x05R\x11recalculatedHours\x12&\n" +
+	"\x0eaggregatedDays\x18\x05 \x01(\x05R\x0eaggregatedDays\x12,\n" +
+	"\x11fuelitConnections\x18\x06 \x01(\x05R\x11fuelitConnections\x12\x16\n" +
+	"\x06errors\x18\a \x03(\tR\x06errors2\xc5\x03\n" +
 	"\tCyberfuel\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
 	"\n" +
 	"CalcEvents\x12\x15.cybertele.DataPoints\x1a\x13.cybertele.Segments\"\x00\x12A\n" +
 	"\x0fConvertToLiters\x12\x15.cybertele.DataPoints\x1a\x15.cybertele.DataPoints\"\x00\x12R\n" +
-	"\x12RecalculateMachine\x12\x1d.cybertele.RecalculateRequest\x1a\x1b.cybertele.RecalculateReply\"\x00B\tZ\a./protob\x06proto3"
+	"\x12RecalculateMachine\x12\x1d.cybertele.RecalculateRequest\x1a\x1b.cybertele.RecalculateReply\"\x00\x12c\n" +
+	"\x13RecalculateMachines\x12%.cybertele.RecalculateMachinesRequest\x1a#.cybertele.RecalculateMachinesReply\"\x00\x12J\n" +
+	"\x15GetMachinesByTemplate\x12\x1a.cybertele.TemplateRequest\x1a\x13.cybertele.Machines\"\x00B\tZ\a./protob\x06proto3"
 
 var (
 	file_cyberfuel_proto_rawDescOnce sync.Once
@@ -214,26 +489,34 @@ func file_cyberfuel_proto_rawDescGZIP() []byte {
 	return file_cyberfuel_proto_rawDescData
 }
 
-var file_cyberfuel_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_cyberfuel_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_cyberfuel_proto_goTypes = []any{
-	(*RecalculateRequest)(nil), // 0: cybertele.RecalculateRequest
-	(*RecalculateReply)(nil),   // 1: cybertele.RecalculateReply
-	(*Empty)(nil),              // 2: cybertele.Empty
-	(*DataPoints)(nil),         // 3: cybertele.DataPoints
-	(*HealthReply)(nil),        // 4: cybertele.HealthReply
-	(*Segments)(nil),           // 5: cybertele.Segments
+	(*RecalculateRequest)(nil),         // 0: cybertele.RecalculateRequest
+	(*RecalculateReply)(nil),           // 1: cybertele.RecalculateReply
+	(*TemplateRequest)(nil),            // 2: cybertele.TemplateRequest
+	(*RecalculateMachinesRequest)(nil), // 3: cybertele.RecalculateMachinesRequest
+	(*RecalculateMachinesReply)(nil),   // 4: cybertele.RecalculateMachinesReply
+	(*Empty)(nil),                      // 5: cybertele.Empty
+	(*DataPoints)(nil),                 // 6: cybertele.DataPoints
+	(*HealthReply)(nil),                // 7: cybertele.HealthReply
+	(*Segments)(nil),                   // 8: cybertele.Segments
+	(*Machines)(nil),                   // 9: cybertele.Machines
 }
 var file_cyberfuel_proto_depIdxs = []int32{
-	2, // 0: cybertele.Cyberfuel.Health:input_type -> cybertele.Empty
-	3, // 1: cybertele.Cyberfuel.CalcEvents:input_type -> cybertele.DataPoints
-	3, // 2: cybertele.Cyberfuel.ConvertToLiters:input_type -> cybertele.DataPoints
+	5, // 0: cybertele.Cyberfuel.Health:input_type -> cybertele.Empty
+	6, // 1: cybertele.Cyberfuel.CalcEvents:input_type -> cybertele.DataPoints
+	6, // 2: cybertele.Cyberfuel.ConvertToLiters:input_type -> cybertele.DataPoints
 	0, // 3: cybertele.Cyberfuel.RecalculateMachine:input_type -> cybertele.RecalculateRequest
-	4, // 4: cybertele.Cyberfuel.Health:output_type -> cybertele.HealthReply
-	5, // 5: cybertele.Cyberfuel.CalcEvents:output_type -> cybertele.Segments
-	3, // 6: cybertele.Cyberfuel.ConvertToLiters:output_type -> cybertele.DataPoints
-	1, // 7: cybertele.Cyberfuel.RecalculateMachine:output_type -> cybertele.RecalculateReply
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	3, // 4: cybertele.Cyberfuel.RecalculateMachines:input_type -> cybertele.RecalculateMachinesRequest
+	2, // 5: cybertele.Cyberfuel.GetMachinesByTemplate:input_type -> cybertele.TemplateRequest
+	7, // 6: cybertele.Cyberfuel.Health:output_type -> cybertele.HealthReply
+	8, // 7: cybertele.Cyberfuel.CalcEvents:output_type -> cybertele.Segments
+	6, // 8: cybertele.Cyberfuel.ConvertToLiters:output_type -> cybertele.DataPoints
+	1, // 9: cybertele.Cyberfuel.RecalculateMachine:output_type -> cybertele.RecalculateReply
+	4, // 10: cybertele.Cyberfuel.RecalculateMachines:output_type -> cybertele.RecalculateMachinesReply
+	9, // 11: cybertele.Cyberfuel.GetMachinesByTemplate:output_type -> cybertele.Machines
+	6, // [6:12] is the sub-list for method output_type
+	0, // [0:6] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -251,7 +534,7 @@ func file_cyberfuel_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyberfuel_proto_rawDesc), len(file_cyberfuel_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -19,10 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Cyberfuel_Health_FullMethodName             = "/cybertele.Cyberfuel/Health"
-	Cyberfuel_CalcEvents_FullMethodName         = "/cybertele.Cyberfuel/CalcEvents"
-	Cyberfuel_ConvertToLiters_FullMethodName    = "/cybertele.Cyberfuel/ConvertToLiters"
-	Cyberfuel_RecalculateMachine_FullMethodName = "/cybertele.Cyberfuel/RecalculateMachine"
+	Cyberfuel_Health_FullMethodName                = "/cybertele.Cyberfuel/Health"
+	Cyberfuel_CalcEvents_FullMethodName            = "/cybertele.Cyberfuel/CalcEvents"
+	Cyberfuel_ConvertToLiters_FullMethodName       = "/cybertele.Cyberfuel/ConvertToLiters"
+	Cyberfuel_RecalculateMachine_FullMethodName    = "/cybertele.Cyberfuel/RecalculateMachine"
+	Cyberfuel_RecalculateMachines_FullMethodName   = "/cybertele.Cyberfuel/RecalculateMachines"
+	Cyberfuel_GetMachinesByTemplate_FullMethodName = "/cybertele.Cyberfuel/GetMachinesByTemplate"
 )
 
 // CyberfuelClient is the client API for Cyberfuel service.
@@ -33,6 +35,8 @@ type CyberfuelClient interface {
 	CalcEvents(ctx context.Context, in *DataPoints, opts ...grpc.CallOption) (*Segments, error)
 	ConvertToLiters(ctx context.Context, in *DataPoints, opts ...grpc.CallOption) (*DataPoints, error)
 	RecalculateMachine(ctx context.Context, in *RecalculateRequest, opts ...grpc.CallOption) (*RecalculateReply, error)
+	RecalculateMachines(ctx context.Context, in *RecalculateMachinesRequest, opts ...grpc.CallOption) (*RecalculateMachinesReply, error)
+	GetMachinesByTemplate(ctx context.Context, in *TemplateRequest, opts ...grpc.CallOption) (*Machines, error)
 }
 
 type cyberfuelClient struct {
@@ -83,6 +87,26 @@ func (c *cyberfuelClient) RecalculateMachine(ctx context.Context, in *Recalculat
 	return out, nil
 }
 
+func (c *cyberfuelClient) RecalculateMachines(ctx context.Context, in *RecalculateMachinesRequest, opts ...grpc.CallOption) (*RecalculateMachinesReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RecalculateMachinesReply)
+	err := c.cc.Invoke(ctx, Cyberfuel_RecalculateMachines_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cyberfuelClient) GetMachinesByTemplate(ctx context.Context, in *TemplateRequest, opts ...grpc.CallOption) (*Machines, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Machines)
+	err := c.cc.Invoke(ctx, Cyberfuel_GetMachinesByTemplate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CyberfuelServer is the server API for Cyberfuel service.
 // All implementations must embed UnimplementedCyberfuelServer
 // for forward compatibility.
@@ -91,6 +115,8 @@ type CyberfuelServer interface {
 	CalcEvents(context.Context, *DataPoints) (*Segments, error)
 	ConvertToLiters(context.Context, *DataPoints) (*DataPoints, error)
 	RecalculateMachine(context.Context, *RecalculateRequest) (*RecalculateReply, error)
+	RecalculateMachines(context.Context, *RecalculateMachinesRequest) (*RecalculateMachinesReply, error)
+	GetMachinesByTemplate(context.Context, *TemplateRequest) (*Machines, error)
 	mustEmbedUnimplementedCyberfuelServer()
 }
 
@@ -112,6 +138,12 @@ func (UnimplementedCyberfuelServer) ConvertToLiters(context.Context, *DataPoints
 }
 func (UnimplementedCyberfuelServer) RecalculateMachine(context.Context, *RecalculateRequest) (*RecalculateReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method RecalculateMachine not implemented")
+}
+func (UnimplementedCyberfuelServer) RecalculateMachines(context.Context, *RecalculateMachinesRequest) (*RecalculateMachinesReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method RecalculateMachines not implemented")
+}
+func (UnimplementedCyberfuelServer) GetMachinesByTemplate(context.Context, *TemplateRequest) (*Machines, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMachinesByTemplate not implemented")
 }
 func (UnimplementedCyberfuelServer) mustEmbedUnimplementedCyberfuelServer() {}
 func (UnimplementedCyberfuelServer) testEmbeddedByValue()                   {}
@@ -206,6 +238,42 @@ func _Cyberfuel_RecalculateMachine_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cyberfuel_RecalculateMachines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecalculateMachinesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CyberfuelServer).RecalculateMachines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cyberfuel_RecalculateMachines_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CyberfuelServer).RecalculateMachines(ctx, req.(*RecalculateMachinesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cyberfuel_GetMachinesByTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TemplateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CyberfuelServer).GetMachinesByTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cyberfuel_GetMachinesByTemplate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CyberfuelServer).GetMachinesByTemplate(ctx, req.(*TemplateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cyberfuel_ServiceDesc is the grpc.ServiceDesc for Cyberfuel service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +296,14 @@ var Cyberfuel_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RecalculateMachine",
 			Handler:    _Cyberfuel_RecalculateMachine_Handler,
+		},
+		{
+			MethodName: "RecalculateMachines",
+			Handler:    _Cyberfuel_RecalculateMachines_Handler,
+		},
+		{
+			MethodName: "GetMachinesByTemplate",
+			Handler:    _Cyberfuel_GetMachinesByTemplate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

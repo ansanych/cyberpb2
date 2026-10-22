@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 import cyber_pb2 as cyber__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0f\x63yberfuel.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"g\n\x12RecalculateRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x13\n\x0brecalculate\x18\x02 \x01(\x08\x12\x0e\n\x06\x66uelit\x18\x03 \x01(\x08\x12\x10\n\x08\x64\x61teFrom\x18\x04 \x01(\t\x12\x0e\n\x06\x64\x61teTo\x18\x05 \x01(\t\"}\n\x10RecalculateReply\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x19\n\x11recalculatedHours\x18\x03 \x01(\x05\x12\x16\n\x0e\x61ggregatedDays\x18\x04 \x01(\x05\x12\x19\n\x11\x66uelitConnections\x18\x05 \x01(\x05\x32\x94\x02\n\tCyberfuel\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n\nCalcEvents\x12\x15.cybertele.DataPoints\x1a\x13.cybertele.Segments\"\x00\x12\x41\n\x0f\x43onvertToLiters\x12\x15.cybertele.DataPoints\x1a\x15.cybertele.DataPoints\"\x00\x12R\n\x12RecalculateMachine\x12\x1d.cybertele.RecalculateRequest\x1a\x1b.cybertele.RecalculateReply\"\x00\x42\tZ\x07./protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0f\x63yberfuel.proto\x12\tcybertele\x1a\x0b\x63yber.proto\"g\n\x12RecalculateRequest\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x13\n\x0brecalculate\x18\x02 \x01(\x08\x12\x0e\n\x06\x66uelit\x18\x03 \x01(\x08\x12\x10\n\x08\x64\x61teFrom\x18\x04 \x01(\t\x12\x0e\n\x06\x64\x61teTo\x18\x05 \x01(\t\"}\n\x10RecalculateReply\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x19\n\x11recalculatedHours\x18\x03 \x01(\x05\x12\x16\n\x0e\x61ggregatedDays\x18\x04 \x01(\x05\x12\x19\n\x11\x66uelitConnections\x18\x05 \x01(\x05\"L\n\x0fTemplateRequest\x12\x12\n\ntemplateID\x18\x01 \x01(\x05\x12\x0f\n\x07\x63lassID\x18\x02 \x01(\x05\x12\x14\n\x0cgenerationID\x18\x03 \x01(\x05\"\x9e\x01\n\x1aRecalculateMachinesRequest\x12\x12\n\ntemplateID\x18\x01 \x01(\x05\x12\x0f\n\x07\x63lassID\x18\x02 \x01(\x05\x12\x14\n\x0cgenerationID\x18\x03 \x01(\x05\x12\x13\n\x0brecalculate\x18\x04 \x01(\x08\x12\x0e\n\x06\x66uelit\x18\x05 \x01(\x08\x12\x10\n\x08\x64\x61teFrom\x18\x06 \x01(\t\x12\x0e\n\x06\x64\x61teTo\x18\x07 \x01(\t\"\xa7\x01\n\x18RecalculateMachinesReply\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x10\n\x08machines\x18\x03 \x01(\x05\x12\x19\n\x11recalculatedHours\x18\x04 \x01(\x05\x12\x16\n\x0e\x61ggregatedDays\x18\x05 \x01(\x05\x12\x19\n\x11\x66uelitConnections\x18\x06 \x01(\x05\x12\x0e\n\x06\x65rrors\x18\x07 \x03(\t2\xc5\x03\n\tCyberfuel\x12\x34\n\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n\nCalcEvents\x12\x15.cybertele.DataPoints\x1a\x13.cybertele.Segments\"\x00\x12\x41\n\x0f\x43onvertToLiters\x12\x15.cybertele.DataPoints\x1a\x15.cybertele.DataPoints\"\x00\x12R\n\x12RecalculateMachine\x12\x1d.cybertele.RecalculateRequest\x1a\x1b.cybertele.RecalculateReply\"\x00\x12\x63\n\x13RecalculateMachines\x12%.cybertele.RecalculateMachinesRequest\x1a#.cybertele.RecalculateMachinesReply\"\x00\x12J\n\x15GetMachinesByTemplate\x12\x1a.cybertele.TemplateRequest\x1a\x13.cybertele.Machines\"\x00\x42\tZ\x07./protob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -37,6 +37,12 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_RECALCULATEREQUEST']._serialized_end=146
   _globals['_RECALCULATEREPLY']._serialized_start=148
   _globals['_RECALCULATEREPLY']._serialized_end=273
-  _globals['_CYBERFUEL']._serialized_start=276
-  _globals['_CYBERFUEL']._serialized_end=552
+  _globals['_TEMPLATEREQUEST']._serialized_start=275
+  _globals['_TEMPLATEREQUEST']._serialized_end=351
+  _globals['_RECALCULATEMACHINESREQUEST']._serialized_start=354
+  _globals['_RECALCULATEMACHINESREQUEST']._serialized_end=512
+  _globals['_RECALCULATEMACHINESREPLY']._serialized_start=515
+  _globals['_RECALCULATEMACHINESREPLY']._serialized_end=682
+  _globals['_CYBERFUEL']._serialized_start=685
+  _globals['_CYBERFUEL']._serialized_end=1138
 # @@protoc_insertion_point(module_scope)

@@ -10,6 +10,8 @@ service Cyberfuel {
     rpc CalcEvents (DataPoints) returns (Segments) {}
     rpc ConvertToLiters (DataPoints) returns (DataPoints) {}
     rpc RecalculateMachine (RecalculateRequest) returns (RecalculateReply) {}
+    rpc RecalculateMachines (RecalculateMachinesRequest) returns (RecalculateMachinesReply) {}
+    rpc GetMachinesByTemplate (TemplateRequest) returns (Machines) {}
 }
 
 // RecalculateRequest — запрос принудительного пересчёта топлива машины.
@@ -31,4 +33,35 @@ message RecalculateReply {
     int32 recalculatedHours = 3;
     int32 aggregatedDays = 4;
     int32 fuelitConnections = 5;
+}
+
+// TemplateRequest — признак шаблон/класс/поколение для поиска машин.
+message TemplateRequest {
+    int32 templateID = 1;
+    int32 classID = 2;
+    int32 generationID = 3;
+}
+
+// RecalculateMachinesRequest — запрос массового пересчёта топлива машин
+// по признаку шаблон/класс/поколение. recalculate — fuel_recalculate + fuel_hourly;
+// fuelit — FUELIT в telemetry_data; dateFrom/dateTo — период (пусто = вся история).
+message RecalculateMachinesRequest {
+    int32 templateID = 1;
+    int32 classID = 2;
+    int32 generationID = 3;
+    bool recalculate = 4;
+    bool fuelit = 5;
+    string dateFrom = 6;
+    string dateTo = 7;
+}
+
+// RecalculateMachinesReply — результат массового пересчёта.
+message RecalculateMachinesReply {
+    bool ok = 1;
+    string message = 2;
+    int32 machines = 3;
+    int32 recalculatedHours = 4;
+    int32 aggregatedDays = 5;
+    int32 fuelitConnections = 6;
+    repeated string errors = 7;
 }
