@@ -427,6 +427,7 @@ type LastData struct {
 	Params        []string               `protobuf:"bytes,2,rep,name=params,proto3" json:"params,omitempty"`
 	Data          []*LastDataRow         `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	Datetime      string                 `protobuf:"bytes,4,opt,name=datetime,proto3" json:"datetime,omitempty"`
+	Coordinates   []*CoordsPoint         `protobuf:"bytes,5,rep,name=coordinates,proto3" json:"coordinates,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -487,6 +488,13 @@ func (x *LastData) GetDatetime() string {
 		return x.Datetime
 	}
 	return ""
+}
+
+func (x *LastData) GetCoordinates() []*CoordsPoint {
+	if x != nil {
+		return x.Coordinates
+	}
+	return nil
 }
 
 type LastDataRow struct {
@@ -1706,12 +1714,13 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x06points\x18\x05 \x03(\v2\x16.cybertele.CoordsPointR\x06points\"1\n" +
 	"\x0fLastDataRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x03(\tR\x02sn\x12\x0e\n" +
-	"\x02tz\x18\x02 \x01(\x05R\x02tz\"z\n" +
+	"\x02tz\x18\x02 \x01(\x05R\x02tz\"\xb4\x01\n" +
 	"\bLastData\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x16\n" +
 	"\x06params\x18\x02 \x03(\tR\x06params\x12*\n" +
 	"\x04data\x18\x03 \x03(\v2\x16.cybertele.LastDataRowR\x04data\x12\x1a\n" +
-	"\bdatetime\x18\x04 \x01(\tR\bdatetime\"-\n" +
+	"\bdatetime\x18\x04 \x01(\tR\bdatetime\x128\n" +
+	"\vcoordinates\x18\x05 \x03(\v2\x16.cybertele.CoordsPointR\vcoordinates\"-\n" +
 	"\vLastDataRow\x12\x1e\n" +
 	"\n" +
 	"dataValues\x18\x01 \x03(\x02R\n" +
@@ -1889,57 +1898,58 @@ var file_cybermetrica_proto_goTypes = []any{
 var file_cybermetrica_proto_depIdxs = []int32{
 	3,  // 0: cybertele.Coords.points:type_name -> cybertele.CoordsPoint
 	7,  // 1: cybertele.LastData.data:type_name -> cybertele.LastDataRow
-	6,  // 2: cybertele.LastDatas.machines:type_name -> cybertele.LastData
-	9,  // 3: cybertele.Workhours.data:type_name -> cybertele.MachineWorkhours
-	11, // 4: cybertele.ParserMetricaLogsReply.data:type_name -> cybertele.ParserMetricaLog
-	23, // 5: cybertele.ParserMetricaLogsReply.pagination:type_name -> cybertele.Pagination
-	14, // 6: cybertele.StatisticPeriodItem.engine:type_name -> cybertele.StatisticEngine
-	15, // 7: cybertele.StatisticPeriodItem.fuel:type_name -> cybertele.StatisticFuel
-	16, // 8: cybertele.StatisticPeriod.data:type_name -> cybertele.StatisticPeriodItem
-	15, // 9: cybertele.StatisticPeriod.fuel:type_name -> cybertele.StatisticFuel
-	19, // 10: cybertele.ConnectionDataBlock.dataValues:type_name -> cybertele.DataValuesRow
-	21, // 11: cybertele.Timeline.connections:type_name -> cybertele.EventBlock
-	21, // 12: cybertele.Timeline.engines:type_name -> cybertele.EventBlock
-	21, // 13: cybertele.Timeline.jobs:type_name -> cybertele.EventBlock
-	21, // 14: cybertele.Timeline.errors:type_name -> cybertele.EventBlock
-	20, // 15: cybertele.Timeline.data:type_name -> cybertele.ConnectionDataBlock
-	24, // 16: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
-	24, // 17: cybertele.Cybermetrica.StartParser:input_type -> cybertele.Empty
-	24, // 18: cybertele.Cybermetrica.StopParser:input_type -> cybertele.Empty
-	24, // 19: cybertele.Cybermetrica.GetParserStatus:input_type -> cybertele.Empty
-	25, // 20: cybertele.Cybermetrica.GetParserLogs:input_type -> cybertele.PageRequest
-	25, // 21: cybertele.Cybermetrica.MachineLogs:input_type -> cybertele.PageRequest
-	13, // 22: cybertele.Cybermetrica.MachineStatisticPeriod:input_type -> cybertele.MachineStatisticRequest
-	24, // 23: cybertele.Cybermetrica.GetTelemetryParams:input_type -> cybertele.Empty
-	26, // 24: cybertele.Cybermetrica.CreateTelemetryParam:input_type -> cybertele.TelemertyParam
-	26, // 25: cybertele.Cybermetrica.UpdateTelemetryParam:input_type -> cybertele.TelemertyParam
-	18, // 26: cybertele.Cybermetrica.GetTimeline:input_type -> cybertele.TimelineRequest
-	24, // 27: cybertele.Cybermetrica.AllMachinesWorkhours:input_type -> cybertele.Empty
-	27, // 28: cybertele.Cybermetrica.GetMachineWorkhourHistory:input_type -> cybertele.HistoryRequest
-	5,  // 29: cybertele.Cybermetrica.GetLastMachinesData:input_type -> cybertele.LastDataRequest
-	2,  // 30: cybertele.Cybermetrica.GetMachineCoords:input_type -> cybertele.CoordsRequest
-	0,  // 31: cybertele.Cybermetrica.GetMachineWorkdays:input_type -> cybertele.WorkdaysRequest
-	28, // 32: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
-	29, // 33: cybertele.Cybermetrica.StartParser:output_type -> cybertele.ParserStatus
-	29, // 34: cybertele.Cybermetrica.StopParser:output_type -> cybertele.ParserStatus
-	29, // 35: cybertele.Cybermetrica.GetParserStatus:output_type -> cybertele.ParserStatus
-	12, // 36: cybertele.Cybermetrica.GetParserLogs:output_type -> cybertele.ParserMetricaLogsReply
-	12, // 37: cybertele.Cybermetrica.MachineLogs:output_type -> cybertele.ParserMetricaLogsReply
-	17, // 38: cybertele.Cybermetrica.MachineStatisticPeriod:output_type -> cybertele.StatisticPeriod
-	30, // 39: cybertele.Cybermetrica.GetTelemetryParams:output_type -> cybertele.TelemertyParams
-	31, // 40: cybertele.Cybermetrica.CreateTelemetryParam:output_type -> cybertele.StatusReply
-	31, // 41: cybertele.Cybermetrica.UpdateTelemetryParam:output_type -> cybertele.StatusReply
-	22, // 42: cybertele.Cybermetrica.GetTimeline:output_type -> cybertele.Timeline
-	10, // 43: cybertele.Cybermetrica.AllMachinesWorkhours:output_type -> cybertele.Workhours
-	32, // 44: cybertele.Cybermetrica.GetMachineWorkhourHistory:output_type -> cybertele.WorkhourHistory
-	8,  // 45: cybertele.Cybermetrica.GetLastMachinesData:output_type -> cybertele.LastDatas
-	4,  // 46: cybertele.Cybermetrica.GetMachineCoords:output_type -> cybertele.Coords
-	1,  // 47: cybertele.Cybermetrica.GetMachineWorkdays:output_type -> cybertele.WorkdaysReply
-	32, // [32:48] is the sub-list for method output_type
-	16, // [16:32] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	3,  // 2: cybertele.LastData.coordinates:type_name -> cybertele.CoordsPoint
+	6,  // 3: cybertele.LastDatas.machines:type_name -> cybertele.LastData
+	9,  // 4: cybertele.Workhours.data:type_name -> cybertele.MachineWorkhours
+	11, // 5: cybertele.ParserMetricaLogsReply.data:type_name -> cybertele.ParserMetricaLog
+	23, // 6: cybertele.ParserMetricaLogsReply.pagination:type_name -> cybertele.Pagination
+	14, // 7: cybertele.StatisticPeriodItem.engine:type_name -> cybertele.StatisticEngine
+	15, // 8: cybertele.StatisticPeriodItem.fuel:type_name -> cybertele.StatisticFuel
+	16, // 9: cybertele.StatisticPeriod.data:type_name -> cybertele.StatisticPeriodItem
+	15, // 10: cybertele.StatisticPeriod.fuel:type_name -> cybertele.StatisticFuel
+	19, // 11: cybertele.ConnectionDataBlock.dataValues:type_name -> cybertele.DataValuesRow
+	21, // 12: cybertele.Timeline.connections:type_name -> cybertele.EventBlock
+	21, // 13: cybertele.Timeline.engines:type_name -> cybertele.EventBlock
+	21, // 14: cybertele.Timeline.jobs:type_name -> cybertele.EventBlock
+	21, // 15: cybertele.Timeline.errors:type_name -> cybertele.EventBlock
+	20, // 16: cybertele.Timeline.data:type_name -> cybertele.ConnectionDataBlock
+	24, // 17: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
+	24, // 18: cybertele.Cybermetrica.StartParser:input_type -> cybertele.Empty
+	24, // 19: cybertele.Cybermetrica.StopParser:input_type -> cybertele.Empty
+	24, // 20: cybertele.Cybermetrica.GetParserStatus:input_type -> cybertele.Empty
+	25, // 21: cybertele.Cybermetrica.GetParserLogs:input_type -> cybertele.PageRequest
+	25, // 22: cybertele.Cybermetrica.MachineLogs:input_type -> cybertele.PageRequest
+	13, // 23: cybertele.Cybermetrica.MachineStatisticPeriod:input_type -> cybertele.MachineStatisticRequest
+	24, // 24: cybertele.Cybermetrica.GetTelemetryParams:input_type -> cybertele.Empty
+	26, // 25: cybertele.Cybermetrica.CreateTelemetryParam:input_type -> cybertele.TelemertyParam
+	26, // 26: cybertele.Cybermetrica.UpdateTelemetryParam:input_type -> cybertele.TelemertyParam
+	18, // 27: cybertele.Cybermetrica.GetTimeline:input_type -> cybertele.TimelineRequest
+	24, // 28: cybertele.Cybermetrica.AllMachinesWorkhours:input_type -> cybertele.Empty
+	27, // 29: cybertele.Cybermetrica.GetMachineWorkhourHistory:input_type -> cybertele.HistoryRequest
+	5,  // 30: cybertele.Cybermetrica.GetLastMachinesData:input_type -> cybertele.LastDataRequest
+	2,  // 31: cybertele.Cybermetrica.GetMachineCoords:input_type -> cybertele.CoordsRequest
+	0,  // 32: cybertele.Cybermetrica.GetMachineWorkdays:input_type -> cybertele.WorkdaysRequest
+	28, // 33: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
+	29, // 34: cybertele.Cybermetrica.StartParser:output_type -> cybertele.ParserStatus
+	29, // 35: cybertele.Cybermetrica.StopParser:output_type -> cybertele.ParserStatus
+	29, // 36: cybertele.Cybermetrica.GetParserStatus:output_type -> cybertele.ParserStatus
+	12, // 37: cybertele.Cybermetrica.GetParserLogs:output_type -> cybertele.ParserMetricaLogsReply
+	12, // 38: cybertele.Cybermetrica.MachineLogs:output_type -> cybertele.ParserMetricaLogsReply
+	17, // 39: cybertele.Cybermetrica.MachineStatisticPeriod:output_type -> cybertele.StatisticPeriod
+	30, // 40: cybertele.Cybermetrica.GetTelemetryParams:output_type -> cybertele.TelemertyParams
+	31, // 41: cybertele.Cybermetrica.CreateTelemetryParam:output_type -> cybertele.StatusReply
+	31, // 42: cybertele.Cybermetrica.UpdateTelemetryParam:output_type -> cybertele.StatusReply
+	22, // 43: cybertele.Cybermetrica.GetTimeline:output_type -> cybertele.Timeline
+	10, // 44: cybertele.Cybermetrica.AllMachinesWorkhours:output_type -> cybertele.Workhours
+	32, // 45: cybertele.Cybermetrica.GetMachineWorkhourHistory:output_type -> cybertele.WorkhourHistory
+	8,  // 46: cybertele.Cybermetrica.GetLastMachinesData:output_type -> cybertele.LastDatas
+	4,  // 47: cybertele.Cybermetrica.GetMachineCoords:output_type -> cybertele.Coords
+	1,  // 48: cybertele.Cybermetrica.GetMachineWorkdays:output_type -> cybertele.WorkdaysReply
+	33, // [33:49] is the sub-list for method output_type
+	17, // [17:33] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_cybermetrica_proto_init() }

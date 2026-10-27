@@ -66,10 +66,11 @@ message LastDataRequest {
 }
 
 message LastData {
-  string   sn             = 1;  
-  repeated string params = 2;   
+  string   sn             = 1;
+  repeated string params = 2;
   repeated LastDataRow data = 3;
   string datetime = 4;
+  repeated CoordsPoint coordinates = 5;
 }
 
 message LastDataRow {
