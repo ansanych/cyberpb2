@@ -110,6 +110,11 @@ class CybermetricaStub:
                 request_serializer=cybermetrica__pb2.CoordsRequest.SerializeToString,
                 response_deserializer=cybermetrica__pb2.Coords.FromString,
                 _registered_method=True)
+        self.GetMachineWorkdays = channel.unary_unary(
+                '/cybertele.Cybermetrica/GetMachineWorkdays',
+                request_serializer=cybermetrica__pb2.WorkdaysRequest.SerializeToString,
+                response_deserializer=cybermetrica__pb2.WorkdaysReply.FromString,
+                _registered_method=True)
 
 
 class CybermetricaServicer:
@@ -205,6 +210,12 @@ class CybermetricaServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetMachineWorkdays(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CybermetricaServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -282,6 +293,11 @@ def add_CybermetricaServicer_to_server(servicer, server):
                     servicer.GetMachineCoords,
                     request_deserializer=cybermetrica__pb2.CoordsRequest.FromString,
                     response_serializer=cybermetrica__pb2.Coords.SerializeToString,
+            ),
+            'GetMachineWorkdays': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMachineWorkdays,
+                    request_deserializer=cybermetrica__pb2.WorkdaysRequest.FromString,
+                    response_serializer=cybermetrica__pb2.WorkdaysReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -689,6 +705,33 @@ class Cybermetrica:
             '/cybertele.Cybermetrica/GetMachineCoords',
             cybermetrica__pb2.CoordsRequest.SerializeToString,
             cybermetrica__pb2.Coords.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMachineWorkdays(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/cybertele.Cybermetrica/GetMachineWorkdays',
+            cybermetrica__pb2.WorkdaysRequest.SerializeToString,
+            cybermetrica__pb2.WorkdaysReply.FromString,
             options,
             channel_credentials,
             insecure,

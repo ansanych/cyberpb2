@@ -21,6 +21,22 @@ service Cybermetrica {
     rpc GetMachineWorkhourHistory(HistoryRequest) returns (WorkhourHistory) {}
     rpc GetLastMachinesData (LastDataRequest) returns (LastDatas) {}
     rpc GetMachineCoords (CoordsRequest) returns (Coords) {}
+    rpc GetMachineWorkdays (WorkdaysRequest) returns (WorkdaysReply) {}
+}
+
+message WorkdaysRequest {
+    string sn = 1;
+    string from = 2;
+    string to = 3;
+    int32 tz = 4;
+}
+
+message WorkdaysReply {
+    string sn = 1;
+    string from = 2;
+    string to = 3;
+    int32 tz = 4;
+    repeated string dates = 5;
 }
 
 message CoordsRequest {
