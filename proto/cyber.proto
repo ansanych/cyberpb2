@@ -39,6 +39,7 @@ message HealthReply {
     Status parser = 3;
     Disk disk = 4;
     Status aggregator = 5;
+    repeated string required = 6;
 }
 
 message ParserStatus {

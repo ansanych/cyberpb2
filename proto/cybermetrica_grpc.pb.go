@@ -35,6 +35,7 @@ const (
 	Cybermetrica_GetLastMachinesData_FullMethodName       = "/cybertele.Cybermetrica/GetLastMachinesData"
 	Cybermetrica_GetMachineCoords_FullMethodName          = "/cybertele.Cybermetrica/GetMachineCoords"
 	Cybermetrica_GetMachineWorkdays_FullMethodName        = "/cybertele.Cybermetrica/GetMachineWorkdays"
+	Cybermetrica_GetAdminMachines_FullMethodName          = "/cybertele.Cybermetrica/GetAdminMachines"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -57,6 +58,7 @@ type CybermetricaClient interface {
 	GetLastMachinesData(ctx context.Context, in *LastDataRequest, opts ...grpc.CallOption) (*LastDatas, error)
 	GetMachineCoords(ctx context.Context, in *CoordsRequest, opts ...grpc.CallOption) (*Coords, error)
 	GetMachineWorkdays(ctx context.Context, in *WorkdaysRequest, opts ...grpc.CallOption) (*WorkdaysReply, error)
+	GetAdminMachines(ctx context.Context, in *AdminMachinesRequest, opts ...grpc.CallOption) (*AdminMachines, error)
 }
 
 type cybermetricaClient struct {
@@ -227,6 +229,16 @@ func (c *cybermetricaClient) GetMachineWorkdays(ctx context.Context, in *Workday
 	return out, nil
 }
 
+func (c *cybermetricaClient) GetAdminMachines(ctx context.Context, in *AdminMachinesRequest, opts ...grpc.CallOption) (*AdminMachines, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminMachines)
+	err := c.cc.Invoke(ctx, Cybermetrica_GetAdminMachines_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CybermetricaServer is the server API for Cybermetrica service.
 // All implementations must embed UnimplementedCybermetricaServer
 // for forward compatibility.
@@ -247,6 +259,7 @@ type CybermetricaServer interface {
 	GetLastMachinesData(context.Context, *LastDataRequest) (*LastDatas, error)
 	GetMachineCoords(context.Context, *CoordsRequest) (*Coords, error)
 	GetMachineWorkdays(context.Context, *WorkdaysRequest) (*WorkdaysReply, error)
+	GetAdminMachines(context.Context, *AdminMachinesRequest) (*AdminMachines, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -304,6 +317,9 @@ func (UnimplementedCybermetricaServer) GetMachineCoords(context.Context, *Coords
 }
 func (UnimplementedCybermetricaServer) GetMachineWorkdays(context.Context, *WorkdaysRequest) (*WorkdaysReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMachineWorkdays not implemented")
+}
+func (UnimplementedCybermetricaServer) GetAdminMachines(context.Context, *AdminMachinesRequest) (*AdminMachines, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAdminMachines not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
 func (UnimplementedCybermetricaServer) testEmbeddedByValue()                      {}
@@ -614,6 +630,24 @@ func _Cybermetrica_GetMachineWorkdays_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cybermetrica_GetAdminMachines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminMachinesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).GetAdminMachines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_GetAdminMachines_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).GetAdminMachines(ctx, req.(*AdminMachinesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cybermetrica_ServiceDesc is the grpc.ServiceDesc for Cybermetrica service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -684,6 +718,10 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMachineWorkdays",
 			Handler:    _Cybermetrica_GetMachineWorkdays_Handler,
+		},
+		{
+			MethodName: "GetAdminMachines",
+			Handler:    _Cybermetrica_GetAdminMachines_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

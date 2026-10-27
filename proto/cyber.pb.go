@@ -236,6 +236,7 @@ type HealthReply struct {
 	Parser        Status                 `protobuf:"varint,3,opt,name=parser,proto3,enum=cybertele.Status" json:"parser,omitempty"`
 	Disk          *Disk                  `protobuf:"bytes,4,opt,name=disk,proto3" json:"disk,omitempty"`
 	Aggregator    Status                 `protobuf:"varint,5,opt,name=aggregator,proto3,enum=cybertele.Status" json:"aggregator,omitempty"`
+	Required      []string               `protobuf:"bytes,6,rep,name=required,proto3" json:"required,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -303,6 +304,13 @@ func (x *HealthReply) GetAggregator() Status {
 		return x.Aggregator
 	}
 	return Status_UNKNOWN
+}
+
+func (x *HealthReply) GetRequired() []string {
+	if x != nil {
+		return x.Required
+	}
+	return nil
 }
 
 type ParserStatus struct {
@@ -2784,7 +2792,7 @@ const file_cyber_proto_rawDesc = "" +
 	"\x04Disk\x12\x10\n" +
 	"\x03all\x18\x01 \x01(\x02R\x03all\x12\x12\n" +
 	"\x04used\x18\x02 \x01(\x02R\x04used\x12\x12\n" +
-	"\x04free\x18\x03 \x01(\x02R\x04free\"\xe8\x01\n" +
+	"\x04free\x18\x03 \x01(\x02R\x04free\"\x84\x02\n" +
 	"\vHealthReply\x12-\n" +
 	"\bpostgres\x18\x01 \x01(\x0e2\x11.cybertele.StatusR\bpostgres\x12'\n" +
 	"\x05mongo\x18\x02 \x01(\x0e2\x11.cybertele.StatusR\x05mongo\x12)\n" +
@@ -2792,7 +2800,8 @@ const file_cyber_proto_rawDesc = "" +
 	"\x04disk\x18\x04 \x01(\v2\x0f.cybertele.DiskR\x04disk\x121\n" +
 	"\n" +
 	"aggregator\x18\x05 \x01(\x0e2\x11.cybertele.StatusR\n" +
-	"aggregator\"o\n" +
+	"aggregator\x12\x1a\n" +
+	"\brequired\x18\x06 \x03(\tR\brequired\"o\n" +
 	"\fParserStatus\x12)\n" +
 	"\x06parser\x18\x01 \x01(\x0e2\x11.cybertele.StatusR\x06parser\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1a\n" +

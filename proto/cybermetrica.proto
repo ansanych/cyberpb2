@@ -22,6 +22,23 @@ service Cybermetrica {
     rpc GetLastMachinesData (LastDataRequest) returns (LastDatas) {}
     rpc GetMachineCoords (CoordsRequest) returns (Coords) {}
     rpc GetMachineWorkdays (WorkdaysRequest) returns (WorkdaysReply) {}
+    rpc GetAdminMachines (AdminMachinesRequest) returns (AdminMachines) {}
+}
+
+message AdminMachinesRequest {
+    repeated string filter = 1;
+}
+
+message AdminMachine {
+    Machine machine = 1;
+    LastData lastData = 2;
+    string imei = 3;
+    string expDate = 4;
+    bool active = 5;
+}
+
+message AdminMachines {
+    repeated AdminMachine machines = 1;
 }
 
 message WorkdaysRequest {
