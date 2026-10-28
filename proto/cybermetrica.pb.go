@@ -69,9 +69,6 @@ type AdminMachine struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Machine       *Machine               `protobuf:"bytes,1,opt,name=machine,proto3" json:"machine,omitempty"`
 	LastData      *LastData              `protobuf:"bytes,2,opt,name=lastData,proto3" json:"lastData,omitempty"`
-	Imei          string                 `protobuf:"bytes,3,opt,name=imei,proto3" json:"imei,omitempty"`
-	ExpDate       string                 `protobuf:"bytes,4,opt,name=expDate,proto3" json:"expDate,omitempty"`
-	Active        bool                   `protobuf:"varint,5,opt,name=active,proto3" json:"active,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -118,27 +115,6 @@ func (x *AdminMachine) GetLastData() *LastData {
 		return x.LastData
 	}
 	return nil
-}
-
-func (x *AdminMachine) GetImei() string {
-	if x != nil {
-		return x.Imei
-	}
-	return ""
-}
-
-func (x *AdminMachine) GetExpDate() string {
-	if x != nil {
-		return x.ExpDate
-	}
-	return ""
-}
-
-func (x *AdminMachine) GetActive() bool {
-	if x != nil {
-		return x.Active
-	}
-	return false
 }
 
 type AdminMachines struct {
@@ -1851,13 +1827,10 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\n" +
 	"\x12cybermetrica.proto\x12\tcybertele\x1a\vcyber.proto\".\n" +
 	"\x14AdminMachinesRequest\x12\x16\n" +
-	"\x06filter\x18\x01 \x03(\tR\x06filter\"\xb3\x01\n" +
+	"\x06filter\x18\x01 \x03(\tR\x06filter\"m\n" +
 	"\fAdminMachine\x12,\n" +
 	"\amachine\x18\x01 \x01(\v2\x12.cybertele.MachineR\amachine\x12/\n" +
-	"\blastData\x18\x02 \x01(\v2\x13.cybertele.LastDataR\blastData\x12\x12\n" +
-	"\x04imei\x18\x03 \x01(\tR\x04imei\x12\x18\n" +
-	"\aexpDate\x18\x04 \x01(\tR\aexpDate\x12\x16\n" +
-	"\x06active\x18\x05 \x01(\bR\x06active\"D\n" +
+	"\blastData\x18\x02 \x01(\v2\x13.cybertele.LastDataR\blastData\"D\n" +
 	"\rAdminMachines\x123\n" +
 	"\bmachines\x18\x01 \x03(\v2\x17.cybertele.AdminMachineR\bmachines\"U\n" +
 	"\x0fWorkdaysRequest\x12\x0e\n" +

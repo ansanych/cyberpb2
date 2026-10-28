@@ -8,6 +8,7 @@ option go_package = "./proto";
 service Info {
     rpc Health (Empty) returns (HealthReply) {}
     rpc GetMachines (Empty) returns (Machines) {}
+    rpc GetMachinesFull (Empty) returns (Machines) {}
     rpc GetTelemetryParams (Empty) returns (TelemertyParams) {}
     rpc GetMongoMachineTypes (Empty) returns (MongoMachineTypes) {}
     rpc GetMongoMachines (MongoRequest) returns (MongoMachines) {}

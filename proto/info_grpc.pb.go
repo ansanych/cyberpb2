@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	Info_Health_FullMethodName                      = "/cybertele.Info/Health"
 	Info_GetMachines_FullMethodName                 = "/cybertele.Info/GetMachines"
+	Info_GetMachinesFull_FullMethodName             = "/cybertele.Info/GetMachinesFull"
 	Info_GetTelemetryParams_FullMethodName          = "/cybertele.Info/GetTelemetryParams"
 	Info_GetMongoMachineTypes_FullMethodName        = "/cybertele.Info/GetMongoMachineTypes"
 	Info_GetMongoMachines_FullMethodName            = "/cybertele.Info/GetMongoMachines"
@@ -44,6 +45,7 @@ const (
 type InfoClient interface {
 	Health(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HealthReply, error)
 	GetMachines(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Machines, error)
+	GetMachinesFull(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Machines, error)
 	GetTelemetryParams(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemertyParams, error)
 	GetMongoMachineTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MongoMachineTypes, error)
 	GetMongoMachines(ctx context.Context, in *MongoRequest, opts ...grpc.CallOption) (*MongoMachines, error)
@@ -83,6 +85,16 @@ func (c *infoClient) GetMachines(ctx context.Context, in *Empty, opts ...grpc.Ca
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Machines)
 	err := c.cc.Invoke(ctx, Info_GetMachines_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetMachinesFull(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Machines, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Machines)
+	err := c.cc.Invoke(ctx, Info_GetMachinesFull_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -245,6 +257,7 @@ func (c *infoClient) GetFuelCalibrationMatchings(ctx context.Context, in *Empty,
 type InfoServer interface {
 	Health(context.Context, *Empty) (*HealthReply, error)
 	GetMachines(context.Context, *Empty) (*Machines, error)
+	GetMachinesFull(context.Context, *Empty) (*Machines, error)
 	GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error)
 	GetMongoMachineTypes(context.Context, *Empty) (*MongoMachineTypes, error)
 	GetMongoMachines(context.Context, *MongoRequest) (*MongoMachines, error)
@@ -275,6 +288,9 @@ func (UnimplementedInfoServer) Health(context.Context, *Empty) (*HealthReply, er
 }
 func (UnimplementedInfoServer) GetMachines(context.Context, *Empty) (*Machines, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMachines not implemented")
+}
+func (UnimplementedInfoServer) GetMachinesFull(context.Context, *Empty) (*Machines, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMachinesFull not implemented")
 }
 func (UnimplementedInfoServer) GetTelemetryParams(context.Context, *Empty) (*TelemertyParams, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTelemetryParams not implemented")
@@ -374,6 +390,24 @@ func _Info_GetMachines_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(InfoServer).GetMachines(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetMachinesFull_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetMachinesFull(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetMachinesFull_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetMachinesFull(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -662,6 +696,10 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMachines",
 			Handler:    _Info_GetMachines_Handler,
+		},
+		{
+			MethodName: "GetMachinesFull",
+			Handler:    _Info_GetMachinesFull_Handler,
 		},
 		{
 			MethodName: "GetTelemetryParams",

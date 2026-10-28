@@ -32,9 +32,6 @@ message AdminMachinesRequest {
 message AdminMachine {
     Machine machine = 1;
     LastData lastData = 2;
-    string imei = 3;
-    string expDate = 4;
-    bool active = 5;
 }
 
 message AdminMachines {

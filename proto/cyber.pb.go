@@ -508,8 +508,16 @@ type Machine struct {
 	Template          string                 `protobuf:"bytes,11,opt,name=template,proto3" json:"template,omitempty"`
 	WebModelId        int32                  `protobuf:"varint,12,opt,name=webModelId,proto3" json:"webModelId,omitempty"`
 	WebModel          string                 `protobuf:"bytes,13,opt,name=webModel,proto3" json:"webModel,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	// Полная карточка машины (GetMachinesFull): данные из dst_machines и warranty.
+	Imei          string           `protobuf:"bytes,14,opt,name=imei,proto3" json:"imei,omitempty"`
+	ExpDate       string           `protobuf:"bytes,15,opt,name=expDate,proto3" json:"expDate,omitempty"`
+	Active        bool             `protobuf:"varint,16,opt,name=active,proto3" json:"active,omitempty"`
+	Type          string           `protobuf:"bytes,17,opt,name=type,proto3" json:"type,omitempty"`
+	MachineType   string           `protobuf:"bytes,18,opt,name=machineType,proto3" json:"machineType,omitempty"`
+	Trackable     bool             `protobuf:"varint,19,opt,name=trackable,proto3" json:"trackable,omitempty"`
+	Warranty      *MachineWarranty `protobuf:"bytes,20,opt,name=warranty,proto3" json:"warranty,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Machine) Reset() {
@@ -633,6 +641,115 @@ func (x *Machine) GetWebModel() string {
 	return ""
 }
 
+func (x *Machine) GetImei() string {
+	if x != nil {
+		return x.Imei
+	}
+	return ""
+}
+
+func (x *Machine) GetExpDate() string {
+	if x != nil {
+		return x.ExpDate
+	}
+	return ""
+}
+
+func (x *Machine) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+func (x *Machine) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Machine) GetMachineType() string {
+	if x != nil {
+		return x.MachineType
+	}
+	return ""
+}
+
+func (x *Machine) GetTrackable() bool {
+	if x != nil {
+		return x.Trackable
+	}
+	return false
+}
+
+func (x *Machine) GetWarranty() *MachineWarranty {
+	if x != nil {
+		return x.Warranty
+	}
+	return nil
+}
+
+type MachineWarranty struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Hours         int32                  `protobuf:"varint,2,opt,name=hours,proto3" json:"hours,omitempty"`
+	Months        int32                  `protobuf:"varint,3,opt,name=months,proto3" json:"months,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MachineWarranty) Reset() {
+	*x = MachineWarranty{}
+	mi := &file_cyber_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MachineWarranty) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MachineWarranty) ProtoMessage() {}
+
+func (x *MachineWarranty) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MachineWarranty.ProtoReflect.Descriptor instead.
+func (*MachineWarranty) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *MachineWarranty) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *MachineWarranty) GetHours() int32 {
+	if x != nil {
+		return x.Hours
+	}
+	return 0
+}
+
+func (x *MachineWarranty) GetMonths() int32 {
+	if x != nil {
+		return x.Months
+	}
+	return 0
+}
+
 type Machines struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Machines      []*Machine             `protobuf:"bytes,1,rep,name=machines,proto3" json:"machines,omitempty"`
@@ -642,7 +759,7 @@ type Machines struct {
 
 func (x *Machines) Reset() {
 	*x = Machines{}
-	mi := &file_cyber_proto_msgTypes[8]
+	mi := &file_cyber_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -654,7 +771,7 @@ func (x *Machines) String() string {
 func (*Machines) ProtoMessage() {}
 
 func (x *Machines) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[8]
+	mi := &file_cyber_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -667,7 +784,7 @@ func (x *Machines) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Machines.ProtoReflect.Descriptor instead.
 func (*Machines) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{8}
+	return file_cyber_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Machines) GetMachines() []*Machine {
@@ -690,7 +807,7 @@ type DataType struct {
 
 func (x *DataType) Reset() {
 	*x = DataType{}
-	mi := &file_cyber_proto_msgTypes[9]
+	mi := &file_cyber_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -702,7 +819,7 @@ func (x *DataType) String() string {
 func (*DataType) ProtoMessage() {}
 
 func (x *DataType) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[9]
+	mi := &file_cyber_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -715,7 +832,7 @@ func (x *DataType) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataType.ProtoReflect.Descriptor instead.
 func (*DataType) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{9}
+	return file_cyber_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DataType) GetCode() string {
@@ -762,7 +879,7 @@ type DataTypes struct {
 
 func (x *DataTypes) Reset() {
 	*x = DataTypes{}
-	mi := &file_cyber_proto_msgTypes[10]
+	mi := &file_cyber_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -774,7 +891,7 @@ func (x *DataTypes) String() string {
 func (*DataTypes) ProtoMessage() {}
 
 func (x *DataTypes) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[10]
+	mi := &file_cyber_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -787,7 +904,7 @@ func (x *DataTypes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataTypes.ProtoReflect.Descriptor instead.
 func (*DataTypes) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{10}
+	return file_cyber_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DataTypes) GetData() []*DataType {
@@ -808,7 +925,7 @@ type ModelDataTypes struct {
 
 func (x *ModelDataTypes) Reset() {
 	*x = ModelDataTypes{}
-	mi := &file_cyber_proto_msgTypes[11]
+	mi := &file_cyber_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -820,7 +937,7 @@ func (x *ModelDataTypes) String() string {
 func (*ModelDataTypes) ProtoMessage() {}
 
 func (x *ModelDataTypes) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[11]
+	mi := &file_cyber_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -833,7 +950,7 @@ func (x *ModelDataTypes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ModelDataTypes.ProtoReflect.Descriptor instead.
 func (*ModelDataTypes) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{11}
+	return file_cyber_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ModelDataTypes) GetModel() string {
@@ -866,7 +983,7 @@ type AllModelsDataTypes struct {
 
 func (x *AllModelsDataTypes) Reset() {
 	*x = AllModelsDataTypes{}
-	mi := &file_cyber_proto_msgTypes[12]
+	mi := &file_cyber_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -878,7 +995,7 @@ func (x *AllModelsDataTypes) String() string {
 func (*AllModelsDataTypes) ProtoMessage() {}
 
 func (x *AllModelsDataTypes) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[12]
+	mi := &file_cyber_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -891,7 +1008,7 @@ func (x *AllModelsDataTypes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AllModelsDataTypes.ProtoReflect.Descriptor instead.
 func (*AllModelsDataTypes) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{12}
+	return file_cyber_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *AllModelsDataTypes) GetData() []*ModelDataTypes {
@@ -912,7 +1029,7 @@ type DataPoint struct {
 
 func (x *DataPoint) Reset() {
 	*x = DataPoint{}
-	mi := &file_cyber_proto_msgTypes[13]
+	mi := &file_cyber_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -924,7 +1041,7 @@ func (x *DataPoint) String() string {
 func (*DataPoint) ProtoMessage() {}
 
 func (x *DataPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[13]
+	mi := &file_cyber_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -937,7 +1054,7 @@ func (x *DataPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataPoint.ProtoReflect.Descriptor instead.
 func (*DataPoint) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{13}
+	return file_cyber_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DataPoint) GetTime() int64 {
@@ -971,7 +1088,7 @@ type DataPoints struct {
 
 func (x *DataPoints) Reset() {
 	*x = DataPoints{}
-	mi := &file_cyber_proto_msgTypes[14]
+	mi := &file_cyber_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -983,7 +1100,7 @@ func (x *DataPoints) String() string {
 func (*DataPoints) ProtoMessage() {}
 
 func (x *DataPoints) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[14]
+	mi := &file_cyber_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -996,7 +1113,7 @@ func (x *DataPoints) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataPoints.ProtoReflect.Descriptor instead.
 func (*DataPoints) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{14}
+	return file_cyber_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *DataPoints) GetData() []*DataPoint {
@@ -1028,7 +1145,7 @@ type Segment struct {
 
 func (x *Segment) Reset() {
 	*x = Segment{}
-	mi := &file_cyber_proto_msgTypes[15]
+	mi := &file_cyber_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1040,7 +1157,7 @@ func (x *Segment) String() string {
 func (*Segment) ProtoMessage() {}
 
 func (x *Segment) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[15]
+	mi := &file_cyber_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1053,7 +1170,7 @@ func (x *Segment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Segment.ProtoReflect.Descriptor instead.
 func (*Segment) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{15}
+	return file_cyber_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *Segment) GetStartTime() int64 {
@@ -1114,7 +1231,7 @@ type Segments struct {
 
 func (x *Segments) Reset() {
 	*x = Segments{}
-	mi := &file_cyber_proto_msgTypes[16]
+	mi := &file_cyber_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1126,7 +1243,7 @@ func (x *Segments) String() string {
 func (*Segments) ProtoMessage() {}
 
 func (x *Segments) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[16]
+	mi := &file_cyber_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1139,7 +1256,7 @@ func (x *Segments) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Segments.ProtoReflect.Descriptor instead.
 func (*Segments) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{16}
+	return file_cyber_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *Segments) GetSegments() []*Segment {
@@ -1172,7 +1289,7 @@ type Event struct {
 
 func (x *Event) Reset() {
 	*x = Event{}
-	mi := &file_cyber_proto_msgTypes[17]
+	mi := &file_cyber_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1184,7 +1301,7 @@ func (x *Event) String() string {
 func (*Event) ProtoMessage() {}
 
 func (x *Event) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[17]
+	mi := &file_cyber_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1197,7 +1314,7 @@ func (x *Event) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Event.ProtoReflect.Descriptor instead.
 func (*Event) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{17}
+	return file_cyber_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *Event) GetId() int64 {
@@ -1314,7 +1431,7 @@ type Count struct {
 
 func (x *Count) Reset() {
 	*x = Count{}
-	mi := &file_cyber_proto_msgTypes[18]
+	mi := &file_cyber_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1326,7 +1443,7 @@ func (x *Count) String() string {
 func (*Count) ProtoMessage() {}
 
 func (x *Count) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[18]
+	mi := &file_cyber_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1339,7 +1456,7 @@ func (x *Count) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Count.ProtoReflect.Descriptor instead.
 func (*Count) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{18}
+	return file_cyber_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *Count) GetCount() int32 {
@@ -1360,7 +1477,7 @@ type CyberService struct {
 
 func (x *CyberService) Reset() {
 	*x = CyberService{}
-	mi := &file_cyber_proto_msgTypes[19]
+	mi := &file_cyber_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1372,7 +1489,7 @@ func (x *CyberService) String() string {
 func (*CyberService) ProtoMessage() {}
 
 func (x *CyberService) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[19]
+	mi := &file_cyber_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1385,7 +1502,7 @@ func (x *CyberService) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CyberService.ProtoReflect.Descriptor instead.
 func (*CyberService) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{19}
+	return file_cyber_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *CyberService) GetService() string {
@@ -1418,7 +1535,7 @@ type CyberServices struct {
 
 func (x *CyberServices) Reset() {
 	*x = CyberServices{}
-	mi := &file_cyber_proto_msgTypes[20]
+	mi := &file_cyber_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1430,7 +1547,7 @@ func (x *CyberServices) String() string {
 func (*CyberServices) ProtoMessage() {}
 
 func (x *CyberServices) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[20]
+	mi := &file_cyber_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1443,7 +1560,7 @@ func (x *CyberServices) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CyberServices.ProtoReflect.Descriptor instead.
 func (*CyberServices) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{20}
+	return file_cyber_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *CyberServices) GetServices() []*CyberService {
@@ -1462,7 +1579,7 @@ type StringRequest struct {
 
 func (x *StringRequest) Reset() {
 	*x = StringRequest{}
-	mi := &file_cyber_proto_msgTypes[21]
+	mi := &file_cyber_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1474,7 +1591,7 @@ func (x *StringRequest) String() string {
 func (*StringRequest) ProtoMessage() {}
 
 func (x *StringRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[21]
+	mi := &file_cyber_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1487,7 +1604,7 @@ func (x *StringRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringRequest.ProtoReflect.Descriptor instead.
 func (*StringRequest) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{21}
+	return file_cyber_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *StringRequest) GetRequest() string {
@@ -1506,7 +1623,7 @@ type TelemertyParams struct {
 
 func (x *TelemertyParams) Reset() {
 	*x = TelemertyParams{}
-	mi := &file_cyber_proto_msgTypes[22]
+	mi := &file_cyber_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1518,7 +1635,7 @@ func (x *TelemertyParams) String() string {
 func (*TelemertyParams) ProtoMessage() {}
 
 func (x *TelemertyParams) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[22]
+	mi := &file_cyber_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1531,7 +1648,7 @@ func (x *TelemertyParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TelemertyParams.ProtoReflect.Descriptor instead.
 func (*TelemertyParams) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{22}
+	return file_cyber_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *TelemertyParams) GetParams() []*TelemertyParam {
@@ -1553,7 +1670,7 @@ type TelemertyParam struct {
 
 func (x *TelemertyParam) Reset() {
 	*x = TelemertyParam{}
-	mi := &file_cyber_proto_msgTypes[23]
+	mi := &file_cyber_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1565,7 +1682,7 @@ func (x *TelemertyParam) String() string {
 func (*TelemertyParam) ProtoMessage() {}
 
 func (x *TelemertyParam) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[23]
+	mi := &file_cyber_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1578,7 +1695,7 @@ func (x *TelemertyParam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TelemertyParam.ProtoReflect.Descriptor instead.
 func (*TelemertyParam) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{23}
+	return file_cyber_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *TelemertyParam) GetCode() string {
@@ -1621,7 +1738,7 @@ type MongoRequest struct {
 
 func (x *MongoRequest) Reset() {
 	*x = MongoRequest{}
-	mi := &file_cyber_proto_msgTypes[24]
+	mi := &file_cyber_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1633,7 +1750,7 @@ func (x *MongoRequest) String() string {
 func (*MongoRequest) ProtoMessage() {}
 
 func (x *MongoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[24]
+	mi := &file_cyber_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1646,7 +1763,7 @@ func (x *MongoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MongoRequest.ProtoReflect.Descriptor instead.
 func (*MongoRequest) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{24}
+	return file_cyber_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *MongoRequest) GetSn() string {
@@ -1688,7 +1805,7 @@ type MongoMachineType struct {
 
 func (x *MongoMachineType) Reset() {
 	*x = MongoMachineType{}
-	mi := &file_cyber_proto_msgTypes[25]
+	mi := &file_cyber_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1700,7 +1817,7 @@ func (x *MongoMachineType) String() string {
 func (*MongoMachineType) ProtoMessage() {}
 
 func (x *MongoMachineType) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[25]
+	mi := &file_cyber_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1713,7 +1830,7 @@ func (x *MongoMachineType) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MongoMachineType.ProtoReflect.Descriptor instead.
 func (*MongoMachineType) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{25}
+	return file_cyber_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *MongoMachineType) GetName() string {
@@ -1746,7 +1863,7 @@ type MongoMachineTypes struct {
 
 func (x *MongoMachineTypes) Reset() {
 	*x = MongoMachineTypes{}
-	mi := &file_cyber_proto_msgTypes[26]
+	mi := &file_cyber_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1758,7 +1875,7 @@ func (x *MongoMachineTypes) String() string {
 func (*MongoMachineTypes) ProtoMessage() {}
 
 func (x *MongoMachineTypes) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[26]
+	mi := &file_cyber_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1771,7 +1888,7 @@ func (x *MongoMachineTypes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MongoMachineTypes.ProtoReflect.Descriptor instead.
 func (*MongoMachineTypes) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{26}
+	return file_cyber_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *MongoMachineTypes) GetData() []*MongoMachineType {
@@ -1796,7 +1913,7 @@ type MongoMachine struct {
 
 func (x *MongoMachine) Reset() {
 	*x = MongoMachine{}
-	mi := &file_cyber_proto_msgTypes[27]
+	mi := &file_cyber_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1808,7 +1925,7 @@ func (x *MongoMachine) String() string {
 func (*MongoMachine) ProtoMessage() {}
 
 func (x *MongoMachine) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[27]
+	mi := &file_cyber_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1821,7 +1938,7 @@ func (x *MongoMachine) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MongoMachine.ProtoReflect.Descriptor instead.
 func (*MongoMachine) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{27}
+	return file_cyber_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *MongoMachine) GetSn() string {
@@ -1882,7 +1999,7 @@ type MongoMachines struct {
 
 func (x *MongoMachines) Reset() {
 	*x = MongoMachines{}
-	mi := &file_cyber_proto_msgTypes[28]
+	mi := &file_cyber_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1894,7 +2011,7 @@ func (x *MongoMachines) String() string {
 func (*MongoMachines) ProtoMessage() {}
 
 func (x *MongoMachines) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[28]
+	mi := &file_cyber_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1907,7 +2024,7 @@ func (x *MongoMachines) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MongoMachines.ProtoReflect.Descriptor instead.
 func (*MongoMachines) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{28}
+	return file_cyber_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *MongoMachines) GetData() []*MongoMachine {
@@ -1932,7 +2049,7 @@ type MongoError struct {
 
 func (x *MongoError) Reset() {
 	*x = MongoError{}
-	mi := &file_cyber_proto_msgTypes[29]
+	mi := &file_cyber_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1944,7 +2061,7 @@ func (x *MongoError) String() string {
 func (*MongoError) ProtoMessage() {}
 
 func (x *MongoError) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[29]
+	mi := &file_cyber_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1957,7 +2074,7 @@ func (x *MongoError) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MongoError.ProtoReflect.Descriptor instead.
 func (*MongoError) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{29}
+	return file_cyber_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *MongoError) GetCode() float32 {
@@ -2019,7 +2136,7 @@ type MongoErrors struct {
 
 func (x *MongoErrors) Reset() {
 	*x = MongoErrors{}
-	mi := &file_cyber_proto_msgTypes[30]
+	mi := &file_cyber_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2031,7 +2148,7 @@ func (x *MongoErrors) String() string {
 func (*MongoErrors) ProtoMessage() {}
 
 func (x *MongoErrors) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[30]
+	mi := &file_cyber_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2044,7 +2161,7 @@ func (x *MongoErrors) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MongoErrors.ProtoReflect.Descriptor instead.
 func (*MongoErrors) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{30}
+	return file_cyber_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *MongoErrors) GetData() []*MongoError {
@@ -2073,7 +2190,7 @@ type MongoDataType struct {
 
 func (x *MongoDataType) Reset() {
 	*x = MongoDataType{}
-	mi := &file_cyber_proto_msgTypes[31]
+	mi := &file_cyber_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2085,7 +2202,7 @@ func (x *MongoDataType) String() string {
 func (*MongoDataType) ProtoMessage() {}
 
 func (x *MongoDataType) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[31]
+	mi := &file_cyber_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2098,7 +2215,7 @@ func (x *MongoDataType) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MongoDataType.ProtoReflect.Descriptor instead.
 func (*MongoDataType) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{31}
+	return file_cyber_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *MongoDataType) GetGroup() string {
@@ -2138,7 +2255,7 @@ type MongoDataTypes struct {
 
 func (x *MongoDataTypes) Reset() {
 	*x = MongoDataTypes{}
-	mi := &file_cyber_proto_msgTypes[32]
+	mi := &file_cyber_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2150,7 +2267,7 @@ func (x *MongoDataTypes) String() string {
 func (*MongoDataTypes) ProtoMessage() {}
 
 func (x *MongoDataTypes) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[32]
+	mi := &file_cyber_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2163,7 +2280,7 @@ func (x *MongoDataTypes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MongoDataTypes.ProtoReflect.Descriptor instead.
 func (*MongoDataTypes) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{32}
+	return file_cyber_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *MongoDataTypes) GetData() []*MongoDataType {
@@ -2183,7 +2300,7 @@ type HistoryRequest struct {
 
 func (x *HistoryRequest) Reset() {
 	*x = HistoryRequest{}
-	mi := &file_cyber_proto_msgTypes[33]
+	mi := &file_cyber_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2195,7 +2312,7 @@ func (x *HistoryRequest) String() string {
 func (*HistoryRequest) ProtoMessage() {}
 
 func (x *HistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[33]
+	mi := &file_cyber_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2208,7 +2325,7 @@ func (x *HistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HistoryRequest.ProtoReflect.Descriptor instead.
 func (*HistoryRequest) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{33}
+	return file_cyber_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *HistoryRequest) GetSn() string {
@@ -2235,7 +2352,7 @@ type WorkhourItem struct {
 
 func (x *WorkhourItem) Reset() {
 	*x = WorkhourItem{}
-	mi := &file_cyber_proto_msgTypes[34]
+	mi := &file_cyber_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2247,7 +2364,7 @@ func (x *WorkhourItem) String() string {
 func (*WorkhourItem) ProtoMessage() {}
 
 func (x *WorkhourItem) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[34]
+	mi := &file_cyber_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2260,7 +2377,7 @@ func (x *WorkhourItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkhourItem.ProtoReflect.Descriptor instead.
 func (*WorkhourItem) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{34}
+	return file_cyber_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *WorkhourItem) GetDate() string {
@@ -2287,7 +2404,7 @@ type WorkhourHistory struct {
 
 func (x *WorkhourHistory) Reset() {
 	*x = WorkhourHistory{}
-	mi := &file_cyber_proto_msgTypes[35]
+	mi := &file_cyber_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2299,7 +2416,7 @@ func (x *WorkhourHistory) String() string {
 func (*WorkhourHistory) ProtoMessage() {}
 
 func (x *WorkhourHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[35]
+	mi := &file_cyber_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2312,7 +2429,7 @@ func (x *WorkhourHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkhourHistory.ProtoReflect.Descriptor instead.
 func (*WorkhourHistory) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{35}
+	return file_cyber_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *WorkhourHistory) GetData() []*WorkhourItem {
@@ -2339,7 +2456,7 @@ type FuelCalibrationPoint struct {
 
 func (x *FuelCalibrationPoint) Reset() {
 	*x = FuelCalibrationPoint{}
-	mi := &file_cyber_proto_msgTypes[36]
+	mi := &file_cyber_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2351,7 +2468,7 @@ func (x *FuelCalibrationPoint) String() string {
 func (*FuelCalibrationPoint) ProtoMessage() {}
 
 func (x *FuelCalibrationPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[36]
+	mi := &file_cyber_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2364,7 +2481,7 @@ func (x *FuelCalibrationPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuelCalibrationPoint.ProtoReflect.Descriptor instead.
 func (*FuelCalibrationPoint) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{36}
+	return file_cyber_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *FuelCalibrationPoint) GetPercent() int64 {
@@ -2392,7 +2509,7 @@ type FuelCalibrationType struct {
 
 func (x *FuelCalibrationType) Reset() {
 	*x = FuelCalibrationType{}
-	mi := &file_cyber_proto_msgTypes[37]
+	mi := &file_cyber_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2404,7 +2521,7 @@ func (x *FuelCalibrationType) String() string {
 func (*FuelCalibrationType) ProtoMessage() {}
 
 func (x *FuelCalibrationType) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[37]
+	mi := &file_cyber_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2417,7 +2534,7 @@ func (x *FuelCalibrationType) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuelCalibrationType.ProtoReflect.Descriptor instead.
 func (*FuelCalibrationType) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{37}
+	return file_cyber_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *FuelCalibrationType) GetID() int32 {
@@ -2450,7 +2567,7 @@ type FuelCalibrationTypes struct {
 
 func (x *FuelCalibrationTypes) Reset() {
 	*x = FuelCalibrationTypes{}
-	mi := &file_cyber_proto_msgTypes[38]
+	mi := &file_cyber_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2462,7 +2579,7 @@ func (x *FuelCalibrationTypes) String() string {
 func (*FuelCalibrationTypes) ProtoMessage() {}
 
 func (x *FuelCalibrationTypes) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[38]
+	mi := &file_cyber_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2475,7 +2592,7 @@ func (x *FuelCalibrationTypes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuelCalibrationTypes.ProtoReflect.Descriptor instead.
 func (*FuelCalibrationTypes) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{38}
+	return file_cyber_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *FuelCalibrationTypes) GetTypes() []*FuelCalibrationType {
@@ -2499,7 +2616,7 @@ type FuelCalibration struct {
 
 func (x *FuelCalibration) Reset() {
 	*x = FuelCalibration{}
-	mi := &file_cyber_proto_msgTypes[39]
+	mi := &file_cyber_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2511,7 +2628,7 @@ func (x *FuelCalibration) String() string {
 func (*FuelCalibration) ProtoMessage() {}
 
 func (x *FuelCalibration) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[39]
+	mi := &file_cyber_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2524,7 +2641,7 @@ func (x *FuelCalibration) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuelCalibration.ProtoReflect.Descriptor instead.
 func (*FuelCalibration) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{39}
+	return file_cyber_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *FuelCalibration) GetID() int32 {
@@ -2578,7 +2695,7 @@ type FuelCalibrations struct {
 
 func (x *FuelCalibrations) Reset() {
 	*x = FuelCalibrations{}
-	mi := &file_cyber_proto_msgTypes[40]
+	mi := &file_cyber_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2590,7 +2707,7 @@ func (x *FuelCalibrations) String() string {
 func (*FuelCalibrations) ProtoMessage() {}
 
 func (x *FuelCalibrations) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[40]
+	mi := &file_cyber_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2603,7 +2720,7 @@ func (x *FuelCalibrations) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuelCalibrations.ProtoReflect.Descriptor instead.
 func (*FuelCalibrations) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{40}
+	return file_cyber_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *FuelCalibrations) GetData() []*FuelCalibration {
@@ -2632,7 +2749,7 @@ type FuelCalibrationMatching struct {
 
 func (x *FuelCalibrationMatching) Reset() {
 	*x = FuelCalibrationMatching{}
-	mi := &file_cyber_proto_msgTypes[41]
+	mi := &file_cyber_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2644,7 +2761,7 @@ func (x *FuelCalibrationMatching) String() string {
 func (*FuelCalibrationMatching) ProtoMessage() {}
 
 func (x *FuelCalibrationMatching) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[41]
+	mi := &file_cyber_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2657,7 +2774,7 @@ func (x *FuelCalibrationMatching) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuelCalibrationMatching.ProtoReflect.Descriptor instead.
 func (*FuelCalibrationMatching) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{41}
+	return file_cyber_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *FuelCalibrationMatching) GetTemplateID() int32 {
@@ -2746,7 +2863,7 @@ type FuelCalibrationMatchings struct {
 
 func (x *FuelCalibrationMatchings) Reset() {
 	*x = FuelCalibrationMatchings{}
-	mi := &file_cyber_proto_msgTypes[42]
+	mi := &file_cyber_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2758,7 +2875,7 @@ func (x *FuelCalibrationMatchings) String() string {
 func (*FuelCalibrationMatchings) ProtoMessage() {}
 
 func (x *FuelCalibrationMatchings) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[42]
+	mi := &file_cyber_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2771,7 +2888,7 @@ func (x *FuelCalibrationMatchings) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuelCalibrationMatchings.ProtoReflect.Descriptor instead.
 func (*FuelCalibrationMatchings) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{42}
+	return file_cyber_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *FuelCalibrationMatchings) GetData() []*FuelCalibrationMatching {
@@ -2814,7 +2931,7 @@ const file_cyber_proto_rawDesc = "" +
 	"Pagination\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x14\n" +
-	"\x05total\x18\x03 \x01(\x05R\x05total\"\x87\x03\n" +
+	"\x05total\x18\x03 \x01(\x05R\x05total\"\xd9\x04\n" +
 	"\aMachine\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x14\n" +
 	"\x05model\x18\x02 \x01(\tR\x05model\x12\x12\n" +
@@ -2833,7 +2950,18 @@ const file_cyber_proto_rawDesc = "" +
 	"\n" +
 	"webModelId\x18\f \x01(\x05R\n" +
 	"webModelId\x12\x1a\n" +
-	"\bwebModel\x18\r \x01(\tR\bwebModel\":\n" +
+	"\bwebModel\x18\r \x01(\tR\bwebModel\x12\x12\n" +
+	"\x04imei\x18\x0e \x01(\tR\x04imei\x12\x18\n" +
+	"\aexpDate\x18\x0f \x01(\tR\aexpDate\x12\x16\n" +
+	"\x06active\x18\x10 \x01(\bR\x06active\x12\x12\n" +
+	"\x04type\x18\x11 \x01(\tR\x04type\x12 \n" +
+	"\vmachineType\x18\x12 \x01(\tR\vmachineType\x12\x1c\n" +
+	"\ttrackable\x18\x13 \x01(\bR\ttrackable\x126\n" +
+	"\bwarranty\x18\x14 \x01(\v2\x1a.cybertele.MachineWarrantyR\bwarranty\"O\n" +
+	"\x0fMachineWarranty\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x14\n" +
+	"\x05hours\x18\x02 \x01(\x05R\x05hours\x12\x16\n" +
+	"\x06months\x18\x03 \x01(\x05R\x06months\":\n" +
 	"\bMachines\x12.\n" +
 	"\bmachines\x18\x01 \x03(\v2\x12.cybertele.MachineR\bmachines\"~\n" +
 	"\bDataType\x12\x12\n" +
@@ -3014,7 +3142,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 43)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                      // 0: cybertele.Status
 	(*StatusReply)(nil),              // 1: cybertele.StatusReply
@@ -3025,41 +3153,42 @@ var file_cyber_proto_goTypes = []any{
 	(*PageRequest)(nil),              // 6: cybertele.PageRequest
 	(*Pagination)(nil),               // 7: cybertele.Pagination
 	(*Machine)(nil),                  // 8: cybertele.Machine
-	(*Machines)(nil),                 // 9: cybertele.Machines
-	(*DataType)(nil),                 // 10: cybertele.DataType
-	(*DataTypes)(nil),                // 11: cybertele.DataTypes
-	(*ModelDataTypes)(nil),           // 12: cybertele.ModelDataTypes
-	(*AllModelsDataTypes)(nil),       // 13: cybertele.AllModelsDataTypes
-	(*DataPoint)(nil),                // 14: cybertele.DataPoint
-	(*DataPoints)(nil),               // 15: cybertele.DataPoints
-	(*Segment)(nil),                  // 16: cybertele.Segment
-	(*Segments)(nil),                 // 17: cybertele.Segments
-	(*Event)(nil),                    // 18: cybertele.Event
-	(*Count)(nil),                    // 19: cybertele.Count
-	(*CyberService)(nil),             // 20: cybertele.CyberService
-	(*CyberServices)(nil),            // 21: cybertele.CyberServices
-	(*StringRequest)(nil),            // 22: cybertele.StringRequest
-	(*TelemertyParams)(nil),          // 23: cybertele.TelemertyParams
-	(*TelemertyParam)(nil),           // 24: cybertele.TelemertyParam
-	(*MongoRequest)(nil),             // 25: cybertele.MongoRequest
-	(*MongoMachineType)(nil),         // 26: cybertele.MongoMachineType
-	(*MongoMachineTypes)(nil),        // 27: cybertele.MongoMachineTypes
-	(*MongoMachine)(nil),             // 28: cybertele.MongoMachine
-	(*MongoMachines)(nil),            // 29: cybertele.MongoMachines
-	(*MongoError)(nil),               // 30: cybertele.MongoError
-	(*MongoErrors)(nil),              // 31: cybertele.MongoErrors
-	(*MongoDataType)(nil),            // 32: cybertele.MongoDataType
-	(*MongoDataTypes)(nil),           // 33: cybertele.MongoDataTypes
-	(*HistoryRequest)(nil),           // 34: cybertele.HistoryRequest
-	(*WorkhourItem)(nil),             // 35: cybertele.WorkhourItem
-	(*WorkhourHistory)(nil),          // 36: cybertele.WorkhourHistory
-	(*FuelCalibrationPoint)(nil),     // 37: cybertele.FuelCalibrationPoint
-	(*FuelCalibrationType)(nil),      // 38: cybertele.FuelCalibrationType
-	(*FuelCalibrationTypes)(nil),     // 39: cybertele.FuelCalibrationTypes
-	(*FuelCalibration)(nil),          // 40: cybertele.FuelCalibration
-	(*FuelCalibrations)(nil),         // 41: cybertele.FuelCalibrations
-	(*FuelCalibrationMatching)(nil),  // 42: cybertele.FuelCalibrationMatching
-	(*FuelCalibrationMatchings)(nil), // 43: cybertele.FuelCalibrationMatchings
+	(*MachineWarranty)(nil),          // 9: cybertele.MachineWarranty
+	(*Machines)(nil),                 // 10: cybertele.Machines
+	(*DataType)(nil),                 // 11: cybertele.DataType
+	(*DataTypes)(nil),                // 12: cybertele.DataTypes
+	(*ModelDataTypes)(nil),           // 13: cybertele.ModelDataTypes
+	(*AllModelsDataTypes)(nil),       // 14: cybertele.AllModelsDataTypes
+	(*DataPoint)(nil),                // 15: cybertele.DataPoint
+	(*DataPoints)(nil),               // 16: cybertele.DataPoints
+	(*Segment)(nil),                  // 17: cybertele.Segment
+	(*Segments)(nil),                 // 18: cybertele.Segments
+	(*Event)(nil),                    // 19: cybertele.Event
+	(*Count)(nil),                    // 20: cybertele.Count
+	(*CyberService)(nil),             // 21: cybertele.CyberService
+	(*CyberServices)(nil),            // 22: cybertele.CyberServices
+	(*StringRequest)(nil),            // 23: cybertele.StringRequest
+	(*TelemertyParams)(nil),          // 24: cybertele.TelemertyParams
+	(*TelemertyParam)(nil),           // 25: cybertele.TelemertyParam
+	(*MongoRequest)(nil),             // 26: cybertele.MongoRequest
+	(*MongoMachineType)(nil),         // 27: cybertele.MongoMachineType
+	(*MongoMachineTypes)(nil),        // 28: cybertele.MongoMachineTypes
+	(*MongoMachine)(nil),             // 29: cybertele.MongoMachine
+	(*MongoMachines)(nil),            // 30: cybertele.MongoMachines
+	(*MongoError)(nil),               // 31: cybertele.MongoError
+	(*MongoErrors)(nil),              // 32: cybertele.MongoErrors
+	(*MongoDataType)(nil),            // 33: cybertele.MongoDataType
+	(*MongoDataTypes)(nil),           // 34: cybertele.MongoDataTypes
+	(*HistoryRequest)(nil),           // 35: cybertele.HistoryRequest
+	(*WorkhourItem)(nil),             // 36: cybertele.WorkhourItem
+	(*WorkhourHistory)(nil),          // 37: cybertele.WorkhourHistory
+	(*FuelCalibrationPoint)(nil),     // 38: cybertele.FuelCalibrationPoint
+	(*FuelCalibrationType)(nil),      // 39: cybertele.FuelCalibrationType
+	(*FuelCalibrationTypes)(nil),     // 40: cybertele.FuelCalibrationTypes
+	(*FuelCalibration)(nil),          // 41: cybertele.FuelCalibration
+	(*FuelCalibrations)(nil),         // 42: cybertele.FuelCalibrations
+	(*FuelCalibrationMatching)(nil),  // 43: cybertele.FuelCalibrationMatching
+	(*FuelCalibrationMatchings)(nil), // 44: cybertele.FuelCalibrationMatchings
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -3069,30 +3198,31 @@ var file_cyber_proto_depIdxs = []int32{
 	3,  // 4: cybertele.HealthReply.disk:type_name -> cybertele.Disk
 	0,  // 5: cybertele.HealthReply.aggregator:type_name -> cybertele.Status
 	0,  // 6: cybertele.ParserStatus.parser:type_name -> cybertele.Status
-	8,  // 7: cybertele.Machines.machines:type_name -> cybertele.Machine
-	10, // 8: cybertele.DataTypes.data:type_name -> cybertele.DataType
-	10, // 9: cybertele.ModelDataTypes.dataTypes:type_name -> cybertele.DataType
-	12, // 10: cybertele.AllModelsDataTypes.data:type_name -> cybertele.ModelDataTypes
-	14, // 11: cybertele.DataPoints.data:type_name -> cybertele.DataPoint
-	16, // 12: cybertele.Segments.segments:type_name -> cybertele.Segment
-	20, // 13: cybertele.CyberServices.services:type_name -> cybertele.CyberService
-	24, // 14: cybertele.TelemertyParams.params:type_name -> cybertele.TelemertyParam
-	26, // 15: cybertele.MongoMachineTypes.data:type_name -> cybertele.MongoMachineType
-	28, // 16: cybertele.MongoMachines.data:type_name -> cybertele.MongoMachine
-	30, // 17: cybertele.MongoErrors.data:type_name -> cybertele.MongoError
-	32, // 18: cybertele.MongoDataTypes.data:type_name -> cybertele.MongoDataType
-	35, // 19: cybertele.WorkhourHistory.data:type_name -> cybertele.WorkhourItem
-	37, // 20: cybertele.FuelCalibrationType.data:type_name -> cybertele.FuelCalibrationPoint
-	38, // 21: cybertele.FuelCalibrationTypes.types:type_name -> cybertele.FuelCalibrationType
-	38, // 22: cybertele.FuelCalibration.calibration:type_name -> cybertele.FuelCalibrationType
-	40, // 23: cybertele.FuelCalibrations.data:type_name -> cybertele.FuelCalibration
-	38, // 24: cybertele.FuelCalibrationMatching.calibration:type_name -> cybertele.FuelCalibrationType
-	42, // 25: cybertele.FuelCalibrationMatchings.data:type_name -> cybertele.FuelCalibrationMatching
-	26, // [26:26] is the sub-list for method output_type
-	26, // [26:26] is the sub-list for method input_type
-	26, // [26:26] is the sub-list for extension type_name
-	26, // [26:26] is the sub-list for extension extendee
-	0,  // [0:26] is the sub-list for field type_name
+	9,  // 7: cybertele.Machine.warranty:type_name -> cybertele.MachineWarranty
+	8,  // 8: cybertele.Machines.machines:type_name -> cybertele.Machine
+	11, // 9: cybertele.DataTypes.data:type_name -> cybertele.DataType
+	11, // 10: cybertele.ModelDataTypes.dataTypes:type_name -> cybertele.DataType
+	13, // 11: cybertele.AllModelsDataTypes.data:type_name -> cybertele.ModelDataTypes
+	15, // 12: cybertele.DataPoints.data:type_name -> cybertele.DataPoint
+	17, // 13: cybertele.Segments.segments:type_name -> cybertele.Segment
+	21, // 14: cybertele.CyberServices.services:type_name -> cybertele.CyberService
+	25, // 15: cybertele.TelemertyParams.params:type_name -> cybertele.TelemertyParam
+	27, // 16: cybertele.MongoMachineTypes.data:type_name -> cybertele.MongoMachineType
+	29, // 17: cybertele.MongoMachines.data:type_name -> cybertele.MongoMachine
+	31, // 18: cybertele.MongoErrors.data:type_name -> cybertele.MongoError
+	33, // 19: cybertele.MongoDataTypes.data:type_name -> cybertele.MongoDataType
+	36, // 20: cybertele.WorkhourHistory.data:type_name -> cybertele.WorkhourItem
+	38, // 21: cybertele.FuelCalibrationType.data:type_name -> cybertele.FuelCalibrationPoint
+	39, // 22: cybertele.FuelCalibrationTypes.types:type_name -> cybertele.FuelCalibrationType
+	39, // 23: cybertele.FuelCalibration.calibration:type_name -> cybertele.FuelCalibrationType
+	41, // 24: cybertele.FuelCalibrations.data:type_name -> cybertele.FuelCalibration
+	39, // 25: cybertele.FuelCalibrationMatching.calibration:type_name -> cybertele.FuelCalibrationType
+	43, // 26: cybertele.FuelCalibrationMatchings.data:type_name -> cybertele.FuelCalibrationMatching
+	27, // [27:27] is the sub-list for method output_type
+	27, // [27:27] is the sub-list for method input_type
+	27, // [27:27] is the sub-list for extension type_name
+	27, // [27:27] is the sub-list for extension extendee
+	0,  // [0:27] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -3106,7 +3236,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   43,
+			NumMessages:   44,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
