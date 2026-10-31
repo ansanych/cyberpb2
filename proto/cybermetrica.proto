@@ -23,6 +23,24 @@ service Cybermetrica {
     rpc GetMachineCoords (CoordsRequest) returns (Coords) {}
     rpc GetMachineWorkdays (WorkdaysRequest) returns (WorkdaysReply) {}
     rpc GetAdminMachines (AdminMachinesRequest) returns (AdminMachines) {}
+    rpc GetFuelSensorState (Machine) returns (FuelSensorState) {}
+    rpc GetFuelStatistic (MachineStatisticRequest) returns (FuelEvents) {}
+}
+
+message FuelEvents {
+    repeated FuelEvent event = 1;
+}
+
+message FuelEvent {
+    string startTime = 1;
+    string endTime = 2;
+    int32 startLevel = 3;
+    int32 endLevel = 4;
+}
+
+message FuelSensorState {
+    int32 deviationsLevel = 1;
+    bool hasDeviations = 2;
 }
 
 message AdminMachinesRequest {
@@ -85,6 +103,7 @@ message LastData {
   repeated LastDataRow data = 3;
   string datetime = 4;
   repeated CoordsPoint coordinates = 5;
+  float workhours = 6;
 }
 
 message LastDataRow {
