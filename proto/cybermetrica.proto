@@ -38,6 +38,7 @@ message FuelEvent {
     int32 endLevel = 4;
     int32 value = 5;
     string units = 6;
+    bool hasDeviations = 7;
 }
 
 message FuelSensorState {

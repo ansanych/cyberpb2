@@ -73,6 +73,7 @@ type FuelEvent struct {
 	EndLevel      int32                  `protobuf:"varint,4,opt,name=endLevel,proto3" json:"endLevel,omitempty"`
 	Value         int32                  `protobuf:"varint,5,opt,name=value,proto3" json:"value,omitempty"`
 	Units         string                 `protobuf:"bytes,6,opt,name=units,proto3" json:"units,omitempty"`
+	HasDeviations bool                   `protobuf:"varint,7,opt,name=hasDeviations,proto3" json:"hasDeviations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -147,6 +148,13 @@ func (x *FuelEvent) GetUnits() string {
 		return x.Units
 	}
 	return ""
+}
+
+func (x *FuelEvent) GetHasDeviations() bool {
+	if x != nil {
+		return x.HasDeviations
+	}
+	return false
 }
 
 type FuelSensorState struct {
@@ -2016,7 +2024,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x12cybermetrica.proto\x12\tcybertele\x1a\vcyber.proto\"8\n" +
 	"\n" +
 	"FuelEvents\x12*\n" +
-	"\x05event\x18\x01 \x03(\v2\x14.cybertele.FuelEventR\x05event\"\xab\x01\n" +
+	"\x05event\x18\x01 \x03(\v2\x14.cybertele.FuelEventR\x05event\"\xd1\x01\n" +
 	"\tFuelEvent\x12\x1c\n" +
 	"\tstartTime\x18\x01 \x01(\tR\tstartTime\x12\x18\n" +
 	"\aendTime\x18\x02 \x01(\tR\aendTime\x12\x1e\n" +
@@ -2025,7 +2033,8 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"startLevel\x12\x1a\n" +
 	"\bendLevel\x18\x04 \x01(\x05R\bendLevel\x12\x14\n" +
 	"\x05value\x18\x05 \x01(\x05R\x05value\x12\x14\n" +
-	"\x05units\x18\x06 \x01(\tR\x05units\"a\n" +
+	"\x05units\x18\x06 \x01(\tR\x05units\x12$\n" +
+	"\rhasDeviations\x18\a \x01(\bR\rhasDeviations\"a\n" +
 	"\x0fFuelSensorState\x12(\n" +
 	"\x0fdeviationsLevel\x18\x01 \x01(\x05R\x0fdeviationsLevel\x12$\n" +
 	"\rhasDeviations\x18\x02 \x01(\bR\rhasDeviations\".\n" +
