@@ -24,7 +24,7 @@ service Cybermetrica {
     rpc GetMachineWorkdays (WorkdaysRequest) returns (WorkdaysReply) {}
     rpc GetAdminMachines (AdminMachinesRequest) returns (AdminMachines) {}
     rpc GetFuelSensorState (Machine) returns (FuelSensorState) {}
-    rpc GetFuelStatistic (MachineStatisticRequest) returns (FuelEvents) {}
+    rpc GetFuelEvents (MachineStatisticRequest) returns (FuelEvents) {}
 }
 
 message FuelEvents {
@@ -36,6 +36,8 @@ message FuelEvent {
     string endTime = 2;
     int32 startLevel = 3;
     int32 endLevel = 4;
+    int32 value = 5;
+    string units = 6;
 }
 
 message FuelSensorState {

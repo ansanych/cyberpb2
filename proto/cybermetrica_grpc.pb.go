@@ -37,7 +37,7 @@ const (
 	Cybermetrica_GetMachineWorkdays_FullMethodName        = "/cybertele.Cybermetrica/GetMachineWorkdays"
 	Cybermetrica_GetAdminMachines_FullMethodName          = "/cybertele.Cybermetrica/GetAdminMachines"
 	Cybermetrica_GetFuelSensorState_FullMethodName        = "/cybertele.Cybermetrica/GetFuelSensorState"
-	Cybermetrica_GetFuelStatistic_FullMethodName          = "/cybertele.Cybermetrica/GetFuelStatistic"
+	Cybermetrica_GetFuelEvents_FullMethodName             = "/cybertele.Cybermetrica/GetFuelEvents"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -62,7 +62,7 @@ type CybermetricaClient interface {
 	GetMachineWorkdays(ctx context.Context, in *WorkdaysRequest, opts ...grpc.CallOption) (*WorkdaysReply, error)
 	GetAdminMachines(ctx context.Context, in *AdminMachinesRequest, opts ...grpc.CallOption) (*AdminMachines, error)
 	GetFuelSensorState(ctx context.Context, in *Machine, opts ...grpc.CallOption) (*FuelSensorState, error)
-	GetFuelStatistic(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*FuelEvents, error)
+	GetFuelEvents(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*FuelEvents, error)
 }
 
 type cybermetricaClient struct {
@@ -253,10 +253,10 @@ func (c *cybermetricaClient) GetFuelSensorState(ctx context.Context, in *Machine
 	return out, nil
 }
 
-func (c *cybermetricaClient) GetFuelStatistic(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*FuelEvents, error) {
+func (c *cybermetricaClient) GetFuelEvents(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*FuelEvents, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(FuelEvents)
-	err := c.cc.Invoke(ctx, Cybermetrica_GetFuelStatistic_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Cybermetrica_GetFuelEvents_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -285,7 +285,7 @@ type CybermetricaServer interface {
 	GetMachineWorkdays(context.Context, *WorkdaysRequest) (*WorkdaysReply, error)
 	GetAdminMachines(context.Context, *AdminMachinesRequest) (*AdminMachines, error)
 	GetFuelSensorState(context.Context, *Machine) (*FuelSensorState, error)
-	GetFuelStatistic(context.Context, *MachineStatisticRequest) (*FuelEvents, error)
+	GetFuelEvents(context.Context, *MachineStatisticRequest) (*FuelEvents, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -350,8 +350,8 @@ func (UnimplementedCybermetricaServer) GetAdminMachines(context.Context, *AdminM
 func (UnimplementedCybermetricaServer) GetFuelSensorState(context.Context, *Machine) (*FuelSensorState, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetFuelSensorState not implemented")
 }
-func (UnimplementedCybermetricaServer) GetFuelStatistic(context.Context, *MachineStatisticRequest) (*FuelEvents, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetFuelStatistic not implemented")
+func (UnimplementedCybermetricaServer) GetFuelEvents(context.Context, *MachineStatisticRequest) (*FuelEvents, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFuelEvents not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
 func (UnimplementedCybermetricaServer) testEmbeddedByValue()                      {}
@@ -698,20 +698,20 @@ func _Cybermetrica_GetFuelSensorState_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Cybermetrica_GetFuelStatistic_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Cybermetrica_GetFuelEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MachineStatisticRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CybermetricaServer).GetFuelStatistic(ctx, in)
+		return srv.(CybermetricaServer).GetFuelEvents(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Cybermetrica_GetFuelStatistic_FullMethodName,
+		FullMethod: Cybermetrica_GetFuelEvents_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CybermetricaServer).GetFuelStatistic(ctx, req.(*MachineStatisticRequest))
+		return srv.(CybermetricaServer).GetFuelEvents(ctx, req.(*MachineStatisticRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -796,8 +796,8 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Cybermetrica_GetFuelSensorState_Handler,
 		},
 		{
-			MethodName: "GetFuelStatistic",
-			Handler:    _Cybermetrica_GetFuelStatistic_Handler,
+			MethodName: "GetFuelEvents",
+			Handler:    _Cybermetrica_GetFuelEvents_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

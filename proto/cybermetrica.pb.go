@@ -71,6 +71,8 @@ type FuelEvent struct {
 	EndTime       string                 `protobuf:"bytes,2,opt,name=endTime,proto3" json:"endTime,omitempty"`
 	StartLevel    int32                  `protobuf:"varint,3,opt,name=startLevel,proto3" json:"startLevel,omitempty"`
 	EndLevel      int32                  `protobuf:"varint,4,opt,name=endLevel,proto3" json:"endLevel,omitempty"`
+	Value         int32                  `protobuf:"varint,5,opt,name=value,proto3" json:"value,omitempty"`
+	Units         string                 `protobuf:"bytes,6,opt,name=units,proto3" json:"units,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -131,6 +133,20 @@ func (x *FuelEvent) GetEndLevel() int32 {
 		return x.EndLevel
 	}
 	return 0
+}
+
+func (x *FuelEvent) GetValue() int32 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+func (x *FuelEvent) GetUnits() string {
+	if x != nil {
+		return x.Units
+	}
+	return ""
 }
 
 type FuelSensorState struct {
@@ -2000,14 +2016,16 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x12cybermetrica.proto\x12\tcybertele\x1a\vcyber.proto\"8\n" +
 	"\n" +
 	"FuelEvents\x12*\n" +
-	"\x05event\x18\x01 \x03(\v2\x14.cybertele.FuelEventR\x05event\"\x7f\n" +
+	"\x05event\x18\x01 \x03(\v2\x14.cybertele.FuelEventR\x05event\"\xab\x01\n" +
 	"\tFuelEvent\x12\x1c\n" +
 	"\tstartTime\x18\x01 \x01(\tR\tstartTime\x12\x18\n" +
 	"\aendTime\x18\x02 \x01(\tR\aendTime\x12\x1e\n" +
 	"\n" +
 	"startLevel\x18\x03 \x01(\x05R\n" +
 	"startLevel\x12\x1a\n" +
-	"\bendLevel\x18\x04 \x01(\x05R\bendLevel\"a\n" +
+	"\bendLevel\x18\x04 \x01(\x05R\bendLevel\x12\x14\n" +
+	"\x05value\x18\x05 \x01(\x05R\x05value\x12\x14\n" +
+	"\x05units\x18\x06 \x01(\tR\x05units\"a\n" +
 	"\x0fFuelSensorState\x12(\n" +
 	"\x0fdeviationsLevel\x18\x01 \x01(\x05R\x0fdeviationsLevel\x12$\n" +
 	"\rhasDeviations\x18\x02 \x01(\bR\rhasDeviations\".\n" +
@@ -2160,7 +2178,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x04jobs\x18\b \x03(\v2\x15.cybertele.EventBlockR\x04jobs\x12-\n" +
 	"\x06errors\x18\t \x03(\v2\x15.cybertele.EventBlockR\x06errors\x122\n" +
 	"\x04data\x18\n" +
-	" \x03(\v2\x1e.cybertele.ConnectionDataBlockR\x04data2\xf1\n" +
+	" \x03(\v2\x1e.cybertele.ConnectionDataBlockR\x04data2\xee\n" +
 	"\n" +
 	"\fCybermetrica\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
@@ -2181,8 +2199,8 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x10GetMachineCoords\x12\x18.cybertele.CoordsRequest\x1a\x11.cybertele.Coords\"\x00\x12L\n" +
 	"\x12GetMachineWorkdays\x12\x1a.cybertele.WorkdaysRequest\x1a\x18.cybertele.WorkdaysReply\"\x00\x12O\n" +
 	"\x10GetAdminMachines\x12\x1f.cybertele.AdminMachinesRequest\x1a\x18.cybertele.AdminMachines\"\x00\x12F\n" +
-	"\x12GetFuelSensorState\x12\x12.cybertele.Machine\x1a\x1a.cybertele.FuelSensorState\"\x00\x12O\n" +
-	"\x10GetFuelStatistic\x12\".cybertele.MachineStatisticRequest\x1a\x15.cybertele.FuelEvents\"\x00B\tZ\a./protob\x06proto3"
+	"\x12GetFuelSensorState\x12\x12.cybertele.Machine\x1a\x1a.cybertele.FuelSensorState\"\x00\x12L\n" +
+	"\rGetFuelEvents\x12\".cybertele.MachineStatisticRequest\x1a\x15.cybertele.FuelEvents\"\x00B\tZ\a./protob\x06proto3"
 
 var (
 	file_cybermetrica_proto_rawDescOnce sync.Once
@@ -2279,7 +2297,7 @@ var file_cybermetrica_proto_depIdxs = []int32{
 	6,  // 36: cybertele.Cybermetrica.GetMachineWorkdays:input_type -> cybertele.WorkdaysRequest
 	3,  // 37: cybertele.Cybermetrica.GetAdminMachines:input_type -> cybertele.AdminMachinesRequest
 	29, // 38: cybertele.Cybermetrica.GetFuelSensorState:input_type -> cybertele.Machine
-	19, // 39: cybertele.Cybermetrica.GetFuelStatistic:input_type -> cybertele.MachineStatisticRequest
+	19, // 39: cybertele.Cybermetrica.GetFuelEvents:input_type -> cybertele.MachineStatisticRequest
 	35, // 40: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
 	36, // 41: cybertele.Cybermetrica.StartParser:output_type -> cybertele.ParserStatus
 	36, // 42: cybertele.Cybermetrica.StopParser:output_type -> cybertele.ParserStatus
@@ -2298,7 +2316,7 @@ var file_cybermetrica_proto_depIdxs = []int32{
 	7,  // 55: cybertele.Cybermetrica.GetMachineWorkdays:output_type -> cybertele.WorkdaysReply
 	5,  // 56: cybertele.Cybermetrica.GetAdminMachines:output_type -> cybertele.AdminMachines
 	2,  // 57: cybertele.Cybermetrica.GetFuelSensorState:output_type -> cybertele.FuelSensorState
-	0,  // 58: cybertele.Cybermetrica.GetFuelStatistic:output_type -> cybertele.FuelEvents
+	0,  // 58: cybertele.Cybermetrica.GetFuelEvents:output_type -> cybertele.FuelEvents
 	40, // [40:59] is the sub-list for method output_type
 	21, // [21:40] is the sub-list for method input_type
 	21, // [21:21] is the sub-list for extension type_name
