@@ -39,11 +39,13 @@ message FuelEvent {
     int32 value = 5;
     string units = 6;
     bool hasDeviations = 7;
+    string eventType = 8;
 }
 
 message FuelSensorState {
     int32 deviationsLevel = 1;
     bool hasDeviations = 2;
+    int32 deviationPercent = 3;
 }
 
 message AdminMachinesRequest {

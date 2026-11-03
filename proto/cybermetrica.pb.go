@@ -74,6 +74,7 @@ type FuelEvent struct {
 	Value         int32                  `protobuf:"varint,5,opt,name=value,proto3" json:"value,omitempty"`
 	Units         string                 `protobuf:"bytes,6,opt,name=units,proto3" json:"units,omitempty"`
 	HasDeviations bool                   `protobuf:"varint,7,opt,name=hasDeviations,proto3" json:"hasDeviations,omitempty"`
+	EventType     string                 `protobuf:"bytes,8,opt,name=eventType,proto3" json:"eventType,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -157,12 +158,20 @@ func (x *FuelEvent) GetHasDeviations() bool {
 	return false
 }
 
+func (x *FuelEvent) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
 type FuelSensorState struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	DeviationsLevel int32                  `protobuf:"varint,1,opt,name=deviationsLevel,proto3" json:"deviationsLevel,omitempty"`
-	HasDeviations   bool                   `protobuf:"varint,2,opt,name=hasDeviations,proto3" json:"hasDeviations,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	DeviationsLevel  int32                  `protobuf:"varint,1,opt,name=deviationsLevel,proto3" json:"deviationsLevel,omitempty"`
+	HasDeviations    bool                   `protobuf:"varint,2,opt,name=hasDeviations,proto3" json:"hasDeviations,omitempty"`
+	DeviationPercent int32                  `protobuf:"varint,3,opt,name=deviationPercent,proto3" json:"deviationPercent,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *FuelSensorState) Reset() {
@@ -207,6 +216,13 @@ func (x *FuelSensorState) GetHasDeviations() bool {
 		return x.HasDeviations
 	}
 	return false
+}
+
+func (x *FuelSensorState) GetDeviationPercent() int32 {
+	if x != nil {
+		return x.DeviationPercent
+	}
+	return 0
 }
 
 type AdminMachinesRequest struct {
@@ -2024,7 +2040,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x12cybermetrica.proto\x12\tcybertele\x1a\vcyber.proto\"8\n" +
 	"\n" +
 	"FuelEvents\x12*\n" +
-	"\x05event\x18\x01 \x03(\v2\x14.cybertele.FuelEventR\x05event\"\xd1\x01\n" +
+	"\x05event\x18\x01 \x03(\v2\x14.cybertele.FuelEventR\x05event\"\xef\x01\n" +
 	"\tFuelEvent\x12\x1c\n" +
 	"\tstartTime\x18\x01 \x01(\tR\tstartTime\x12\x18\n" +
 	"\aendTime\x18\x02 \x01(\tR\aendTime\x12\x1e\n" +
@@ -2034,10 +2050,12 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\bendLevel\x18\x04 \x01(\x05R\bendLevel\x12\x14\n" +
 	"\x05value\x18\x05 \x01(\x05R\x05value\x12\x14\n" +
 	"\x05units\x18\x06 \x01(\tR\x05units\x12$\n" +
-	"\rhasDeviations\x18\a \x01(\bR\rhasDeviations\"a\n" +
+	"\rhasDeviations\x18\a \x01(\bR\rhasDeviations\x12\x1c\n" +
+	"\teventType\x18\b \x01(\tR\teventType\"\x8d\x01\n" +
 	"\x0fFuelSensorState\x12(\n" +
 	"\x0fdeviationsLevel\x18\x01 \x01(\x05R\x0fdeviationsLevel\x12$\n" +
-	"\rhasDeviations\x18\x02 \x01(\bR\rhasDeviations\".\n" +
+	"\rhasDeviations\x18\x02 \x01(\bR\rhasDeviations\x12*\n" +
+	"\x10deviationPercent\x18\x03 \x01(\x05R\x10deviationPercent\".\n" +
 	"\x14AdminMachinesRequest\x12\x16\n" +
 	"\x06filter\x18\x01 \x03(\tR\x06filter\"m\n" +
 	"\fAdminMachine\x12,\n" +
