@@ -10,4 +10,53 @@ service Parser {
     // GetWorkhourHistory возвращает историю наработки машины по дням
     // (агрегат agg_wh из ct-parser). Сообщения переиспользуются из cybermetrica.proto.
     rpc GetWorkhourHistory (HistoryRequest) returns (WorkhourHistory) {}
+    // GetLastPassReport возвращает полный отчёт о последнем проходе парсера
+    // (машины/блоки/подблоки/данные/ошибки). report == null, если проходов ещё не было.
+    rpc GetLastPassReport (Empty) returns (ParserPassReportReply) {}
+}
+
+// ParserPassSample — пример ошибки в отчёте прохода парсера.
+message ParserPassSample {
+    string sn = 1;
+    string stage = 2;
+    string message = 3;
+}
+
+// ParserPassReport — полный отчёт об одной итерации (проходе) парсера.
+// См. ct-parser/internal/parser/metrics.go.
+message ParserPassReport {
+    int64 startedAtUnix = 1;
+    double durationSeconds = 2;
+    // Машины
+    int64 machinesTotal = 3;
+    int64 machinesChecked = 4;
+    int64 machinesProcessed = 5;
+    int64 machinesUpToDate = 6;
+    int64 machinesNoData = 7;
+    int64 machinesNoNewData = 8;
+    int64 machinesWithErrors = 9;
+    // Блоки и MongoDB
+    int64 blocksProcessed = 10;
+    int64 blocksEmpty = 11;
+    int64 blockErrors = 12;
+    int64 mongoErrors = 13;
+    // Подблоки
+    int64 subBlocksProcessed = 14;
+    int64 subBlocksSkipped = 15;
+    int64 subBlocksConnectionFailed = 16;
+    int64 subBlocksWHNull = 17;
+    // Данные
+    int64 rawRecords = 18;
+    int64 rowsWritten = 19;
+    int64 telemetryUpserts = 20;
+    int64 eventsSent = 21;
+    int64 handlerErrors = 22;
+    int64 lastDataUpdated = 23;
+    // Примеры ошибок (до 10)
+    repeated ParserPassSample samples = 24;
+}
+
+// ParserPassReportReply — ответ GetLastPassReport.
+message ParserPassReportReply {
+    ParserPassReport report = 1;
 }

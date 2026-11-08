@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	Parser_Health_FullMethodName             = "/cybertele.Parser/Health"
 	Parser_GetWorkhourHistory_FullMethodName = "/cybertele.Parser/GetWorkhourHistory"
+	Parser_GetLastPassReport_FullMethodName  = "/cybertele.Parser/GetLastPassReport"
 )
 
 // ParserClient is the client API for Parser service.
@@ -31,6 +32,9 @@ type ParserClient interface {
 	// GetWorkhourHistory возвращает историю наработки машины по дням
 	// (агрегат agg_wh из ct-parser). Сообщения переиспользуются из cybermetrica.proto.
 	GetWorkhourHistory(ctx context.Context, in *HistoryRequest, opts ...grpc.CallOption) (*WorkhourHistory, error)
+	// GetLastPassReport возвращает полный отчёт о последнем проходе парсера
+	// (машины/блоки/подблоки/данные/ошибки). report == null, если проходов ещё не было.
+	GetLastPassReport(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserPassReportReply, error)
 }
 
 type parserClient struct {
@@ -61,6 +65,16 @@ func (c *parserClient) GetWorkhourHistory(ctx context.Context, in *HistoryReques
 	return out, nil
 }
 
+func (c *parserClient) GetLastPassReport(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserPassReportReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ParserPassReportReply)
+	err := c.cc.Invoke(ctx, Parser_GetLastPassReport_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ParserServer is the server API for Parser service.
 // All implementations must embed UnimplementedParserServer
 // for forward compatibility.
@@ -69,6 +83,9 @@ type ParserServer interface {
 	// GetWorkhourHistory возвращает историю наработки машины по дням
 	// (агрегат agg_wh из ct-parser). Сообщения переиспользуются из cybermetrica.proto.
 	GetWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error)
+	// GetLastPassReport возвращает полный отчёт о последнем проходе парсера
+	// (машины/блоки/подблоки/данные/ошибки). report == null, если проходов ещё не было.
+	GetLastPassReport(context.Context, *Empty) (*ParserPassReportReply, error)
 	mustEmbedUnimplementedParserServer()
 }
 
@@ -84,6 +101,9 @@ func (UnimplementedParserServer) Health(context.Context, *Empty) (*HealthReply, 
 }
 func (UnimplementedParserServer) GetWorkhourHistory(context.Context, *HistoryRequest) (*WorkhourHistory, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetWorkhourHistory not implemented")
+}
+func (UnimplementedParserServer) GetLastPassReport(context.Context, *Empty) (*ParserPassReportReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetLastPassReport not implemented")
 }
 func (UnimplementedParserServer) mustEmbedUnimplementedParserServer() {}
 func (UnimplementedParserServer) testEmbeddedByValue()                {}
@@ -142,6 +162,24 @@ func _Parser_GetWorkhourHistory_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Parser_GetLastPassReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ParserServer).GetLastPassReport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Parser_GetLastPassReport_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ParserServer).GetLastPassReport(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Parser_ServiceDesc is the grpc.ServiceDesc for Parser service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -156,6 +194,10 @@ var Parser_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetWorkhourHistory",
 			Handler:    _Parser_GetWorkhourHistory_Handler,
+		},
+		{
+			MethodName: "GetLastPassReport",
+			Handler:    _Parser_GetLastPassReport_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

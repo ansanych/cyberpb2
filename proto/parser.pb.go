@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -20,31 +21,429 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// ParserPassSample — пример ошибки в отчёте прохода парсера.
+type ParserPassSample struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Stage         string                 `protobuf:"bytes,2,opt,name=stage,proto3" json:"stage,omitempty"`
+	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ParserPassSample) Reset() {
+	*x = ParserPassSample{}
+	mi := &file_parser_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ParserPassSample) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ParserPassSample) ProtoMessage() {}
+
+func (x *ParserPassSample) ProtoReflect() protoreflect.Message {
+	mi := &file_parser_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ParserPassSample.ProtoReflect.Descriptor instead.
+func (*ParserPassSample) Descriptor() ([]byte, []int) {
+	return file_parser_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *ParserPassSample) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *ParserPassSample) GetStage() string {
+	if x != nil {
+		return x.Stage
+	}
+	return ""
+}
+
+func (x *ParserPassSample) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// ParserPassReport — полный отчёт об одной итерации (проходе) парсера.
+// См. ct-parser/internal/parser/metrics.go.
+type ParserPassReport struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	StartedAtUnix   int64                  `protobuf:"varint,1,opt,name=startedAtUnix,proto3" json:"startedAtUnix,omitempty"`
+	DurationSeconds float64                `protobuf:"fixed64,2,opt,name=durationSeconds,proto3" json:"durationSeconds,omitempty"`
+	// Машины
+	MachinesTotal      int64 `protobuf:"varint,3,opt,name=machinesTotal,proto3" json:"machinesTotal,omitempty"`
+	MachinesChecked    int64 `protobuf:"varint,4,opt,name=machinesChecked,proto3" json:"machinesChecked,omitempty"`
+	MachinesProcessed  int64 `protobuf:"varint,5,opt,name=machinesProcessed,proto3" json:"machinesProcessed,omitempty"`
+	MachinesUpToDate   int64 `protobuf:"varint,6,opt,name=machinesUpToDate,proto3" json:"machinesUpToDate,omitempty"`
+	MachinesNoData     int64 `protobuf:"varint,7,opt,name=machinesNoData,proto3" json:"machinesNoData,omitempty"`
+	MachinesNoNewData  int64 `protobuf:"varint,8,opt,name=machinesNoNewData,proto3" json:"machinesNoNewData,omitempty"`
+	MachinesWithErrors int64 `protobuf:"varint,9,opt,name=machinesWithErrors,proto3" json:"machinesWithErrors,omitempty"`
+	// Блоки и MongoDB
+	BlocksProcessed int64 `protobuf:"varint,10,opt,name=blocksProcessed,proto3" json:"blocksProcessed,omitempty"`
+	BlocksEmpty     int64 `protobuf:"varint,11,opt,name=blocksEmpty,proto3" json:"blocksEmpty,omitempty"`
+	BlockErrors     int64 `protobuf:"varint,12,opt,name=blockErrors,proto3" json:"blockErrors,omitempty"`
+	MongoErrors     int64 `protobuf:"varint,13,opt,name=mongoErrors,proto3" json:"mongoErrors,omitempty"`
+	// Подблоки
+	SubBlocksProcessed        int64 `protobuf:"varint,14,opt,name=subBlocksProcessed,proto3" json:"subBlocksProcessed,omitempty"`
+	SubBlocksSkipped          int64 `protobuf:"varint,15,opt,name=subBlocksSkipped,proto3" json:"subBlocksSkipped,omitempty"`
+	SubBlocksConnectionFailed int64 `protobuf:"varint,16,opt,name=subBlocksConnectionFailed,proto3" json:"subBlocksConnectionFailed,omitempty"`
+	SubBlocksWHNull           int64 `protobuf:"varint,17,opt,name=subBlocksWHNull,proto3" json:"subBlocksWHNull,omitempty"`
+	// Данные
+	RawRecords       int64 `protobuf:"varint,18,opt,name=rawRecords,proto3" json:"rawRecords,omitempty"`
+	RowsWritten      int64 `protobuf:"varint,19,opt,name=rowsWritten,proto3" json:"rowsWritten,omitempty"`
+	TelemetryUpserts int64 `protobuf:"varint,20,opt,name=telemetryUpserts,proto3" json:"telemetryUpserts,omitempty"`
+	EventsSent       int64 `protobuf:"varint,21,opt,name=eventsSent,proto3" json:"eventsSent,omitempty"`
+	HandlerErrors    int64 `protobuf:"varint,22,opt,name=handlerErrors,proto3" json:"handlerErrors,omitempty"`
+	LastDataUpdated  int64 `protobuf:"varint,23,opt,name=lastDataUpdated,proto3" json:"lastDataUpdated,omitempty"`
+	// Примеры ошибок (до 10)
+	Samples       []*ParserPassSample `protobuf:"bytes,24,rep,name=samples,proto3" json:"samples,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ParserPassReport) Reset() {
+	*x = ParserPassReport{}
+	mi := &file_parser_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ParserPassReport) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ParserPassReport) ProtoMessage() {}
+
+func (x *ParserPassReport) ProtoReflect() protoreflect.Message {
+	mi := &file_parser_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ParserPassReport.ProtoReflect.Descriptor instead.
+func (*ParserPassReport) Descriptor() ([]byte, []int) {
+	return file_parser_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ParserPassReport) GetStartedAtUnix() int64 {
+	if x != nil {
+		return x.StartedAtUnix
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetDurationSeconds() float64 {
+	if x != nil {
+		return x.DurationSeconds
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetMachinesTotal() int64 {
+	if x != nil {
+		return x.MachinesTotal
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetMachinesChecked() int64 {
+	if x != nil {
+		return x.MachinesChecked
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetMachinesProcessed() int64 {
+	if x != nil {
+		return x.MachinesProcessed
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetMachinesUpToDate() int64 {
+	if x != nil {
+		return x.MachinesUpToDate
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetMachinesNoData() int64 {
+	if x != nil {
+		return x.MachinesNoData
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetMachinesNoNewData() int64 {
+	if x != nil {
+		return x.MachinesNoNewData
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetMachinesWithErrors() int64 {
+	if x != nil {
+		return x.MachinesWithErrors
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetBlocksProcessed() int64 {
+	if x != nil {
+		return x.BlocksProcessed
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetBlocksEmpty() int64 {
+	if x != nil {
+		return x.BlocksEmpty
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetBlockErrors() int64 {
+	if x != nil {
+		return x.BlockErrors
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetMongoErrors() int64 {
+	if x != nil {
+		return x.MongoErrors
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetSubBlocksProcessed() int64 {
+	if x != nil {
+		return x.SubBlocksProcessed
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetSubBlocksSkipped() int64 {
+	if x != nil {
+		return x.SubBlocksSkipped
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetSubBlocksConnectionFailed() int64 {
+	if x != nil {
+		return x.SubBlocksConnectionFailed
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetSubBlocksWHNull() int64 {
+	if x != nil {
+		return x.SubBlocksWHNull
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetRawRecords() int64 {
+	if x != nil {
+		return x.RawRecords
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetRowsWritten() int64 {
+	if x != nil {
+		return x.RowsWritten
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetTelemetryUpserts() int64 {
+	if x != nil {
+		return x.TelemetryUpserts
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetEventsSent() int64 {
+	if x != nil {
+		return x.EventsSent
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetHandlerErrors() int64 {
+	if x != nil {
+		return x.HandlerErrors
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetLastDataUpdated() int64 {
+	if x != nil {
+		return x.LastDataUpdated
+	}
+	return 0
+}
+
+func (x *ParserPassReport) GetSamples() []*ParserPassSample {
+	if x != nil {
+		return x.Samples
+	}
+	return nil
+}
+
+// ParserPassReportReply — ответ GetLastPassReport.
+type ParserPassReportReply struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Report        *ParserPassReport      `protobuf:"bytes,1,opt,name=report,proto3" json:"report,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ParserPassReportReply) Reset() {
+	*x = ParserPassReportReply{}
+	mi := &file_parser_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ParserPassReportReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ParserPassReportReply) ProtoMessage() {}
+
+func (x *ParserPassReportReply) ProtoReflect() protoreflect.Message {
+	mi := &file_parser_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ParserPassReportReply.ProtoReflect.Descriptor instead.
+func (*ParserPassReportReply) Descriptor() ([]byte, []int) {
+	return file_parser_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ParserPassReportReply) GetReport() *ParserPassReport {
+	if x != nil {
+		return x.Report
+	}
+	return nil
+}
+
 var File_parser_proto protoreflect.FileDescriptor
 
 const file_parser_proto_rawDesc = "" +
 	"\n" +
-	"\fparser.proto\x12\tcybertele\x1a\vcyber.proto2\x8d\x01\n" +
+	"\fparser.proto\x12\tcybertele\x1a\vcyber.proto\"R\n" +
+	"\x10ParserPassSample\x12\x0e\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x14\n" +
+	"\x05stage\x18\x02 \x01(\tR\x05stage\x12\x18\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"\xfb\a\n" +
+	"\x10ParserPassReport\x12$\n" +
+	"\rstartedAtUnix\x18\x01 \x01(\x03R\rstartedAtUnix\x12(\n" +
+	"\x0fdurationSeconds\x18\x02 \x01(\x01R\x0fdurationSeconds\x12$\n" +
+	"\rmachinesTotal\x18\x03 \x01(\x03R\rmachinesTotal\x12(\n" +
+	"\x0fmachinesChecked\x18\x04 \x01(\x03R\x0fmachinesChecked\x12,\n" +
+	"\x11machinesProcessed\x18\x05 \x01(\x03R\x11machinesProcessed\x12*\n" +
+	"\x10machinesUpToDate\x18\x06 \x01(\x03R\x10machinesUpToDate\x12&\n" +
+	"\x0emachinesNoData\x18\a \x01(\x03R\x0emachinesNoData\x12,\n" +
+	"\x11machinesNoNewData\x18\b \x01(\x03R\x11machinesNoNewData\x12.\n" +
+	"\x12machinesWithErrors\x18\t \x01(\x03R\x12machinesWithErrors\x12(\n" +
+	"\x0fblocksProcessed\x18\n" +
+	" \x01(\x03R\x0fblocksProcessed\x12 \n" +
+	"\vblocksEmpty\x18\v \x01(\x03R\vblocksEmpty\x12 \n" +
+	"\vblockErrors\x18\f \x01(\x03R\vblockErrors\x12 \n" +
+	"\vmongoErrors\x18\r \x01(\x03R\vmongoErrors\x12.\n" +
+	"\x12subBlocksProcessed\x18\x0e \x01(\x03R\x12subBlocksProcessed\x12*\n" +
+	"\x10subBlocksSkipped\x18\x0f \x01(\x03R\x10subBlocksSkipped\x12<\n" +
+	"\x19subBlocksConnectionFailed\x18\x10 \x01(\x03R\x19subBlocksConnectionFailed\x12(\n" +
+	"\x0fsubBlocksWHNull\x18\x11 \x01(\x03R\x0fsubBlocksWHNull\x12\x1e\n" +
+	"\n" +
+	"rawRecords\x18\x12 \x01(\x03R\n" +
+	"rawRecords\x12 \n" +
+	"\vrowsWritten\x18\x13 \x01(\x03R\vrowsWritten\x12*\n" +
+	"\x10telemetryUpserts\x18\x14 \x01(\x03R\x10telemetryUpserts\x12\x1e\n" +
+	"\n" +
+	"eventsSent\x18\x15 \x01(\x03R\n" +
+	"eventsSent\x12$\n" +
+	"\rhandlerErrors\x18\x16 \x01(\x03R\rhandlerErrors\x12(\n" +
+	"\x0flastDataUpdated\x18\x17 \x01(\x03R\x0flastDataUpdated\x125\n" +
+	"\asamples\x18\x18 \x03(\v2\x1b.cybertele.ParserPassSampleR\asamples\"L\n" +
+	"\x15ParserPassReportReply\x123\n" +
+	"\x06report\x18\x01 \x01(\v2\x1b.cybertele.ParserPassReportR\x06report2\xd8\x01\n" +
 	"\x06Parser\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12M\n" +
-	"\x12GetWorkhourHistory\x12\x19.cybertele.HistoryRequest\x1a\x1a.cybertele.WorkhourHistory\"\x00B\tZ\a./protob\x06proto3"
+	"\x12GetWorkhourHistory\x12\x19.cybertele.HistoryRequest\x1a\x1a.cybertele.WorkhourHistory\"\x00\x12I\n" +
+	"\x11GetLastPassReport\x12\x10.cybertele.Empty\x1a .cybertele.ParserPassReportReply\"\x00B\tZ\a./protob\x06proto3"
 
+var (
+	file_parser_proto_rawDescOnce sync.Once
+	file_parser_proto_rawDescData []byte
+)
+
+func file_parser_proto_rawDescGZIP() []byte {
+	file_parser_proto_rawDescOnce.Do(func() {
+		file_parser_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_parser_proto_rawDesc), len(file_parser_proto_rawDesc)))
+	})
+	return file_parser_proto_rawDescData
+}
+
+var file_parser_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_parser_proto_goTypes = []any{
-	(*Empty)(nil),           // 0: cybertele.Empty
-	(*HistoryRequest)(nil),  // 1: cybertele.HistoryRequest
-	(*HealthReply)(nil),     // 2: cybertele.HealthReply
-	(*WorkhourHistory)(nil), // 3: cybertele.WorkhourHistory
+	(*ParserPassSample)(nil),      // 0: cybertele.ParserPassSample
+	(*ParserPassReport)(nil),      // 1: cybertele.ParserPassReport
+	(*ParserPassReportReply)(nil), // 2: cybertele.ParserPassReportReply
+	(*Empty)(nil),                 // 3: cybertele.Empty
+	(*HistoryRequest)(nil),        // 4: cybertele.HistoryRequest
+	(*HealthReply)(nil),           // 5: cybertele.HealthReply
+	(*WorkhourHistory)(nil),       // 6: cybertele.WorkhourHistory
 }
 var file_parser_proto_depIdxs = []int32{
-	0, // 0: cybertele.Parser.Health:input_type -> cybertele.Empty
-	1, // 1: cybertele.Parser.GetWorkhourHistory:input_type -> cybertele.HistoryRequest
-	2, // 2: cybertele.Parser.Health:output_type -> cybertele.HealthReply
-	3, // 3: cybertele.Parser.GetWorkhourHistory:output_type -> cybertele.WorkhourHistory
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: cybertele.ParserPassReport.samples:type_name -> cybertele.ParserPassSample
+	1, // 1: cybertele.ParserPassReportReply.report:type_name -> cybertele.ParserPassReport
+	3, // 2: cybertele.Parser.Health:input_type -> cybertele.Empty
+	4, // 3: cybertele.Parser.GetWorkhourHistory:input_type -> cybertele.HistoryRequest
+	3, // 4: cybertele.Parser.GetLastPassReport:input_type -> cybertele.Empty
+	5, // 5: cybertele.Parser.Health:output_type -> cybertele.HealthReply
+	6, // 6: cybertele.Parser.GetWorkhourHistory:output_type -> cybertele.WorkhourHistory
+	2, // 7: cybertele.Parser.GetLastPassReport:output_type -> cybertele.ParserPassReportReply
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_parser_proto_init() }
@@ -59,12 +458,13 @@ func file_parser_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_parser_proto_rawDesc), len(file_parser_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_parser_proto_goTypes,
 		DependencyIndexes: file_parser_proto_depIdxs,
+		MessageInfos:      file_parser_proto_msgTypes,
 	}.Build()
 	File_parser_proto = out.File
 	file_parser_proto_goTypes = nil
