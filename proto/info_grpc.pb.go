@@ -37,6 +37,7 @@ const (
 	Info_UpdateFuelCalibrationType_FullMethodName   = "/cybertele.Info/UpdateFuelCalibrationType"
 	Info_DeleteFuelCalibrationType_FullMethodName   = "/cybertele.Info/DeleteFuelCalibrationType"
 	Info_GetFuelCalibrationMatchings_FullMethodName = "/cybertele.Info/GetFuelCalibrationMatchings"
+	Info_GetDigitalParam_FullMethodName             = "/cybertele.Info/GetDigitalParam"
 )
 
 // InfoClient is the client API for Info service.
@@ -61,6 +62,7 @@ type InfoClient interface {
 	UpdateFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error)
 	DeleteFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error)
 	GetFuelCalibrationMatchings(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FuelCalibrationMatchings, error)
+	GetDigitalParam(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*DigitalParams, error)
 }
 
 type infoClient struct {
@@ -251,6 +253,16 @@ func (c *infoClient) GetFuelCalibrationMatchings(ctx context.Context, in *Empty,
 	return out, nil
 }
 
+func (c *infoClient) GetDigitalParam(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*DigitalParams, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DigitalParams)
+	err := c.cc.Invoke(ctx, Info_GetDigitalParam_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InfoServer is the server API for Info service.
 // All implementations must embed UnimplementedInfoServer
 // for forward compatibility.
@@ -273,6 +285,7 @@ type InfoServer interface {
 	UpdateFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error)
 	DeleteFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error)
 	GetFuelCalibrationMatchings(context.Context, *Empty) (*FuelCalibrationMatchings, error)
+	GetDigitalParam(context.Context, *Empty) (*DigitalParams, error)
 	mustEmbedUnimplementedInfoServer()
 }
 
@@ -336,6 +349,9 @@ func (UnimplementedInfoServer) DeleteFuelCalibrationType(context.Context, *FuelC
 }
 func (UnimplementedInfoServer) GetFuelCalibrationMatchings(context.Context, *Empty) (*FuelCalibrationMatchings, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetFuelCalibrationMatchings not implemented")
+}
+func (UnimplementedInfoServer) GetDigitalParam(context.Context, *Empty) (*DigitalParams, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetDigitalParam not implemented")
 }
 func (UnimplementedInfoServer) mustEmbedUnimplementedInfoServer() {}
 func (UnimplementedInfoServer) testEmbeddedByValue()              {}
@@ -682,6 +698,24 @@ func _Info_GetFuelCalibrationMatchings_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Info_GetDigitalParam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetDigitalParam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetDigitalParam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetDigitalParam(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Info_ServiceDesc is the grpc.ServiceDesc for Info service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -760,6 +794,10 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFuelCalibrationMatchings",
 			Handler:    _Info_GetFuelCalibrationMatchings_Handler,
+		},
+		{
+			MethodName: "GetDigitalParam",
+			Handler:    _Info_GetDigitalParam_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

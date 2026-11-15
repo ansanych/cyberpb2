@@ -215,13 +215,6 @@ message ConnectionDataBlock {
     repeated DataValuesRow dataValues = 3;
 }
 
-message EventBlock {
-    int64 start = 1;
-    int64 end = 2;
-    float value = 3;
-    int64 id = 4;
-}
-
 message Timeline {
     string sn = 1;
     string date = 2;

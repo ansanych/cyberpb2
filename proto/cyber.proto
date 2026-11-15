@@ -306,3 +306,20 @@ message FuelCalibrationMatching {
 message FuelCalibrationMatchings {
     repeated FuelCalibrationMatching data = 1;
 }
+
+message DigitalParam {
+    string code = 1;
+    string fullname = 2;
+    string meaning = 3;
+}
+
+message DigitalParams {
+    repeated DigitalParam params = 1;
+}
+
+message EventBlock {
+    int64 start = 1;
+    int64 end = 2;
+    float value = 3;
+    int64 id = 4;
+}

@@ -1,0 +1,37 @@
+syntax = "proto3";
+import "cyber.proto";
+
+package cybertele;
+
+option go_package = "./proto";
+
+service Analysis {
+    rpc Health (Empty) returns (HealthReply) {}
+    rpc GetDigitalData (MachineDigitalDataRequest) returns(MachineDigitalData) {}
+}
+
+message MachineDigitalDataRequest {
+    string sn = 1;
+    int32 timezone = 2;
+    string from = 3;
+    string to = 4;
+    repeated string code = 5;
+    bool realtime = 6;
+}
+
+message DigitalEventBlock {
+    DigitalParam param = 1;
+    repeated EventBlock blocks = 2;
+}
+
+message MachineDigitalData {
+    string startTime = 1;
+    int64 startTimeUnix = 2;
+    string endTime = 3;
+    int64 endTimeUnix = 4;
+    repeated EventBlock connections = 5;
+    repeated EventBlock engines = 6;
+    repeated EventBlock jobs = 7;
+    repeated EventBlock wh = 8;
+    repeated DigitalEventBlock data = 9;
+}

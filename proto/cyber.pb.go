@@ -2898,6 +2898,178 @@ func (x *FuelCalibrationMatchings) GetData() []*FuelCalibrationMatching {
 	return nil
 }
 
+type DigitalParam struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Fullname      string                 `protobuf:"bytes,2,opt,name=fullname,proto3" json:"fullname,omitempty"`
+	Meaning       string                 `protobuf:"bytes,3,opt,name=meaning,proto3" json:"meaning,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DigitalParam) Reset() {
+	*x = DigitalParam{}
+	mi := &file_cyber_proto_msgTypes[44]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DigitalParam) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DigitalParam) ProtoMessage() {}
+
+func (x *DigitalParam) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[44]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DigitalParam.ProtoReflect.Descriptor instead.
+func (*DigitalParam) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{44}
+}
+
+func (x *DigitalParam) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *DigitalParam) GetFullname() string {
+	if x != nil {
+		return x.Fullname
+	}
+	return ""
+}
+
+func (x *DigitalParam) GetMeaning() string {
+	if x != nil {
+		return x.Meaning
+	}
+	return ""
+}
+
+type DigitalParams struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Params        []*DigitalParam        `protobuf:"bytes,1,rep,name=params,proto3" json:"params,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DigitalParams) Reset() {
+	*x = DigitalParams{}
+	mi := &file_cyber_proto_msgTypes[45]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DigitalParams) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DigitalParams) ProtoMessage() {}
+
+func (x *DigitalParams) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[45]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DigitalParams.ProtoReflect.Descriptor instead.
+func (*DigitalParams) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *DigitalParams) GetParams() []*DigitalParam {
+	if x != nil {
+		return x.Params
+	}
+	return nil
+}
+
+type EventBlock struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Start         int64                  `protobuf:"varint,1,opt,name=start,proto3" json:"start,omitempty"`
+	End           int64                  `protobuf:"varint,2,opt,name=end,proto3" json:"end,omitempty"`
+	Value         float32                `protobuf:"fixed32,3,opt,name=value,proto3" json:"value,omitempty"`
+	Id            int64                  `protobuf:"varint,4,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EventBlock) Reset() {
+	*x = EventBlock{}
+	mi := &file_cyber_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EventBlock) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventBlock) ProtoMessage() {}
+
+func (x *EventBlock) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventBlock.ProtoReflect.Descriptor instead.
+func (*EventBlock) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *EventBlock) GetStart() int64 {
+	if x != nil {
+		return x.Start
+	}
+	return 0
+}
+
+func (x *EventBlock) GetEnd() int64 {
+	if x != nil {
+		return x.End
+	}
+	return 0
+}
+
+func (x *EventBlock) GetValue() float32 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+func (x *EventBlock) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
 var File_cyber_proto protoreflect.FileDescriptor
 
 const file_cyber_proto_rawDesc = "" +
@@ -3119,7 +3291,19 @@ const file_cyber_proto_rawDesc = "" +
 	" \x01(\v2\x1e.cybertele.FuelCalibrationTypeR\vcalibration\x12\x18\n" +
 	"\acomment\x18\v \x01(\tR\acomment\"R\n" +
 	"\x18FuelCalibrationMatchings\x126\n" +
-	"\x04data\x18\x01 \x03(\v2\".cybertele.FuelCalibrationMatchingR\x04data*O\n" +
+	"\x04data\x18\x01 \x03(\v2\".cybertele.FuelCalibrationMatchingR\x04data\"X\n" +
+	"\fDigitalParam\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x1a\n" +
+	"\bfullname\x18\x02 \x01(\tR\bfullname\x12\x18\n" +
+	"\ameaning\x18\x03 \x01(\tR\ameaning\"@\n" +
+	"\rDigitalParams\x12/\n" +
+	"\x06params\x18\x01 \x03(\v2\x17.cybertele.DigitalParamR\x06params\"Z\n" +
+	"\n" +
+	"EventBlock\x12\x14\n" +
+	"\x05start\x18\x01 \x01(\x03R\x05start\x12\x10\n" +
+	"\x03end\x18\x02 \x01(\x03R\x03end\x12\x14\n" +
+	"\x05value\x18\x03 \x01(\x02R\x05value\x12\x0e\n" +
+	"\x02id\x18\x04 \x01(\x03R\x02id*O\n" +
 	"\x06Status\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\n" +
 	"\n" +
@@ -3142,7 +3326,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 47)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                      // 0: cybertele.Status
 	(*StatusReply)(nil),              // 1: cybertele.StatusReply
@@ -3189,6 +3373,9 @@ var file_cyber_proto_goTypes = []any{
 	(*FuelCalibrations)(nil),         // 42: cybertele.FuelCalibrations
 	(*FuelCalibrationMatching)(nil),  // 43: cybertele.FuelCalibrationMatching
 	(*FuelCalibrationMatchings)(nil), // 44: cybertele.FuelCalibrationMatchings
+	(*DigitalParam)(nil),             // 45: cybertele.DigitalParam
+	(*DigitalParams)(nil),            // 46: cybertele.DigitalParams
+	(*EventBlock)(nil),               // 47: cybertele.EventBlock
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -3218,11 +3405,12 @@ var file_cyber_proto_depIdxs = []int32{
 	41, // 24: cybertele.FuelCalibrations.data:type_name -> cybertele.FuelCalibration
 	39, // 25: cybertele.FuelCalibrationMatching.calibration:type_name -> cybertele.FuelCalibrationType
 	43, // 26: cybertele.FuelCalibrationMatchings.data:type_name -> cybertele.FuelCalibrationMatching
-	27, // [27:27] is the sub-list for method output_type
-	27, // [27:27] is the sub-list for method input_type
-	27, // [27:27] is the sub-list for extension type_name
-	27, // [27:27] is the sub-list for extension extendee
-	0,  // [0:27] is the sub-list for field type_name
+	45, // 27: cybertele.DigitalParams.params:type_name -> cybertele.DigitalParam
+	28, // [28:28] is the sub-list for method output_type
+	28, // [28:28] is the sub-list for method input_type
+	28, // [28:28] is the sub-list for extension type_name
+	28, // [28:28] is the sub-list for extension extendee
+	0,  // [0:28] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -3236,7 +3424,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   44,
+			NumMessages:   47,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
