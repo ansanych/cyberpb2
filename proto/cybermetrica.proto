@@ -23,7 +23,7 @@ service Cybermetrica {
     rpc GetMachineCoords (CoordsRequest) returns (Coords) {}
     rpc GetMachineWorkdays (WorkdaysRequest) returns (WorkdaysReply) {}
     rpc GetAdminMachines (AdminMachinesRequest) returns (AdminMachines) {}
-    rpc GetFuelSensorState (Machine) returns (FuelSensorState) {}
+    rpc GetFuelSensorState (FuelSensorStateRequest) returns (FuelSensorState) {}
     rpc GetFuelEvents (MachineStatisticRequest) returns (FuelEvents) {}
 }
 
@@ -42,10 +42,23 @@ message FuelEvent {
     string eventType = 8;
 }
 
+// FuelSensorStateRequest — запрос состояния датчика топлива.
+message FuelSensorStateRequest {
+    string sn = 1;
+    // Часовой пояс машины (смещение в часах), как в остальных RPC.
+    // Используется для определения границ текущих суток.
+    // Если не передан, сутки считаются по UTC.
+    int32 timezone = 2;
+}
+
+// FuelSensorState — состояние датчика топлива.
 message FuelSensorState {
-    int32 deviationsLevel = 1;
-    bool hasDeviations = 2;
-    int32 deviationPercent = 3;
+    // Доля часов с отклонениями за всё время наблюдений, % (0..100).
+    int32 totalDeviationPercent = 1;
+    // Доля часов с отклонениями за текущие сутки, % (0..100).
+    // Это и есть «уровень» отклонений за текущие сутки.
+    // Значение > 0 означает, что за текущие сутки отклонения есть.
+    int32 todayDeviationPercent = 2;
 }
 
 message AdminMachinesRequest {

@@ -122,7 +122,7 @@ class CybermetricaStub:
                 _registered_method=True)
         self.GetFuelSensorState = channel.unary_unary(
                 '/cybertele.Cybermetrica/GetFuelSensorState',
-                request_serializer=cyber__pb2.Machine.SerializeToString,
+                request_serializer=cybermetrica__pb2.FuelSensorStateRequest.SerializeToString,
                 response_deserializer=cybermetrica__pb2.FuelSensorState.FromString,
                 _registered_method=True)
         self.GetFuelEvents = channel.unary_unary(
@@ -339,7 +339,7 @@ def add_CybermetricaServicer_to_server(servicer, server):
             ),
             'GetFuelSensorState': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFuelSensorState,
-                    request_deserializer=cyber__pb2.Machine.FromString,
+                    request_deserializer=cybermetrica__pb2.FuelSensorStateRequest.FromString,
                     response_serializer=cybermetrica__pb2.FuelSensorState.SerializeToString,
             ),
             'GetFuelEvents': grpc.unary_unary_rpc_method_handler(
@@ -832,7 +832,7 @@ class Cybermetrica:
             request,
             target,
             '/cybertele.Cybermetrica/GetFuelSensorState',
-            cyber__pb2.Machine.SerializeToString,
+            cybermetrica__pb2.FuelSensorStateRequest.SerializeToString,
             cybermetrica__pb2.FuelSensorState.FromString,
             options,
             channel_credentials,
