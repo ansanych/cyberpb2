@@ -186,6 +186,7 @@ message TelemertyParam {
     string label = 2;
     string units = 3;
     string description = 4;
+    int32 id = 5;
 }
 
 
@@ -305,6 +306,63 @@ message FuelCalibrationMatching {
 
 message FuelCalibrationMatchings {
     repeated FuelCalibrationMatching data = 1;
+}
+
+message TelemetryParamsSet {
+    int32 ID = 1;
+    string name = 2;
+}
+
+message TelemetryParamsSets {
+    repeated TelemetryParamsSet data = 1;
+}
+
+message TelemetryParamsSetValueType {
+    int32 ID = 1;
+    string code = 2;
+    string name = 3;
+}
+
+message TelemetryParamsSetValueTypes {
+    repeated TelemetryParamsSetValueType data = 1;
+}
+
+message TelemetryParamsSetValue {
+    int32 ID = 1;
+    int32 setID = 2;
+    int32 telemetryParamID = 3;
+    string telemetryParamCode = 4;
+    bool required = 5;
+    int32 valueTypeID = 6;
+    string valueTypeCode = 7;
+    double value = 8;
+    int32 criticalDuration = 9;
+}
+
+message TelemetryParamsSetValues {
+    repeated TelemetryParamsSetValue data = 1;
+}
+
+message TelemetryParamsSetValuesRequest {
+    int32 setID = 1;
+}
+
+message TelemetryParamsSetMatching {
+    int32 templateID = 1;
+    string templateName = 2;
+    int32 classID = 3;
+    string className = 4;
+    int32 generationID = 5;
+    string generationName = 6;
+    int64 machinesCount = 7;
+    int64 modelsCount = 8;
+    repeated string models = 9;
+    TelemetryParamsSet set = 10;
+    string comment = 11;
+}
+
+message TelemetryParamsSetMatchings {
+    repeated TelemetryParamsSetMatching data = 1;
 }
 
 message DigitalParam {

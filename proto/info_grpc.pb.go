@@ -19,25 +19,39 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Info_Health_FullMethodName                      = "/cybertele.Info/Health"
-	Info_GetMachines_FullMethodName                 = "/cybertele.Info/GetMachines"
-	Info_GetMachinesFull_FullMethodName             = "/cybertele.Info/GetMachinesFull"
-	Info_GetTelemetryParams_FullMethodName          = "/cybertele.Info/GetTelemetryParams"
-	Info_GetMongoMachineTypes_FullMethodName        = "/cybertele.Info/GetMongoMachineTypes"
-	Info_GetMongoMachines_FullMethodName            = "/cybertele.Info/GetMongoMachines"
-	Info_GetMongoErrors_FullMethodName              = "/cybertele.Info/GetMongoErrors"
-	Info_GetMongoDataTypes_FullMethodName           = "/cybertele.Info/GetMongoDataTypes"
-	Info_GetMongoAllErrors_FullMethodName           = "/cybertele.Info/GetMongoAllErrors"
-	Info_GetFuelCalibrations_FullMethodName         = "/cybertele.Info/GetFuelCalibrations"
-	Info_SetFuelCalibration_FullMethodName          = "/cybertele.Info/SetFuelCalibration"
-	Info_UpdateFuelCalibration_FullMethodName       = "/cybertele.Info/UpdateFuelCalibration"
-	Info_DeleteFuelCalibration_FullMethodName       = "/cybertele.Info/DeleteFuelCalibration"
-	Info_GetFuelCalibrationTypes_FullMethodName     = "/cybertele.Info/GetFuelCalibrationTypes"
-	Info_SetFuelCalibrationType_FullMethodName      = "/cybertele.Info/SetFuelCalibrationType"
-	Info_UpdateFuelCalibrationType_FullMethodName   = "/cybertele.Info/UpdateFuelCalibrationType"
-	Info_DeleteFuelCalibrationType_FullMethodName   = "/cybertele.Info/DeleteFuelCalibrationType"
-	Info_GetFuelCalibrationMatchings_FullMethodName = "/cybertele.Info/GetFuelCalibrationMatchings"
-	Info_GetDigitalParam_FullMethodName             = "/cybertele.Info/GetDigitalParam"
+	Info_Health_FullMethodName                            = "/cybertele.Info/Health"
+	Info_GetMachines_FullMethodName                       = "/cybertele.Info/GetMachines"
+	Info_GetMachinesFull_FullMethodName                   = "/cybertele.Info/GetMachinesFull"
+	Info_GetTelemetryParams_FullMethodName                = "/cybertele.Info/GetTelemetryParams"
+	Info_GetMongoMachineTypes_FullMethodName              = "/cybertele.Info/GetMongoMachineTypes"
+	Info_GetMongoMachines_FullMethodName                  = "/cybertele.Info/GetMongoMachines"
+	Info_GetMongoErrors_FullMethodName                    = "/cybertele.Info/GetMongoErrors"
+	Info_GetMongoDataTypes_FullMethodName                 = "/cybertele.Info/GetMongoDataTypes"
+	Info_GetMongoAllErrors_FullMethodName                 = "/cybertele.Info/GetMongoAllErrors"
+	Info_GetFuelCalibrations_FullMethodName               = "/cybertele.Info/GetFuelCalibrations"
+	Info_SetFuelCalibration_FullMethodName                = "/cybertele.Info/SetFuelCalibration"
+	Info_UpdateFuelCalibration_FullMethodName             = "/cybertele.Info/UpdateFuelCalibration"
+	Info_DeleteFuelCalibration_FullMethodName             = "/cybertele.Info/DeleteFuelCalibration"
+	Info_GetFuelCalibrationTypes_FullMethodName           = "/cybertele.Info/GetFuelCalibrationTypes"
+	Info_SetFuelCalibrationType_FullMethodName            = "/cybertele.Info/SetFuelCalibrationType"
+	Info_UpdateFuelCalibrationType_FullMethodName         = "/cybertele.Info/UpdateFuelCalibrationType"
+	Info_DeleteFuelCalibrationType_FullMethodName         = "/cybertele.Info/DeleteFuelCalibrationType"
+	Info_GetFuelCalibrationMatchings_FullMethodName       = "/cybertele.Info/GetFuelCalibrationMatchings"
+	Info_GetDigitalParam_FullMethodName                   = "/cybertele.Info/GetDigitalParam"
+	Info_GetTelemetryParamsSets_FullMethodName            = "/cybertele.Info/GetTelemetryParamsSets"
+	Info_SetTelemetryParamsSet_FullMethodName             = "/cybertele.Info/SetTelemetryParamsSet"
+	Info_UpdateTelemetryParamsSet_FullMethodName          = "/cybertele.Info/UpdateTelemetryParamsSet"
+	Info_DeleteTelemetryParamsSet_FullMethodName          = "/cybertele.Info/DeleteTelemetryParamsSet"
+	Info_GetTelemetryParamsSetValueTypes_FullMethodName   = "/cybertele.Info/GetTelemetryParamsSetValueTypes"
+	Info_SetTelemetryParamsSetValueType_FullMethodName    = "/cybertele.Info/SetTelemetryParamsSetValueType"
+	Info_UpdateTelemetryParamsSetValueType_FullMethodName = "/cybertele.Info/UpdateTelemetryParamsSetValueType"
+	Info_DeleteTelemetryParamsSetValueType_FullMethodName = "/cybertele.Info/DeleteTelemetryParamsSetValueType"
+	Info_GetTelemetryParamsSetValues_FullMethodName       = "/cybertele.Info/GetTelemetryParamsSetValues"
+	Info_SetTelemetryParamsSetValue_FullMethodName        = "/cybertele.Info/SetTelemetryParamsSetValue"
+	Info_UpdateTelemetryParamsSetValue_FullMethodName     = "/cybertele.Info/UpdateTelemetryParamsSetValue"
+	Info_DeleteTelemetryParamsSetValue_FullMethodName     = "/cybertele.Info/DeleteTelemetryParamsSetValue"
+	Info_GetTelemetryParamsSetMatchings_FullMethodName    = "/cybertele.Info/GetTelemetryParamsSetMatchings"
+	Info_SetTelemetryParamsSetMatching_FullMethodName     = "/cybertele.Info/SetTelemetryParamsSetMatching"
 )
 
 // InfoClient is the client API for Info service.
@@ -63,6 +77,20 @@ type InfoClient interface {
 	DeleteFuelCalibrationType(ctx context.Context, in *FuelCalibrationType, opts ...grpc.CallOption) (*StatusReply, error)
 	GetFuelCalibrationMatchings(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FuelCalibrationMatchings, error)
 	GetDigitalParam(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*DigitalParams, error)
+	GetTelemetryParamsSets(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemetryParamsSets, error)
+	SetTelemetryParamsSet(ctx context.Context, in *TelemetryParamsSet, opts ...grpc.CallOption) (*TelemetryParamsSet, error)
+	UpdateTelemetryParamsSet(ctx context.Context, in *TelemetryParamsSet, opts ...grpc.CallOption) (*StatusReply, error)
+	DeleteTelemetryParamsSet(ctx context.Context, in *TelemetryParamsSet, opts ...grpc.CallOption) (*StatusReply, error)
+	GetTelemetryParamsSetValueTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemetryParamsSetValueTypes, error)
+	SetTelemetryParamsSetValueType(ctx context.Context, in *TelemetryParamsSetValueType, opts ...grpc.CallOption) (*TelemetryParamsSetValueType, error)
+	UpdateTelemetryParamsSetValueType(ctx context.Context, in *TelemetryParamsSetValueType, opts ...grpc.CallOption) (*StatusReply, error)
+	DeleteTelemetryParamsSetValueType(ctx context.Context, in *TelemetryParamsSetValueType, opts ...grpc.CallOption) (*StatusReply, error)
+	GetTelemetryParamsSetValues(ctx context.Context, in *TelemetryParamsSetValuesRequest, opts ...grpc.CallOption) (*TelemetryParamsSetValues, error)
+	SetTelemetryParamsSetValue(ctx context.Context, in *TelemetryParamsSetValue, opts ...grpc.CallOption) (*TelemetryParamsSetValue, error)
+	UpdateTelemetryParamsSetValue(ctx context.Context, in *TelemetryParamsSetValue, opts ...grpc.CallOption) (*StatusReply, error)
+	DeleteTelemetryParamsSetValue(ctx context.Context, in *TelemetryParamsSetValue, opts ...grpc.CallOption) (*StatusReply, error)
+	GetTelemetryParamsSetMatchings(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemetryParamsSetMatchings, error)
+	SetTelemetryParamsSetMatching(ctx context.Context, in *TelemetryParamsSetMatching, opts ...grpc.CallOption) (*StatusReply, error)
 }
 
 type infoClient struct {
@@ -263,6 +291,146 @@ func (c *infoClient) GetDigitalParam(ctx context.Context, in *Empty, opts ...grp
 	return out, nil
 }
 
+func (c *infoClient) GetTelemetryParamsSets(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemetryParamsSets, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TelemetryParamsSets)
+	err := c.cc.Invoke(ctx, Info_GetTelemetryParamsSets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) SetTelemetryParamsSet(ctx context.Context, in *TelemetryParamsSet, opts ...grpc.CallOption) (*TelemetryParamsSet, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TelemetryParamsSet)
+	err := c.cc.Invoke(ctx, Info_SetTelemetryParamsSet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) UpdateTelemetryParamsSet(ctx context.Context, in *TelemetryParamsSet, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_UpdateTelemetryParamsSet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) DeleteTelemetryParamsSet(ctx context.Context, in *TelemetryParamsSet, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_DeleteTelemetryParamsSet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetTelemetryParamsSetValueTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemetryParamsSetValueTypes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TelemetryParamsSetValueTypes)
+	err := c.cc.Invoke(ctx, Info_GetTelemetryParamsSetValueTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) SetTelemetryParamsSetValueType(ctx context.Context, in *TelemetryParamsSetValueType, opts ...grpc.CallOption) (*TelemetryParamsSetValueType, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TelemetryParamsSetValueType)
+	err := c.cc.Invoke(ctx, Info_SetTelemetryParamsSetValueType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) UpdateTelemetryParamsSetValueType(ctx context.Context, in *TelemetryParamsSetValueType, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_UpdateTelemetryParamsSetValueType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) DeleteTelemetryParamsSetValueType(ctx context.Context, in *TelemetryParamsSetValueType, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_DeleteTelemetryParamsSetValueType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetTelemetryParamsSetValues(ctx context.Context, in *TelemetryParamsSetValuesRequest, opts ...grpc.CallOption) (*TelemetryParamsSetValues, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TelemetryParamsSetValues)
+	err := c.cc.Invoke(ctx, Info_GetTelemetryParamsSetValues_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) SetTelemetryParamsSetValue(ctx context.Context, in *TelemetryParamsSetValue, opts ...grpc.CallOption) (*TelemetryParamsSetValue, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TelemetryParamsSetValue)
+	err := c.cc.Invoke(ctx, Info_SetTelemetryParamsSetValue_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) UpdateTelemetryParamsSetValue(ctx context.Context, in *TelemetryParamsSetValue, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_UpdateTelemetryParamsSetValue_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) DeleteTelemetryParamsSetValue(ctx context.Context, in *TelemetryParamsSetValue, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_DeleteTelemetryParamsSetValue_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetTelemetryParamsSetMatchings(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemetryParamsSetMatchings, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TelemetryParamsSetMatchings)
+	err := c.cc.Invoke(ctx, Info_GetTelemetryParamsSetMatchings_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) SetTelemetryParamsSetMatching(ctx context.Context, in *TelemetryParamsSetMatching, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_SetTelemetryParamsSetMatching_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InfoServer is the server API for Info service.
 // All implementations must embed UnimplementedInfoServer
 // for forward compatibility.
@@ -286,6 +454,20 @@ type InfoServer interface {
 	DeleteFuelCalibrationType(context.Context, *FuelCalibrationType) (*StatusReply, error)
 	GetFuelCalibrationMatchings(context.Context, *Empty) (*FuelCalibrationMatchings, error)
 	GetDigitalParam(context.Context, *Empty) (*DigitalParams, error)
+	GetTelemetryParamsSets(context.Context, *Empty) (*TelemetryParamsSets, error)
+	SetTelemetryParamsSet(context.Context, *TelemetryParamsSet) (*TelemetryParamsSet, error)
+	UpdateTelemetryParamsSet(context.Context, *TelemetryParamsSet) (*StatusReply, error)
+	DeleteTelemetryParamsSet(context.Context, *TelemetryParamsSet) (*StatusReply, error)
+	GetTelemetryParamsSetValueTypes(context.Context, *Empty) (*TelemetryParamsSetValueTypes, error)
+	SetTelemetryParamsSetValueType(context.Context, *TelemetryParamsSetValueType) (*TelemetryParamsSetValueType, error)
+	UpdateTelemetryParamsSetValueType(context.Context, *TelemetryParamsSetValueType) (*StatusReply, error)
+	DeleteTelemetryParamsSetValueType(context.Context, *TelemetryParamsSetValueType) (*StatusReply, error)
+	GetTelemetryParamsSetValues(context.Context, *TelemetryParamsSetValuesRequest) (*TelemetryParamsSetValues, error)
+	SetTelemetryParamsSetValue(context.Context, *TelemetryParamsSetValue) (*TelemetryParamsSetValue, error)
+	UpdateTelemetryParamsSetValue(context.Context, *TelemetryParamsSetValue) (*StatusReply, error)
+	DeleteTelemetryParamsSetValue(context.Context, *TelemetryParamsSetValue) (*StatusReply, error)
+	GetTelemetryParamsSetMatchings(context.Context, *Empty) (*TelemetryParamsSetMatchings, error)
+	SetTelemetryParamsSetMatching(context.Context, *TelemetryParamsSetMatching) (*StatusReply, error)
 	mustEmbedUnimplementedInfoServer()
 }
 
@@ -352,6 +534,48 @@ func (UnimplementedInfoServer) GetFuelCalibrationMatchings(context.Context, *Emp
 }
 func (UnimplementedInfoServer) GetDigitalParam(context.Context, *Empty) (*DigitalParams, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDigitalParam not implemented")
+}
+func (UnimplementedInfoServer) GetTelemetryParamsSets(context.Context, *Empty) (*TelemetryParamsSets, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTelemetryParamsSets not implemented")
+}
+func (UnimplementedInfoServer) SetTelemetryParamsSet(context.Context, *TelemetryParamsSet) (*TelemetryParamsSet, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetTelemetryParamsSet not implemented")
+}
+func (UnimplementedInfoServer) UpdateTelemetryParamsSet(context.Context, *TelemetryParamsSet) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateTelemetryParamsSet not implemented")
+}
+func (UnimplementedInfoServer) DeleteTelemetryParamsSet(context.Context, *TelemetryParamsSet) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteTelemetryParamsSet not implemented")
+}
+func (UnimplementedInfoServer) GetTelemetryParamsSetValueTypes(context.Context, *Empty) (*TelemetryParamsSetValueTypes, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTelemetryParamsSetValueTypes not implemented")
+}
+func (UnimplementedInfoServer) SetTelemetryParamsSetValueType(context.Context, *TelemetryParamsSetValueType) (*TelemetryParamsSetValueType, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetTelemetryParamsSetValueType not implemented")
+}
+func (UnimplementedInfoServer) UpdateTelemetryParamsSetValueType(context.Context, *TelemetryParamsSetValueType) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateTelemetryParamsSetValueType not implemented")
+}
+func (UnimplementedInfoServer) DeleteTelemetryParamsSetValueType(context.Context, *TelemetryParamsSetValueType) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteTelemetryParamsSetValueType not implemented")
+}
+func (UnimplementedInfoServer) GetTelemetryParamsSetValues(context.Context, *TelemetryParamsSetValuesRequest) (*TelemetryParamsSetValues, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTelemetryParamsSetValues not implemented")
+}
+func (UnimplementedInfoServer) SetTelemetryParamsSetValue(context.Context, *TelemetryParamsSetValue) (*TelemetryParamsSetValue, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetTelemetryParamsSetValue not implemented")
+}
+func (UnimplementedInfoServer) UpdateTelemetryParamsSetValue(context.Context, *TelemetryParamsSetValue) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateTelemetryParamsSetValue not implemented")
+}
+func (UnimplementedInfoServer) DeleteTelemetryParamsSetValue(context.Context, *TelemetryParamsSetValue) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteTelemetryParamsSetValue not implemented")
+}
+func (UnimplementedInfoServer) GetTelemetryParamsSetMatchings(context.Context, *Empty) (*TelemetryParamsSetMatchings, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTelemetryParamsSetMatchings not implemented")
+}
+func (UnimplementedInfoServer) SetTelemetryParamsSetMatching(context.Context, *TelemetryParamsSetMatching) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetTelemetryParamsSetMatching not implemented")
 }
 func (UnimplementedInfoServer) mustEmbedUnimplementedInfoServer() {}
 func (UnimplementedInfoServer) testEmbeddedByValue()              {}
@@ -716,6 +940,258 @@ func _Info_GetDigitalParam_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Info_GetTelemetryParamsSets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetTelemetryParamsSets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetTelemetryParamsSets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetTelemetryParamsSets(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_SetTelemetryParamsSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSet)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).SetTelemetryParamsSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_SetTelemetryParamsSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).SetTelemetryParamsSet(ctx, req.(*TelemetryParamsSet))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_UpdateTelemetryParamsSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSet)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).UpdateTelemetryParamsSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_UpdateTelemetryParamsSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).UpdateTelemetryParamsSet(ctx, req.(*TelemetryParamsSet))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_DeleteTelemetryParamsSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSet)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).DeleteTelemetryParamsSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_DeleteTelemetryParamsSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).DeleteTelemetryParamsSet(ctx, req.(*TelemetryParamsSet))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetTelemetryParamsSetValueTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetTelemetryParamsSetValueTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetTelemetryParamsSetValueTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetTelemetryParamsSetValueTypes(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_SetTelemetryParamsSetValueType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSetValueType)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).SetTelemetryParamsSetValueType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_SetTelemetryParamsSetValueType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).SetTelemetryParamsSetValueType(ctx, req.(*TelemetryParamsSetValueType))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_UpdateTelemetryParamsSetValueType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSetValueType)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).UpdateTelemetryParamsSetValueType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_UpdateTelemetryParamsSetValueType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).UpdateTelemetryParamsSetValueType(ctx, req.(*TelemetryParamsSetValueType))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_DeleteTelemetryParamsSetValueType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSetValueType)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).DeleteTelemetryParamsSetValueType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_DeleteTelemetryParamsSetValueType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).DeleteTelemetryParamsSetValueType(ctx, req.(*TelemetryParamsSetValueType))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetTelemetryParamsSetValues_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSetValuesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetTelemetryParamsSetValues(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetTelemetryParamsSetValues_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetTelemetryParamsSetValues(ctx, req.(*TelemetryParamsSetValuesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_SetTelemetryParamsSetValue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSetValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).SetTelemetryParamsSetValue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_SetTelemetryParamsSetValue_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).SetTelemetryParamsSetValue(ctx, req.(*TelemetryParamsSetValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_UpdateTelemetryParamsSetValue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSetValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).UpdateTelemetryParamsSetValue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_UpdateTelemetryParamsSetValue_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).UpdateTelemetryParamsSetValue(ctx, req.(*TelemetryParamsSetValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_DeleteTelemetryParamsSetValue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSetValue)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).DeleteTelemetryParamsSetValue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_DeleteTelemetryParamsSetValue_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).DeleteTelemetryParamsSetValue(ctx, req.(*TelemetryParamsSetValue))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetTelemetryParamsSetMatchings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetTelemetryParamsSetMatchings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetTelemetryParamsSetMatchings_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetTelemetryParamsSetMatchings(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_SetTelemetryParamsSetMatching_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelemetryParamsSetMatching)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).SetTelemetryParamsSetMatching(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_SetTelemetryParamsSetMatching_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).SetTelemetryParamsSetMatching(ctx, req.(*TelemetryParamsSetMatching))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Info_ServiceDesc is the grpc.ServiceDesc for Info service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -798,6 +1274,62 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDigitalParam",
 			Handler:    _Info_GetDigitalParam_Handler,
+		},
+		{
+			MethodName: "GetTelemetryParamsSets",
+			Handler:    _Info_GetTelemetryParamsSets_Handler,
+		},
+		{
+			MethodName: "SetTelemetryParamsSet",
+			Handler:    _Info_SetTelemetryParamsSet_Handler,
+		},
+		{
+			MethodName: "UpdateTelemetryParamsSet",
+			Handler:    _Info_UpdateTelemetryParamsSet_Handler,
+		},
+		{
+			MethodName: "DeleteTelemetryParamsSet",
+			Handler:    _Info_DeleteTelemetryParamsSet_Handler,
+		},
+		{
+			MethodName: "GetTelemetryParamsSetValueTypes",
+			Handler:    _Info_GetTelemetryParamsSetValueTypes_Handler,
+		},
+		{
+			MethodName: "SetTelemetryParamsSetValueType",
+			Handler:    _Info_SetTelemetryParamsSetValueType_Handler,
+		},
+		{
+			MethodName: "UpdateTelemetryParamsSetValueType",
+			Handler:    _Info_UpdateTelemetryParamsSetValueType_Handler,
+		},
+		{
+			MethodName: "DeleteTelemetryParamsSetValueType",
+			Handler:    _Info_DeleteTelemetryParamsSetValueType_Handler,
+		},
+		{
+			MethodName: "GetTelemetryParamsSetValues",
+			Handler:    _Info_GetTelemetryParamsSetValues_Handler,
+		},
+		{
+			MethodName: "SetTelemetryParamsSetValue",
+			Handler:    _Info_SetTelemetryParamsSetValue_Handler,
+		},
+		{
+			MethodName: "UpdateTelemetryParamsSetValue",
+			Handler:    _Info_UpdateTelemetryParamsSetValue_Handler,
+		},
+		{
+			MethodName: "DeleteTelemetryParamsSetValue",
+			Handler:    _Info_DeleteTelemetryParamsSetValue_Handler,
+		},
+		{
+			MethodName: "GetTelemetryParamsSetMatchings",
+			Handler:    _Info_GetTelemetryParamsSetMatchings_Handler,
+		},
+		{
+			MethodName: "SetTelemetryParamsSetMatching",
+			Handler:    _Info_SetTelemetryParamsSetMatching_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

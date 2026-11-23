@@ -1664,6 +1664,7 @@ type TelemertyParam struct {
 	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
 	Units         string                 `protobuf:"bytes,3,opt,name=units,proto3" json:"units,omitempty"`
 	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Id            int32                  `protobuf:"varint,5,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1724,6 +1725,13 @@ func (x *TelemertyParam) GetDescription() string {
 		return x.Description
 	}
 	return ""
+}
+
+func (x *TelemertyParam) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
 }
 
 type MongoRequest struct {
@@ -2898,6 +2906,570 @@ func (x *FuelCalibrationMatchings) GetData() []*FuelCalibrationMatching {
 	return nil
 }
 
+type TelemetryParamsSet struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ID            int32                  `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemetryParamsSet) Reset() {
+	*x = TelemetryParamsSet{}
+	mi := &file_cyber_proto_msgTypes[44]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryParamsSet) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryParamsSet) ProtoMessage() {}
+
+func (x *TelemetryParamsSet) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[44]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryParamsSet.ProtoReflect.Descriptor instead.
+func (*TelemetryParamsSet) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{44}
+}
+
+func (x *TelemetryParamsSet) GetID() int32 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSet) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type TelemetryParamsSets struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []*TelemetryParamsSet  `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemetryParamsSets) Reset() {
+	*x = TelemetryParamsSets{}
+	mi := &file_cyber_proto_msgTypes[45]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryParamsSets) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryParamsSets) ProtoMessage() {}
+
+func (x *TelemetryParamsSets) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[45]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryParamsSets.ProtoReflect.Descriptor instead.
+func (*TelemetryParamsSets) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *TelemetryParamsSets) GetData() []*TelemetryParamsSet {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type TelemetryParamsSetValueType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ID            int32                  `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemetryParamsSetValueType) Reset() {
+	*x = TelemetryParamsSetValueType{}
+	mi := &file_cyber_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryParamsSetValueType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryParamsSetValueType) ProtoMessage() {}
+
+func (x *TelemetryParamsSetValueType) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryParamsSetValueType.ProtoReflect.Descriptor instead.
+func (*TelemetryParamsSetValueType) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *TelemetryParamsSetValueType) GetID() int32 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetValueType) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *TelemetryParamsSetValueType) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type TelemetryParamsSetValueTypes struct {
+	state         protoimpl.MessageState         `protogen:"open.v1"`
+	Data          []*TelemetryParamsSetValueType `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemetryParamsSetValueTypes) Reset() {
+	*x = TelemetryParamsSetValueTypes{}
+	mi := &file_cyber_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryParamsSetValueTypes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryParamsSetValueTypes) ProtoMessage() {}
+
+func (x *TelemetryParamsSetValueTypes) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryParamsSetValueTypes.ProtoReflect.Descriptor instead.
+func (*TelemetryParamsSetValueTypes) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *TelemetryParamsSetValueTypes) GetData() []*TelemetryParamsSetValueType {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type TelemetryParamsSetValue struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	ID                 int32                  `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	SetID              int32                  `protobuf:"varint,2,opt,name=setID,proto3" json:"setID,omitempty"`
+	TelemetryParamID   int32                  `protobuf:"varint,3,opt,name=telemetryParamID,proto3" json:"telemetryParamID,omitempty"`
+	TelemetryParamCode string                 `protobuf:"bytes,4,opt,name=telemetryParamCode,proto3" json:"telemetryParamCode,omitempty"`
+	Required           bool                   `protobuf:"varint,5,opt,name=required,proto3" json:"required,omitempty"`
+	ValueTypeID        int32                  `protobuf:"varint,6,opt,name=valueTypeID,proto3" json:"valueTypeID,omitempty"`
+	ValueTypeCode      string                 `protobuf:"bytes,7,opt,name=valueTypeCode,proto3" json:"valueTypeCode,omitempty"`
+	Value              float64                `protobuf:"fixed64,8,opt,name=value,proto3" json:"value,omitempty"`
+	CriticalDuration   int32                  `protobuf:"varint,9,opt,name=criticalDuration,proto3" json:"criticalDuration,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *TelemetryParamsSetValue) Reset() {
+	*x = TelemetryParamsSetValue{}
+	mi := &file_cyber_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryParamsSetValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryParamsSetValue) ProtoMessage() {}
+
+func (x *TelemetryParamsSetValue) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryParamsSetValue.ProtoReflect.Descriptor instead.
+func (*TelemetryParamsSetValue) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *TelemetryParamsSetValue) GetID() int32 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetValue) GetSetID() int32 {
+	if x != nil {
+		return x.SetID
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetValue) GetTelemetryParamID() int32 {
+	if x != nil {
+		return x.TelemetryParamID
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetValue) GetTelemetryParamCode() string {
+	if x != nil {
+		return x.TelemetryParamCode
+	}
+	return ""
+}
+
+func (x *TelemetryParamsSetValue) GetRequired() bool {
+	if x != nil {
+		return x.Required
+	}
+	return false
+}
+
+func (x *TelemetryParamsSetValue) GetValueTypeID() int32 {
+	if x != nil {
+		return x.ValueTypeID
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetValue) GetValueTypeCode() string {
+	if x != nil {
+		return x.ValueTypeCode
+	}
+	return ""
+}
+
+func (x *TelemetryParamsSetValue) GetValue() float64 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetValue) GetCriticalDuration() int32 {
+	if x != nil {
+		return x.CriticalDuration
+	}
+	return 0
+}
+
+type TelemetryParamsSetValues struct {
+	state         protoimpl.MessageState     `protogen:"open.v1"`
+	Data          []*TelemetryParamsSetValue `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemetryParamsSetValues) Reset() {
+	*x = TelemetryParamsSetValues{}
+	mi := &file_cyber_proto_msgTypes[49]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryParamsSetValues) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryParamsSetValues) ProtoMessage() {}
+
+func (x *TelemetryParamsSetValues) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[49]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryParamsSetValues.ProtoReflect.Descriptor instead.
+func (*TelemetryParamsSetValues) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{49}
+}
+
+func (x *TelemetryParamsSetValues) GetData() []*TelemetryParamsSetValue {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type TelemetryParamsSetValuesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SetID         int32                  `protobuf:"varint,1,opt,name=setID,proto3" json:"setID,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemetryParamsSetValuesRequest) Reset() {
+	*x = TelemetryParamsSetValuesRequest{}
+	mi := &file_cyber_proto_msgTypes[50]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryParamsSetValuesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryParamsSetValuesRequest) ProtoMessage() {}
+
+func (x *TelemetryParamsSetValuesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[50]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryParamsSetValuesRequest.ProtoReflect.Descriptor instead.
+func (*TelemetryParamsSetValuesRequest) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *TelemetryParamsSetValuesRequest) GetSetID() int32 {
+	if x != nil {
+		return x.SetID
+	}
+	return 0
+}
+
+type TelemetryParamsSetMatching struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	TemplateID     int32                  `protobuf:"varint,1,opt,name=templateID,proto3" json:"templateID,omitempty"`
+	TemplateName   string                 `protobuf:"bytes,2,opt,name=templateName,proto3" json:"templateName,omitempty"`
+	ClassID        int32                  `protobuf:"varint,3,opt,name=classID,proto3" json:"classID,omitempty"`
+	ClassName      string                 `protobuf:"bytes,4,opt,name=className,proto3" json:"className,omitempty"`
+	GenerationID   int32                  `protobuf:"varint,5,opt,name=generationID,proto3" json:"generationID,omitempty"`
+	GenerationName string                 `protobuf:"bytes,6,opt,name=generationName,proto3" json:"generationName,omitempty"`
+	MachinesCount  int64                  `protobuf:"varint,7,opt,name=machinesCount,proto3" json:"machinesCount,omitempty"`
+	ModelsCount    int64                  `protobuf:"varint,8,opt,name=modelsCount,proto3" json:"modelsCount,omitempty"`
+	Models         []string               `protobuf:"bytes,9,rep,name=models,proto3" json:"models,omitempty"`
+	Set            *TelemetryParamsSet    `protobuf:"bytes,10,opt,name=set,proto3" json:"set,omitempty"`
+	Comment        string                 `protobuf:"bytes,11,opt,name=comment,proto3" json:"comment,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *TelemetryParamsSetMatching) Reset() {
+	*x = TelemetryParamsSetMatching{}
+	mi := &file_cyber_proto_msgTypes[51]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryParamsSetMatching) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryParamsSetMatching) ProtoMessage() {}
+
+func (x *TelemetryParamsSetMatching) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[51]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryParamsSetMatching.ProtoReflect.Descriptor instead.
+func (*TelemetryParamsSetMatching) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{51}
+}
+
+func (x *TelemetryParamsSetMatching) GetTemplateID() int32 {
+	if x != nil {
+		return x.TemplateID
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetMatching) GetTemplateName() string {
+	if x != nil {
+		return x.TemplateName
+	}
+	return ""
+}
+
+func (x *TelemetryParamsSetMatching) GetClassID() int32 {
+	if x != nil {
+		return x.ClassID
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetMatching) GetClassName() string {
+	if x != nil {
+		return x.ClassName
+	}
+	return ""
+}
+
+func (x *TelemetryParamsSetMatching) GetGenerationID() int32 {
+	if x != nil {
+		return x.GenerationID
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetMatching) GetGenerationName() string {
+	if x != nil {
+		return x.GenerationName
+	}
+	return ""
+}
+
+func (x *TelemetryParamsSetMatching) GetMachinesCount() int64 {
+	if x != nil {
+		return x.MachinesCount
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetMatching) GetModelsCount() int64 {
+	if x != nil {
+		return x.ModelsCount
+	}
+	return 0
+}
+
+func (x *TelemetryParamsSetMatching) GetModels() []string {
+	if x != nil {
+		return x.Models
+	}
+	return nil
+}
+
+func (x *TelemetryParamsSetMatching) GetSet() *TelemetryParamsSet {
+	if x != nil {
+		return x.Set
+	}
+	return nil
+}
+
+func (x *TelemetryParamsSetMatching) GetComment() string {
+	if x != nil {
+		return x.Comment
+	}
+	return ""
+}
+
+type TelemetryParamsSetMatchings struct {
+	state         protoimpl.MessageState        `protogen:"open.v1"`
+	Data          []*TelemetryParamsSetMatching `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TelemetryParamsSetMatchings) Reset() {
+	*x = TelemetryParamsSetMatchings{}
+	mi := &file_cyber_proto_msgTypes[52]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TelemetryParamsSetMatchings) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TelemetryParamsSetMatchings) ProtoMessage() {}
+
+func (x *TelemetryParamsSetMatchings) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[52]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TelemetryParamsSetMatchings.ProtoReflect.Descriptor instead.
+func (*TelemetryParamsSetMatchings) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *TelemetryParamsSetMatchings) GetData() []*TelemetryParamsSetMatching {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 type DigitalParam struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
@@ -2909,7 +3481,7 @@ type DigitalParam struct {
 
 func (x *DigitalParam) Reset() {
 	*x = DigitalParam{}
-	mi := &file_cyber_proto_msgTypes[44]
+	mi := &file_cyber_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2921,7 +3493,7 @@ func (x *DigitalParam) String() string {
 func (*DigitalParam) ProtoMessage() {}
 
 func (x *DigitalParam) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[44]
+	mi := &file_cyber_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2934,7 +3506,7 @@ func (x *DigitalParam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DigitalParam.ProtoReflect.Descriptor instead.
 func (*DigitalParam) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{44}
+	return file_cyber_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *DigitalParam) GetCode() string {
@@ -2967,7 +3539,7 @@ type DigitalParams struct {
 
 func (x *DigitalParams) Reset() {
 	*x = DigitalParams{}
-	mi := &file_cyber_proto_msgTypes[45]
+	mi := &file_cyber_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2979,7 +3551,7 @@ func (x *DigitalParams) String() string {
 func (*DigitalParams) ProtoMessage() {}
 
 func (x *DigitalParams) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[45]
+	mi := &file_cyber_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2992,7 +3564,7 @@ func (x *DigitalParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DigitalParams.ProtoReflect.Descriptor instead.
 func (*DigitalParams) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{45}
+	return file_cyber_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *DigitalParams) GetParams() []*DigitalParam {
@@ -3014,7 +3586,7 @@ type EventBlock struct {
 
 func (x *EventBlock) Reset() {
 	*x = EventBlock{}
-	mi := &file_cyber_proto_msgTypes[46]
+	mi := &file_cyber_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3026,7 +3598,7 @@ func (x *EventBlock) String() string {
 func (*EventBlock) ProtoMessage() {}
 
 func (x *EventBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[46]
+	mi := &file_cyber_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3039,7 +3611,7 @@ func (x *EventBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EventBlock.ProtoReflect.Descriptor instead.
 func (*EventBlock) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{46}
+	return file_cyber_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *EventBlock) GetStart() int64 {
@@ -3200,12 +3772,13 @@ const file_cyber_proto_rawDesc = "" +
 	"\rStringRequest\x12\x18\n" +
 	"\arequest\x18\x01 \x01(\tR\arequest\"D\n" +
 	"\x0fTelemertyParams\x121\n" +
-	"\x06params\x18\x01 \x03(\v2\x19.cybertele.TelemertyParamR\x06params\"r\n" +
+	"\x06params\x18\x01 \x03(\v2\x19.cybertele.TelemertyParamR\x06params\"\x82\x01\n" +
 	"\x0eTelemertyParam\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12\x14\n" +
 	"\x05units\x18\x03 \x01(\tR\x05units\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\"\x82\x01\n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x0e\n" +
+	"\x02id\x18\x05 \x01(\x05R\x02id\"\x82\x01\n" +
 	"\fMongoRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12 \n" +
 	"\vmachineType\x18\x02 \x01(\tR\vmachineType\x12\x1c\n" +
@@ -3291,7 +3864,49 @@ const file_cyber_proto_rawDesc = "" +
 	" \x01(\v2\x1e.cybertele.FuelCalibrationTypeR\vcalibration\x12\x18\n" +
 	"\acomment\x18\v \x01(\tR\acomment\"R\n" +
 	"\x18FuelCalibrationMatchings\x126\n" +
-	"\x04data\x18\x01 \x03(\v2\".cybertele.FuelCalibrationMatchingR\x04data\"X\n" +
+	"\x04data\x18\x01 \x03(\v2\".cybertele.FuelCalibrationMatchingR\x04data\"8\n" +
+	"\x12TelemetryParamsSet\x12\x0e\n" +
+	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"H\n" +
+	"\x13TelemetryParamsSets\x121\n" +
+	"\x04data\x18\x01 \x03(\v2\x1d.cybertele.TelemetryParamsSetR\x04data\"U\n" +
+	"\x1bTelemetryParamsSetValueType\x12\x0e\n" +
+	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x12\n" +
+	"\x04code\x18\x02 \x01(\tR\x04code\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\"Z\n" +
+	"\x1cTelemetryParamsSetValueTypes\x12:\n" +
+	"\x04data\x18\x01 \x03(\v2&.cybertele.TelemetryParamsSetValueTypeR\x04data\"\xc1\x02\n" +
+	"\x17TelemetryParamsSetValue\x12\x0e\n" +
+	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x14\n" +
+	"\x05setID\x18\x02 \x01(\x05R\x05setID\x12*\n" +
+	"\x10telemetryParamID\x18\x03 \x01(\x05R\x10telemetryParamID\x12.\n" +
+	"\x12telemetryParamCode\x18\x04 \x01(\tR\x12telemetryParamCode\x12\x1a\n" +
+	"\brequired\x18\x05 \x01(\bR\brequired\x12 \n" +
+	"\vvalueTypeID\x18\x06 \x01(\x05R\vvalueTypeID\x12$\n" +
+	"\rvalueTypeCode\x18\a \x01(\tR\rvalueTypeCode\x12\x14\n" +
+	"\x05value\x18\b \x01(\x01R\x05value\x12*\n" +
+	"\x10criticalDuration\x18\t \x01(\x05R\x10criticalDuration\"R\n" +
+	"\x18TelemetryParamsSetValues\x126\n" +
+	"\x04data\x18\x01 \x03(\v2\".cybertele.TelemetryParamsSetValueR\x04data\"7\n" +
+	"\x1fTelemetryParamsSetValuesRequest\x12\x14\n" +
+	"\x05setID\x18\x01 \x01(\x05R\x05setID\"\x8f\x03\n" +
+	"\x1aTelemetryParamsSetMatching\x12\x1e\n" +
+	"\n" +
+	"templateID\x18\x01 \x01(\x05R\n" +
+	"templateID\x12\"\n" +
+	"\ftemplateName\x18\x02 \x01(\tR\ftemplateName\x12\x18\n" +
+	"\aclassID\x18\x03 \x01(\x05R\aclassID\x12\x1c\n" +
+	"\tclassName\x18\x04 \x01(\tR\tclassName\x12\"\n" +
+	"\fgenerationID\x18\x05 \x01(\x05R\fgenerationID\x12&\n" +
+	"\x0egenerationName\x18\x06 \x01(\tR\x0egenerationName\x12$\n" +
+	"\rmachinesCount\x18\a \x01(\x03R\rmachinesCount\x12 \n" +
+	"\vmodelsCount\x18\b \x01(\x03R\vmodelsCount\x12\x16\n" +
+	"\x06models\x18\t \x03(\tR\x06models\x12/\n" +
+	"\x03set\x18\n" +
+	" \x01(\v2\x1d.cybertele.TelemetryParamsSetR\x03set\x12\x18\n" +
+	"\acomment\x18\v \x01(\tR\acomment\"X\n" +
+	"\x1bTelemetryParamsSetMatchings\x129\n" +
+	"\x04data\x18\x01 \x03(\v2%.cybertele.TelemetryParamsSetMatchingR\x04data\"X\n" +
 	"\fDigitalParam\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x1a\n" +
 	"\bfullname\x18\x02 \x01(\tR\bfullname\x12\x18\n" +
@@ -3326,56 +3941,65 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 47)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 56)
 var file_cyber_proto_goTypes = []any{
-	(Status)(0),                      // 0: cybertele.Status
-	(*StatusReply)(nil),              // 1: cybertele.StatusReply
-	(*Empty)(nil),                    // 2: cybertele.Empty
-	(*Disk)(nil),                     // 3: cybertele.Disk
-	(*HealthReply)(nil),              // 4: cybertele.HealthReply
-	(*ParserStatus)(nil),             // 5: cybertele.ParserStatus
-	(*PageRequest)(nil),              // 6: cybertele.PageRequest
-	(*Pagination)(nil),               // 7: cybertele.Pagination
-	(*Machine)(nil),                  // 8: cybertele.Machine
-	(*MachineWarranty)(nil),          // 9: cybertele.MachineWarranty
-	(*Machines)(nil),                 // 10: cybertele.Machines
-	(*DataType)(nil),                 // 11: cybertele.DataType
-	(*DataTypes)(nil),                // 12: cybertele.DataTypes
-	(*ModelDataTypes)(nil),           // 13: cybertele.ModelDataTypes
-	(*AllModelsDataTypes)(nil),       // 14: cybertele.AllModelsDataTypes
-	(*DataPoint)(nil),                // 15: cybertele.DataPoint
-	(*DataPoints)(nil),               // 16: cybertele.DataPoints
-	(*Segment)(nil),                  // 17: cybertele.Segment
-	(*Segments)(nil),                 // 18: cybertele.Segments
-	(*Event)(nil),                    // 19: cybertele.Event
-	(*Count)(nil),                    // 20: cybertele.Count
-	(*CyberService)(nil),             // 21: cybertele.CyberService
-	(*CyberServices)(nil),            // 22: cybertele.CyberServices
-	(*StringRequest)(nil),            // 23: cybertele.StringRequest
-	(*TelemertyParams)(nil),          // 24: cybertele.TelemertyParams
-	(*TelemertyParam)(nil),           // 25: cybertele.TelemertyParam
-	(*MongoRequest)(nil),             // 26: cybertele.MongoRequest
-	(*MongoMachineType)(nil),         // 27: cybertele.MongoMachineType
-	(*MongoMachineTypes)(nil),        // 28: cybertele.MongoMachineTypes
-	(*MongoMachine)(nil),             // 29: cybertele.MongoMachine
-	(*MongoMachines)(nil),            // 30: cybertele.MongoMachines
-	(*MongoError)(nil),               // 31: cybertele.MongoError
-	(*MongoErrors)(nil),              // 32: cybertele.MongoErrors
-	(*MongoDataType)(nil),            // 33: cybertele.MongoDataType
-	(*MongoDataTypes)(nil),           // 34: cybertele.MongoDataTypes
-	(*HistoryRequest)(nil),           // 35: cybertele.HistoryRequest
-	(*WorkhourItem)(nil),             // 36: cybertele.WorkhourItem
-	(*WorkhourHistory)(nil),          // 37: cybertele.WorkhourHistory
-	(*FuelCalibrationPoint)(nil),     // 38: cybertele.FuelCalibrationPoint
-	(*FuelCalibrationType)(nil),      // 39: cybertele.FuelCalibrationType
-	(*FuelCalibrationTypes)(nil),     // 40: cybertele.FuelCalibrationTypes
-	(*FuelCalibration)(nil),          // 41: cybertele.FuelCalibration
-	(*FuelCalibrations)(nil),         // 42: cybertele.FuelCalibrations
-	(*FuelCalibrationMatching)(nil),  // 43: cybertele.FuelCalibrationMatching
-	(*FuelCalibrationMatchings)(nil), // 44: cybertele.FuelCalibrationMatchings
-	(*DigitalParam)(nil),             // 45: cybertele.DigitalParam
-	(*DigitalParams)(nil),            // 46: cybertele.DigitalParams
-	(*EventBlock)(nil),               // 47: cybertele.EventBlock
+	(Status)(0),                             // 0: cybertele.Status
+	(*StatusReply)(nil),                     // 1: cybertele.StatusReply
+	(*Empty)(nil),                           // 2: cybertele.Empty
+	(*Disk)(nil),                            // 3: cybertele.Disk
+	(*HealthReply)(nil),                     // 4: cybertele.HealthReply
+	(*ParserStatus)(nil),                    // 5: cybertele.ParserStatus
+	(*PageRequest)(nil),                     // 6: cybertele.PageRequest
+	(*Pagination)(nil),                      // 7: cybertele.Pagination
+	(*Machine)(nil),                         // 8: cybertele.Machine
+	(*MachineWarranty)(nil),                 // 9: cybertele.MachineWarranty
+	(*Machines)(nil),                        // 10: cybertele.Machines
+	(*DataType)(nil),                        // 11: cybertele.DataType
+	(*DataTypes)(nil),                       // 12: cybertele.DataTypes
+	(*ModelDataTypes)(nil),                  // 13: cybertele.ModelDataTypes
+	(*AllModelsDataTypes)(nil),              // 14: cybertele.AllModelsDataTypes
+	(*DataPoint)(nil),                       // 15: cybertele.DataPoint
+	(*DataPoints)(nil),                      // 16: cybertele.DataPoints
+	(*Segment)(nil),                         // 17: cybertele.Segment
+	(*Segments)(nil),                        // 18: cybertele.Segments
+	(*Event)(nil),                           // 19: cybertele.Event
+	(*Count)(nil),                           // 20: cybertele.Count
+	(*CyberService)(nil),                    // 21: cybertele.CyberService
+	(*CyberServices)(nil),                   // 22: cybertele.CyberServices
+	(*StringRequest)(nil),                   // 23: cybertele.StringRequest
+	(*TelemertyParams)(nil),                 // 24: cybertele.TelemertyParams
+	(*TelemertyParam)(nil),                  // 25: cybertele.TelemertyParam
+	(*MongoRequest)(nil),                    // 26: cybertele.MongoRequest
+	(*MongoMachineType)(nil),                // 27: cybertele.MongoMachineType
+	(*MongoMachineTypes)(nil),               // 28: cybertele.MongoMachineTypes
+	(*MongoMachine)(nil),                    // 29: cybertele.MongoMachine
+	(*MongoMachines)(nil),                   // 30: cybertele.MongoMachines
+	(*MongoError)(nil),                      // 31: cybertele.MongoError
+	(*MongoErrors)(nil),                     // 32: cybertele.MongoErrors
+	(*MongoDataType)(nil),                   // 33: cybertele.MongoDataType
+	(*MongoDataTypes)(nil),                  // 34: cybertele.MongoDataTypes
+	(*HistoryRequest)(nil),                  // 35: cybertele.HistoryRequest
+	(*WorkhourItem)(nil),                    // 36: cybertele.WorkhourItem
+	(*WorkhourHistory)(nil),                 // 37: cybertele.WorkhourHistory
+	(*FuelCalibrationPoint)(nil),            // 38: cybertele.FuelCalibrationPoint
+	(*FuelCalibrationType)(nil),             // 39: cybertele.FuelCalibrationType
+	(*FuelCalibrationTypes)(nil),            // 40: cybertele.FuelCalibrationTypes
+	(*FuelCalibration)(nil),                 // 41: cybertele.FuelCalibration
+	(*FuelCalibrations)(nil),                // 42: cybertele.FuelCalibrations
+	(*FuelCalibrationMatching)(nil),         // 43: cybertele.FuelCalibrationMatching
+	(*FuelCalibrationMatchings)(nil),        // 44: cybertele.FuelCalibrationMatchings
+	(*TelemetryParamsSet)(nil),              // 45: cybertele.TelemetryParamsSet
+	(*TelemetryParamsSets)(nil),             // 46: cybertele.TelemetryParamsSets
+	(*TelemetryParamsSetValueType)(nil),     // 47: cybertele.TelemetryParamsSetValueType
+	(*TelemetryParamsSetValueTypes)(nil),    // 48: cybertele.TelemetryParamsSetValueTypes
+	(*TelemetryParamsSetValue)(nil),         // 49: cybertele.TelemetryParamsSetValue
+	(*TelemetryParamsSetValues)(nil),        // 50: cybertele.TelemetryParamsSetValues
+	(*TelemetryParamsSetValuesRequest)(nil), // 51: cybertele.TelemetryParamsSetValuesRequest
+	(*TelemetryParamsSetMatching)(nil),      // 52: cybertele.TelemetryParamsSetMatching
+	(*TelemetryParamsSetMatchings)(nil),     // 53: cybertele.TelemetryParamsSetMatchings
+	(*DigitalParam)(nil),                    // 54: cybertele.DigitalParam
+	(*DigitalParams)(nil),                   // 55: cybertele.DigitalParams
+	(*EventBlock)(nil),                      // 56: cybertele.EventBlock
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -3405,12 +4029,17 @@ var file_cyber_proto_depIdxs = []int32{
 	41, // 24: cybertele.FuelCalibrations.data:type_name -> cybertele.FuelCalibration
 	39, // 25: cybertele.FuelCalibrationMatching.calibration:type_name -> cybertele.FuelCalibrationType
 	43, // 26: cybertele.FuelCalibrationMatchings.data:type_name -> cybertele.FuelCalibrationMatching
-	45, // 27: cybertele.DigitalParams.params:type_name -> cybertele.DigitalParam
-	28, // [28:28] is the sub-list for method output_type
-	28, // [28:28] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	45, // 27: cybertele.TelemetryParamsSets.data:type_name -> cybertele.TelemetryParamsSet
+	47, // 28: cybertele.TelemetryParamsSetValueTypes.data:type_name -> cybertele.TelemetryParamsSetValueType
+	49, // 29: cybertele.TelemetryParamsSetValues.data:type_name -> cybertele.TelemetryParamsSetValue
+	45, // 30: cybertele.TelemetryParamsSetMatching.set:type_name -> cybertele.TelemetryParamsSet
+	52, // 31: cybertele.TelemetryParamsSetMatchings.data:type_name -> cybertele.TelemetryParamsSetMatching
+	54, // 32: cybertele.DigitalParams.params:type_name -> cybertele.DigitalParam
+	33, // [33:33] is the sub-list for method output_type
+	33, // [33:33] is the sub-list for method input_type
+	33, // [33:33] is the sub-list for extension type_name
+	33, // [33:33] is the sub-list for extension extendee
+	0,  // [0:33] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -3424,7 +4053,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   47,
+			NumMessages:   56,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

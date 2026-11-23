@@ -25,4 +25,22 @@ service Info {
     rpc DeleteFuelCalibrationType(FuelCalibrationType) returns(StatusReply) {}
     rpc GetFuelCalibrationMatchings(Empty) returns(FuelCalibrationMatchings) {}
     rpc GetDigitalParam(Empty) returns(DigitalParams) {}
+
+    rpc GetTelemetryParamsSets(Empty) returns(TelemetryParamsSets) {}
+    rpc SetTelemetryParamsSet(TelemetryParamsSet) returns(TelemetryParamsSet) {}
+    rpc UpdateTelemetryParamsSet(TelemetryParamsSet) returns(StatusReply) {}
+    rpc DeleteTelemetryParamsSet(TelemetryParamsSet) returns(StatusReply) {}
+
+    rpc GetTelemetryParamsSetValueTypes(Empty) returns(TelemetryParamsSetValueTypes) {}
+    rpc SetTelemetryParamsSetValueType(TelemetryParamsSetValueType) returns(TelemetryParamsSetValueType) {}
+    rpc UpdateTelemetryParamsSetValueType(TelemetryParamsSetValueType) returns(StatusReply) {}
+    rpc DeleteTelemetryParamsSetValueType(TelemetryParamsSetValueType) returns(StatusReply) {}
+
+    rpc GetTelemetryParamsSetValues(TelemetryParamsSetValuesRequest) returns(TelemetryParamsSetValues) {}
+    rpc SetTelemetryParamsSetValue(TelemetryParamsSetValue) returns(TelemetryParamsSetValue) {}
+    rpc UpdateTelemetryParamsSetValue(TelemetryParamsSetValue) returns(StatusReply) {}
+    rpc DeleteTelemetryParamsSetValue(TelemetryParamsSetValue) returns(StatusReply) {}
+
+    rpc GetTelemetryParamsSetMatchings(Empty) returns(TelemetryParamsSetMatchings) {}
+    rpc SetTelemetryParamsSetMatching(TelemetryParamsSetMatching) returns(StatusReply) {}
 }
