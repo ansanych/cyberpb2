@@ -3116,7 +3116,6 @@ type TelemetryParamsSetValue struct {
 	ValueTypeID        int32                  `protobuf:"varint,6,opt,name=valueTypeID,proto3" json:"valueTypeID,omitempty"`
 	ValueTypeCode      string                 `protobuf:"bytes,7,opt,name=valueTypeCode,proto3" json:"valueTypeCode,omitempty"`
 	Value              float64                `protobuf:"fixed64,8,opt,name=value,proto3" json:"value,omitempty"`
-	CriticalDuration   int32                  `protobuf:"varint,9,opt,name=criticalDuration,proto3" json:"criticalDuration,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -3203,13 +3202,6 @@ func (x *TelemetryParamsSetValue) GetValueTypeCode() string {
 func (x *TelemetryParamsSetValue) GetValue() float64 {
 	if x != nil {
 		return x.Value
-	}
-	return 0
-}
-
-func (x *TelemetryParamsSetValue) GetCriticalDuration() int32 {
-	if x != nil {
-		return x.CriticalDuration
 	}
 	return 0
 }
@@ -3875,7 +3867,7 @@ const file_cyber_proto_rawDesc = "" +
 	"\x04code\x18\x02 \x01(\tR\x04code\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\"Z\n" +
 	"\x1cTelemetryParamsSetValueTypes\x12:\n" +
-	"\x04data\x18\x01 \x03(\v2&.cybertele.TelemetryParamsSetValueTypeR\x04data\"\xc1\x02\n" +
+	"\x04data\x18\x01 \x03(\v2&.cybertele.TelemetryParamsSetValueTypeR\x04data\"\x95\x02\n" +
 	"\x17TelemetryParamsSetValue\x12\x0e\n" +
 	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x14\n" +
 	"\x05setID\x18\x02 \x01(\x05R\x05setID\x12*\n" +
@@ -3884,8 +3876,7 @@ const file_cyber_proto_rawDesc = "" +
 	"\brequired\x18\x05 \x01(\bR\brequired\x12 \n" +
 	"\vvalueTypeID\x18\x06 \x01(\x05R\vvalueTypeID\x12$\n" +
 	"\rvalueTypeCode\x18\a \x01(\tR\rvalueTypeCode\x12\x14\n" +
-	"\x05value\x18\b \x01(\x01R\x05value\x12*\n" +
-	"\x10criticalDuration\x18\t \x01(\x05R\x10criticalDuration\"R\n" +
+	"\x05value\x18\b \x01(\x01R\x05value\"R\n" +
 	"\x18TelemetryParamsSetValues\x126\n" +
 	"\x04data\x18\x01 \x03(\v2\".cybertele.TelemetryParamsSetValueR\x04data\"7\n" +
 	"\x1fTelemetryParamsSetValuesRequest\x12\x14\n" +

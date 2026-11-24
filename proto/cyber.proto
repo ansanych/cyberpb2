@@ -336,7 +336,6 @@ message TelemetryParamsSetValue {
     int32 valueTypeID = 6;
     string valueTypeCode = 7;
     double value = 8;
-    int32 criticalDuration = 9;
 }
 
 message TelemetryParamsSetValues {
