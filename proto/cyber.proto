@@ -410,6 +410,20 @@ message AnalysisEventLevel {
     int32 sortOrder = 5;
 }
 
+// AnalysisEventImportanceLevel — справочник важности самого события.
+// Код важности хранится в AnalysisEvent.level и не связан с пороговыми
+// уровнями фиксации (AnalysisEventLevel).
+message AnalysisEventImportanceLevel {
+    int32 ID = 1;
+    string code = 2;
+    string label = 3;
+    int32 sortOrder = 4;
+}
+
+message AnalysisEventImportanceLevels {
+    repeated AnalysisEventImportanceLevel data = 1;
+}
+
 message AnalysisEvent {
     int32 ID = 1;
     string code = 2;

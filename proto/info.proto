@@ -49,6 +49,11 @@ service Info {
     rpc UpdateAnalysisEvent(AnalysisEvent) returns(StatusReply) {}
     rpc DeleteAnalysisEvent(AnalysisEvent) returns(StatusReply) {}
 
+    rpc GetAnalysisEventImportanceLevels(Empty) returns(AnalysisEventImportanceLevels) {}
+    rpc SetAnalysisEventImportanceLevel(AnalysisEventImportanceLevel) returns(AnalysisEventImportanceLevel) {}
+    rpc UpdateAnalysisEventImportanceLevel(AnalysisEventImportanceLevel) returns(StatusReply) {}
+    rpc DeleteAnalysisEventImportanceLevel(AnalysisEventImportanceLevel) returns(StatusReply) {}
+
     rpc GetAnalysisConstants(Empty) returns(AnalysisConstants) {}
     rpc SetAnalysisConstant(AnalysisConstant) returns(AnalysisConstant) {}
     rpc UpdateAnalysisConstant(AnalysisConstant) returns(StatusReply) {}

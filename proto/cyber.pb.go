@@ -3874,6 +3874,121 @@ func (x *AnalysisEventLevel) GetSortOrder() int32 {
 	return 0
 }
 
+// AnalysisEventImportanceLevel — справочник важности самого события.
+// Код важности хранится в AnalysisEvent.level и не связан с пороговыми
+// уровнями фиксации (AnalysisEventLevel).
+type AnalysisEventImportanceLevel struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ID            int32                  `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	Label         string                 `protobuf:"bytes,3,opt,name=label,proto3" json:"label,omitempty"`
+	SortOrder     int32                  `protobuf:"varint,4,opt,name=sortOrder,proto3" json:"sortOrder,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AnalysisEventImportanceLevel) Reset() {
+	*x = AnalysisEventImportanceLevel{}
+	mi := &file_cyber_proto_msgTypes[58]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AnalysisEventImportanceLevel) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AnalysisEventImportanceLevel) ProtoMessage() {}
+
+func (x *AnalysisEventImportanceLevel) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[58]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AnalysisEventImportanceLevel.ProtoReflect.Descriptor instead.
+func (*AnalysisEventImportanceLevel) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{58}
+}
+
+func (x *AnalysisEventImportanceLevel) GetID() int32 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *AnalysisEventImportanceLevel) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *AnalysisEventImportanceLevel) GetLabel() string {
+	if x != nil {
+		return x.Label
+	}
+	return ""
+}
+
+func (x *AnalysisEventImportanceLevel) GetSortOrder() int32 {
+	if x != nil {
+		return x.SortOrder
+	}
+	return 0
+}
+
+type AnalysisEventImportanceLevels struct {
+	state         protoimpl.MessageState          `protogen:"open.v1"`
+	Data          []*AnalysisEventImportanceLevel `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AnalysisEventImportanceLevels) Reset() {
+	*x = AnalysisEventImportanceLevels{}
+	mi := &file_cyber_proto_msgTypes[59]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AnalysisEventImportanceLevels) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AnalysisEventImportanceLevels) ProtoMessage() {}
+
+func (x *AnalysisEventImportanceLevels) ProtoReflect() protoreflect.Message {
+	mi := &file_cyber_proto_msgTypes[59]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AnalysisEventImportanceLevels.ProtoReflect.Descriptor instead.
+func (*AnalysisEventImportanceLevels) Descriptor() ([]byte, []int) {
+	return file_cyber_proto_rawDescGZIP(), []int{59}
+}
+
+func (x *AnalysisEventImportanceLevels) GetData() []*AnalysisEventImportanceLevel {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 type AnalysisEvent struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
 	ID            int32                     `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
@@ -3895,7 +4010,7 @@ type AnalysisEvent struct {
 
 func (x *AnalysisEvent) Reset() {
 	*x = AnalysisEvent{}
-	mi := &file_cyber_proto_msgTypes[58]
+	mi := &file_cyber_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3907,7 +4022,7 @@ func (x *AnalysisEvent) String() string {
 func (*AnalysisEvent) ProtoMessage() {}
 
 func (x *AnalysisEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[58]
+	mi := &file_cyber_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3920,7 +4035,7 @@ func (x *AnalysisEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalysisEvent.ProtoReflect.Descriptor instead.
 func (*AnalysisEvent) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{58}
+	return file_cyber_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *AnalysisEvent) GetID() int32 {
@@ -4023,7 +4138,7 @@ type AnalysisEvents struct {
 
 func (x *AnalysisEvents) Reset() {
 	*x = AnalysisEvents{}
-	mi := &file_cyber_proto_msgTypes[59]
+	mi := &file_cyber_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4035,7 +4150,7 @@ func (x *AnalysisEvents) String() string {
 func (*AnalysisEvents) ProtoMessage() {}
 
 func (x *AnalysisEvents) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[59]
+	mi := &file_cyber_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4048,7 +4163,7 @@ func (x *AnalysisEvents) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalysisEvents.ProtoReflect.Descriptor instead.
 func (*AnalysisEvents) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{59}
+	return file_cyber_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *AnalysisEvents) GetData() []*AnalysisEvent {
@@ -4068,7 +4183,7 @@ type AnalysisEventRules struct {
 
 func (x *AnalysisEventRules) Reset() {
 	*x = AnalysisEventRules{}
-	mi := &file_cyber_proto_msgTypes[60]
+	mi := &file_cyber_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4080,7 +4195,7 @@ func (x *AnalysisEventRules) String() string {
 func (*AnalysisEventRules) ProtoMessage() {}
 
 func (x *AnalysisEventRules) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[60]
+	mi := &file_cyber_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4093,7 +4208,7 @@ func (x *AnalysisEventRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnalysisEventRules.ProtoReflect.Descriptor instead.
 func (*AnalysisEventRules) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{60}
+	return file_cyber_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *AnalysisEventRules) GetEvents() []*AnalysisEvent {
@@ -4121,7 +4236,7 @@ type DigitalParam struct {
 
 func (x *DigitalParam) Reset() {
 	*x = DigitalParam{}
-	mi := &file_cyber_proto_msgTypes[61]
+	mi := &file_cyber_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4133,7 +4248,7 @@ func (x *DigitalParam) String() string {
 func (*DigitalParam) ProtoMessage() {}
 
 func (x *DigitalParam) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[61]
+	mi := &file_cyber_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4146,7 +4261,7 @@ func (x *DigitalParam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DigitalParam.ProtoReflect.Descriptor instead.
 func (*DigitalParam) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{61}
+	return file_cyber_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *DigitalParam) GetCode() string {
@@ -4179,7 +4294,7 @@ type DigitalParams struct {
 
 func (x *DigitalParams) Reset() {
 	*x = DigitalParams{}
-	mi := &file_cyber_proto_msgTypes[62]
+	mi := &file_cyber_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4191,7 +4306,7 @@ func (x *DigitalParams) String() string {
 func (*DigitalParams) ProtoMessage() {}
 
 func (x *DigitalParams) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[62]
+	mi := &file_cyber_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4204,7 +4319,7 @@ func (x *DigitalParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DigitalParams.ProtoReflect.Descriptor instead.
 func (*DigitalParams) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{62}
+	return file_cyber_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *DigitalParams) GetParams() []*DigitalParam {
@@ -4226,7 +4341,7 @@ type EventBlock struct {
 
 func (x *EventBlock) Reset() {
 	*x = EventBlock{}
-	mi := &file_cyber_proto_msgTypes[63]
+	mi := &file_cyber_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4238,7 +4353,7 @@ func (x *EventBlock) String() string {
 func (*EventBlock) ProtoMessage() {}
 
 func (x *EventBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_cyber_proto_msgTypes[63]
+	mi := &file_cyber_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4251,7 +4366,7 @@ func (x *EventBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EventBlock.ProtoReflect.Descriptor instead.
 func (*EventBlock) Descriptor() ([]byte, []int) {
-	return file_cyber_proto_rawDescGZIP(), []int{63}
+	return file_cyber_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *EventBlock) GetStart() int64 {
@@ -4580,7 +4695,14 @@ const file_cyber_proto_rawDesc = "" +
 	"\x04code\x18\x02 \x01(\tR\x04code\x12\x14\n" +
 	"\x05label\x18\x03 \x01(\tR\x05label\x12*\n" +
 	"\x10thresholdPercent\x18\x04 \x01(\x01R\x10thresholdPercent\x12\x1c\n" +
-	"\tsortOrder\x18\x05 \x01(\x05R\tsortOrder\"\xce\x03\n" +
+	"\tsortOrder\x18\x05 \x01(\x05R\tsortOrder\"v\n" +
+	"\x1cAnalysisEventImportanceLevel\x12\x0e\n" +
+	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x12\n" +
+	"\x04code\x18\x02 \x01(\tR\x04code\x12\x14\n" +
+	"\x05label\x18\x03 \x01(\tR\x05label\x12\x1c\n" +
+	"\tsortOrder\x18\x04 \x01(\x05R\tsortOrder\"\\\n" +
+	"\x1dAnalysisEventImportanceLevels\x12;\n" +
+	"\x04data\x18\x01 \x03(\v2'.cybertele.AnalysisEventImportanceLevelR\x04data\"\xce\x03\n" +
 	"\rAnalysisEvent\x12\x0e\n" +
 	"\x02ID\x18\x01 \x01(\x05R\x02ID\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\tR\x04code\x12\x14\n" +
@@ -4639,7 +4761,7 @@ func file_cyber_proto_rawDescGZIP() []byte {
 }
 
 var file_cyber_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 64)
+var file_cyber_proto_msgTypes = make([]protoimpl.MessageInfo, 66)
 var file_cyber_proto_goTypes = []any{
 	(Status)(0),                             // 0: cybertele.Status
 	(*StatusReply)(nil),                     // 1: cybertele.StatusReply
@@ -4700,12 +4822,14 @@ var file_cyber_proto_goTypes = []any{
 	(*AnalysisEventGroup)(nil),              // 56: cybertele.AnalysisEventGroup
 	(*AnalysisEventCondition)(nil),          // 57: cybertele.AnalysisEventCondition
 	(*AnalysisEventLevel)(nil),              // 58: cybertele.AnalysisEventLevel
-	(*AnalysisEvent)(nil),                   // 59: cybertele.AnalysisEvent
-	(*AnalysisEvents)(nil),                  // 60: cybertele.AnalysisEvents
-	(*AnalysisEventRules)(nil),              // 61: cybertele.AnalysisEventRules
-	(*DigitalParam)(nil),                    // 62: cybertele.DigitalParam
-	(*DigitalParams)(nil),                   // 63: cybertele.DigitalParams
-	(*EventBlock)(nil),                      // 64: cybertele.EventBlock
+	(*AnalysisEventImportanceLevel)(nil),    // 59: cybertele.AnalysisEventImportanceLevel
+	(*AnalysisEventImportanceLevels)(nil),   // 60: cybertele.AnalysisEventImportanceLevels
+	(*AnalysisEvent)(nil),                   // 61: cybertele.AnalysisEvent
+	(*AnalysisEvents)(nil),                  // 62: cybertele.AnalysisEvents
+	(*AnalysisEventRules)(nil),              // 63: cybertele.AnalysisEventRules
+	(*DigitalParam)(nil),                    // 64: cybertele.DigitalParam
+	(*DigitalParams)(nil),                   // 65: cybertele.DigitalParams
+	(*EventBlock)(nil),                      // 66: cybertele.EventBlock
 }
 var file_cyber_proto_depIdxs = []int32{
 	0,  // 0: cybertele.StatusReply.status:type_name -> cybertele.Status
@@ -4741,18 +4865,19 @@ var file_cyber_proto_depIdxs = []int32{
 	45, // 30: cybertele.TelemetryParamsSetMatching.set:type_name -> cybertele.TelemetryParamsSet
 	52, // 31: cybertele.TelemetryParamsSetMatchings.data:type_name -> cybertele.TelemetryParamsSetMatching
 	54, // 32: cybertele.AnalysisConstants.data:type_name -> cybertele.AnalysisConstant
-	56, // 33: cybertele.AnalysisEvent.groups:type_name -> cybertele.AnalysisEventGroup
-	57, // 34: cybertele.AnalysisEvent.conditions:type_name -> cybertele.AnalysisEventCondition
-	58, // 35: cybertele.AnalysisEvent.levels:type_name -> cybertele.AnalysisEventLevel
-	59, // 36: cybertele.AnalysisEvents.data:type_name -> cybertele.AnalysisEvent
-	59, // 37: cybertele.AnalysisEventRules.events:type_name -> cybertele.AnalysisEvent
-	54, // 38: cybertele.AnalysisEventRules.constants:type_name -> cybertele.AnalysisConstant
-	62, // 39: cybertele.DigitalParams.params:type_name -> cybertele.DigitalParam
-	40, // [40:40] is the sub-list for method output_type
-	40, // [40:40] is the sub-list for method input_type
-	40, // [40:40] is the sub-list for extension type_name
-	40, // [40:40] is the sub-list for extension extendee
-	0,  // [0:40] is the sub-list for field type_name
+	59, // 33: cybertele.AnalysisEventImportanceLevels.data:type_name -> cybertele.AnalysisEventImportanceLevel
+	56, // 34: cybertele.AnalysisEvent.groups:type_name -> cybertele.AnalysisEventGroup
+	57, // 35: cybertele.AnalysisEvent.conditions:type_name -> cybertele.AnalysisEventCondition
+	58, // 36: cybertele.AnalysisEvent.levels:type_name -> cybertele.AnalysisEventLevel
+	61, // 37: cybertele.AnalysisEvents.data:type_name -> cybertele.AnalysisEvent
+	61, // 38: cybertele.AnalysisEventRules.events:type_name -> cybertele.AnalysisEvent
+	54, // 39: cybertele.AnalysisEventRules.constants:type_name -> cybertele.AnalysisConstant
+	64, // 40: cybertele.DigitalParams.params:type_name -> cybertele.DigitalParam
+	41, // [41:41] is the sub-list for method output_type
+	41, // [41:41] is the sub-list for method input_type
+	41, // [41:41] is the sub-list for extension type_name
+	41, // [41:41] is the sub-list for extension extendee
+	0,  // [0:41] is the sub-list for field type_name
 }
 
 func init() { file_cyber_proto_init() }
@@ -4766,7 +4891,7 @@ func file_cyber_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cyber_proto_rawDesc), len(file_cyber_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   64,
+			NumMessages:   66,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

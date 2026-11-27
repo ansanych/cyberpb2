@@ -19,48 +19,52 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Info_Health_FullMethodName                            = "/cybertele.Info/Health"
-	Info_GetMachines_FullMethodName                       = "/cybertele.Info/GetMachines"
-	Info_GetMachinesFull_FullMethodName                   = "/cybertele.Info/GetMachinesFull"
-	Info_GetTelemetryParams_FullMethodName                = "/cybertele.Info/GetTelemetryParams"
-	Info_GetMongoMachineTypes_FullMethodName              = "/cybertele.Info/GetMongoMachineTypes"
-	Info_GetMongoMachines_FullMethodName                  = "/cybertele.Info/GetMongoMachines"
-	Info_GetMongoErrors_FullMethodName                    = "/cybertele.Info/GetMongoErrors"
-	Info_GetMongoDataTypes_FullMethodName                 = "/cybertele.Info/GetMongoDataTypes"
-	Info_GetMongoAllErrors_FullMethodName                 = "/cybertele.Info/GetMongoAllErrors"
-	Info_GetFuelCalibrations_FullMethodName               = "/cybertele.Info/GetFuelCalibrations"
-	Info_SetFuelCalibration_FullMethodName                = "/cybertele.Info/SetFuelCalibration"
-	Info_UpdateFuelCalibration_FullMethodName             = "/cybertele.Info/UpdateFuelCalibration"
-	Info_DeleteFuelCalibration_FullMethodName             = "/cybertele.Info/DeleteFuelCalibration"
-	Info_GetFuelCalibrationTypes_FullMethodName           = "/cybertele.Info/GetFuelCalibrationTypes"
-	Info_SetFuelCalibrationType_FullMethodName            = "/cybertele.Info/SetFuelCalibrationType"
-	Info_UpdateFuelCalibrationType_FullMethodName         = "/cybertele.Info/UpdateFuelCalibrationType"
-	Info_DeleteFuelCalibrationType_FullMethodName         = "/cybertele.Info/DeleteFuelCalibrationType"
-	Info_GetFuelCalibrationMatchings_FullMethodName       = "/cybertele.Info/GetFuelCalibrationMatchings"
-	Info_GetDigitalParam_FullMethodName                   = "/cybertele.Info/GetDigitalParam"
-	Info_GetTelemetryParamsSets_FullMethodName            = "/cybertele.Info/GetTelemetryParamsSets"
-	Info_SetTelemetryParamsSet_FullMethodName             = "/cybertele.Info/SetTelemetryParamsSet"
-	Info_UpdateTelemetryParamsSet_FullMethodName          = "/cybertele.Info/UpdateTelemetryParamsSet"
-	Info_DeleteTelemetryParamsSet_FullMethodName          = "/cybertele.Info/DeleteTelemetryParamsSet"
-	Info_GetTelemetryParamsSetValueTypes_FullMethodName   = "/cybertele.Info/GetTelemetryParamsSetValueTypes"
-	Info_SetTelemetryParamsSetValueType_FullMethodName    = "/cybertele.Info/SetTelemetryParamsSetValueType"
-	Info_UpdateTelemetryParamsSetValueType_FullMethodName = "/cybertele.Info/UpdateTelemetryParamsSetValueType"
-	Info_DeleteTelemetryParamsSetValueType_FullMethodName = "/cybertele.Info/DeleteTelemetryParamsSetValueType"
-	Info_GetTelemetryParamsSetValues_FullMethodName       = "/cybertele.Info/GetTelemetryParamsSetValues"
-	Info_SetTelemetryParamsSetValue_FullMethodName        = "/cybertele.Info/SetTelemetryParamsSetValue"
-	Info_UpdateTelemetryParamsSetValue_FullMethodName     = "/cybertele.Info/UpdateTelemetryParamsSetValue"
-	Info_DeleteTelemetryParamsSetValue_FullMethodName     = "/cybertele.Info/DeleteTelemetryParamsSetValue"
-	Info_GetTelemetryParamsSetMatchings_FullMethodName    = "/cybertele.Info/GetTelemetryParamsSetMatchings"
-	Info_SetTelemetryParamsSetMatching_FullMethodName     = "/cybertele.Info/SetTelemetryParamsSetMatching"
-	Info_GetAnalysisEvents_FullMethodName                 = "/cybertele.Info/GetAnalysisEvents"
-	Info_SetAnalysisEvent_FullMethodName                  = "/cybertele.Info/SetAnalysisEvent"
-	Info_UpdateAnalysisEvent_FullMethodName               = "/cybertele.Info/UpdateAnalysisEvent"
-	Info_DeleteAnalysisEvent_FullMethodName               = "/cybertele.Info/DeleteAnalysisEvent"
-	Info_GetAnalysisConstants_FullMethodName              = "/cybertele.Info/GetAnalysisConstants"
-	Info_SetAnalysisConstant_FullMethodName               = "/cybertele.Info/SetAnalysisConstant"
-	Info_UpdateAnalysisConstant_FullMethodName            = "/cybertele.Info/UpdateAnalysisConstant"
-	Info_DeleteAnalysisConstant_FullMethodName            = "/cybertele.Info/DeleteAnalysisConstant"
-	Info_GetEventRules_FullMethodName                     = "/cybertele.Info/GetEventRules"
+	Info_Health_FullMethodName                             = "/cybertele.Info/Health"
+	Info_GetMachines_FullMethodName                        = "/cybertele.Info/GetMachines"
+	Info_GetMachinesFull_FullMethodName                    = "/cybertele.Info/GetMachinesFull"
+	Info_GetTelemetryParams_FullMethodName                 = "/cybertele.Info/GetTelemetryParams"
+	Info_GetMongoMachineTypes_FullMethodName               = "/cybertele.Info/GetMongoMachineTypes"
+	Info_GetMongoMachines_FullMethodName                   = "/cybertele.Info/GetMongoMachines"
+	Info_GetMongoErrors_FullMethodName                     = "/cybertele.Info/GetMongoErrors"
+	Info_GetMongoDataTypes_FullMethodName                  = "/cybertele.Info/GetMongoDataTypes"
+	Info_GetMongoAllErrors_FullMethodName                  = "/cybertele.Info/GetMongoAllErrors"
+	Info_GetFuelCalibrations_FullMethodName                = "/cybertele.Info/GetFuelCalibrations"
+	Info_SetFuelCalibration_FullMethodName                 = "/cybertele.Info/SetFuelCalibration"
+	Info_UpdateFuelCalibration_FullMethodName              = "/cybertele.Info/UpdateFuelCalibration"
+	Info_DeleteFuelCalibration_FullMethodName              = "/cybertele.Info/DeleteFuelCalibration"
+	Info_GetFuelCalibrationTypes_FullMethodName            = "/cybertele.Info/GetFuelCalibrationTypes"
+	Info_SetFuelCalibrationType_FullMethodName             = "/cybertele.Info/SetFuelCalibrationType"
+	Info_UpdateFuelCalibrationType_FullMethodName          = "/cybertele.Info/UpdateFuelCalibrationType"
+	Info_DeleteFuelCalibrationType_FullMethodName          = "/cybertele.Info/DeleteFuelCalibrationType"
+	Info_GetFuelCalibrationMatchings_FullMethodName        = "/cybertele.Info/GetFuelCalibrationMatchings"
+	Info_GetDigitalParam_FullMethodName                    = "/cybertele.Info/GetDigitalParam"
+	Info_GetTelemetryParamsSets_FullMethodName             = "/cybertele.Info/GetTelemetryParamsSets"
+	Info_SetTelemetryParamsSet_FullMethodName              = "/cybertele.Info/SetTelemetryParamsSet"
+	Info_UpdateTelemetryParamsSet_FullMethodName           = "/cybertele.Info/UpdateTelemetryParamsSet"
+	Info_DeleteTelemetryParamsSet_FullMethodName           = "/cybertele.Info/DeleteTelemetryParamsSet"
+	Info_GetTelemetryParamsSetValueTypes_FullMethodName    = "/cybertele.Info/GetTelemetryParamsSetValueTypes"
+	Info_SetTelemetryParamsSetValueType_FullMethodName     = "/cybertele.Info/SetTelemetryParamsSetValueType"
+	Info_UpdateTelemetryParamsSetValueType_FullMethodName  = "/cybertele.Info/UpdateTelemetryParamsSetValueType"
+	Info_DeleteTelemetryParamsSetValueType_FullMethodName  = "/cybertele.Info/DeleteTelemetryParamsSetValueType"
+	Info_GetTelemetryParamsSetValues_FullMethodName        = "/cybertele.Info/GetTelemetryParamsSetValues"
+	Info_SetTelemetryParamsSetValue_FullMethodName         = "/cybertele.Info/SetTelemetryParamsSetValue"
+	Info_UpdateTelemetryParamsSetValue_FullMethodName      = "/cybertele.Info/UpdateTelemetryParamsSetValue"
+	Info_DeleteTelemetryParamsSetValue_FullMethodName      = "/cybertele.Info/DeleteTelemetryParamsSetValue"
+	Info_GetTelemetryParamsSetMatchings_FullMethodName     = "/cybertele.Info/GetTelemetryParamsSetMatchings"
+	Info_SetTelemetryParamsSetMatching_FullMethodName      = "/cybertele.Info/SetTelemetryParamsSetMatching"
+	Info_GetAnalysisEvents_FullMethodName                  = "/cybertele.Info/GetAnalysisEvents"
+	Info_SetAnalysisEvent_FullMethodName                   = "/cybertele.Info/SetAnalysisEvent"
+	Info_UpdateAnalysisEvent_FullMethodName                = "/cybertele.Info/UpdateAnalysisEvent"
+	Info_DeleteAnalysisEvent_FullMethodName                = "/cybertele.Info/DeleteAnalysisEvent"
+	Info_GetAnalysisEventImportanceLevels_FullMethodName   = "/cybertele.Info/GetAnalysisEventImportanceLevels"
+	Info_SetAnalysisEventImportanceLevel_FullMethodName    = "/cybertele.Info/SetAnalysisEventImportanceLevel"
+	Info_UpdateAnalysisEventImportanceLevel_FullMethodName = "/cybertele.Info/UpdateAnalysisEventImportanceLevel"
+	Info_DeleteAnalysisEventImportanceLevel_FullMethodName = "/cybertele.Info/DeleteAnalysisEventImportanceLevel"
+	Info_GetAnalysisConstants_FullMethodName               = "/cybertele.Info/GetAnalysisConstants"
+	Info_SetAnalysisConstant_FullMethodName                = "/cybertele.Info/SetAnalysisConstant"
+	Info_UpdateAnalysisConstant_FullMethodName             = "/cybertele.Info/UpdateAnalysisConstant"
+	Info_DeleteAnalysisConstant_FullMethodName             = "/cybertele.Info/DeleteAnalysisConstant"
+	Info_GetEventRules_FullMethodName                      = "/cybertele.Info/GetEventRules"
 )
 
 // InfoClient is the client API for Info service.
@@ -104,6 +108,10 @@ type InfoClient interface {
 	SetAnalysisEvent(ctx context.Context, in *AnalysisEvent, opts ...grpc.CallOption) (*AnalysisEvent, error)
 	UpdateAnalysisEvent(ctx context.Context, in *AnalysisEvent, opts ...grpc.CallOption) (*StatusReply, error)
 	DeleteAnalysisEvent(ctx context.Context, in *AnalysisEvent, opts ...grpc.CallOption) (*StatusReply, error)
+	GetAnalysisEventImportanceLevels(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisEventImportanceLevels, error)
+	SetAnalysisEventImportanceLevel(ctx context.Context, in *AnalysisEventImportanceLevel, opts ...grpc.CallOption) (*AnalysisEventImportanceLevel, error)
+	UpdateAnalysisEventImportanceLevel(ctx context.Context, in *AnalysisEventImportanceLevel, opts ...grpc.CallOption) (*StatusReply, error)
+	DeleteAnalysisEventImportanceLevel(ctx context.Context, in *AnalysisEventImportanceLevel, opts ...grpc.CallOption) (*StatusReply, error)
 	GetAnalysisConstants(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisConstants, error)
 	SetAnalysisConstant(ctx context.Context, in *AnalysisConstant, opts ...grpc.CallOption) (*AnalysisConstant, error)
 	UpdateAnalysisConstant(ctx context.Context, in *AnalysisConstant, opts ...grpc.CallOption) (*StatusReply, error)
@@ -489,6 +497,46 @@ func (c *infoClient) DeleteAnalysisEvent(ctx context.Context, in *AnalysisEvent,
 	return out, nil
 }
 
+func (c *infoClient) GetAnalysisEventImportanceLevels(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisEventImportanceLevels, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AnalysisEventImportanceLevels)
+	err := c.cc.Invoke(ctx, Info_GetAnalysisEventImportanceLevels_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) SetAnalysisEventImportanceLevel(ctx context.Context, in *AnalysisEventImportanceLevel, opts ...grpc.CallOption) (*AnalysisEventImportanceLevel, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AnalysisEventImportanceLevel)
+	err := c.cc.Invoke(ctx, Info_SetAnalysisEventImportanceLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) UpdateAnalysisEventImportanceLevel(ctx context.Context, in *AnalysisEventImportanceLevel, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_UpdateAnalysisEventImportanceLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) DeleteAnalysisEventImportanceLevel(ctx context.Context, in *AnalysisEventImportanceLevel, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_DeleteAnalysisEventImportanceLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *infoClient) GetAnalysisConstants(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisConstants, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AnalysisConstants)
@@ -580,6 +628,10 @@ type InfoServer interface {
 	SetAnalysisEvent(context.Context, *AnalysisEvent) (*AnalysisEvent, error)
 	UpdateAnalysisEvent(context.Context, *AnalysisEvent) (*StatusReply, error)
 	DeleteAnalysisEvent(context.Context, *AnalysisEvent) (*StatusReply, error)
+	GetAnalysisEventImportanceLevels(context.Context, *Empty) (*AnalysisEventImportanceLevels, error)
+	SetAnalysisEventImportanceLevel(context.Context, *AnalysisEventImportanceLevel) (*AnalysisEventImportanceLevel, error)
+	UpdateAnalysisEventImportanceLevel(context.Context, *AnalysisEventImportanceLevel) (*StatusReply, error)
+	DeleteAnalysisEventImportanceLevel(context.Context, *AnalysisEventImportanceLevel) (*StatusReply, error)
 	GetAnalysisConstants(context.Context, *Empty) (*AnalysisConstants, error)
 	SetAnalysisConstant(context.Context, *AnalysisConstant) (*AnalysisConstant, error)
 	UpdateAnalysisConstant(context.Context, *AnalysisConstant) (*StatusReply, error)
@@ -705,6 +757,18 @@ func (UnimplementedInfoServer) UpdateAnalysisEvent(context.Context, *AnalysisEve
 }
 func (UnimplementedInfoServer) DeleteAnalysisEvent(context.Context, *AnalysisEvent) (*StatusReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteAnalysisEvent not implemented")
+}
+func (UnimplementedInfoServer) GetAnalysisEventImportanceLevels(context.Context, *Empty) (*AnalysisEventImportanceLevels, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAnalysisEventImportanceLevels not implemented")
+}
+func (UnimplementedInfoServer) SetAnalysisEventImportanceLevel(context.Context, *AnalysisEventImportanceLevel) (*AnalysisEventImportanceLevel, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetAnalysisEventImportanceLevel not implemented")
+}
+func (UnimplementedInfoServer) UpdateAnalysisEventImportanceLevel(context.Context, *AnalysisEventImportanceLevel) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateAnalysisEventImportanceLevel not implemented")
+}
+func (UnimplementedInfoServer) DeleteAnalysisEventImportanceLevel(context.Context, *AnalysisEventImportanceLevel) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteAnalysisEventImportanceLevel not implemented")
 }
 func (UnimplementedInfoServer) GetAnalysisConstants(context.Context, *Empty) (*AnalysisConstants, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAnalysisConstants not implemented")
@@ -1408,6 +1472,78 @@ func _Info_DeleteAnalysisEvent_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Info_GetAnalysisEventImportanceLevels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetAnalysisEventImportanceLevels(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetAnalysisEventImportanceLevels_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetAnalysisEventImportanceLevels(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_SetAnalysisEventImportanceLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisEventImportanceLevel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).SetAnalysisEventImportanceLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_SetAnalysisEventImportanceLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).SetAnalysisEventImportanceLevel(ctx, req.(*AnalysisEventImportanceLevel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_UpdateAnalysisEventImportanceLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisEventImportanceLevel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).UpdateAnalysisEventImportanceLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_UpdateAnalysisEventImportanceLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).UpdateAnalysisEventImportanceLevel(ctx, req.(*AnalysisEventImportanceLevel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_DeleteAnalysisEventImportanceLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisEventImportanceLevel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).DeleteAnalysisEventImportanceLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_DeleteAnalysisEventImportanceLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).DeleteAnalysisEventImportanceLevel(ctx, req.(*AnalysisEventImportanceLevel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Info_GetAnalysisConstants_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
@@ -1652,6 +1788,22 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteAnalysisEvent",
 			Handler:    _Info_DeleteAnalysisEvent_Handler,
+		},
+		{
+			MethodName: "GetAnalysisEventImportanceLevels",
+			Handler:    _Info_GetAnalysisEventImportanceLevels_Handler,
+		},
+		{
+			MethodName: "SetAnalysisEventImportanceLevel",
+			Handler:    _Info_SetAnalysisEventImportanceLevel_Handler,
+		},
+		{
+			MethodName: "UpdateAnalysisEventImportanceLevel",
+			Handler:    _Info_UpdateAnalysisEventImportanceLevel_Handler,
+		},
+		{
+			MethodName: "DeleteAnalysisEventImportanceLevel",
+			Handler:    _Info_DeleteAnalysisEventImportanceLevel_Handler,
 		},
 		{
 			MethodName: "GetAnalysisConstants",
