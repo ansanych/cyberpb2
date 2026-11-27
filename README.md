@@ -1,6 +1,6 @@
 # cyberpb2
 
-Protobuf-контракты и утилиты для сервисов Cybermetrica.
+Protobuf-контракты и утилиты для сервисов Cybermetrica и др
 
 ## Установка
 
