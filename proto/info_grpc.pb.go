@@ -52,6 +52,15 @@ const (
 	Info_DeleteTelemetryParamsSetValue_FullMethodName     = "/cybertele.Info/DeleteTelemetryParamsSetValue"
 	Info_GetTelemetryParamsSetMatchings_FullMethodName    = "/cybertele.Info/GetTelemetryParamsSetMatchings"
 	Info_SetTelemetryParamsSetMatching_FullMethodName     = "/cybertele.Info/SetTelemetryParamsSetMatching"
+	Info_GetAnalysisEvents_FullMethodName                 = "/cybertele.Info/GetAnalysisEvents"
+	Info_SetAnalysisEvent_FullMethodName                  = "/cybertele.Info/SetAnalysisEvent"
+	Info_UpdateAnalysisEvent_FullMethodName               = "/cybertele.Info/UpdateAnalysisEvent"
+	Info_DeleteAnalysisEvent_FullMethodName               = "/cybertele.Info/DeleteAnalysisEvent"
+	Info_GetAnalysisConstants_FullMethodName              = "/cybertele.Info/GetAnalysisConstants"
+	Info_SetAnalysisConstant_FullMethodName               = "/cybertele.Info/SetAnalysisConstant"
+	Info_UpdateAnalysisConstant_FullMethodName            = "/cybertele.Info/UpdateAnalysisConstant"
+	Info_DeleteAnalysisConstant_FullMethodName            = "/cybertele.Info/DeleteAnalysisConstant"
+	Info_GetEventRules_FullMethodName                     = "/cybertele.Info/GetEventRules"
 )
 
 // InfoClient is the client API for Info service.
@@ -91,6 +100,15 @@ type InfoClient interface {
 	DeleteTelemetryParamsSetValue(ctx context.Context, in *TelemetryParamsSetValue, opts ...grpc.CallOption) (*StatusReply, error)
 	GetTelemetryParamsSetMatchings(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TelemetryParamsSetMatchings, error)
 	SetTelemetryParamsSetMatching(ctx context.Context, in *TelemetryParamsSetMatching, opts ...grpc.CallOption) (*StatusReply, error)
+	GetAnalysisEvents(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisEvents, error)
+	SetAnalysisEvent(ctx context.Context, in *AnalysisEvent, opts ...grpc.CallOption) (*AnalysisEvent, error)
+	UpdateAnalysisEvent(ctx context.Context, in *AnalysisEvent, opts ...grpc.CallOption) (*StatusReply, error)
+	DeleteAnalysisEvent(ctx context.Context, in *AnalysisEvent, opts ...grpc.CallOption) (*StatusReply, error)
+	GetAnalysisConstants(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisConstants, error)
+	SetAnalysisConstant(ctx context.Context, in *AnalysisConstant, opts ...grpc.CallOption) (*AnalysisConstant, error)
+	UpdateAnalysisConstant(ctx context.Context, in *AnalysisConstant, opts ...grpc.CallOption) (*StatusReply, error)
+	DeleteAnalysisConstant(ctx context.Context, in *AnalysisConstant, opts ...grpc.CallOption) (*StatusReply, error)
+	GetEventRules(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisEventRules, error)
 }
 
 type infoClient struct {
@@ -431,6 +449,96 @@ func (c *infoClient) SetTelemetryParamsSetMatching(ctx context.Context, in *Tele
 	return out, nil
 }
 
+func (c *infoClient) GetAnalysisEvents(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisEvents, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AnalysisEvents)
+	err := c.cc.Invoke(ctx, Info_GetAnalysisEvents_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) SetAnalysisEvent(ctx context.Context, in *AnalysisEvent, opts ...grpc.CallOption) (*AnalysisEvent, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AnalysisEvent)
+	err := c.cc.Invoke(ctx, Info_SetAnalysisEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) UpdateAnalysisEvent(ctx context.Context, in *AnalysisEvent, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_UpdateAnalysisEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) DeleteAnalysisEvent(ctx context.Context, in *AnalysisEvent, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_DeleteAnalysisEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetAnalysisConstants(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisConstants, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AnalysisConstants)
+	err := c.cc.Invoke(ctx, Info_GetAnalysisConstants_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) SetAnalysisConstant(ctx context.Context, in *AnalysisConstant, opts ...grpc.CallOption) (*AnalysisConstant, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AnalysisConstant)
+	err := c.cc.Invoke(ctx, Info_SetAnalysisConstant_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) UpdateAnalysisConstant(ctx context.Context, in *AnalysisConstant, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_UpdateAnalysisConstant_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) DeleteAnalysisConstant(ctx context.Context, in *AnalysisConstant, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_DeleteAnalysisConstant_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) GetEventRules(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisEventRules, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AnalysisEventRules)
+	err := c.cc.Invoke(ctx, Info_GetEventRules_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InfoServer is the server API for Info service.
 // All implementations must embed UnimplementedInfoServer
 // for forward compatibility.
@@ -468,6 +576,15 @@ type InfoServer interface {
 	DeleteTelemetryParamsSetValue(context.Context, *TelemetryParamsSetValue) (*StatusReply, error)
 	GetTelemetryParamsSetMatchings(context.Context, *Empty) (*TelemetryParamsSetMatchings, error)
 	SetTelemetryParamsSetMatching(context.Context, *TelemetryParamsSetMatching) (*StatusReply, error)
+	GetAnalysisEvents(context.Context, *Empty) (*AnalysisEvents, error)
+	SetAnalysisEvent(context.Context, *AnalysisEvent) (*AnalysisEvent, error)
+	UpdateAnalysisEvent(context.Context, *AnalysisEvent) (*StatusReply, error)
+	DeleteAnalysisEvent(context.Context, *AnalysisEvent) (*StatusReply, error)
+	GetAnalysisConstants(context.Context, *Empty) (*AnalysisConstants, error)
+	SetAnalysisConstant(context.Context, *AnalysisConstant) (*AnalysisConstant, error)
+	UpdateAnalysisConstant(context.Context, *AnalysisConstant) (*StatusReply, error)
+	DeleteAnalysisConstant(context.Context, *AnalysisConstant) (*StatusReply, error)
+	GetEventRules(context.Context, *Empty) (*AnalysisEventRules, error)
 	mustEmbedUnimplementedInfoServer()
 }
 
@@ -576,6 +693,33 @@ func (UnimplementedInfoServer) GetTelemetryParamsSetMatchings(context.Context, *
 }
 func (UnimplementedInfoServer) SetTelemetryParamsSetMatching(context.Context, *TelemetryParamsSetMatching) (*StatusReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetTelemetryParamsSetMatching not implemented")
+}
+func (UnimplementedInfoServer) GetAnalysisEvents(context.Context, *Empty) (*AnalysisEvents, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAnalysisEvents not implemented")
+}
+func (UnimplementedInfoServer) SetAnalysisEvent(context.Context, *AnalysisEvent) (*AnalysisEvent, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetAnalysisEvent not implemented")
+}
+func (UnimplementedInfoServer) UpdateAnalysisEvent(context.Context, *AnalysisEvent) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateAnalysisEvent not implemented")
+}
+func (UnimplementedInfoServer) DeleteAnalysisEvent(context.Context, *AnalysisEvent) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteAnalysisEvent not implemented")
+}
+func (UnimplementedInfoServer) GetAnalysisConstants(context.Context, *Empty) (*AnalysisConstants, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAnalysisConstants not implemented")
+}
+func (UnimplementedInfoServer) SetAnalysisConstant(context.Context, *AnalysisConstant) (*AnalysisConstant, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetAnalysisConstant not implemented")
+}
+func (UnimplementedInfoServer) UpdateAnalysisConstant(context.Context, *AnalysisConstant) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateAnalysisConstant not implemented")
+}
+func (UnimplementedInfoServer) DeleteAnalysisConstant(context.Context, *AnalysisConstant) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteAnalysisConstant not implemented")
+}
+func (UnimplementedInfoServer) GetEventRules(context.Context, *Empty) (*AnalysisEventRules, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetEventRules not implemented")
 }
 func (UnimplementedInfoServer) mustEmbedUnimplementedInfoServer() {}
 func (UnimplementedInfoServer) testEmbeddedByValue()              {}
@@ -1192,6 +1336,168 @@ func _Info_SetTelemetryParamsSetMatching_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Info_GetAnalysisEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetAnalysisEvents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetAnalysisEvents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetAnalysisEvents(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_SetAnalysisEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisEvent)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).SetAnalysisEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_SetAnalysisEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).SetAnalysisEvent(ctx, req.(*AnalysisEvent))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_UpdateAnalysisEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisEvent)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).UpdateAnalysisEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_UpdateAnalysisEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).UpdateAnalysisEvent(ctx, req.(*AnalysisEvent))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_DeleteAnalysisEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisEvent)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).DeleteAnalysisEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_DeleteAnalysisEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).DeleteAnalysisEvent(ctx, req.(*AnalysisEvent))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetAnalysisConstants_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetAnalysisConstants(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetAnalysisConstants_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetAnalysisConstants(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_SetAnalysisConstant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisConstant)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).SetAnalysisConstant(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_SetAnalysisConstant_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).SetAnalysisConstant(ctx, req.(*AnalysisConstant))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_UpdateAnalysisConstant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisConstant)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).UpdateAnalysisConstant(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_UpdateAnalysisConstant_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).UpdateAnalysisConstant(ctx, req.(*AnalysisConstant))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_DeleteAnalysisConstant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisConstant)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).DeleteAnalysisConstant(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_DeleteAnalysisConstant_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).DeleteAnalysisConstant(ctx, req.(*AnalysisConstant))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_GetEventRules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetEventRules(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetEventRules_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetEventRules(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Info_ServiceDesc is the grpc.ServiceDesc for Info service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1330,6 +1636,42 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetTelemetryParamsSetMatching",
 			Handler:    _Info_SetTelemetryParamsSetMatching_Handler,
+		},
+		{
+			MethodName: "GetAnalysisEvents",
+			Handler:    _Info_GetAnalysisEvents_Handler,
+		},
+		{
+			MethodName: "SetAnalysisEvent",
+			Handler:    _Info_SetAnalysisEvent_Handler,
+		},
+		{
+			MethodName: "UpdateAnalysisEvent",
+			Handler:    _Info_UpdateAnalysisEvent_Handler,
+		},
+		{
+			MethodName: "DeleteAnalysisEvent",
+			Handler:    _Info_DeleteAnalysisEvent_Handler,
+		},
+		{
+			MethodName: "GetAnalysisConstants",
+			Handler:    _Info_GetAnalysisConstants_Handler,
+		},
+		{
+			MethodName: "SetAnalysisConstant",
+			Handler:    _Info_SetAnalysisConstant_Handler,
+		},
+		{
+			MethodName: "UpdateAnalysisConstant",
+			Handler:    _Info_UpdateAnalysisConstant_Handler,
+		},
+		{
+			MethodName: "DeleteAnalysisConstant",
+			Handler:    _Info_DeleteAnalysisConstant_Handler,
+		},
+		{
+			MethodName: "GetEventRules",
+			Handler:    _Info_GetEventRules_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

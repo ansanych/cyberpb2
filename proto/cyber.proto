@@ -364,6 +364,77 @@ message TelemetryParamsSetMatchings {
     repeated TelemetryParamsSetMatching data = 1;
 }
 
+// analysis event rules
+
+message AnalysisConstant {
+    int32 ID = 1;
+    string code = 2;
+    string name = 3;
+    double value = 4;
+    string units = 5;
+    string description = 6;
+    string updatedAt = 7;
+}
+
+message AnalysisConstants {
+    repeated AnalysisConstant data = 1;
+}
+
+message AnalysisEventGroup {
+    int32 ID = 1;
+    string logic = 2; // and | or
+    string label = 3;
+    int32 sortOrder = 4;
+}
+
+message AnalysisEventCondition {
+    int32 ID = 1;
+    int32 groupID = 2;
+    string kind = 3; // telemetry | operjob | digital
+    string telemetryParamCode = 4;
+    string digitalCode = 5;
+    string operator = 6; // lt | lte | gt | gte | eq | neq
+    string thresholdSource = 7; // set_value_type | constant | literal | param | none
+    string valueTypeCode = 8;
+    string constantCode = 9;
+    string compareParamCode = 10;
+    double literalValue = 11;
+    int32 sortOrder = 12;
+}
+
+message AnalysisEventLevel {
+    int32 ID = 1;
+    string code = 2;
+    string label = 3;
+    double thresholdPercent = 4;
+    int32 sortOrder = 5;
+}
+
+message AnalysisEvent {
+    int32 ID = 1;
+    string code = 2;
+    string label = 3;
+    string description = 4;
+    string level = 5;
+    string percentBase = 6;
+    string messageText = 7;
+    string systemName = 8;
+    bool enabled = 9;
+    string updatedAt = 10;
+    repeated AnalysisEventGroup groups = 11;
+    repeated AnalysisEventCondition conditions = 12;
+    repeated AnalysisEventLevel levels = 13;
+}
+
+message AnalysisEvents {
+    repeated AnalysisEvent data = 1;
+}
+
+message AnalysisEventRules {
+    repeated AnalysisEvent events = 1;
+    repeated AnalysisConstant constants = 2;
+}
+
 message DigitalParam {
     string code = 1;
     string fullname = 2;

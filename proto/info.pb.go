@@ -25,7 +25,7 @@ var File_info_proto protoreflect.FileDescriptor
 const file_info_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"info.proto\x12\tcybertele\x1a\vcyber.proto2\xc2\x15\n" +
+	"info.proto\x12\tcybertele\x1a\vcyber.proto2\xe9\x1a\n" +
 	"\x04Info\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x126\n" +
 	"\vGetMachines\x12\x10.cybertele.Empty\x1a\x13.cybertele.Machines\"\x00\x12:\n" +
@@ -59,7 +59,16 @@ const file_info_proto_rawDesc = "" +
 	"\x1dUpdateTelemetryParamsSetValue\x12\".cybertele.TelemetryParamsSetValue\x1a\x16.cybertele.StatusReply\"\x00\x12]\n" +
 	"\x1dDeleteTelemetryParamsSetValue\x12\".cybertele.TelemetryParamsSetValue\x1a\x16.cybertele.StatusReply\"\x00\x12\\\n" +
 	"\x1eGetTelemetryParamsSetMatchings\x12\x10.cybertele.Empty\x1a&.cybertele.TelemetryParamsSetMatchings\"\x00\x12`\n" +
-	"\x1dSetTelemetryParamsSetMatching\x12%.cybertele.TelemetryParamsSetMatching\x1a\x16.cybertele.StatusReply\"\x00B\tZ\a./protob\x06proto3"
+	"\x1dSetTelemetryParamsSetMatching\x12%.cybertele.TelemetryParamsSetMatching\x1a\x16.cybertele.StatusReply\"\x00\x12B\n" +
+	"\x11GetAnalysisEvents\x12\x10.cybertele.Empty\x1a\x19.cybertele.AnalysisEvents\"\x00\x12H\n" +
+	"\x10SetAnalysisEvent\x12\x18.cybertele.AnalysisEvent\x1a\x18.cybertele.AnalysisEvent\"\x00\x12I\n" +
+	"\x13UpdateAnalysisEvent\x12\x18.cybertele.AnalysisEvent\x1a\x16.cybertele.StatusReply\"\x00\x12I\n" +
+	"\x13DeleteAnalysisEvent\x12\x18.cybertele.AnalysisEvent\x1a\x16.cybertele.StatusReply\"\x00\x12H\n" +
+	"\x14GetAnalysisConstants\x12\x10.cybertele.Empty\x1a\x1c.cybertele.AnalysisConstants\"\x00\x12Q\n" +
+	"\x13SetAnalysisConstant\x12\x1b.cybertele.AnalysisConstant\x1a\x1b.cybertele.AnalysisConstant\"\x00\x12O\n" +
+	"\x16UpdateAnalysisConstant\x12\x1b.cybertele.AnalysisConstant\x1a\x16.cybertele.StatusReply\"\x00\x12O\n" +
+	"\x16DeleteAnalysisConstant\x12\x1b.cybertele.AnalysisConstant\x1a\x16.cybertele.StatusReply\"\x00\x12B\n" +
+	"\rGetEventRules\x12\x10.cybertele.Empty\x1a\x1d.cybertele.AnalysisEventRules\"\x00B\tZ\a./protob\x06proto3"
 
 var file_info_proto_goTypes = []any{
 	(*Empty)(nil),                           // 0: cybertele.Empty
@@ -71,22 +80,27 @@ var file_info_proto_goTypes = []any{
 	(*TelemetryParamsSetValuesRequest)(nil), // 6: cybertele.TelemetryParamsSetValuesRequest
 	(*TelemetryParamsSetValue)(nil),         // 7: cybertele.TelemetryParamsSetValue
 	(*TelemetryParamsSetMatching)(nil),      // 8: cybertele.TelemetryParamsSetMatching
-	(*HealthReply)(nil),                     // 9: cybertele.HealthReply
-	(*Machines)(nil),                        // 10: cybertele.Machines
-	(*TelemertyParams)(nil),                 // 11: cybertele.TelemertyParams
-	(*MongoMachineTypes)(nil),               // 12: cybertele.MongoMachineTypes
-	(*MongoMachines)(nil),                   // 13: cybertele.MongoMachines
-	(*MongoErrors)(nil),                     // 14: cybertele.MongoErrors
-	(*MongoDataTypes)(nil),                  // 15: cybertele.MongoDataTypes
-	(*FuelCalibrations)(nil),                // 16: cybertele.FuelCalibrations
-	(*StatusReply)(nil),                     // 17: cybertele.StatusReply
-	(*FuelCalibrationTypes)(nil),            // 18: cybertele.FuelCalibrationTypes
-	(*FuelCalibrationMatchings)(nil),        // 19: cybertele.FuelCalibrationMatchings
-	(*DigitalParams)(nil),                   // 20: cybertele.DigitalParams
-	(*TelemetryParamsSets)(nil),             // 21: cybertele.TelemetryParamsSets
-	(*TelemetryParamsSetValueTypes)(nil),    // 22: cybertele.TelemetryParamsSetValueTypes
-	(*TelemetryParamsSetValues)(nil),        // 23: cybertele.TelemetryParamsSetValues
-	(*TelemetryParamsSetMatchings)(nil),     // 24: cybertele.TelemetryParamsSetMatchings
+	(*AnalysisEvent)(nil),                   // 9: cybertele.AnalysisEvent
+	(*AnalysisConstant)(nil),                // 10: cybertele.AnalysisConstant
+	(*HealthReply)(nil),                     // 11: cybertele.HealthReply
+	(*Machines)(nil),                        // 12: cybertele.Machines
+	(*TelemertyParams)(nil),                 // 13: cybertele.TelemertyParams
+	(*MongoMachineTypes)(nil),               // 14: cybertele.MongoMachineTypes
+	(*MongoMachines)(nil),                   // 15: cybertele.MongoMachines
+	(*MongoErrors)(nil),                     // 16: cybertele.MongoErrors
+	(*MongoDataTypes)(nil),                  // 17: cybertele.MongoDataTypes
+	(*FuelCalibrations)(nil),                // 18: cybertele.FuelCalibrations
+	(*StatusReply)(nil),                     // 19: cybertele.StatusReply
+	(*FuelCalibrationTypes)(nil),            // 20: cybertele.FuelCalibrationTypes
+	(*FuelCalibrationMatchings)(nil),        // 21: cybertele.FuelCalibrationMatchings
+	(*DigitalParams)(nil),                   // 22: cybertele.DigitalParams
+	(*TelemetryParamsSets)(nil),             // 23: cybertele.TelemetryParamsSets
+	(*TelemetryParamsSetValueTypes)(nil),    // 24: cybertele.TelemetryParamsSetValueTypes
+	(*TelemetryParamsSetValues)(nil),        // 25: cybertele.TelemetryParamsSetValues
+	(*TelemetryParamsSetMatchings)(nil),     // 26: cybertele.TelemetryParamsSetMatchings
+	(*AnalysisEvents)(nil),                  // 27: cybertele.AnalysisEvents
+	(*AnalysisConstants)(nil),               // 28: cybertele.AnalysisConstants
+	(*AnalysisEventRules)(nil),              // 29: cybertele.AnalysisEventRules
 }
 var file_info_proto_depIdxs = []int32{
 	0,  // 0: cybertele.Info.Health:input_type -> cybertele.Empty
@@ -122,41 +136,59 @@ var file_info_proto_depIdxs = []int32{
 	7,  // 30: cybertele.Info.DeleteTelemetryParamsSetValue:input_type -> cybertele.TelemetryParamsSetValue
 	0,  // 31: cybertele.Info.GetTelemetryParamsSetMatchings:input_type -> cybertele.Empty
 	8,  // 32: cybertele.Info.SetTelemetryParamsSetMatching:input_type -> cybertele.TelemetryParamsSetMatching
-	9,  // 33: cybertele.Info.Health:output_type -> cybertele.HealthReply
-	10, // 34: cybertele.Info.GetMachines:output_type -> cybertele.Machines
-	10, // 35: cybertele.Info.GetMachinesFull:output_type -> cybertele.Machines
-	11, // 36: cybertele.Info.GetTelemetryParams:output_type -> cybertele.TelemertyParams
-	12, // 37: cybertele.Info.GetMongoMachineTypes:output_type -> cybertele.MongoMachineTypes
-	13, // 38: cybertele.Info.GetMongoMachines:output_type -> cybertele.MongoMachines
-	14, // 39: cybertele.Info.GetMongoErrors:output_type -> cybertele.MongoErrors
-	15, // 40: cybertele.Info.GetMongoDataTypes:output_type -> cybertele.MongoDataTypes
-	14, // 41: cybertele.Info.GetMongoAllErrors:output_type -> cybertele.MongoErrors
-	16, // 42: cybertele.Info.GetFuelCalibrations:output_type -> cybertele.FuelCalibrations
-	17, // 43: cybertele.Info.SetFuelCalibration:output_type -> cybertele.StatusReply
-	17, // 44: cybertele.Info.UpdateFuelCalibration:output_type -> cybertele.StatusReply
-	17, // 45: cybertele.Info.DeleteFuelCalibration:output_type -> cybertele.StatusReply
-	18, // 46: cybertele.Info.GetFuelCalibrationTypes:output_type -> cybertele.FuelCalibrationTypes
-	17, // 47: cybertele.Info.SetFuelCalibrationType:output_type -> cybertele.StatusReply
-	17, // 48: cybertele.Info.UpdateFuelCalibrationType:output_type -> cybertele.StatusReply
-	17, // 49: cybertele.Info.DeleteFuelCalibrationType:output_type -> cybertele.StatusReply
-	19, // 50: cybertele.Info.GetFuelCalibrationMatchings:output_type -> cybertele.FuelCalibrationMatchings
-	20, // 51: cybertele.Info.GetDigitalParam:output_type -> cybertele.DigitalParams
-	21, // 52: cybertele.Info.GetTelemetryParamsSets:output_type -> cybertele.TelemetryParamsSets
-	4,  // 53: cybertele.Info.SetTelemetryParamsSet:output_type -> cybertele.TelemetryParamsSet
-	17, // 54: cybertele.Info.UpdateTelemetryParamsSet:output_type -> cybertele.StatusReply
-	17, // 55: cybertele.Info.DeleteTelemetryParamsSet:output_type -> cybertele.StatusReply
-	22, // 56: cybertele.Info.GetTelemetryParamsSetValueTypes:output_type -> cybertele.TelemetryParamsSetValueTypes
-	5,  // 57: cybertele.Info.SetTelemetryParamsSetValueType:output_type -> cybertele.TelemetryParamsSetValueType
-	17, // 58: cybertele.Info.UpdateTelemetryParamsSetValueType:output_type -> cybertele.StatusReply
-	17, // 59: cybertele.Info.DeleteTelemetryParamsSetValueType:output_type -> cybertele.StatusReply
-	23, // 60: cybertele.Info.GetTelemetryParamsSetValues:output_type -> cybertele.TelemetryParamsSetValues
-	7,  // 61: cybertele.Info.SetTelemetryParamsSetValue:output_type -> cybertele.TelemetryParamsSetValue
-	17, // 62: cybertele.Info.UpdateTelemetryParamsSetValue:output_type -> cybertele.StatusReply
-	17, // 63: cybertele.Info.DeleteTelemetryParamsSetValue:output_type -> cybertele.StatusReply
-	24, // 64: cybertele.Info.GetTelemetryParamsSetMatchings:output_type -> cybertele.TelemetryParamsSetMatchings
-	17, // 65: cybertele.Info.SetTelemetryParamsSetMatching:output_type -> cybertele.StatusReply
-	33, // [33:66] is the sub-list for method output_type
-	0,  // [0:33] is the sub-list for method input_type
+	0,  // 33: cybertele.Info.GetAnalysisEvents:input_type -> cybertele.Empty
+	9,  // 34: cybertele.Info.SetAnalysisEvent:input_type -> cybertele.AnalysisEvent
+	9,  // 35: cybertele.Info.UpdateAnalysisEvent:input_type -> cybertele.AnalysisEvent
+	9,  // 36: cybertele.Info.DeleteAnalysisEvent:input_type -> cybertele.AnalysisEvent
+	0,  // 37: cybertele.Info.GetAnalysisConstants:input_type -> cybertele.Empty
+	10, // 38: cybertele.Info.SetAnalysisConstant:input_type -> cybertele.AnalysisConstant
+	10, // 39: cybertele.Info.UpdateAnalysisConstant:input_type -> cybertele.AnalysisConstant
+	10, // 40: cybertele.Info.DeleteAnalysisConstant:input_type -> cybertele.AnalysisConstant
+	0,  // 41: cybertele.Info.GetEventRules:input_type -> cybertele.Empty
+	11, // 42: cybertele.Info.Health:output_type -> cybertele.HealthReply
+	12, // 43: cybertele.Info.GetMachines:output_type -> cybertele.Machines
+	12, // 44: cybertele.Info.GetMachinesFull:output_type -> cybertele.Machines
+	13, // 45: cybertele.Info.GetTelemetryParams:output_type -> cybertele.TelemertyParams
+	14, // 46: cybertele.Info.GetMongoMachineTypes:output_type -> cybertele.MongoMachineTypes
+	15, // 47: cybertele.Info.GetMongoMachines:output_type -> cybertele.MongoMachines
+	16, // 48: cybertele.Info.GetMongoErrors:output_type -> cybertele.MongoErrors
+	17, // 49: cybertele.Info.GetMongoDataTypes:output_type -> cybertele.MongoDataTypes
+	16, // 50: cybertele.Info.GetMongoAllErrors:output_type -> cybertele.MongoErrors
+	18, // 51: cybertele.Info.GetFuelCalibrations:output_type -> cybertele.FuelCalibrations
+	19, // 52: cybertele.Info.SetFuelCalibration:output_type -> cybertele.StatusReply
+	19, // 53: cybertele.Info.UpdateFuelCalibration:output_type -> cybertele.StatusReply
+	19, // 54: cybertele.Info.DeleteFuelCalibration:output_type -> cybertele.StatusReply
+	20, // 55: cybertele.Info.GetFuelCalibrationTypes:output_type -> cybertele.FuelCalibrationTypes
+	19, // 56: cybertele.Info.SetFuelCalibrationType:output_type -> cybertele.StatusReply
+	19, // 57: cybertele.Info.UpdateFuelCalibrationType:output_type -> cybertele.StatusReply
+	19, // 58: cybertele.Info.DeleteFuelCalibrationType:output_type -> cybertele.StatusReply
+	21, // 59: cybertele.Info.GetFuelCalibrationMatchings:output_type -> cybertele.FuelCalibrationMatchings
+	22, // 60: cybertele.Info.GetDigitalParam:output_type -> cybertele.DigitalParams
+	23, // 61: cybertele.Info.GetTelemetryParamsSets:output_type -> cybertele.TelemetryParamsSets
+	4,  // 62: cybertele.Info.SetTelemetryParamsSet:output_type -> cybertele.TelemetryParamsSet
+	19, // 63: cybertele.Info.UpdateTelemetryParamsSet:output_type -> cybertele.StatusReply
+	19, // 64: cybertele.Info.DeleteTelemetryParamsSet:output_type -> cybertele.StatusReply
+	24, // 65: cybertele.Info.GetTelemetryParamsSetValueTypes:output_type -> cybertele.TelemetryParamsSetValueTypes
+	5,  // 66: cybertele.Info.SetTelemetryParamsSetValueType:output_type -> cybertele.TelemetryParamsSetValueType
+	19, // 67: cybertele.Info.UpdateTelemetryParamsSetValueType:output_type -> cybertele.StatusReply
+	19, // 68: cybertele.Info.DeleteTelemetryParamsSetValueType:output_type -> cybertele.StatusReply
+	25, // 69: cybertele.Info.GetTelemetryParamsSetValues:output_type -> cybertele.TelemetryParamsSetValues
+	7,  // 70: cybertele.Info.SetTelemetryParamsSetValue:output_type -> cybertele.TelemetryParamsSetValue
+	19, // 71: cybertele.Info.UpdateTelemetryParamsSetValue:output_type -> cybertele.StatusReply
+	19, // 72: cybertele.Info.DeleteTelemetryParamsSetValue:output_type -> cybertele.StatusReply
+	26, // 73: cybertele.Info.GetTelemetryParamsSetMatchings:output_type -> cybertele.TelemetryParamsSetMatchings
+	19, // 74: cybertele.Info.SetTelemetryParamsSetMatching:output_type -> cybertele.StatusReply
+	27, // 75: cybertele.Info.GetAnalysisEvents:output_type -> cybertele.AnalysisEvents
+	9,  // 76: cybertele.Info.SetAnalysisEvent:output_type -> cybertele.AnalysisEvent
+	19, // 77: cybertele.Info.UpdateAnalysisEvent:output_type -> cybertele.StatusReply
+	19, // 78: cybertele.Info.DeleteAnalysisEvent:output_type -> cybertele.StatusReply
+	28, // 79: cybertele.Info.GetAnalysisConstants:output_type -> cybertele.AnalysisConstants
+	10, // 80: cybertele.Info.SetAnalysisConstant:output_type -> cybertele.AnalysisConstant
+	19, // 81: cybertele.Info.UpdateAnalysisConstant:output_type -> cybertele.StatusReply
+	19, // 82: cybertele.Info.DeleteAnalysisConstant:output_type -> cybertele.StatusReply
+	29, // 83: cybertele.Info.GetEventRules:output_type -> cybertele.AnalysisEventRules
+	42, // [42:84] is the sub-list for method output_type
+	0,  // [0:42] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

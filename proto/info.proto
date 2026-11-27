@@ -43,4 +43,16 @@ service Info {
 
     rpc GetTelemetryParamsSetMatchings(Empty) returns(TelemetryParamsSetMatchings) {}
     rpc SetTelemetryParamsSetMatching(TelemetryParamsSetMatching) returns(StatusReply) {}
+
+    rpc GetAnalysisEvents(Empty) returns(AnalysisEvents) {}
+    rpc SetAnalysisEvent(AnalysisEvent) returns(AnalysisEvent) {}
+    rpc UpdateAnalysisEvent(AnalysisEvent) returns(StatusReply) {}
+    rpc DeleteAnalysisEvent(AnalysisEvent) returns(StatusReply) {}
+
+    rpc GetAnalysisConstants(Empty) returns(AnalysisConstants) {}
+    rpc SetAnalysisConstant(AnalysisConstant) returns(AnalysisConstant) {}
+    rpc UpdateAnalysisConstant(AnalysisConstant) returns(StatusReply) {}
+    rpc DeleteAnalysisConstant(AnalysisConstant) returns(StatusReply) {}
+
+    rpc GetEventRules(Empty) returns(AnalysisEventRules) {}
 }
