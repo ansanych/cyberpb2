@@ -60,6 +60,10 @@ const (
 	Info_SetAnalysisEventImportanceLevel_FullMethodName    = "/cybertele.Info/SetAnalysisEventImportanceLevel"
 	Info_UpdateAnalysisEventImportanceLevel_FullMethodName = "/cybertele.Info/UpdateAnalysisEventImportanceLevel"
 	Info_DeleteAnalysisEventImportanceLevel_FullMethodName = "/cybertele.Info/DeleteAnalysisEventImportanceLevel"
+	Info_GetAnalysisCriticalityLevels_FullMethodName       = "/cybertele.Info/GetAnalysisCriticalityLevels"
+	Info_SetAnalysisCriticalityLevel_FullMethodName        = "/cybertele.Info/SetAnalysisCriticalityLevel"
+	Info_UpdateAnalysisCriticalityLevel_FullMethodName     = "/cybertele.Info/UpdateAnalysisCriticalityLevel"
+	Info_DeleteAnalysisCriticalityLevel_FullMethodName     = "/cybertele.Info/DeleteAnalysisCriticalityLevel"
 	Info_GetAnalysisConstants_FullMethodName               = "/cybertele.Info/GetAnalysisConstants"
 	Info_SetAnalysisConstant_FullMethodName                = "/cybertele.Info/SetAnalysisConstant"
 	Info_UpdateAnalysisConstant_FullMethodName             = "/cybertele.Info/UpdateAnalysisConstant"
@@ -112,6 +116,10 @@ type InfoClient interface {
 	SetAnalysisEventImportanceLevel(ctx context.Context, in *AnalysisEventImportanceLevel, opts ...grpc.CallOption) (*AnalysisEventImportanceLevel, error)
 	UpdateAnalysisEventImportanceLevel(ctx context.Context, in *AnalysisEventImportanceLevel, opts ...grpc.CallOption) (*StatusReply, error)
 	DeleteAnalysisEventImportanceLevel(ctx context.Context, in *AnalysisEventImportanceLevel, opts ...grpc.CallOption) (*StatusReply, error)
+	GetAnalysisCriticalityLevels(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisCriticalityLevels, error)
+	SetAnalysisCriticalityLevel(ctx context.Context, in *AnalysisCriticalityLevel, opts ...grpc.CallOption) (*AnalysisCriticalityLevel, error)
+	UpdateAnalysisCriticalityLevel(ctx context.Context, in *AnalysisCriticalityLevel, opts ...grpc.CallOption) (*StatusReply, error)
+	DeleteAnalysisCriticalityLevel(ctx context.Context, in *AnalysisCriticalityLevel, opts ...grpc.CallOption) (*StatusReply, error)
 	GetAnalysisConstants(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisConstants, error)
 	SetAnalysisConstant(ctx context.Context, in *AnalysisConstant, opts ...grpc.CallOption) (*AnalysisConstant, error)
 	UpdateAnalysisConstant(ctx context.Context, in *AnalysisConstant, opts ...grpc.CallOption) (*StatusReply, error)
@@ -537,6 +545,46 @@ func (c *infoClient) DeleteAnalysisEventImportanceLevel(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *infoClient) GetAnalysisCriticalityLevels(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisCriticalityLevels, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AnalysisCriticalityLevels)
+	err := c.cc.Invoke(ctx, Info_GetAnalysisCriticalityLevels_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) SetAnalysisCriticalityLevel(ctx context.Context, in *AnalysisCriticalityLevel, opts ...grpc.CallOption) (*AnalysisCriticalityLevel, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AnalysisCriticalityLevel)
+	err := c.cc.Invoke(ctx, Info_SetAnalysisCriticalityLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) UpdateAnalysisCriticalityLevel(ctx context.Context, in *AnalysisCriticalityLevel, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_UpdateAnalysisCriticalityLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoClient) DeleteAnalysisCriticalityLevel(ctx context.Context, in *AnalysisCriticalityLevel, opts ...grpc.CallOption) (*StatusReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatusReply)
+	err := c.cc.Invoke(ctx, Info_DeleteAnalysisCriticalityLevel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *infoClient) GetAnalysisConstants(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AnalysisConstants, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AnalysisConstants)
@@ -632,6 +680,10 @@ type InfoServer interface {
 	SetAnalysisEventImportanceLevel(context.Context, *AnalysisEventImportanceLevel) (*AnalysisEventImportanceLevel, error)
 	UpdateAnalysisEventImportanceLevel(context.Context, *AnalysisEventImportanceLevel) (*StatusReply, error)
 	DeleteAnalysisEventImportanceLevel(context.Context, *AnalysisEventImportanceLevel) (*StatusReply, error)
+	GetAnalysisCriticalityLevels(context.Context, *Empty) (*AnalysisCriticalityLevels, error)
+	SetAnalysisCriticalityLevel(context.Context, *AnalysisCriticalityLevel) (*AnalysisCriticalityLevel, error)
+	UpdateAnalysisCriticalityLevel(context.Context, *AnalysisCriticalityLevel) (*StatusReply, error)
+	DeleteAnalysisCriticalityLevel(context.Context, *AnalysisCriticalityLevel) (*StatusReply, error)
 	GetAnalysisConstants(context.Context, *Empty) (*AnalysisConstants, error)
 	SetAnalysisConstant(context.Context, *AnalysisConstant) (*AnalysisConstant, error)
 	UpdateAnalysisConstant(context.Context, *AnalysisConstant) (*StatusReply, error)
@@ -769,6 +821,18 @@ func (UnimplementedInfoServer) UpdateAnalysisEventImportanceLevel(context.Contex
 }
 func (UnimplementedInfoServer) DeleteAnalysisEventImportanceLevel(context.Context, *AnalysisEventImportanceLevel) (*StatusReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteAnalysisEventImportanceLevel not implemented")
+}
+func (UnimplementedInfoServer) GetAnalysisCriticalityLevels(context.Context, *Empty) (*AnalysisCriticalityLevels, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAnalysisCriticalityLevels not implemented")
+}
+func (UnimplementedInfoServer) SetAnalysisCriticalityLevel(context.Context, *AnalysisCriticalityLevel) (*AnalysisCriticalityLevel, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetAnalysisCriticalityLevel not implemented")
+}
+func (UnimplementedInfoServer) UpdateAnalysisCriticalityLevel(context.Context, *AnalysisCriticalityLevel) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateAnalysisCriticalityLevel not implemented")
+}
+func (UnimplementedInfoServer) DeleteAnalysisCriticalityLevel(context.Context, *AnalysisCriticalityLevel) (*StatusReply, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteAnalysisCriticalityLevel not implemented")
 }
 func (UnimplementedInfoServer) GetAnalysisConstants(context.Context, *Empty) (*AnalysisConstants, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAnalysisConstants not implemented")
@@ -1544,6 +1608,78 @@ func _Info_DeleteAnalysisEventImportanceLevel_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Info_GetAnalysisCriticalityLevels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).GetAnalysisCriticalityLevels(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_GetAnalysisCriticalityLevels_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).GetAnalysisCriticalityLevels(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_SetAnalysisCriticalityLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisCriticalityLevel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).SetAnalysisCriticalityLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_SetAnalysisCriticalityLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).SetAnalysisCriticalityLevel(ctx, req.(*AnalysisCriticalityLevel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_UpdateAnalysisCriticalityLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisCriticalityLevel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).UpdateAnalysisCriticalityLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_UpdateAnalysisCriticalityLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).UpdateAnalysisCriticalityLevel(ctx, req.(*AnalysisCriticalityLevel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Info_DeleteAnalysisCriticalityLevel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnalysisCriticalityLevel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServer).DeleteAnalysisCriticalityLevel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Info_DeleteAnalysisCriticalityLevel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServer).DeleteAnalysisCriticalityLevel(ctx, req.(*AnalysisCriticalityLevel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Info_GetAnalysisConstants_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
@@ -1804,6 +1940,22 @@ var Info_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteAnalysisEventImportanceLevel",
 			Handler:    _Info_DeleteAnalysisEventImportanceLevel_Handler,
+		},
+		{
+			MethodName: "GetAnalysisCriticalityLevels",
+			Handler:    _Info_GetAnalysisCriticalityLevels_Handler,
+		},
+		{
+			MethodName: "SetAnalysisCriticalityLevel",
+			Handler:    _Info_SetAnalysisCriticalityLevel_Handler,
+		},
+		{
+			MethodName: "UpdateAnalysisCriticalityLevel",
+			Handler:    _Info_UpdateAnalysisCriticalityLevel_Handler,
+		},
+		{
+			MethodName: "DeleteAnalysisCriticalityLevel",
+			Handler:    _Info_DeleteAnalysisCriticalityLevel_Handler,
 		},
 		{
 			MethodName: "GetAnalysisConstants",

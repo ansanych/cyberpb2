@@ -424,6 +424,19 @@ message AnalysisEventImportanceLevels {
     repeated AnalysisEventImportanceLevel data = 1;
 }
 
+// AnalysisCriticalityLevel — справочник допустимых кодов уровней
+// критичности, из которого события выбирают код в analysis_event_levels.
+message AnalysisCriticalityLevel {
+    int32 ID = 1;
+    string code = 2;
+    string label = 3;
+    int32 sortOrder = 4;
+}
+
+message AnalysisCriticalityLevels {
+    repeated AnalysisCriticalityLevel data = 1;
+}
+
 message AnalysisEvent {
     int32 ID = 1;
     string code = 2;
